@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="List_Landmark" path="List_Landmark" />
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:ScrollView name="Panel" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Auto" style="height: 350px; position: absolute; bottom: 0; left: 0;">
+        <ui:Label tabindex="-1" text="データが登録されていません" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Dialogue" style="flex-shrink: 1; flex-grow: 1; -unity-font-style: normal; font-size: 21px; -unity-text-align: middle-center; display: none; height: 310px;" />
+        <ui:Instance template="List_Landmark" />
+        <ui:Instance template="List_Landmark" />
+        <ui:Instance template="List_Landmark" />
+        <ui:Instance template="List_Landmark" />
+        <ui:Instance template="List_Landmark" />
+        <ui:Instance template="List_Landmark" />
+    </ui:ScrollView>
+    <ui:ScrollView name="Panel" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Auto" picking-mode="Ignore" style="height: 350px; display: flex; opacity: 0; visibility: hidden;">
+        <ui:Label tabindex="-1" text="データが登録されていません" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Dialogue" style="flex-shrink: 1; flex-grow: 1; -unity-font-style: normal; font-size: 21px; -unity-text-align: middle-center; display: none; height: 310px;" />
+    </ui:ScrollView>
+</ui:UXML>

@@ -1,0 +1,1766 @@
+
+.unity-text-element {
+    color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/Fonts/MPLUSRounded1c-RegularSDF.asset?fileID=11400000&guid=16ebc954c776e604e8d8693a34969fdb&type=2#MPLUSRounded1c-RegularSDF");
+}
+
+.header {
+    font-size: 20px;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 113, 113);
+    margin: 0;
+    padding: 4px 12px 6px 11px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.gis-background-window {
+    background-color: rgba(0, 0, 0, 0.93);
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+}
+
+.menu-unity-button {
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    background-color: rgb(110, 135, 117);
+    border-left-color: rgb(156, 156, 156);
+    border-right-color: rgb(156, 156, 156);
+    border-top-color: rgb(156, 156, 156);
+    border-bottom-color: rgb(156, 156, 156);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    white-space: normal;
+}
+
+.weather-slider #unity-dragger {
+    -unity-slice-left: 24;
+    -unity-slice-right: 24;
+    background-color: rgb(0, 190, 190);
+    height: 20px;
+    margin-top: -10px;
+    border-radius: 4px;
+    min-width: 20px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 18px;
+}
+
+.color-slider #unity-drag-container {
+    height: 100%;
+}
+
+.color-slider #unity-tracker {
+    background-color: rgba(0, 0, 0, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    top: auto;
+    height: 30px;
+}
+
+.color-slider #unity-dragger {
+    height: 30px;
+}
+
+.unity-min-max-slider__dragger {
+    -unity-slice-left: 24;
+    -unity-slice-right: 24;
+    background-color: rgb(0, 190, 190);
+    height: 12px;
+    margin-top: -6px;
+    border-radius: 4px;
+    min-width: 20px;
+}
+
+.unity-min-max-slider__min-thumb {
+    border-radius: 4px;
+    margin-top: -6px;
+    background-color: rgb(0, 190, 190);
+    width: 20px;
+    height: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-left: -4px;
+}
+
+.unity-min-max-slider__max-thumb {
+    border-radius: 4px;
+    margin-top: -6px;
+    background-color: rgb(0, 190, 190);
+    width: 20px;
+    height: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-left: 4px;
+}
+
+Scroller #unity-dragger {
+    background-color: rgb(0, 190, 190);
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+Scroller #unity-tracker {
+    background-color: rgb(96, 96, 96);
+}
+
+#unity-low-button {
+    background-color: rgb(79, 79, 79);
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    -unity-background-image-tint-color: rgb(185, 185, 185);
+}
+
+#unity-high-button {
+    background-color: rgb(79, 79, 79);
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    -unity-background-image-tint-color: rgb(185, 185, 185);
+}
+
+Scroller #unity-drag-container {
+}
+
+.open-close-button {
+    background-color: rgb(110, 135, 117);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 11px;
+    height: 10px;
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    width: 50px;
+}
+
+.header-inner-text {
+    width: 100px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.tabs {
+    flex-direction: row;
+    -unity-font-style: bold;
+    font-size: 14px;
+}
+
+.tab {
+    flex-grow: 1;
+    -unity-text-align: middle-center;
+    background-color: rgb(80, 115, 105);
+    margin-right: 1px;
+    margin-left: 1px;
+    min-height: 30px;
+}
+
+.tab:hover {
+    background-color: rgb(95, 135, 123);
+}
+
+.tab-leftmost {
+    border-top-left-radius: 7px;
+}
+
+.tab-rightmost {
+    border-top-right-radius: 7px;
+}
+
+.tab-contents {
+    margin-right: 0;
+    margin-left: 0;
+    background-color: rgba(59, 75, 72, 0.56);
+    padding-left: 3px;
+    padding-top: 3px;
+}
+
+.tab-selected {
+    background-color: rgb(23, 96, 58);
+}
+
+.tab-selected:hover {
+    background-color: rgb(23, 96, 58);
+}
+
+.tab-content-unselected {
+    display: none;
+}
+
+.menu-label {
+    white-space: normal;
+}
+
+.unity-button {
+    display: flex;
+    visibility: visible;
+}
+
+.unity-label {
+}
+
+.unity-base-text-field {
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.unity-text-field {
+    color: rgb(0, 0, 0);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgb(25, 106, 84);
+    display: flex;
+}
+
+.unity-base-field {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#unity-text-input TextElement {
+    color: black;
+}
+
+.unity-radio-button:hover {
+    background-color: rgba(50, 75, 75, 0.25);
+}
+
+.unity-radio-button:checked {
+    background-color: rgb(50, 75, 75);
+    border-color: rgb(136, 147, 146);
+}
+
+.unity-radio-button__checkmark-background {
+    width: 24px;
+    border-width: 0;
+    background-color: rgba(255, 255, 128, 0);
+}
+
+.unity-radio-button__checkmark {
+    background-color: rgba(255, 255, 128, 0);
+    background-image: resource('SelectedIcon');
+}
+
+.unity-radio-button {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 42px;
+    background-color: rgba(255, 255, 128, 0);
+    border-radius: 21px;
+    border-width: 1px;
+    border-color: rgb(136, 147, 146);
+}
+
+.unity-base-field__label {
+    display: none;
+}
+
+.unity-base-field__input {
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.unity-radio-button-group__container {
+    display: flex;
+    flex-direction: row;
+}
+
+.unity-base-slider__dragger {
+    border-radius: 2px;
+}
+
+#unity-text-field > .unity-text-field__input {
+    background-color: rgb(255, 255, 255);
+    border-radius: 0;
+    padding: 6px;
+}
+
+.unity-popup-field > .unity-base-field__input {
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.unity-popup-field .unity-base-popup-field__text {
+    color: rgb(0, 0, 0);
+}
+
+.unity-popup-field {
+    color: rgb(0, 0, 0);
+}
+
+#Menu {
+    height: 64px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#Menu > .unity-radio-button {
+    height: 50px;
+    border-radius: 25px;
+}
+
+#MenuMain .unity-radio-button__checkmark-background {
+    margin-right: 8px;
+    border-radius: 0;
+    background-image: resource('Icon_Home');
+}
+
+#MenuMain .unity-radio-button__checkmark {
+    background-image: resource('Icon_blank');
+}
+
+#MenuEdit .unity-radio-button__checkmark-background {
+    margin-right: 8px;
+    border-radius: 0;
+    background-image: resource('Icon_Edit');
+}
+
+#MenuEdit .unity-radio-button__checkmark {
+    background-image: resource('Icon_blank');
+}
+
+#MenuData .unity-radio-button__checkmark-background {
+    margin-right: 8px;
+    border-radius: 0;
+    background-image: resource('Icon_Data');
+}
+
+#MenuData .unity-radio-button__checkmark {
+    background-image: resource('Icon_blank');
+}
+
+#MenuCamera .unity-radio-button__checkmark-background {
+    margin-right: 8px;
+    border-radius: 0;
+    background-image: resource('Icon_Camera');
+}
+
+#MenuCamera .unity-radio-button__checkmark {
+    background-image: resource('Icon_blank');
+}
+
+#SubMenu_Edit {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#SubMenu_Data {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#SubMenu_Camera {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#Weather {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+}
+
+#Weather > .unity-radio-button__label {
+}
+
+#Weather .unity-radio-button {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border-width: 0;
+    background-color: rgba(50, 75, 75, 0);
+    padding: 0;
+    border-radius: 0;
+}
+
+#Weather .unity-radio-button:hover {
+    background-color: rgba(50, 75, 75, 0);
+}
+
+#Weather .unity-radio-button:checked {
+    width: 44px;
+    height: 44px;
+}
+
+#Sun .VisualElement {
+    padding: 0;
+    margin: 0;
+}
+
+#Sun .unity-checkmark:checked {
+    width: 44px;
+    height: 44px;
+}
+
+#Sun .unity-radio-button__checkmark-background {
+    background-image: resource('Icon_WeatherSun_normal');
+}
+
+#Sun > VisualElement {
+    height: 100%;
+    width: 100%;
+}
+
+#Sun > VisualElement > VisualElement {
+    height: 100%;
+    width: 100%;
+}
+
+#Sun .unity-radio-button__checkmark {
+    background-image: resource('Icon_blank');
+}
+
+#Cloud .VisualElement {
+    padding: 0;
+    margin: 0;
+}
+
+#Cloud .unity-checkmark:checked {
+    width: 44px;
+    height: 44px;
+}
+
+#Cloud .unity-radio-button__checkmark-background {
+    background-image: resource('Icon_WeatherCloud_normal');
+    border-radius: 0;
+}
+
+#Cloud > VisualElement {
+    height: 100%;
+    width: 100%;
+}
+
+#Cloud > VisualElement > VisualElement {
+    height: 100%;
+    width: 100%;
+}
+
+#Cloud .unity-radio-button__checkmark {
+    background-image: resource('Icon_blank');
+}
+
+#Rain .VisualElement {
+    padding: 0;
+    margin: 0;
+}
+
+#Rain .unity-checkmark:checked {
+    width: 44px;
+    height: 44px;
+}
+
+#Rain .unity-radio-button__checkmark-background {
+    background-image: resource('Icon_WeatherRain_normal');
+    border-radius: 0;
+}
+
+#Rain > VisualElement {
+    height: 100%;
+    width: 100%;
+}
+
+#Rain > VisualElement > VisualElement {
+    height: 100%;
+    width: 100%;
+}
+
+#Rain .unity-radio-button__checkmark {
+    background-image: resource('Icon_blank');
+}
+
+#Snow .VisualElement {
+    padding: 0;
+    margin: 0;
+}
+
+#Snow .unity-checkmark:checked {
+    width: 44px;
+    height: 44px;
+}
+
+#Snow .unity-radio-button__checkmark-background {
+    background-image: resource('Icon_WeatherSnow_normal');
+    border-radius: 0;
+}
+
+#Snow > VisualElement {
+    height: 100%;
+    width: 100%;
+}
+
+#Snow > VisualElement > VisualElement {
+    height: 100%;
+    width: 100%;
+}
+
+#Snow .unity-radio-button__checkmark {
+    background-image: resource('Icon_blank');
+}
+
+#WeatherController {
+    display: flex;
+    width: 150px;
+    height: 70px;
+    justify-content: flex-start;
+    margin-top: 16px;
+}
+
+#TimeSlider {
+    position: absolute;
+    width: 100%;
+    top: 40px;
+}
+
+#TimeSlider > VisualElement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 25px;
+}
+
+#TimeSlider > VisualElement > .unity-base-slider__drag-container {
+    width: 100%;
+}
+
+#TimeSlider .unity-min-max-slider__min-thumb {
+    width: 6px;
+    height: 12px;
+}
+
+#TimeSlider .unity-min-max-slider__max-thumb {
+    border-radius: 50%;
+}
+
+#unity-thumb-max {
+    height: 12px;
+}
+
+#TimeSlider .unity-min-max-slider__tracker {
+    background-color: rgb(176, 204, 203);
+    border-width: 1px;
+    margin-top: 0;
+    height: 4px;
+}
+
+#TimeSlider .unity-min-max-slider__dragger {
+    background-color: rgb(0, 79, 79);
+    border-width: 0;
+    margin-top: 0;
+    height: 4px;
+}
+
+#TimeSlider .unity-base-slider__tracker {
+    background-color: rgb(176, 204, 203);
+    border-color: rgb(136, 147, 146);
+    border-width: 1px;
+    height: 4px;
+    border-radius: 2px;
+}
+
+#TimeSlider .unity-base-slider__dragger {
+    background-color: rgb(0, 79, 79);
+    border-color: rgb(136, 147, 146);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    top: 17px;
+}
+
+#FunctionContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#FunctionContainer .unity-toggle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+#FunctionContainer .unity-toggle:hover {
+    background-color: rgba(50, 75, 75, 0.25);
+    border-radius: 50%;
+}
+
+#FunctionContainer .unity-toggle:checked {
+    background-color: rgb(50, 75, 75);
+    border-width: 1px;
+    border-color: rgb(136, 147, 146);
+}
+
+#FunctionContainer .unity-toggle__checkmark {
+    display: none;
+}
+
+#FunctionContainer .unity-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(50, 75, 75, 0);
+    border-width: 0;
+}
+
+#FunctionContainer .unity-button:hover {
+    background-color: rgba(50, 75, 75, 0.25);
+    border-radius: 50%;
+}
+
+#FunctionContainer .unity-button:active {
+    background-color: rgb(50, 75, 75);
+    border-width: 1px;
+    border-color: rgb(136, 147, 146);
+}
+
+#SettingContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#SettingContainer .unity-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(50, 75, 75, 0);
+    border-width: 0;
+}
+
+#SettingContainer .unity-button:hover {
+    background-color: rgba(50, 75, 75, 0.25);
+    border-radius: 50%;
+}
+
+#SettingContainer .unity-button:active {
+    background-color: rgb(50, 75, 75);
+    border-width: 1px;
+    border-color: rgb(136, 147, 146);
+}
+
+#SettingPanel {
+    width: 360px;
+    height: 128px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    top: 60px;
+    right: 10px;
+}
+
+#PanelArrow {
+    margin-right: 16px;
+    background-image: resource('Img_PanelArrow');
+}
+
+#SettingPanel .unity-button {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: rgba(14, 21, 20, 0.75);
+    border-width: 0;
+}
+
+#SettingPanel .unity-button:hover {
+    background-color: rgba(14, 21, 20, 0.6);
+}
+
+#FpsBackButton {
+    width: 80px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(50, 75, 75, 0);
+    border-radius: 6px;
+    padding: 0;
+}
+
+#FPSForwardButton {
+    width: 80px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(50, 75, 75, 0);
+    border-radius: 6px;
+    padding: 0;
+}
+
+#FpsLeftButton {
+    width: 80px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(50, 75, 75, 0);
+    border-radius: 6px;
+    padding: 0;
+}
+
+#FpsRightButton {
+    width: 80px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(50, 75, 75, 0);
+    border-radius: 6px;
+    padding: 0;
+}
+
+#FpsBackButton {
+}
+
+#FPSForwardButton {
+}
+
+#FpsLeftButton {
+}
+
+#FpsRightButton:active {
+}
+
+.ActionButton {
+    height: 40px;
+    border-radius: 20px;
+    border-color: rgb(128, 213, 212);
+    background-color: rgb(128, 213, 212);
+    color: rgb(0, 55, 55);
+    width: 100px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    visibility: visible;
+}
+
+.ActionButton > Label {
+    color: rgb(0, 55, 55);
+}
+
+.ActionButton:hover {
+    background-color: rgb(107, 186, 193);
+}
+
+.ActionButton:active {
+    background-color: rgb(85, 163, 173);
+}
+
+.ActionButton:disabled {
+    background-color: rgb(221, 228, 227);
+}
+
+.CircleButton {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(47, 54, 54);
+    border-radius: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.CircleButton:hover {
+    background-color: rgb(47, 54, 54);
+}
+
+.OutlineButton {
+    height: 40px;
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: rgb(136, 147, 146);
+    background-color: rgba(136, 147, 146, 0);
+    color: rgb(128, 213, 212);
+    font-size: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    width: 100px;
+}
+
+.OutlineButton:hover {
+    background-color: rgba(136, 147, 146, 0.2);
+}
+
+.OutlineButton:active {
+    background-color: rgba(136, 147, 146, 0.4);
+}
+
+#OKButton {
+    height: 40px;
+    border-radius: 20px;
+    border-color: rgb(128, 213, 212);
+    background-color: rgb(128, 213, 212);
+    color: rgb(0, 55, 55);
+    width: 120px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    visibility: visible;
+}
+
+#OKButton:hover {
+    background-color: rgb(107, 186, 193);
+}
+
+#OKButton:active {
+    background-color: rgb(85, 163, 173);
+}
+
+#OKButton:disabled {
+    background-color: rgb(221, 228, 227);
+}
+
+#CancelButton {
+    height: 40px;
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: rgb(136, 147, 146);
+    background-color: rgba(136, 147, 146, 0);
+    color: rgb(128, 213, 212);
+}
+
+#CancelButton:hover {
+    background-color: rgba(136, 147, 146, 0.2);
+}
+
+#CancelButton:active {
+    background-color: rgba(136, 147, 146, 0.4);
+}
+
+#ContextButton {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    transition: 0.1s;
+}
+
+#ContextButton:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#ContextButton:active {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#DeleteButton {
+    background-color: rgba(255, 255, 255, 0);
+    border-width: 0;
+    border-radius: 4px;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+}
+
+#DeleteButton:hover {
+    background-color: rgba(50, 75, 75, 0.2);
+}
+
+#DeleteButton:active {
+    background-color: rgba(128, 213, 212, 0.3);
+}
+#RenameButton {
+    background-color: rgba(255, 255, 255, 0);
+    border-width: 0;
+    border-radius: 4px;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+}
+
+#RenameButton:hover {
+    background-color: rgba(50, 75, 75, 0.2);
+}
+
+#RenameButton:active {
+    background-color: rgba(128, 213, 212, 0.3);
+}
+
+#SaveButton {
+    background-color: rgba(255, 255, 255, 0);
+    border-width: 0;
+    border-radius: 4px;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+}
+
+#SaveButton:hover {
+    background-color: rgba(50, 75, 75, 0.2);
+}
+
+#SaveButton:active {
+    background-color: rgba(128, 213, 212, 0.3);
+}
+
+#EditButton {
+    
+    border-color: rgb(128, 213, 212);
+    background-color: rgb(128, 213, 212);
+    color: rgb(0, 55, 55);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    visibility: visible;
+
+    border-width: 0;
+    border-radius: 20px;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+}
+
+#EditButton:hover {
+    background-color: rgb(107, 186, 193);
+}
+
+#EditButton:active {
+    background-color: rgb(85, 163, 173);
+}
+
+#EditButton:disabled {
+    background-color: rgb(221, 228, 227);
+}
+
+#CloseButton {
+    height: 40px;
+    width: 40px;
+    border-width: 0;
+    background-color: rgba(255, 255, 255, 0);
+    margin: 0;
+    padding: 2px;
+}
+
+.PanelIconButton {
+    height: 40px;
+    width: 40px;
+    margin: 0;
+    padding: 6px;
+    border-width: 0;
+    border-radius: 20px;
+    background-color: rgb(47, 54, 54);
+    transition: 0.1s;
+}
+
+.PanelIconButton:hover {
+    background-color: rgb(59, 66, 67);
+}
+
+.PanelIconButton:active {
+    background-color: rgb(65, 71, 72);
+}
+
+#List {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom-width: 1px;
+    border-color: rgb(255, 255, 255);
+    font-size: 21px;
+    padding: 0 10px;
+    background-color: rgba(50, 75, 75, 0);
+}
+
+#List:hover {
+    background-color: rgba(50, 75, 75, 0.3);
+}
+
+#List:active {
+    background-color: rgba(128, 213, 212, 0.4);
+}
+
+#List.active {
+    background-color: rgba(128, 213, 212, 0.4);
+}
+
+#TabMenuGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.SubMenuFirst {
+    margin: 0;
+    border-radius: 21px 0 0 21px;
+}
+
+.SubMenuMiddle {
+    margin: 0;
+    border-radius: 0 0 0 0;
+}
+
+.SubMenuEnd {
+    margin: 0;
+    border-radius: 0 21px 21px 0;
+}
+
+#Panel {
+    width: 460px;
+    background-color: rgba(14, 21, 20, 0.75);
+    border-radius: 24px;
+    padding: 24px;
+    margin-top: 16px;
+}
+
+#Panel #unity-low-button {
+    display: none;
+}
+
+#unity-high-button {
+    display: none;
+}
+
+#Panel #unity-slider {
+    margin: 0;
+}
+
+#Panel #unity-tracker {
+    left: 6px;
+}
+
+#Panel #unity-dragger {
+    background-color: rgb(0, 106, 106);
+}
+
+#Panel_Asset {
+    width: 370px;
+    height: 100%;
+    background-color: rgba(14, 21, 20, 0.75);
+    border-radius: 12px;
+    padding: 8px;
+    margin-top: 16px;
+}
+
+#Panel_Asset #unity-content-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 365px;
+}
+
+#Panel_Asset #unity-low-button {
+    display: none;
+}
+
+#Panel_Asset #unity-slider {
+    margin: 0;
+}
+
+#Panel_Asset #unity-tracker {
+    left: 6px;
+}
+
+#Panel_Asset #unity-dragger {
+    background-color: rgb(0, 106, 106);
+}
+
+#Panel_Asset #unity-slider {
+    width: 12px;
+}
+
+#Panel_AssetCategory {
+    width: 80px;
+    height: 100%;
+    background-color: rgba(14, 21, 20, 0.75);
+    border-radius: 40px;
+    padding: 15px;
+}
+
+#Panel_AssetCategory .unity-radio-button {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 128, 0);
+    border-radius: 25px;
+    border-width: 0;
+    border-color: rgb(136, 147, 146);
+    margin: 0;
+    margin-bottom: 16px;
+}
+
+#Panel_AssetCategory .unity-radio-button:hover {
+    background-color: rgba(50, 75, 75, 0.25);
+}
+
+#Panel_AssetCategory .unity-radio-button:checked {
+    background-color: rgb(128, 213, 212);
+    border-color: rgb(136, 147, 146);
+}
+
+#Panel_AssetCategory .unity-radio-button__checkmark-background {
+    width: 24px;
+    border-width: 0;
+    background-color: rgba(255, 255, 128, 0);
+}
+
+#Panel_AssetCategory .unity-radio-button__checkmark {
+    width: 0;
+    height: 0;
+}
+
+#Context_Edit {
+    flex-direction: row;
+}
+
+#Context_Edit .unity-radio-button {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(74, 99, 99);
+    border-radius: 25px;
+    border-width: 1px;
+    border-color: rgb(111, 121, 121);
+    margin: 0;
+    margin-right: 16px;
+    transition: 0.2s;
+}
+
+#Context_Edit .unity-button {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(74, 99, 99);
+    border-radius: 25px;
+    border-width: 1px;
+    border-color: rgb(111, 121, 121);
+    margin: 0;
+    margin-right: 16px;
+    transition: 0.2s;
+}
+
+#Context_Edit .unity-radio-button:hover {
+    background-color: rgb(88, 111, 111);
+}
+
+#Context_Edit .unity-button:hover {
+    background-color: rgb(88, 111, 111);
+}
+
+#Context_Edit .unity-radio-button:checked {
+    background-color: rgb(0, 106, 106);
+    border-color: rgb(136, 147, 146);
+}
+
+#Context_Edit .unity-radio-button__checkmark-background {
+    width: 24px;
+    border-width: 0;
+    background-color: rgba(255, 255, 128, 0);
+}
+
+#Context_Edit .unity-radio-button__checkmark {
+    width: 0;
+    height: 0;
+}
+
+#MoveButton {
+    background-image: resource('Icon_Move');
+}
+
+#RotateButton {
+    background-image: resource('Icon_Rotate');
+}
+
+#ScaleButton {
+    background-image: resource('Icon_Scale');
+}
+
+#FileButton {
+    background-image: resource('Icon_Picture');
+}
+
+#MovieButton {
+    background-image: resource('Icon_Movie');
+}
+
+#AllDeleteButton {
+    height: 40px;
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: rgb(136, 147, 146);
+    background-color: rgba(136, 147, 146, 0);
+    color: rgb(128, 213, 212);
+    font-size: 10px;
+    border-radius: 20px;
+}
+
+#AllDeleteButton:hover {
+    background-color: rgba(136, 147, 146, 0.2);
+}
+
+#AllDeleteButton:active {
+    background-color: rgba(136, 147, 146, 0.4);
+}
+
+#Modal {
+    width: 400px;
+    height: 300px;
+    background-color: rgb(37, 43, 43);
+    border-radius: 12px;
+    padding: 12px;
+    z-index: 1010;
+}
+
+#Snackbar {
+    width: 600px;
+    height: 80px;
+    padding: 16px;
+    background-color: rgb(43, 50, 49);
+    border-radius: 6px;
+    flex-direction: row;
+    font-size: 16px;
+    align-items: center;
+    z-index: 1000;
+}
+
+#Dialog {
+    width: 800px;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+}
+
+#Title_Left {
+    width: 490px;
+    height: 50px;
+    background-image: resource('Info_Title_Left');
+    font-size: 24px;
+    padding-right: 24px;
+    text-align: end;
+    -unity-text-align: upper-right;
+}
+
+#Title_Right {
+    width: 490px;
+    height: 50px;
+    background-image: resource('Info_Title_Right');
+    font-size: 24px;
+    padding-left: 24px;
+}
+
+.Title_Left {
+    width: 490px;
+    height: 50px;
+    background-image: resource('Info_Title_Left');
+    font-size: 24px;
+    padding-right: 24px;
+    text-align: end;
+    -unity-text-align: upper-right;
+}
+
+.Title_Right {
+    width: 490px;
+    height: 50px;
+    background-image: resource('Info_Title_Right');
+    font-size: 24px;
+    padding-left: 24px;
+}
+
+#MainContainer {
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+}
+
+#LeftContainer {
+    width: 506px;
+    padding-left: 16px;
+    padding-top: 145px;
+    align-items: flex-end;
+}
+
+#CenterContainer {
+    width: 100%;
+}
+
+#RightContainer {
+    width: 506px;
+    padding-right: 16px;
+    padding-top: 145px;
+}
+
+#Thumbnail_Asset {
+    width: 100px;
+    height: 100px;
+    background-image: resource('img_noimage');
+    border-radius: 6px;
+    border-width: 1px;
+    margin: 5px;
+}
+
+#Thumbnail_Asset:focus {
+    border-width: 5px;
+    border-color: rgb(0, 106, 106);
+}
+
+#Toggle_AutoRotate {
+    background-image: resource('Icon_CameraRotate');
+}
+
+#Toggle_WalkMode {
+    background-image: resource('Icon_Walk');
+}
+
+#Toggle_HideUI {
+    background-image: resource('Icon_Eye');
+}
+
+#Toggle_HeightDisplay {
+    background-image: resource('Icon_HeightDisplay');
+}
+
+#Toggle_Material {
+    background-image: resource('Icon_Material');
+}
+
+#Toggle_HideList {
+    background-image: resource('Icon_Eye_On');
+}
+
+#Toggle_HideList:checked {
+    background-image: resource('Icon_Eye_Off');
+}
+
+#Toggle_HideList .unity-toggle__checkmark {
+    display: none;
+}
+
+#Toggle_EditMode {
+    background-image: resource('Icon_EditMode_Off');
+    width: 52px;
+    height: 32px;
+}
+
+#Toggle_EditMode:checked {
+    background-image: resource('Icon_EditMode_On');
+}
+
+#Toggle_EditMode .unity-toggle__checkmark {
+    display: none;
+}
+
+#Button_Capture {
+    background-image: resource('Icon_Capture');
+}
+
+#Button_Setting {
+    background-image: resource('Icon_Setting');
+}
+
+#IconSave {
+    background-image: resource('Icon_Setting');
+    max-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+#IconReplace {
+    background-image: resource('Icon_Replace');
+    max-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+#IconSlider {
+    background-image: resource('Icon_Slider');
+    max-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+#IconDelete {
+    background-image: resource('Icon_Trash');
+}
+
+#IconFile {
+    background-image: resource('Icon_Picture');
+}
+
+#IconMovie {
+    background-image: resource('Icon_Movie');
+}
+
+#Circle_Icon_Building {
+    width: 40px;
+    height: 40px;
+    background-image: resource('Circle_Icon_Building');
+}
+
+#Circle_Icon_Camera {
+    width: 40px;
+    height: 40px;
+    background-image: resource('Circle_Icon_Camera');
+}
+
+#Circle_Icon_Walk {
+    width: 40px;
+    height: 40px;
+    background-image: resource('Circle_Icon_Walk');
+}
+
+#Circle_Icon_View {
+    width: 40px;
+    height: 40px;
+    background-image: resource('Circle_Icon_View');
+}
+
+#IconExit {
+    background-image: resource('Icon_Exit');
+    max-width: 18px;
+    height: 18px;
+}
+
+#Icon_Up {
+    background-image: resource('Icon_arrow-up');
+    max-width: 24px;
+    height: 24px;
+}
+
+#Icon_Back {
+    background-image: resource('Icon_Back');
+    max-width: 24px;
+    height: 24px;
+}
+
+#Icon_Building {
+    background-image: resource('Icon_Building');
+    max-width: 24px;
+    height: 24px;
+}
+
+#Icon_Down {
+    background-image: resource('Icon_arrow-back');
+    max-width: 24px;
+    height: 24px;
+}
+
+#Icon_Trash {
+    background-image: resource('Icon_Trash');
+}
+
+#Icon_TrashReverse {
+    background-image: resource('Icon_Trash_Reverse');
+}
+
+#Icon_Error {
+    background-image: resource('Icon_Error');
+}
+
+#Icon_Success {
+    background-image: resource('Icon_Save');
+}
+
+#Icon_Close {
+    background-image: resource('Icon_Close');
+}
+
+#Icon_Plus {
+    background-image: resource('Icon_Plus');
+}
+
+#Icon_Save {
+    background-image: resource('Icon_Save');
+}
+
+#Icon_Import {
+    background-image: resource('Icon_Import');
+}
+
+#Icon_Viewpoint {
+    background-image: resource('Icon_Viewpoint');
+}
+#Icon_Slider {
+    background-image: resource('Icon_Slider');
+}
+
+#AssetCategory_Tree {
+    background-image: resource('Icon_Asset_Tree_Off');
+}
+
+#AssetCategory_Tree:checked {
+    background-image: resource('Icon_Asset_Tree_On');
+}
+
+#AssetCategory_Building {
+    background-image: resource('Icon_Asset_Building_Off');
+}
+
+#AssetCategory_Building:checked {
+    background-image: resource('Icon_Asset_Building_On');
+}
+
+#AssetCategory_Human {
+    background-image: resource('Icon_Asset_Human_Off');
+}
+
+#AssetCategory_Human:checked {
+    background-image: resource('Icon_Asset_Human_On');
+}
+
+#AssetCategory_Info {
+    background-image: resource('Icon_Asset_Info_Off');
+}
+
+#AssetCategory_Info:checked {
+    background-image: resource('Icon_Asset_Info_On');
+}
+
+#AssetCategory_Ad {
+    background-image: resource('Icon_Asset_Ad_Off');
+}
+
+#AssetCategory_Ad:checked {
+    background-image: resource('Icon_Asset_Ad_On');
+}
+
+#AssetCategory_Public {
+    background-image: resource('Icon_Asset_Public_Off');
+}
+
+#AssetCategory_Public:checked {
+    background-image: resource('Icon_Asset_Public_On');
+}
+
+#AssetCategory_Sign {
+    background-image: resource('Icon_Asset_Sign_Off');
+}
+
+#AssetCategory_Sign:checked {
+    background-image: resource('Icon_Asset_Sign_On');
+}
+
+#AssetCategory_Vehicle {
+    background-image: resource('Icon_Asset_Vehicle_Off');
+}
+
+#AssetCategory_Vehicle:checked {
+    background-image: resource('Icon_Asset_Vehicle_On');
+}
+
+#AssetCategory_Other {
+    background-image: resource('Icon_Asset_Other_Off');
+}
+
+#AssetCategory_Other:checked {
+    background-image: resource('Icon_Asset_Other_On');
+}
+
+#AssetCategory_Light {
+    background-image: resource('Icon_Asset_Light_Off');
+}
+
+#AssetCategory_Light:checked {
+    background-image: resource('Icon_Asset_Light_On');
+}
+
+#AssetCategory_Import {
+    background-image: resource('Icon_Asset_Import_Off');
+}
+
+#AssetCategory_Import:checked {
+    background-image: resource('Icon_Asset_Import_On');
+}
+
+#Icon_Pin {
+    background-image: resource('Icon_Pin');
+}
+
+#Divider {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(190, 201, 200);
+    margin: 5px 0;
+}
+
+.badge_Landmark {
+    width: 70px;
+    height: 16px;
+    background-color: rgb(255, 199, 0);
+    border-width: 1px;
+    border-color: white;
+    border-radius: 8px;
+    margin-right: 4px;
+}
+
+.badge_ViewPoint {
+    width: 70px;
+    height: 16px;
+    background-color: rgb(186, 26, 26);
+    border-width: 1px;
+    border-color: white;
+    border-radius: 8px;
+    margin-right: 4px;
+}
+
+.badge_ViewSetting {
+    width: 70px;
+    height: 16px;
+    background-color: rgb(0, 106, 106);
+    border-width: 1px;
+    border-color: white;
+    border-radius: 8px;
+    margin-right: 4px;
+}
+
+.unity-base-dropdown .unity-text-element {
+    color: rgb(0, 0, 0);
+}
+
+#Tiparrow_Up {
+    background-image: resource('Tiparrow_Up');
+}
+
+#Tiparrow_Down {
+    background-image: resource('Tiparrow_Down');
+}
+
+#Tiparrow_Right {
+    background-image: resource('Tiparrow_Right');
+}
+
+#Tiparrow_Left {
+    background-image: resource('Tiparrow_Left');
+}
+
+#Rotate_Up {
+    background-image: resource('Rotate_Up');
+}
+
+#Rotate_Down {
+    background-image: resource('Rotate_Down');
+}
+
+#Rotate_Left {
+    background-image: resource('Rotate_Left');
+}
+
+#Rotate_Right {
+    background-image: resource('Rotate_Right');
+}
+
+#Icon_View {
+    background-image: resource('Icon_View');
+}
+#Icon_Pencil {
+    background-image: resource('Icon_pencil');
+}
+.Btn_AddProject {
+    height: 40px;
+    border-radius: 20px;
+    border-color: rgb(128, 213, 212);
+    background-color: rgb(128, 213, 212);
+    color: rgb(0, 55, 55);
+    width: 100px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    visibility: visible;
+}
+
+.ActionButton > Label {
+    color: rgb(0, 55, 55);
+}
+
+.ActionButton:hover {
+    background-color: rgb(107, 186, 193);
+}
+
+.ActionButton:active {
+    background-color: rgb(85, 163, 173);
+}
+
+.ActionButton:disabled {
+    background-color: rgb(221, 228, 227);
+}
+
+#DropdownArrow {
+    background-image: resource('Icon_DropdownArrow');
+}
+
+#Btn_Humberger {
+    background-image: resource('Icon_Menu');
+}

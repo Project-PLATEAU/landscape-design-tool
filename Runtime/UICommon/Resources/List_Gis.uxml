@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement parse-escape-sequences="true" display-tooltip-when-elided="true" name="List" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 10px; padding-bottom: 0; padding-left: 10px; border-top-width: 0; border-right-width: 0; border-left-width: 0; border-bottom-width: 1px;">
+        <ui:Toggle name="Toggle_HideList" tooltip="表示・非表示" style="width: 24px; height: 24px; margin-right: 10px;" />
+        <ui:VisualElement name="Icon_Pin" style="flex-grow: 0; flex-shrink: 0; margin-right: 10px; width: 19px; height: 24px;" />
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GisName" style="flex-grow: 1; -unity-text-align: middle-left; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 1; width: 100%;" />
+        <ui:Button name="DeleteButton" style="flex-grow: 1; width: 30px; height: 30px; flex-shrink: 0;">
+            <ui:VisualElement name="Icon_Trash" tooltip="削除" style="flex-grow: 1; width: 30px; height: 30px; flex-shrink: 0;" />
+        </ui:Button>
+    </ui:VisualElement>
+</ui:UXML>

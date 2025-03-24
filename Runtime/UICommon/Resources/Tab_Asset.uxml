@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:GroupBox name="Panel_AssetCategory" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+        <ui:RadioButton label="Radio Button" name="AssetCategory_Tree" value="true" />
+        <ui:RadioButton label="Radio Button" name="AssetCategory_Ad" />
+        <ui:RadioButton label="Radio Button" name="AssetCategory_Human" value="false" />
+        <ui:RadioButton label="Radio Button" name="AssetCategory_Vehicle" value="false" />
+        <ui:RadioButton label="Radio Button" name="AssetCategory_Building" value="false" />
+        <ui:RadioButton label="Radio Button" name="AssetCategory_Light" />
+        <ui:RadioButton label="Radio Button" name="AssetCategory_Sign" />
+        <ui:RadioButton label="Radio Button" name="AssetCategory_Other" />
+    </ui:GroupBox>
+</ui:UXML>

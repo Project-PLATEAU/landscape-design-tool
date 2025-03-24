@@ -1,0 +1,32 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="Panel_WalkViewEditor" style="flex-grow: 0;">
+        <ui:VisualElement name="Panel" style="flex-grow: 0; justify-content: center; height: 350px;">
+            <ui:Label tabindex="-1" text="視点名と高さを変更できます" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 21px; -unity-text-align: upper-center;" />
+            <ui:VisualElement name="FormContainer" style="flex-grow: 0; flex-direction: column; height: 100%; justify-content: center;">
+                <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: center; align-items: center; flex-shrink: 1; width: 100%; margin-bottom: 16px;">
+                    <ui:Label tabindex="-1" text="視点名" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 60px; font-size: 16px; -unity-text-align: middle-right; flex-shrink: 1;" />
+                    <ui:TextField picking-mode="Ignore" label="Text Field" name="CameraViewName" style="width: 100%; flex-shrink: 1; font-size: 18px;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: center; align-items: center; flex-shrink: 1; width: 100%;">
+                    <ui:Label tabindex="-1" text="高さ" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 60px; font-size: 16px; -unity-text-align: middle-right; flex-shrink: 1;" />
+                    <ui:TextField picking-mode="Ignore" label="Text Field" value="1.7" name="CameraHeight" style="width: 100%; flex-shrink: 1; font-size: 18px;" />
+                    <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 16px; margin-left: 0;" />
+                    <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                            <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                        </ui:Button>
+                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                            <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ActionContainer" style="flex-grow: 0; flex-direction: row; align-items: center;">
+                <ui:VisualElement style="flex-grow: 1; align-items: center;">
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="OKButton" text="内容を変更" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

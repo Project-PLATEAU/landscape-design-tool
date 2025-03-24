@@ -1,16 +1,42 @@
-- name: 景観まちづくり支援ツール
+- name: 景観街づくりツール
   href: ../index.md
 - name: 利用を開始する
   items:
-  - name: インストール方法
-    href: install.md
-  - name: 景観計画支援ツール
-    href: landscapeDesign.md
-  - name: 景観協議支援ツール
-    href: landscapeDiscussion.md
-  - name: ビルドアプリ
-    href: buildApp.md
-  - name: 新規建築物の読み込み
-    href: loadingNewBuildings.md
-  - name: Web向けのビルド
-    href: buildForWeb.md
+    - name: セットアップ
+      href: Setup.md
+    - name: 遠景表示設定
+      href: DistantView.md
+    - name: ビルド
+      href: Build.md
+    - name: 基本操作
+      href: BasicOperation.md
+    - name: メインメニュー
+      items:
+        - name: 地図編集
+          items:
+            - name: 建物編集
+              href: BuildingEdit.md
+            - name: アセット配置
+              href: AssetPlacement.md
+            - name: BIMデータ
+              href: BimData.md
+        - name: データ解析
+          items:
+            - name: GISデータ一覧
+              href: GisDataList.md
+            - name: 景観計画区域
+              href: LandscapePlanningArea.md
+            - name: 見通し解析
+              href: LineOfSightAnalysis.md
+        - name: カメラ
+          items:
+            - name: 視点一覧
+              href: ViewpointList.md
+            - name: 視点編集
+              href: ViewpointEdit.md
+        - name: グローバルナビゲーション
+          items:
+            - name: プロジェクト関連
+              href: project.md
+            - name: グローバルナビ機能
+              href: navigation.md

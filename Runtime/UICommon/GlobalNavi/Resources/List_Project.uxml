@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Btn_Project" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 10px; padding-bottom: 0; padding-left: 10px; border-top-width: 0; border-right-width: 0; border-left-width: 0; border-bottom-width: 1px; height: 40px; -unity-text-align: middle-center; flex-direction: row; background-color: rgba(14, 21, 20, 0); border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);">
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ProjectName" style="flex-grow: 1; -unity-text-align: middle-left; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 1; width: 100%; text-overflow: ellipsis; overflow: hidden; font-size: 16px;" />
+        <ui:Button name="SaveButton" style="flex-grow: 1; width: 30px; height: 30px; flex-shrink: 0; margin-right: 8px; margin-top: 4px;">
+            <ui:VisualElement name="Icon_Save" style="flex-grow: 1; width: 30px; height: 30px; flex-shrink: 1; margin-right: 6px;" />
+        </ui:Button>
+        <ui:Button name="RenameButton" style="flex-grow: 1; width: 30px; height: 30px; flex-shrink: 0; margin-top: 4px;">
+            <ui:VisualElement name="Icon_Pencil" style="flex-grow: 1; width: 30px; height: 30px; flex-shrink: 1; margin-right: 6px; padding-right: 0;" />
+        </ui:Button>
+        <ui:Button name="DeleteButton" style="flex-grow: 1; width: 30px; height: 30px; flex-shrink: 0; margin-top: 4px;">
+            <ui:VisualElement name="Icon_Trash" style="flex-grow: 1; width: 30px; height: 30px; flex-shrink: 1;" />
+        </ui:Button>
+        <ui:Button name="UpButton" style="flex-grow: 1; width: 30px; height: 30px; flex-shrink: 0; margin-top: 4px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-items: center; justify-content: center; background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);">
+            <ui:VisualElement name="Icon_Up" style="flex-grow: 1; width: 30px; height: 30px; flex-shrink: 1; max-height: 24px;" />
+        </ui:Button>
+        <ui:Button name="DownButton" style="flex-grow: 1; width: 30px; height: 30px; flex-shrink: 0; margin-top: 4px; margin-left: 0; margin-right:0; margin-bottom:0; padding: 0; background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);">
+            <ui:VisualElement name="Icon_Down" style="flex-grow: 1; width: 30px; height: 30px; flex-shrink: 1;" />
+        </ui:Button>
+    </ui:Button>
+</ui:UXML>

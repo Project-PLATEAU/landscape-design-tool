@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 02_Selection_Fullscreen
+  m_Shader: {fileID: 4800000, guid: c2bf29db891d9074ea3a45cfa03d3ad9, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Texture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BehindFactor: 0.2
+    - _OutlineWidth: 2
+    - _SamplePrecision: 1
+    m_Colors:
+    - _InnerColor: {r: 1, g: 1, b: 0, a: 0.12941177}
+    - _OuterColor: {r: 1, g: 1, b: 0, a: 1}
+    - _TextureSize: {r: 64, g: 64, b: 0, a: 0}
+  m_BuildTextureStacks: []

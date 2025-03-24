@@ -1,0 +1,95 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+ <ui:Template name="List_Project" path="List_Project" />
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/GlobalNavi/GlobalNavi.uss?fileID=7433441132597879392&amp;guid=c447172ded945dc4393376a1bf7cec68&amp;type=3#GlobalNavi" />
+    <ui:VisualElement name="MainContainer" style="flex-grow: 0; width: 100%; height: 140px; flex-shrink: 0;">
+        <ui:VisualElement name="GlobalNavi_Container" style="flex-grow: 0; height: 145px; width: 100%; background-color: rgba(0, 0, 0, 0); background-image: resource(&apos;UI_GNavi_Base&apos;); flex-direction: row;">
+            <ui:VisualElement name="GlobalNavi_Left" style="flex-grow: 0; width: 25.89%; height: 84px; align-items: center; flex-direction: row; justify-content: flex-end; padding-top: 0; padding-bottom: 0;">
+                <ui:VisualElement name="Time" style="flex-grow: 1; align-items: flex-end; padding-right: 16px;">
+                    <ui:Label tabindex="-1" text="09:00" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TimeText" style="font-size: 36px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="WeatherController" style="flex-grow: 1; width: 150px; flex-shrink: 0; align-items: auto; flex-basis: 0; flex-direction: column;">
+                    <ui:GroupBox name="Weather">
+                        <ui:RadioButton label="Radio Button" name="Sun" value="true" tooltip="晴天" />
+                        <ui:RadioButton label="Radio Button" name="Cloud" tabindex="1" tooltip="曇" />
+                        <ui:RadioButton label="Radio Button" name="Rain" tabindex="2" tooltip="雨"/>
+                        <ui:RadioButton label="Radio Button" name="Snow" tabindex="3" tooltip="雪" />
+                    </ui:GroupBox>
+                    <ui:Slider high-value="100" name="TimeSlider" tooltip="時刻スライダー" style="width: 100%;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="GlobalNavi_CenterGroup" tabindex="1" style="flex-grow: 1; height: auto; align-items: center;">
+                <ui:GroupBox name="Menu" focusable="false">
+                    <ui:RadioButton label="Radio Button" name="MenuMain" text="メイン" value="true" tabindex="-1" style="font-size: 18px;" />
+                    <ui:RadioButton label="Radio Button" name="MenuEdit" text="地図編集" tabindex="0" style="font-size: 18px;" />
+                    <ui:RadioButton label="Radio Button" name="MenuData" text="データ解析" tabindex="1" style="font-size: 18px;" />
+                    <ui:RadioButton label="Radio Button" name="MenuCamera" text="カメラ" tabindex="2" style="font-size: 18px;" />
+                </ui:GroupBox>
+                <ui:VisualElement name="SubMenu" style="flex-grow: 1;">
+                    <ui:GroupBox name="SubMenu_Edit" tabindex="0">
+                        <ui:RadioButton label="Radio Button" text="建物編集" tooltip="建物の移動・回転・拡大・削除" name="SubMenuEdit" class="SubMenuFirst" />
+                        <ui:RadioButton label="Radio Button" text="アセット配置" tooltip="アセットの配置・編集" name="SubMenuAsset" tabindex="1" class="SubMenuMiddle" />
+                        <ui:RadioButton label="Radio Button" text="BIMデータ" tooltip="BIMデータを読込・配置" name="SubMenuBIM" tabindex="2" class="SubMenuEnd" />
+                    </ui:GroupBox>
+                    <ui:GroupBox name="SubMenu_Data" tabindex="1">
+                        <ui:RadioButton label="Radio Button" text="GISデータ一覧" tooltip="GISデータの読み込み・登録" name="SubMenuEdit" tabindex="3" class="SubMenuFirst" />
+                        <ui:RadioButton label="Radio Button" text="景観計画区域" tooltip="景観区域の作成・読み込み" name="SubMenuAsset" tabindex="4" class="SubMenuMiddle" />
+                        <ui:RadioButton label="Radio Button" text="見通し解析" tooltip="視点場・建物の見通し解析" name="SubMenuBIM" tabindex="5" class="SubMenuEnd" />
+                    </ui:GroupBox>
+                    <ui:GroupBox name="SubMenu_Camera" tabindex="2">
+                        <ui:RadioButton label="Radio Button" text="視点一覧" name="SubMenuCameraList" tooltip="登録した視点一覧" tabindex="6" class="SubMenuFirst" />
+                        <ui:RadioButton label="Radio Button" text="視点編集" name="SubMenuCameraEdit" tooltip="登録した視点編集" tabindex="7" class="SubMenuEnd" />
+                    </ui:GroupBox>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="GlobalNavi_Right" style="flex-grow: 0; width: 25.89%; height: 84px; flex-direction: row; align-items: center;">
+                <ui:VisualElement name="SettingContainer" style="flex-grow: 1; margin-right: 16px; margin-top: 0; justify-content: space-between; align-items: center;">
+                    <ui:VisualElement style="flex-grow: 1; width: 100%; flex-direction: row; align-items: flex-end; justify-content: center; padding-bottom: 8px;">
+                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Btn_Humberger" style="width: 50px; height: 50px; flex-shrink: 0; flex-grow: 0; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-left-color: rgb(136, 147, 146); border-right-color: rgb(136, 147, 146); border-top-color: rgb(136, 147, 146); border-bottom-color: rgb(136, 147, 146); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;" />
+                        <ui:VisualElement style="flex-grow: 1; width: 100%; margin-right: 10px;">
+                            <ui:Label tabindex="-1" text="プロジェクト編集" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-top: 0; margin-right: 0; margin-bottom: 4px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-items: center; -unity-text-align: upper-center; font-size: 12px;" />
+                            <ui:Button name="Btn_SelectProject" text="&#x9;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 0; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 8px; padding-right: 12px; padding-bottom: 8px; padding-left: 12px; flex-direction: row; align-items: center; border-left-color: rgb(136, 147, 146); border-right-color: rgb(136, 147, 146); border-top-color: rgb(136, 147, 146); border-bottom-color: rgb(136, 147, 146); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 23px; border-top-right-radius: 23px; border-bottom-right-radius: 23px; border-bottom-left-radius: 23px; background-color: rgba(0, 0, 0, 0.46); height: 46px;">
+                                <ui:Label name="SelectProject_Name" tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-shrink: 1; width: 100%; -unity-text-align: middle-left;" />
+                                <ui:VisualElement name="DropdownArrow" style="flex-grow: 1; width: 24px; height: 24px; flex-shrink: 0;" />
+                            </ui:Button>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button_Setting" style="width: 50px; height: 50px; flex-shrink: 1; flex-grow: 1;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="HeightSliderPanel" picking-mode="Ignore" style="flex-grow: 0; width: 350px; align-items: stretch; justify-content: flex-start; flex-shrink: 0; margin-top: 0; margin-right: 0; position: absolute; top: 100px; align-self: flex-end; margin-left: 0; left: 50px;">
+                    <ui:SliderInt label="高さ表示設定" high-value="100" show-input-field="true" name="HeightSlider" style="flex-shrink: 1; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-outline-width: 0.5px; -unity-text-outline-color: rgb(0, 0, 0); text-shadow: 0 0 2px rgb(0, 0, 0); flex-direction: row-reverse;">
+                        <ui:Label tabindex="-1" text="高さ表示設定" parse-escape-sequences="true" display-tooltip-when-elided="true" style="background-color: rgba(0, 0, 0, 0); -unity-font-style: normal;" />
+                    </ui:SliderInt>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="FunctionContainer" style="position: absolute; top: 83px; left: 66.41%; background-color: rgba(0, 0, 0, 0.55); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;">
+        <ui:Toggle label="Toggle" name="Toggle_AutoRotate" tooltip="カメラ自動回転" usage-hints="-1" />
+        <ui:Toggle label="Toggle" name="Toggle_WalkMode" tooltip="歩行者視点モード" value="false" />
+        <ui:Toggle label="Toggle" name="Toggle_HideUI" tooltip="UIを非表示します" />
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button_Capture" tooltip="スクリーンショット" class="gnavi_fuction_button" />
+        <ui:Toggle label="Toggle" name="Toggle_HeightDisplay" tooltip="建物高さ可視化" usage-hints="-1" style="background-image: resource(&apos;Icon_HeightDisplay&apos;); width: 50px; height: 50px;" />
+        <ui:Toggle label="Toggle" name="Toggle_Material" tooltip="建物テクスチャの表示・非表示"/>
+    </ui:VisualElement>
+    <ui:VisualElement name="SettingPanel" style="flex-grow: 1; height: auto;">
+        <ui:VisualElement name="PanelArrow" style="flex-grow: 1; width: 22px; height: 16px;" />
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="VisualSettingButton" style="align-items: center;">
+            <ui:VisualElement name="IconSlider" style="flex-grow: 1;" />
+            <ui:Label tabindex="-1" text="明るさ調整" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+        </ui:Button>
+    </ui:VisualElement>
+    <ui:VisualElement name="Project_List_Container" style="flex-grow: 1; position: absolute; padding-top: 16px; padding-right: 16px; padding-bottom: 16px; padding-left: 16px; top: 60px; right: 10px; width: 600px; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+        <ui:VisualElement style="flex-grow: 1; flex-direction: column; justify-content: flex-start; padding-top: 12px; padding-right: 12px; padding-bottom: 12px; padding-left: 12px; background-color: rgba(14, 21, 20, 0.75); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px;">
+            <ui:Label tabindex="-1" text="プロジェクト一覧" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            <ui:ScrollView name="Project_List" style="border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; min-height: 200px; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; padding-top: 12px; padding-right: 12px; padding-bottom: 12px; padding-left: 12px;">
+            </ui:ScrollView>
+            <ui:Label tabindex="-1" text="プロジェクト管理" parse-escape-sequences="true" display-tooltip-when-elided="true" style="padding-top: 12px;" />
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                <ui:Button text="新規作成" parse-escape-sequences="true" display-tooltip-when-elided="true" name="New_project_button" class="ActionButton" />
+                <ui:Button text="統合して保存" parse-escape-sequences="true" display-tooltip-when-elided="true" name="merge_project_button" class="ActionButton" />
+                <ui:Button text="読み込み" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Import_button" class="ActionButton" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

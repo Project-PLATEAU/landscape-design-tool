@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="Panel_MaterialEditor" style="flex-grow: 0;">
+        <ui:VisualElement name="Panel" style="flex-grow: 1; justify-content: center; height: 350px;">
+            <ui:VisualElement name="HeightContainer" style="flex-grow: 0; flex-direction: column; height: 100%; justify-content: center;">
+                <ui:VisualElement style="flex-grow: 0; margin-bottom: 16px;">
+                    <ui:Label tabindex="-1" text="要素選択" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                    <ui:DropdownField label="Dropdown" name="BuildingField" tooltip="建物の個別要素を選択" style="height: 50px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: column; justify-content: center; align-items: flex-start; flex-shrink: 1; width: 100%; margin-bottom: 16px;">
+                    <ui:Label tabindex="-1" text="Diffuse(色合い)" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: auto; font-size: 14px; -unity-text-align: middle-right; flex-shrink: 1;" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="ColorButton" tooltip="建物の色合い" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; width: 100%; height: 50px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgb(255, 255, 255);" />
+                </ui:VisualElement>
+                <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: column; justify-content: center; align-items: flex-start; flex-shrink: 1; width: 100%; margin-bottom: 16px;">
+                    <ui:Label tabindex="-1" text="Smoothness(つや)" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: auto; font-size: 14px; -unity-text-align: middle-right; flex-shrink: 1;" />
+                    <ui:Slider label="Slider" high-value="1" name="SmoothnessSlider" tooltip="光沢度" style="width: 100%;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ActionContainer" style="flex-grow: 0; flex-direction: row; align-items: center;">
+                <ui:VisualElement style="flex-grow: 1; align-items: center; flex-direction: row;">
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="ResetButton" text="リセット" class="OutlineButton" />
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1; align-items: center; flex-direction: row; flex-shrink: 0; justify-content: flex-end;">
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="CancelButton" text="キャンセル" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="OKButton" text="変更" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

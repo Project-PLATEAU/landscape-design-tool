@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="Panel_AssetList" picking-mode="Ignore" tooltip="アセット選択パネル" style="flex-grow: 1; margin-top: 16px; padding-top: 0; max-height: 800px; min-height: 300px;">
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(14, 21, 20, 0.75); width: 370px; height: 100%; border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom-right-radius: 16px; border-bottom-left-radius: 16px; padding-right: 0; padding-bottom: 0; padding-top: 0; padding-left: 0;">
+            <ui:Label tabindex="-1" text="アセットを選択" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 18px; -unity-text-align: upper-center; margin-top: 16px; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+            <ui:VisualElement style="flex-grow: 0; padding-top: 16px; padding-right: 20px; padding-bottom: 0; flex-direction: row; flex-shrink: 0; padding-left: 20px;">
+                <ui:Label tabindex="-1" text="カテゴリ：" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                <ui:DropdownField label="Dropdown" name="Panel_Category" style="flex-shrink: 1; width: 100%;" />
+            </ui:VisualElement>
+            <ui:ScrollView name="Panel_Asset" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Auto" style="background-color: rgba(14, 21, 20, 0); margin-top: 0;">
+                <ui:Label tabindex="-1" text="データが登録されていません" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Dialogue" style="flex-shrink: 1; flex-grow: 1; -unity-font-style: normal; font-size: 21px; -unity-text-align: middle-center; display: none; height: 310px;" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

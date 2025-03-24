@@ -1,0 +1,73 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Panel_AssetLeftList" path="Panel_AssetLeftList" />
+    <ui:Template name="Panel_AssetSelect" path="Panel_AssetSelect" />
+    <ui:Template name="Panel_EditBuilding" path="Panel_EditBuilding" />
+    <ui:Template name="Panel_AssetImport" path="Panel_AssetImport" />
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="MainContainer" picking-mode="Ignore" style="flex-grow: 1; height: 100%;">
+        <ui:VisualElement name="LeftContainer" picking-mode="Ignore" style="flex-grow: 1; flex-shrink: 0;">
+            <ui:VisualElement name="Title_Left" style="flex-grow: 1;">
+                <ui:Label tabindex="-1" text="設置済みアセット一覧" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:Instance template="Panel_AssetLeftList" name="Panel_AssetLeftList" picking-mode="Ignore" />
+        </ui:VisualElement>
+        <ui:VisualElement name="CenterContainer" picking-mode="Ignore" style="flex-grow: 1; padding-top: 190px; padding-right: 16px; align-items: flex-end;">
+            <ui:Instance template="Panel_AssetSelect" name="Panel_AssetSelect" style="display: none;" />
+            <ui:VisualElement name="EditBuildingArea" style="flex-grow: 1; width: 100%; justify-content: flex-end; margin-bottom: 0; margin-right: 0; margin-left: 0; padding-left: 16px; padding-bottom: 16px;">
+                <ui:Instance template="Panel_EditBuilding" name="Panel_EditBuilding" picking-mode="Ignore" style="width: 100%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="RightContainer" picking-mode="Ignore" style="flex-grow: 1; flex-shrink: 0; width: 570px;">
+            <ui:VisualElement name="EditPanel" style="flex-grow: 0; height: auto; display: flex; position: relative; left: 0; top: 0; width: auto; flex-direction: row; justify-content: space-around; margin-bottom: 16px; align-items: flex-end;">
+                <ui:GroupBox name="Context_Edit" style="position: relative; left: 0; top: 0; padding-bottom: 0; flex-shrink: 0; flex-grow: 0; height: auto; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-left: 0;">
+                    <ui:VisualElement style="flex-grow: 1; margin-right: 16px;">
+                        <ui:RadioButton label="Radio Button" name="MoveButton" tooltip="移動" value="true" style="margin-right: 0;" />
+                        <ui:Label tabindex="-1" text="移動" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tooltip_Move" style="background-color: rgba(0, 0, 0, 0.67); -unity-text-align: upper-center; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; margin-top: 2px; margin-right: 0; margin-bottom: 0; margin-left: 0; font-size: 12px; padding-top: 2px; padding-bottom: 2px; padding-left: 2px; display: flex; opacity: 1; min-width: 50px; align-items: center;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 0; margin-right: 16px;">
+                        <ui:RadioButton label="Radio Button" name="RotateButton" tooltip="回転" style="margin-right: 0;" />
+                        <ui:Label tabindex="-1" text="回転" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tooltip_Rotate" style="background-color: rgba(0, 0, 0, 0.67); -unity-text-align: upper-center; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; margin-top: 2px; margin-right: 0; margin-bottom: 0; margin-left: 0; font-size: 12px; padding-top: 2px; padding-bottom: 2px; padding-left: 2px; display: flex; opacity: 1;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 0; margin-right: 16px;">
+                        <ui:RadioButton label="Radio Button" name="ScaleButton" tooltip="スケール" style="margin-right: 0;" />
+                        <ui:Label tabindex="-1" text="スケール" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tooltip_Rotate" style="background-color: rgba(0, 0, 0, 0.67); -unity-text-align: upper-center; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; margin-top: 2px; margin-right: 0; margin-bottom: 0; margin-left: 0; font-size: 12px; padding-top: 2px; padding-bottom: 2px; padding-left: 2px; display: flex; opacity: 1;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="FileContainer" style="flex-grow: 1; margin-right: 16px;">
+                        <ui:Button label="Button" name="FileButton" style="margin-right: 0;" />
+                        <ui:Label tabindex="-1" text="画像読込" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tooltip_Rotate" style="background-color: rgba(0, 0, 0, 0.67); -unity-text-align: upper-center; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; margin-top: 2px; margin-right: 0; margin-bottom: 0; margin-left: 0; font-size: 12px; padding-top: 2px; padding-bottom: 2px; padding-left: 2px; display: flex; opacity: 1;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="MovieContainer" style="flex-grow: 1; margin-right: 16px;">
+                        <ui:Button label="Button" name="MovieButton" style="margin-right: 0;" />
+                        <ui:Label tabindex="-1" text="動画読込" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tooltip_Rotate" style="background-color: rgba(0, 0, 0, 0.67); -unity-text-align: upper-center; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; margin-top: 2px; margin-right: 0; margin-bottom: 0; margin-left: 0; font-size: 12px; padding-top: 2px; padding-bottom: 2px; padding-left: 2px; display: flex; opacity: 1;" />
+                    </ui:VisualElement>
+                </ui:GroupBox>
+                <ui:VisualElement style="flex-grow: 0; flex-shrink: 1; align-items: flex-end; justify-content: flex-start; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-direction: column;">
+                    <ui:Button text="&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ContextButton" style="padding-top: 6px; padding-right: 6px; padding-bottom: 6px; padding-left: 6px; position: relative; right: 0; top: 9%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                        <ui:VisualElement name="IconDelete" style="flex-grow: 1;" />
+                    </ui:Button>
+                    <ui:Label tabindex="-1" text="削除" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tooltip_Rotate" style="background-color: rgba(0, 0, 0, 0.67); -unity-text-align: upper-center; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; margin-top: 10px; margin-right: 0; margin-bottom: 0; margin-left: 0; font-size: 12px; padding-top: 2px; padding-bottom: 2px; padding-left: 2px; display: flex; opacity: 1; min-width: 50px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Title_Right" style="flex-grow: 0; height: 5%; width: 100%;">
+                <ui:Label tabindex="-1" text="アセットライブラリー" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:VisualElement name="CreatePanel" style="flex-grow: 1; flex-direction: row; height: 72%;">
+                <ui:VisualElement name="VisualElement" style="width: 77%;">
+                    <ui:Instance template="Panel_AssetImport" name="Panel_AssetImport" picking-mode="Ignore" />
+                    <ui:ScrollView name="AssetListScrollView" style="position: absolute; width: 100%; height: 95%; left: auto; margin-top: 16px;" />
+                </ui:VisualElement>
+                <ui:GroupBox name="Panel_AssetCategory" picking-mode="Ignore" style="margin-top: 16px; margin-right: 0; margin-bottom: 0; margin-left: 0; position: absolute; left: auto; right: 0; height: 95%;">
+                    <ui:RadioButton label="Radio Button" name="AssetCategory_Tree" tooltip="樹木" value="true" />
+                    <ui:RadioButton label="Radio Button" name="AssetCategory_Ad" tooltip="広告看板" value="false" />
+                    <ui:RadioButton label="Radio Button" name="AssetCategory_Human" tooltip="人物" />
+                    <ui:RadioButton label="Radio Button" name="AssetCategory_Vehicle" tooltip="乗り物" />
+                    <ui:RadioButton label="Radio Button" name="AssetCategory_Building" tooltip="建物" />
+                    <ui:RadioButton label="Radio Button" name="AssetCategory_Light" tooltip="道路設備" />
+                    <ui:RadioButton label="Radio Button" name="AssetCategory_Sign" tooltip="道路標識"/>
+                    <ui:RadioButton label="Radio Button" name="AssetCategory_Import" tooltip="一括配置" />
+                    <ui:RadioButton label="Radio Button" name="AssetCategory_Other" tooltip="その他"/>
+                </ui:GroupBox>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,69 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="Panel_AssetImport" picking-mode="Ignore" style="flex-grow: 0; height: auto;">
+        <ui:VisualElement name="Panel" picking-mode="Ignore" style="flex-grow: 1; justify-content: flex-start; height: auto; max-height: 800px; width: 460px; padding-top: 12px; padding-right: 12px; padding-bottom: 12px; padding-left: 12px; border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom-right-radius: 16px; border-bottom-left-radius: 16px;">
+            <ui:Label tabindex="-1" text="ファイル読み込み" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="font-size: 18px; -unity-text-align: upper-center;" />
+            <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                <ui:VisualElement name="CSVImportContainer" tooltip=".CSVファイルを読み込みます" style="flex-grow: 0; flex-direction: row; align-items: center; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px; margin-bottom: 0; border-left-color: rgb(136, 147, 146); border-right-color: rgb(136, 147, 146); border-top-color: rgb(136, 147, 146); border-bottom-color: rgb(136, 147, 146); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px; height: 60px; margin-right: 8px; width: 50%;">
+                    <ui:Label tabindex="-1" text="CSVファイル" parse-escape-sequences="true" display-tooltip-when-elided="true" style="justify-content: center; -unity-text-align: middle-left; font-size: 16px;" />
+                    <ui:VisualElement style="flex-grow: 1; align-items: center; flex-direction: row; flex-shrink: 0; justify-content: flex-end;">
+                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="CSVImportButton" text="読み込み" class="ActionButton" style="width: 80px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="ShapeImportContainer" tooltip=".shapeファイルを読み込みます" style="flex-grow: 0; flex-direction: row; align-items: center; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px; margin-bottom: 8px; border-left-color: rgb(136, 147, 146); border-right-color: rgb(136, 147, 146); border-top-color: rgb(136, 147, 146); border-bottom-color: rgb(136, 147, 146); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px; height: 60px;">
+                    <ui:Label tabindex="-1" text="Shapeファイル" parse-escape-sequences="true" display-tooltip-when-elided="true" style="justify-content: center; -unity-text-align: middle-left; font-size: 16px;" />
+                    <ui:VisualElement style="flex-grow: 1; align-items: center; flex-direction: row; flex-shrink: 0; justify-content: flex-end;">
+                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="ShapeImportButton" text="読み込み" class="ActionButton" style="width: 80px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Label tabindex="-1" text="データ内容" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="font-size: 18px; -unity-text-align: upper-center;" />
+            <ui:VisualElement name="SettingContainer" style="flex-grow: 0; flex-direction: column; height: auto; justify-content: flex-start; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; border-left-color: rgb(136, 147, 146); border-right-color: rgb(136, 147, 146); border-top-color: rgb(136, 147, 146); border-bottom-color: rgb(136, 147, 146); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px;">
+                <ui:Label tabindex="-1" text="パース対象設定" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="font-size: 14px; -unity-text-align: upper-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 8px; padding-left: 0;" />
+                <ui:VisualElement name="IgnoreContainer" style="flex-grow: 0; margin-bottom: 0; flex-direction: row; align-items: center; padding-bottom: 8px;">
+                    <ui:Label tabindex="-1" text="アセットの配置高さ" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 30%; font-size: 12px;" />
+                    <ui:DropdownField label="Dropdown" name="IgnoreList" style="height: 30px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-shrink: 1; width: 100%; text-overflow: ellipsis; font-size: 12px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="LatitudeContainer" style="flex-grow: 0; margin-bottom: 0; flex-direction: row; align-items: center; padding-bottom: 6px;">
+                    <ui:Label tabindex="-1" text="緯度" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 30%; font-size: 12px;" />
+                    <ui:DropdownField label="Dropdown" name="latitudeList" style="height: 30px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-shrink: 1; width: 100%; text-overflow: ellipsis; font-size: 12px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="LongitudeContainer" style="flex-grow: 0; margin-bottom: 0; flex-direction: row; align-items: center; padding-bottom: 6px;">
+                    <ui:Label tabindex="-1" text="緯度" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 30%; font-size: 12px;" />
+                    <ui:DropdownField label="Dropdown" name="longitudeList" style="height: 30px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-shrink: 1; width: 100%; text-overflow: ellipsis; font-size: 12px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="HeightContainer" style="flex-grow: 0; margin-bottom: 0; flex-direction: row; align-items: center; padding-bottom: 6px;">
+                    <ui:Label tabindex="-1" text="高さ" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 30%; font-size: 12px;" />
+                    <ui:DropdownField label="Dropdown" name="HeightList" style="height: 30px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-shrink: 1; width: 100%; text-overflow: ellipsis; font-size: 12px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="AssetTypeContainer" style="flex-grow: 0; margin-bottom: 0; flex-direction: row; align-items: center;">
+                    <ui:Label tabindex="-1" text="アセット種別" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="width: 30%; font-size: 12px;" />
+                    <ui:DropdownField label="Dropdown" name="AssetTypeList" style="height: 30px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-shrink: 1; width: 100%; text-overflow: ellipsis; font-size: 12px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="AssetContainer" style="flex-grow: 0; flex-direction: column; height: auto; justify-content: flex-start; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; border-left-color: rgb(136, 147, 146); border-right-color: rgb(136, 147, 146); border-top-color: rgb(136, 147, 146); border-bottom-color: rgb(136, 147, 146); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px; margin-top: 16px; min-height: 120px; max-height: 300px;">
+                <ui:Label tabindex="-1" text="アセット選択" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="font-size: 14px; -unity-text-align: upper-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 8px; padding-left: 0;" />
+                <ui:VisualElement name="ListTitle" style="flex-grow: 0; flex-direction: row; flex-shrink: 0; align-items: center;">
+                    <ui:VisualElement name="ui_name" style="flex-grow: 1; height: 30px; width: 180px; border-left-color: rgba(100, 100, 100, 0); border-right-color: rgba(100, 100, 100, 0); border-top-color: rgba(100, 100, 100, 0); border-bottom-color: rgba(100, 100, 100, 0); border-top-width: 1px; border-right-width: 0; border-bottom-width: 1px; border-left-width: 1px; align-items: center; justify-content: center; flex-shrink: 1;">
+                        <ui:Label tabindex="-1" text="種別" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ui_number" style="flex-grow: 1; height: 30px; width: 10px; border-left-color: rgba(100, 100, 100, 0); border-right-color: rgba(100, 100, 100, 0); border-top-color: rgba(100, 100, 100, 0); border-bottom-color: rgba(100, 100, 100, 0); border-top-width: 1px; border-right-width: 0; border-bottom-width: 1px; border-left-width: 1px; align-items: center; justify-content: center; flex-shrink: 1;">
+                        <ui:Label tabindex="-1" text="数" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="ui_Thumbnail" style="flex-grow: 1; height: 30px; width: 20px; border-left-color: rgba(100, 100, 100, 0); border-right-color: rgba(100, 100, 100, 0); border-top-color: rgba(100, 100, 100, 0); border-bottom-color: rgba(100, 100, 100, 0); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; align-items: center; justify-content: center; flex-shrink: 1;">
+                        <ui:Label tabindex="-1" text="選択" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; width: auto; flex-shrink: 1;" />
+                </ui:VisualElement>
+                <ui:ScrollView name="ImportAssetScrollView" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ActionContainer" style="flex-grow: 0; flex-direction: row; align-items: center; padding-top: 16px;">
+                <ui:VisualElement style="flex-grow: 1; align-items: center; flex-direction: row;" />
+                <ui:VisualElement style="flex-grow: 0; align-items: center; flex-direction: row; flex-shrink: 0; justify-content: center; width: 100%;">
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="CancelButton" text="キャンセル" style="width: 120px;" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="OKButton" text="配置" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:ScrollView class="gis-background-window menu" style="max-width: 300px;">
+        <ui:Label tabindex="-1" text="景観計画区域" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AreaHeader" class="header" />
+        <ui:Button text="区域の作成" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AreaCreateButton" class="menu-unity-button" />
+        <ui:VisualElement name="AreaCreateModeUI" style="flex-grow: 1;">
+            <ui:Label tabindex="-1" text="区域作成中\nクリックで頂点を追加してください" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-align: upper-center;" />
+            <ui:Button text="決定" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CompleteContourSelectButton" class="menu-unity-button" />
+        </ui:VisualElement>
+    </ui:ScrollView>
+</ui:UXML>

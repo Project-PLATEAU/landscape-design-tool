@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="List" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 10px; padding-bottom: 0; padding-left: 10px; border-top-width: 0; border-right-width: 0; border-left-width: 0; border-bottom-width: 1px;">
+        <ui:VisualElement name="Circle_Icon_Camera" tooltip="表示・非表示" style="flex-grow: 0; flex-shrink: 0; margin-right: 10px; display: flex;" />
+        <ui:VisualElement name="Circle_Icon_Walk" tooltip="表示・非表示" style="flex-grow: 0; flex-shrink: 0; margin-right: 10px; display: flex;" />
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="flex-grow: 1; -unity-text-align: middle-left; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 1; width: 100%;" />
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DeleteButton" tooltip="削除" focusable="false" enable-rich-text="true" style="width: 30px; height: 30px;">
+            <ui:VisualElement name="Icon_Trash" style="flex-grow: 1; width: 30px; height: 30px; flex-shrink: 0;" />
+        </ui:Button>
+    </ui:Button>
+</ui:UXML>

@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="Panel_AreaPlanningMenu" style="flex-grow: 0; flex-shrink: 1;">
+        <ui:VisualElement name="Panel" style="flex-grow: 0; justify-content: center; height: 90px; min-height: 90px;">
+            <ui:VisualElement name="PanelBody" style="flex-grow: 0; flex-direction: row; height: 100%; justify-content: space-between; flex-shrink: 1;">
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="NewAreaButton" tooltip="区域の新規作成" class="OKButton ActionButton">
+                    <ui:VisualElement name="Icon_Plus" style="flex-grow: 0; width: 18px; height: 18px; flex-shrink: 0;" />
+                    <ui:Label tabindex="-1" text="新規作成" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                </ui:Button>
+                <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row; margin-bottom: 16px;">
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="SaveButton" tooltip="区域を保存" class="PanelIconButton" style="margin-top: 0; margin-right: 10px; margin-bottom: 0; margin-left: 0;">
+                        <ui:VisualElement name="Icon_Save" style="flex-grow: 1;" />
+                    </ui:Button>
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="ImportButton" tooltip="区域読み込み" class="PanelIconButton" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                        <ui:VisualElement name="Icon_Import" style="flex-grow: 1;" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

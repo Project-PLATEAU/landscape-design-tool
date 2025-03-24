@@ -1,0 +1,33 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Panel_ViewList" path="Panel_ViewList" />
+    <ui:Template name="Panel_LandmarkList" path="Panel_LandmarkList" />
+    <ui:Template name="Panel_AnalyzeSetting" path="Panel_AnalyzeSetting" />
+    <ui:Template name="Panel_AnalyzeList" path="Panel_AnalyzeList" />
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="MainContainer" picking-mode="Ignore" style="flex-grow: 1;">
+        <ui:VisualElement name="LeftContainer" picking-mode="Ignore" style="flex-grow: 1; flex-shrink: 0;">
+            <ui:VisualElement name="Title_ViewList" class="Title_Left" style="flex-grow: 0;">
+                <ui:Label tabindex="-1" text="視点場一覧" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:Instance template="Panel_ViewList" name="ViewPointList" />
+            <ui:VisualElement name="Title_LandmarkList" class="Title_Left" style="flex-grow: 0; margin-top: 16px;">
+                <ui:Label tabindex="-1" text="眺望対象一覧" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:Instance template="Panel_LandmarkList" name="LandmarkList" />
+        </ui:VisualElement>
+        <ui:VisualElement name="CenterContainer" picking-mode="Ignore" style="flex-grow: 1; padding-top: 145px;">
+            <ui:VisualElement name="CenterUpper" picking-mode="Ignore" style="flex-grow: 0; flex-shrink: 0;" />
+            <ui:VisualElement name="CenterLower" picking-mode="Ignore" style="flex-grow: 0; flex-shrink: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="RightContainer" picking-mode="Ignore" style="flex-grow: 1; flex-shrink: 0;">
+            <ui:VisualElement name="Title_AnalyzeSetting" class="Title_Right" style="flex-grow: 0;">
+                <ui:Label tabindex="-1" text="見通し解析登録・編集" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:Instance template="Panel_AnalyzeSetting" name="AnalyzeSetting" />
+            <ui:VisualElement name="Title_AnalyzeList" class="Title_Right" style="flex-grow: 0; margin-top: 16px;">
+                <ui:Label tabindex="-1" text="見通し解析一覧" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:Instance template="Panel_AnalyzeList" name="AnalyzeList" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

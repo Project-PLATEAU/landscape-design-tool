@@ -1,0 +1,23 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Panel_GisList" path="Panel_GisList" />
+    <ui:Template name="ColorEditorPanel" path="UIColorEditor" />
+    <ui:Template name="Panel_GisImport" path="Panel_GisImport" />
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="MainContainer" picking-mode="Ignore" style="flex-grow: 1;">
+        <ui:VisualElement name="LeftContainer" picking-mode="Ignore" style="flex-grow: 1; flex-shrink: 0;">
+            <ui:VisualElement name="Title_Left" picking-mode="Ignore" style="flex-grow: 0; flex-shrink: 1;">
+                <ui:Label tabindex="-1" text="登録済みデータ一覧" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-align: upper-right;" />
+            </ui:VisualElement>
+            <ui:Instance template="Panel_GisList" style="height: 350px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="CenterContainer" picking-mode="Ignore" style="flex-grow: 1;">
+            <ui:Instance template="ColorEditorPanel" style="height: 350px; padding-top: 210px; padding-left: 20px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="RightContainer" picking-mode="Ignore" style="flex-grow: 1; flex-shrink: 0;">
+            <ui:VisualElement name="Title_Right" picking-mode="Ignore" style="flex-grow: 0;">
+                <ui:Label tabindex="-1" text="GISデータ読み込み" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:Instance template="Panel_GisImport" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

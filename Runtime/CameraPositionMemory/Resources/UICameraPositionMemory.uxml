@@ -1,0 +1,65 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:ScrollView show-horizontal-scroller="false" class="menu gis-background-window" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; left: 1%; top: 1%; height: auto; width: 30%;">
+        <ui:Label text="カメラ位置保存" display-tooltip-when-elided="true" name="CameraHeader" class="header" />
+        <ui:VisualElement name="CameraPosition" style="margin-top: 15px; margin-right: 5px; margin-bottom: 15px; margin-left: 5px;">
+            <ui:VisualElement name="CameraTabs" class="tabs">
+                <ui:Label text="保存" display-tooltip-when-elided="true" name="CameraSaveTab" class="tab tab-leftmost tab-selected" />
+                <ui:Label text="復元" display-tooltip-when-elided="true" name="CameraRestoreTab" class="tab tab-rightmost" />
+            </ui:VisualElement>
+            <ui:VisualElement name="CameraTabContents" class="tab-contents">
+                <ui:VisualElement name="CameraSaveContent" class="tab-content">
+                    <ui:Label text="現在のカメラ位置を保存します" display-tooltip-when-elided="true" class="menu-label" style="-unity-text-align: upper-center; font-size: 11px;" />
+                    <ui:VisualElement name="CameraSaveSlotRow1" class="camera-slot-row">
+                        <ui:Button display-tooltip-when-elided="true" name="CameraSaveSlot1" class="menu-unity-button camera-button" style="flex-direction: row; flex-shrink: 0;">
+                            <ui:Label tabindex="-1" text="PointOFView" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraSaveCameraState1" style="flex-grow: 0; margin-right: auto;" />
+                            <ui:Label tabindex="-1" text="スロット1(新規)" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraSaveNameLabel1" style="flex-grow: 0;" />
+                        </ui:Button>
+                        <ui:Button text="名前変更" display-tooltip-when-elided="true" name="CameraRenameSlot1" class="menu-unity-button camera-button-rename" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="CameraSaveSlotRow2" class="camera-slot-row">
+                        <ui:Button display-tooltip-when-elided="true" name="CameraSaveSlot2" class="menu-unity-button camera-button" style="flex-direction: row; flex-shrink: 0;">
+                            <ui:Label tabindex="-1" text="PointOFView" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraSaveCameraState2" style="flex-grow: 0; margin-right: auto;" />
+                            <ui:Label tabindex="-1" text="スロット2(新規)" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraSaveNameLabel2" style="flex-grow: 0;" />
+                        </ui:Button>
+                        <ui:Button text="名前変更" display-tooltip-when-elided="true" name="CameraRenameSlot2" class="menu-unity-button camera-button-rename" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="CameraSaveSlotRow3" class="camera-slot-row">
+                        <ui:Button display-tooltip-when-elided="true" name="CameraSaveSlot3" class="menu-unity-button camera-button" style="flex-direction: row; flex-shrink: 0;">
+                            <ui:Label tabindex="-1" text="PointOfView" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraSaveCameraState3" style="flex-grow: 0; margin-right: auto;" />
+                            <ui:Label tabindex="-1" text="スロット3(新規)" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraSaveNameLabel3" style="flex-grow: 0;" />
+                        </ui:Button>
+                        <ui:Button text="名前変更" display-tooltip-when-elided="true" name="CameraRenameSlot3" class="menu-unity-button camera-button-rename" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="CameraRestoreContent" class="tab-content">
+                    <ui:Label text="カメラ位置を復元します" display-tooltip-when-elided="true" class="menu-label" style="-unity-text-align: upper-center; font-size: 11px;" />
+                    <ui:VisualElement name="CameraRestoreSlotRow1" class="camera-slot-row">
+                        <ui:Button display-tooltip-when-elided="true" name="CameraRestoreSlot1" class="menu-unity-button camera-button" style="flex-direction: row; flex-shrink: 0;">
+                            <ui:Label tabindex="-1" text="PointOfView" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraRestoreCameraState1" style="flex-grow: 0; margin-right: auto;" />
+                            <ui:Label tabindex="-1" text="スロット1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraRestoreNameLabel1" enable-rich-text="true" style="flex-grow: 0;" />
+                        </ui:Button>
+                        <ui:Button text="名前変更" display-tooltip-when-elided="true" name="CameraRenameSlot1" class="menu-unity-button camera-button-rename" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="CameraRestoreSlotRow2" class="camera-slot-row">
+                        <ui:Button display-tooltip-when-elided="true" name="CameraRestoreSlot2" class="menu-unity-button camera-button" style="flex-direction: row; flex-shrink: 0;">
+                            <ui:Label tabindex="-1" text="PointOfView" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraRestoreCameraState2" style="flex-grow: 0; margin-right: auto;" />
+                            <ui:Label tabindex="-1" text="スロット2" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraRestoreNameLabel2" enable-rich-text="true" style="flex-grow: 0;" />
+                        </ui:Button>
+                        <ui:Button text="名前変更" display-tooltip-when-elided="true" name="CameraRenameSlot2" class="menu-unity-button camera-button-rename" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="CameraRestoreSlotRow3" class="camera-slot-row">
+                        <ui:Button display-tooltip-when-elided="true" name="CameraRestoreSlot3" class="menu-unity-button camera-button" style="flex-direction: row; flex-shrink: 0;">
+                            <ui:Label tabindex="-1" text="PointOfView" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraRestoreCameraState3" style="flex-grow: 0; margin-right: auto;" />
+                            <ui:Label tabindex="-1" text="スロット3" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraRestoreNameLabel3" enable-rich-text="true" style="flex-grow: 0;" />
+                        </ui:Button>
+                        <ui:Button text="名前変更" display-tooltip-when-elided="true" name="CameraRenameSlot3" class="menu-unity-button camera-button-rename" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement style="align-items: flex-end;">
+            <ui:Button text="カメラ保存をリセット" display-tooltip-when-elided="true" name="ResetCameraSaveButton" class="menu-unity-button" style="font-size: 9px; width: 120px;" />
+        </ui:VisualElement>
+    </ui:ScrollView>
+</ui:UXML>

@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="Dialog" picking-mode="Ignore" style="flex-grow: 1; align-items: center; align-self: auto; justify-content: flex-start; width: 100%; height: 100%; padding-bottom: 0; padding-top: 280px;">
+        <ui:VisualElement name="Dialog" style="flex-grow: 0; justify-content: center; flex-shrink: 0;">
+            <ui:Label tabindex="-1" text="タイトル" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DialogText" style="font-size: 28px; -unity-text-align: upper-center;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,26 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Panel_CameraList" path="Panel_CameraList" />
+    <ui:Template name="Panel_CameraViewRegister" path="Panel_CameraViewRegister" />
+    <ui:Template name="Panel_CameraViewEditor" path="Panel_CameraViewEditor" />
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="MainContainer" picking-mode="Ignore" style="flex-grow: 1;">
+        <ui:VisualElement name="LeftContainer" picking-mode="Ignore" style="flex-grow: 1; flex-shrink: 0;">
+            <ui:VisualElement name="LeftUpper" picking-mode="Ignore" style="flex-grow: 0; flex-shrink: 0;">
+                <ui:VisualElement name="Title_Left" style="flex-grow: 0;">
+                    <ui:Label tabindex="-1" text="カメラ視点一覧" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-align: upper-right;" />
+                </ui:VisualElement>
+                <ui:Instance template="Panel_CameraList" name="Panel_CameraList" style="align-self: flex-end;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="CenterContainer" picking-mode="Ignore" style="flex-grow: 1; width: 100%;" />
+        <ui:VisualElement name="RightContainer" picking-mode="Ignore" style="flex-grow: 1; flex-shrink: 0;">
+            <ui:VisualElement name="RightUpper" picking-mode="Ignore" style="flex-grow: 0; flex-shrink: 0;">
+                <ui:VisualElement name="Title_Right" style="flex-grow: 0;">
+                    <ui:Label tabindex="-1" text="視点登録/編集" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-align: upper-left;" />
+                </ui:VisualElement>
+                <ui:Instance template="Panel_CameraViewRegister" name="Panel_CameraViewRegister" />
+                <ui:Instance template="Panel_CameraViewEditor" name="Panel_CameraViewEditor" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,13 @@
+{
+    "name": "iShape.Geometry.Editor.Tests",
+    "references": [
+        "iShape.Geometry"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

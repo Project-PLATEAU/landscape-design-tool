@@ -1,0 +1,24 @@
+{
+    "name": "Landscape2.Editor",
+    "rootNamespace": "Landscape2.Editor",
+    "references": [
+        "Unity.Addressables.Editor",
+        "Unity.Addressables",
+        "Landscape2.Runtime",
+        "libplateau",
+        "PLATEAU.Runtime",
+        "Unity.RenderPipelines.HighDefinition.Runtime",
+        "PlateauToolkit.Rendering"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Context_TransformButton" path="Context_TransformButton" />
+    <ui:Template name="Context_DeleteButton" path="Context_DeleteButton" />
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="ContextButtonGroup" style="flex-grow: 0; flex-shrink: 0; width: 300px; align-items: center;">
+        <ui:VisualElement style="flex-grow: 0; flex-direction: row; align-items: center; justify-content: center; flex-shrink: 0; margin-bottom: 16px;">
+            <ui:Instance template="Context_TransformButton" />
+            <ui:Instance template="Context_DeleteButton" />
+        </ui:VisualElement>
+        <ui:Button text="決定" parse-escape-sequences="true" display-tooltip-when-elided="true" class="ActionButton" />
+    </ui:VisualElement>
+</ui:UXML>

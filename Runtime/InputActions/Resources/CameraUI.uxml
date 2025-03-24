@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: column; align-self: center; -unity-text-align: upper-center;">
+        <ui:Button text="SwitchCamera" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SwitchCameraButton" style="height: 42px; width: 126px; -unity-text-align: middle-center; white-space: nowrap; background-color: rgb(25, 171, 71); color: rgb(255, 255, 255); font-size: 16px;" />
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraOffsetY" style="-unity-text-align: middle-center; background-color: rgb(25, 171, 71); color: rgb(255, 255, 255); height: 35px; font-size: 16px; margin-top: 2px; margin-left: 4px; padding-top: 10px; padding-right: 12px; padding-bottom: 10px; padding-left: 12px;" />
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CameraState" style="-unity-text-align: middle-center; background-color: rgb(25, 171, 71); color: rgb(255, 255, 255); height: 35px; font-size: 16px; margin-top: 2px; margin-left: 4px; padding-top: 10px; padding-right: 12px; padding-bottom: 10px; padding-left: 12px;" />
+    </ui:VisualElement>
+</ui:UXML>

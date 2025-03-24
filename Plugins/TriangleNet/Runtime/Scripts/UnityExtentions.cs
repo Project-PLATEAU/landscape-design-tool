@@ -19,14 +19,14 @@ namespace TriangleNet
             polygon.Add(new Vertex(vertex.x, vertex.y));
         }
 
-        public static Mesh GenerateUnityMesh(this TriangleNetMesh triangleNetMesh, QualityOptions options = null)
+        public static UnityEngine.Mesh GenerateUnityMesh(this TriangleNetMesh triangleNetMesh, QualityOptions options = null)
         {
             if (options != null)
             {
                 triangleNetMesh.Refine(options);
             }
          
-            Mesh mesh = new Mesh();
+            UnityEngine.Mesh mesh = new UnityEngine.Mesh();
             var triangleNetVerts = triangleNetMesh.Vertices.ToList();
   
             var triangles = triangleNetMesh.Triangles;

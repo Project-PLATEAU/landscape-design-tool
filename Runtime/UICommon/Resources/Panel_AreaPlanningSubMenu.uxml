@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="Panel_AreaPlanningSubMenu" style="flex-grow: 0;">
+        <ui:VisualElement name="Panel" style="flex-grow: 0; justify-content: center; height: 220px;">
+            <ui:VisualElement name="PanelBody" style="flex-grow: 0; flex-direction: column; height: 100%; justify-content: center; flex-shrink: 1;">
+                <ui:VisualElement style="flex-grow: 0; flex-direction: column; margin-bottom: 0; align-items: center;">
+                    <ui:VisualElement style="flex-grow: 1; margin-bottom: 8px;">
+                        <ui:Label tabindex="-1" text="新規作成ボタンでエリアを新規作成または&#10;登録済みエリアをクリックして編集できます" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                    </ui:VisualElement>
+                    <ui:Button text="データを編集" tooltip="リストから選択した区域の編集" parse-escape-sequences="true" display-tooltip-when-elided="true" name="EditButton" enable-rich-text="true" focusable="true" class="OKButton ActionButton" style="opacity: 1; overflow: hidden; text-overflow: ellipsis; width: 120px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
