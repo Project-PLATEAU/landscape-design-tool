@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>&#26223;&#35251;&#35336;&#30011;&#21306;&#22495;&#30011;&#38754;&#12398;&#25805;&#20316;&#26041;&#27861; | &#26223;&#35251;&#34903;&#12389;&#12367;&#12426;&#12484;&#12540;&#12523; </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="&#26223;&#35251;&#35336;&#30011;&#21306;&#22495;&#30011;&#38754;&#12398;&#25805;&#20316;&#26041;&#27861; | &#26223;&#35251;&#34903;&#12389;&#12367;&#12426;&#12484;&#12540;&#12523; ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="景観計画区域画面の操作方法">景観計画区域画面の操作方法</h1>
+
+<p>景観計画区域画面では、Shapefile 形式の景観計画区域の読み込み・可視化・編集を行います。</p>
+<h2 id="景観計画区域のデータ形式">景観計画区域のデータ形式</h2>
+<h3 id="shape-ファイルデータ形式">Shape ファイルデータ形式</h3>
+<p>この機能では、以下のデータ形式の Shape ファイルに対応しています。</p>
+<ul>
+<li>ストレージ：ESRI Shapefile</li>
+<li>文字コード：Shift_JIS</li>
+<li>ジオメトリ：Polygon (MultiPolygon)</li>
+<li>座標参照系(CSR)：EPSG:4326-WGS84（緯度経度形式）</li>
+</ul>
+<h3 id="属性テーブル形式">属性テーブル形式</h3>
+<p>属性テーブルには以下の項目を設定できます。
+<br>　※項目が存在しない場合は、初期値が適用されます。
+<br>　※以下の項目以外の属性が含まれる場合でも動作に支障はありません。</p>
+<table>
+<thead>
+<tr>
+<th>項目名</th>
+<th>型</th>
+<th>入力情報　　　　</th>
+<th>入力データ形式</th>
+<th>初期値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>テキスト(string)</td>
+<td>ID 番号</td>
+<td>整数値</td>
+<td>0</td>
+</tr>
+<tr>
+<td>AREANAME</td>
+<td>テキスト(string)</td>
+<td>区域名</td>
+<td>半角・全角文字</td>
+<td>空欄</td>
+</tr>
+<tr>
+<td>HEIGHT</td>
+<td>テキスト(string)</td>
+<td>区域の高さ制限値</td>
+<td>正の実数値</td>
+<td>0</td>
+</tr>
+<tr>
+<td>COLOR</td>
+<td>テキスト(string)</td>
+<td>区域の表示色</td>
+<td>RGB 形式<br>「,」区切り<br>0 から 1 の範囲の小数値</td>
+<td>白色 (1,1,1)</td>
+</tr>
+</tbody>
+</table>
+<p>入力例</p>
+<p><img src="../resources/LandscapePlanningAreaImages/DBFSample.png" alt="属性テーブルのサンプル"></p>
+<h2 id="画面構成">画面構成</h2>
+<ul>
+<li>「エリア情報」パネルでは、選択中の景観計画区域の区域名と高さ制限値が表示されます。</li>
+<li>「景観計画区域リスト」パネルでは、読み込み済みの景観計画区域の一覧が表示されます。<ul>
+<li>「景観計画区域リスト」パネルの目アイコンをクリックすると、該当区域の表示/非表示を切り替えることができます。</li>
+<li>「景観計画区域リスト」パネルのゴミ箱アイコンをクリックすると、該当区域を削除できます。</li>
+</ul>
+</li>
+<li>「景観計画データ編集」パネルでは、景観計画区域の編集を行うことができます。</li>
+<li>景観計画区域の壁には、上辺と高さ 10m ごとにラインが描画されます。</li>
+</ul>
+<p><img src="../resources/LandscapePlanningAreaImages/PlanAreaMain.png" alt="画面構成"></p>
+<h2 id="景観計画データの読み込み">景観計画データの読み込み</h2>
+<p>「景観計画データ編集」パネルのデータ読み込みボタンをクリックすると、エクスプローラーが表示されます。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/LoadLandscapePlanButton.png" alt="データ読み込み"></p>
+<p>読み込む景観計画の Shape ファイルと dbf ファイルが含まれるフォルダーを選択し、「フォルダーの選択」をクリックします。</p>
+<p>「景観計画区域リスト」パネルにエリア情報が追加されると読み込み完了です。
+<br>　※読み込みには数秒を要する場合があります。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/BrowseShpFolder.png" alt="フォルダ選択"></p>
+<h2 id="景観計画データの書き出し">景観計画データの書き出し</h2>
+<p>「景観計画データ編集」パネルのデータ書き出しボタンをクリックすると、エクスプローラーが表示されます。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/SaveLandscapePlanButton.png" alt="データ書き出し"></p>
+<p>景観計画の Shape ファイルと dbf ファイルの保存先を選択し、「保存」をクリックします。</p>
+<p>エクスプローラーに Shape ファイルと dbf ファイルが保存されると書き出し完了です。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/SaveDialog.png" alt="フォルダ選択"></p>
+<h2 id="区域情報の編集">区域情報の編集</h2>
+<p>「景観計画区域リスト」パネルから編集したい区域名を選択します。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/AreaDataList.png" alt="データ編集画面を開く"></p>
+<p>次に「景観計画データ編集」パネルの「データを編集」ボタンをクリックし、編集を開始します。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/StartAreaDataEdit.png" alt="データ編集画面を開く"></p>
+<p>編集では、区域名、高さ制限値、区域カラーを変更できます。</p>
+<p>編集完了後は「内容を変更」ボタンをクリックし、変更内容を保存します。
+<br>　※「キャンセル」または他の区域が選択された場合、変更内容は破棄されます。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/EditAreaPanel.png" alt="データ編集画面"></p>
+<h3 id="区域名編集">区域名編集</h3>
+<ul>
+<li>区域名は半角・全角文字に対応しています。
+<br>　※全角文字入力後は Enter キーを押して変換を確定させてください。</li>
+</ul>
+<p><img src="../resources/LandscapePlanningAreaImages/EditAreaName.png" alt="区域名編集"></p>
+<h3 id="高さ制限値の編集">高さ制限値の編集</h3>
+<ul>
+<li>高さ制限値の入力は半角数字のみ対応します。</li>
+<li>区域の新規作成時、区域内の施設の高さが変更されます。入力された高さに達していない施設には影響がありません。</li>
+<li>区域の編集時、高さ制限値を変更すると、即座に施設の高さが変更されます。</li>
+</ul>
+<p><img src="../resources/LandscapePlanningAreaImages/EditAreaHeight.png" alt="高さ制限値編集"></p>
+<h3 id="区域カラー編集">区域カラー編集</h3>
+<ul>
+<li>選択色のパネルをクリックすると「色彩変更」パネルが表示されます。</li>
+</ul>
+<p><img src="../resources/LandscapePlanningAreaImages/EditAreaColor.png" alt="区域カラー編集"></p>
+<ul>
+<li>カラー選択は、マンセル表または RGB 値での入力に対応します。</li>
+<li>パネル右上の ☓ ボタン、または再度選択色のパネルをクリックするとパネルが閉じます。</li>
+</ul>
+<p><img src="../resources/LandscapePlanningAreaImages/ColorPanel.png" alt="区域カラー編集"></p>
+<ul>
+<li>選択色のパネルの右にある「コピー」ボタンを押すと現在の色を保持することができ、他の区域の「色彩変更」パネルで「ペースト」を押すことで、保持した色を他の区域に反映させることができます。</li>
+</ul>
+<p><img src="../resources/LandscapePlanningAreaImages/ColorCopyPaste.png" alt="区域カラーコピー"></p>
+<h3 id="区域頂点編集">区域頂点編集</h3>
+<ul>
+<li>区域の頂点に表示されているピンをクリックしながらマウスを動かすことで、頂点を移動させることができます。</li>
+<li>頂点と頂点の間のラインをクリックすることで中点に頂点を追加することができます。</li>
+<li>頂点をダブルクリックすることで頂点を削除できます。
+<br>　※ラインが交差してしまった場合、頂点が変更前の位置に戻ります。</li>
+</ul>
+<p><img src="../resources/LandscapePlanningAreaImages/EditPoint.png" alt="区域頂点編集"></p>
+<h2 id="区域情報の作成">区域情報の作成</h2>
+<p>「景観計画データ編集」パネルの「新規作成」ボタンをクリックし、作成を開始します。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/RegisterAreaButton.png" alt="データ作成画面を開く"></p>
+<p>区域情報の作成では、区域情報の編集と同様に区域名、高さ制限値、区域カラーを変更できます。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/RegisterAreaPanel.png" alt="データ作成画面"></p>
+<h3 id="区域作成">区域作成</h3>
+<ul>
+<li>3D ビューにおける地面をクリックすると、区域の頂点が生成されます。</li>
+<li>作成したい区域を頂点で囲み、最初に生成した頂点をクリックするとエリアが閉じられ、区域作成が可能な状態になります。
+<br>　※頂点数が 2 つ以下および交差している頂点がある場合、「登録」ボタンをクリックしても区域は作成されません。</li>
+</ul>
+<p><img src="../resources/LandscapePlanningAreaImages/RegisterPoint.png" alt="区域頂点作成"></p>
+<p>完了後は「登録」ボタンをクリックし、変更内容を保存します。
+<br>　※ 頂点が閉じており、区域作成が可能な状態になると「登録」ボタンが表示されます。</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Project-PLATEAU/landscape-design-tool/blob/main/Documentation~/manual/LandscapePlanningArea.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1918 @@
+{
+  "sitemap": {
+    "fileOptions": {
+      "api/*": {
+        "changefreq": "daily"
+      }
+    },
+    "baseUrl": "https://github.com/Synesthesias/Landscape-Design-Tool-2/",
+    "changefreq": "weekly"
+  },
+  "homepages": [],
+  "source_base_path": "D:/a/landscape-design-tool/landscape-design-tool/Documentation~",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "HE62+m1s8RDzTjjRBAn0MTEtGrR8t86D2lCCvrwM0d8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/AssetPlacement.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/AssetPlacement.html",
+          "hash": "mBQLsxGFd76WRBJKrYhLvd3lqs4u0ehNfYj5uGF/MGU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/BasicOperation.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/BasicOperation.html",
+          "hash": "p49VRcNRiSsHObbsaJgT7Q4/yqk/YBIZXguw2b+BdsQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/BimData.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/BimData.html",
+          "hash": "MlSrsrnzbJH9Y27QQJsTQhxAk5F0JaaMb3ND8DfAUP0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Build.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Build.html",
+          "hash": "5DaXClhUgCFFP1dm9zTXCewzyVhgEOr8nbp+oWXJ50w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/BuildingEdit.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/BuildingEdit.html",
+          "hash": "5R/vUCZvUI1cyoFFOo/xoHGhMbhLn3JcuPso0yj/17M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/DistantView.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/DistantView.html",
+          "hash": "5671keBcjP+6y9jFvLYjJzYPQC9AYnQ61qmcUJ5acbE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/GisDataList.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/GisDataList.html",
+          "hash": "IU5oS7a/kB90BxJtXD+2j+5BX+R/218c9K0Suz1BdPg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/LandscapePlanningArea.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/LandscapePlanningArea.html",
+          "hash": "lqu68plJ2WBOqWfXsjCR9BxmjekVUaFda8aLcf+ZxjQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/LineOfSightAnalysis.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/LineOfSightAnalysis.html",
+          "hash": "nmYEuy2w1/eDMwgKuiHtHjv1gKHIDZoHJWQTiydzFHM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/Setup.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/Setup.html",
+          "hash": "a/m33r/NT95VNXwV2N1EZ/4qEAmRFk7+0EdtZCQzbFM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/ViewpointEdit.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/ViewpointEdit.html",
+          "hash": "FGkYs7O6qK3AFnwi9f4CWJkpjl3Xxf14bosPTkliB8A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/ViewpointList.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/ViewpointList.html",
+          "hash": "jys7ryX0HAFNFY1zpjswUH3Qamqj3zBYEvc1caKYcDw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/navigation.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/navigation.html",
+          "hash": "SwMGqvOaPsUDnRwGq7hrLEq36BxhSx2DdWWhitKW2UQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/project.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/project.html",
+          "hash": "MT6bZYdOqXvA4zQSxcdZX5uhQvLlGm5lskK5FwjGlL4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "manual/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "manual/toc.html",
+          "hash": "paMPq3zJiXCvwUu0HtECZMKKT/b23VHAIYqlWKBN2ms="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_advertisement.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_advertisement.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_advertisement_edit.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_advertisement_edit.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_building.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_building.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_asset_error.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_asset_error.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_asset_select.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_asset_select.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_create.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_create.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_csv.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_csv.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_csv_category.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_csv_category.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_csv_template.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_csv_template.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_end.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_end.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_shapefile.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_shapefile.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_shapefile_category.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_bulk_place_shapefile_category.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_create.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_create.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_edit.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_edit.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_list.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_list.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/AssetPlacement_main.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/AssetPlacement_main.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/AssetPlacement/PlateauSandboxCSVTemplate.csv",
+      "output": {
+        "resource": {
+          "relative_path": "resources/AssetPlacement/PlateauSandboxCSVTemplate.csv"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/BIMImport/BIMImport_Edit.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/BIMImport/BIMImport_Edit.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/BIMImport/BIMImport_Main.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/BIMImport/BIMImport_Main.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/BasicOperation/img_walkerview01.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/BasicOperation/img_walkerview01.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Build/AddScene.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Build/AddScene.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Build/Build.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Build/Build.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Build/PlayerSettings.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Build/PlayerSettings.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Build/Ready.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Build/Ready.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/CameraRotate/CameraRotateButton.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/CameraRotate/CameraRotateButton.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/DistantView/Disable.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/DistantView/Disable.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/DistantView/Enable.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/DistantView/Enable.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/EditBuilding/BuildingColorEditor.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/EditBuilding/BuildingColorEditor.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/EditBuilding/DeleteBuilding.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/EditBuilding/DeleteBuilding.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/EditBuilding/DeleteBuilding_After.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/EditBuilding/DeleteBuilding_After.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/EditBuilding/DeleteBuilding_AfterList.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/EditBuilding/DeleteBuilding_AfterList.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/EditBuilding/EditBuilding.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/EditBuilding/EditBuilding.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/GisDataList/GisDataList.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/GisDataList/GisDataList.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/GisDataList/GisDataList_DataSelect.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/GisDataList/GisDataList_DataSelect.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/GisDataList/GisDataList_color_data_name.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/GisDataList/GisDataList_color_data_name.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/GisDataList/GisDataList_delete.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/GisDataList/GisDataList_delete.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/GisDataList/GisDataList_file_select.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/GisDataList/GisDataList_file_select.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/GisDataList/GisDataList_list.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/GisDataList/GisDataList_list.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/GisDataList/GisDataList_select.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/GisDataList/GisDataList_select.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/GisDataList/GisDataList_view.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/GisDataList/GisDataList_view.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/HeightDisplay/HeightDisplayIcon.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/HeightDisplay/HeightDisplayIcon.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/HeightDisplay/HeightLimit.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/HeightDisplay/HeightLimit.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/HeightDisplay/WalkerViewHeightDisplay.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/HeightDisplay/WalkerViewHeightDisplay.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/InitialSettings/InitialSettings_Finish.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/InitialSettings/InitialSettings_Finish.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/InitialSettings/InitialSettings_Open.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/InitialSettings/InitialSettings_Open.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/InitialSettings/InitialSettings_Run.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/InitialSettings/InitialSettings_Run.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/addPacakge.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/addPacakge.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/apiCompatibilityLevel.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/apiCompatibilityLevel.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/createProject.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/createProject.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/editMenu.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/editMenu.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/geographicFeatureSetting.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/geographicFeatureSetting.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/packageDownload.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/packageDownload.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/packageManager.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/packageManager.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/plateauMenu.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/plateauMenu.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/plateauSdkMenu.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/plateauSdkMenu.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/rangeSelectionScreen.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/rangeSelectionScreen.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/unityHubInstall.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/unityHubInstall.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/unityHubMenu.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/unityHubMenu.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/unityHubProject.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/unityHubProject.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/AreaDataList.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/AreaDataList.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/BrowseShpFolder.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/BrowseShpFolder.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/ColorCopyPaste.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/ColorCopyPaste.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/ColorPanel.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/ColorPanel.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/DBFSample.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/DBFSample.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/EditAreaColor.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/EditAreaColor.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/EditAreaHeight.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/EditAreaHeight.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/EditAreaHeight_return.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/EditAreaHeight_return.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/EditAreaName.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/EditAreaName.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/EditAreaPanel.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/EditAreaPanel.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/EditPoint.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/EditPoint.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/LoadLandscapePlanButton.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/LoadLandscapePlanButton.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/PlanAreaMain.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/PlanAreaMain.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/RegisterAreaButton.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/RegisterAreaButton.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/RegisterAreaPanel.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/RegisterAreaPanel.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/RegisterPoint.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/RegisterPoint.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/SaveDialog.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/SaveDialog.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/SaveLandscapePlanButton.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/SaveLandscapePlanButton.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LandscapePlanningAreaImages/StartAreaDataEdit.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LandscapePlanningAreaImages/StartAreaDataEdit.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AddLandmark1.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AddLandmark1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AddLandmark2.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AddLandmark2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AddLandmark3.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AddLandmark3.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AddLandmark4.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AddLandmark4.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AddViewPoint2.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AddViewPoint2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AddViewPoint2_.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AddViewPoint2_.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AddViewPoint3.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AddViewPoint3.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AddViewPoint4.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AddViewPoint4.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AddViewpoint1.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AddViewpoint1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/Analyze1.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/Analyze1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeLandmark1.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeLandmark1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeLandmark2.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeLandmark2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeLandmark3.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeLandmark3.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeLandmark4.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeLandmark4.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeLandmark5.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeLandmark5.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeLandmark5_2.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeLandmark5_2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeLandmark6.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeLandmark6.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeLandmark7.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeLandmark7.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeViewpoint1.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeViewpoint1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeViewpoint10.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeViewpoint10.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeViewpoint2.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeViewpoint2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeViewpoint3.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeViewpoint3.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeViewpoint4.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeViewpoint4.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeViewpoint5.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeViewpoint5.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeViewpoint6.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeViewpoint6.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeViewpoint7.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeViewpoint7.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeViewpoint8.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeViewpoint8.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/AnalyzeViewpoint9.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/AnalyzeViewpoint9.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/EditAnalyze1.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/EditAnalyze1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/EditLandmark1.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/EditLandmark1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/EditLandmark2.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/EditLandmark2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/EditViewpoint1.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/EditViewpoint1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/EditViewpoint2.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/EditViewpoint2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/LineOfSight/LineOfSightMain.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/LineOfSight/LineOfSightMain.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Navigation/img_navigation01.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Navigation/img_navigation01.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Navigation/img_navigation02.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Navigation/img_navigation02.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Navigation/img_navigation03.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Navigation/img_navigation03.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Navigation/img_navigation_help01.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Navigation/img_navigation_help01.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Navigation/img_navigation_help02.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Navigation/img_navigation_help02.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Navigation/img_navigation_help03.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Navigation/img_navigation_help03.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Navigation/img_navigation_help04.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Navigation/img_navigation_help04.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Navigation/img_navigation_help05.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Navigation/img_navigation_help05.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Navigation/img_navigation_help06.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Navigation/img_navigation_help06.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Navigation/img_walkmode01.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Navigation/img_walkmode01.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Project/img_project01.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Project/img_project01.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Project/img_project02.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Project/img_project02.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Project/img_project03.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Project/img_project03.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Project/img_project04.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Project/img_project04.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Project/img_project05.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Project/img_project05.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Project/img_project06.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Project/img_project06.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Project/img_project07.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Project/img_project07.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ProjectManagement/ProjectManagement_Load.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ProjectManagement/ProjectManagement_Load.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ProjectManagement/ProjectManagement_Save.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ProjectManagement/ProjectManagement_Save.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ProjectManagement/ProjectManagement_main.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ProjectManagement/ProjectManagement_main.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ScreenCapture/ScreenCapture.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ScreenCapture/ScreenCapture.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/ScreenCapture/ScreenCaptureFileDialog.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/ScreenCapture/ScreenCaptureFileDialog.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/UIDisplayDisable/UIDisplayDisableArea.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/UIDisplayDisable/UIDisplayDisableArea.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/UIDisplayDisable/UIDisplayDisableButton.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/UIDisplayDisable/UIDisplayDisableButton.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/UIDisplayDisable/UIDisplayDisableEnable.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/UIDisplayDisable/UIDisplayDisableEnable.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/WalkerViewpointImages/OverlookingEdit.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/WalkerViewpointImages/OverlookingEdit.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/WalkerViewpointImages/OverlookingList.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/WalkerViewpointImages/OverlookingList.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/WalkerViewpointImages/OverlookingRegist.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/WalkerViewpointImages/OverlookingRegist.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/WalkerViewpointImages/WalkerButton.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/WalkerViewpointImages/WalkerButton.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/WalkerViewpointImages/WalkerControllerPanel.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/WalkerViewpointImages/WalkerControllerPanel.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/WalkerViewpointImages/WalkerEdit.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/WalkerViewpointImages/WalkerEdit.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/WalkerViewpointImages/WalkerList.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/WalkerViewpointImages/WalkerList.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/WalkerViewpointImages/WalkerPositionSelect.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/WalkerViewpointImages/WalkerPositionSelect.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/WalkerViewpointImages/WalkerRegist.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/WalkerViewpointImages/WalkerRegist.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/WeatherTimeEditor/WeatherTimeEditor.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/WeatherTimeEditor/WeatherTimeEditor.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "resources/logo.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "06uiBuftZaXpQ8azBe5iXhY37/sextPwNZwV63tkIxk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 15,
+          "skipped_file_count": 0
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
