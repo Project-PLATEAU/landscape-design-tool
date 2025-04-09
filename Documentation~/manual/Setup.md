@@ -34,8 +34,11 @@ Unity Hub を起動します。
 - Unityが起動したら、以下の各ツールのリリースページからtgzファイルをダウンロードします。
   - [PLATEAU SDK for Unityのリリースページ](https://github.com/Project-PLATEAU/PLATEAU-SDK-for-Unity/releases)
   - [PLATEAU-SDK-Toolkits-for-Unityのリリースページ](https://github.com/Project-PLATEAU/PLATEAU-SDK-Toolkits-for-Unity/releases)
-  - [PLATEAU-SDK-Maps-Toolkits-for-Unityのリリースページ](https://github.com/Project-PLATEAU/PLATEAU-SDK-Maps-Toolkit-for-Unity/releases)
-  - [LandscapeDesignTool2のリリースページ](https://github.com/Synesthesias/Landscape-Design-Tool-2/releases)
+  - [cesium-unityのリリースページ(v1.6.3)](https://github.com/CesiumGS/cesium-unity/releases/tag/v1.6.3)
+  - [LandscapeDesignToolのリリースページ](https://github.com/Synesthesias/landscape-design-tool/releases)
+- また、`PLATEAU-SDK-Maps-Toolkits-for-Unity` に関しては、上記の `LandscapeDesignToolのリリースページ` にて配布している `com.unity.plateautoolkit.maps-1.0.2.tgz` をダウンロードしてください。
+
+![ツールをUnityにインポート](../resources/Install/packageMapsToolkit.png)
 
 > [!NOTE]  
 > git指定で導入する方法は以下を参考にしてください。<br>
