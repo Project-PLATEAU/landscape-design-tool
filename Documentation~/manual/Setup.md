@@ -53,6 +53,18 @@ Unity Hub を起動します。
 
 ![ツールをUnityにインポート](../resources/Install/packageManager.png)
 
+- 続けて、`Unity gltfast` のバージョンを更新します。Package Managerウィンドウの左上の `＋` ボタンから `Add package by name...` を選択します。
+
+![ツールをUnityにインポート](../resources/Install/packageInstallGltFast_01.png)
+
+- `name` に `com.unity.cloud.gltfast` を指定し、`version` に `6.9.0` を指定します。指定ができたら `Add` を押して下さい。
+
+![ツールをUnityにインポート](../resources/Install/packageInstallGltFast_02.png)
+
+- packageの検索で `gltFast` を検索して、`Unity gltFast` のバージョンが `6.9.0` に更新されていることを確認できたら完了です。
+
+![ツールをUnityにインポート](../resources/Install/packageInstallGltFast_03.png)
+
 - 全てのツールを導入したら、Package Manager ウィンドウを閉じます。
 
 ## Unityプロジェクトの設定
@@ -66,6 +78,14 @@ Project Settings ウィンドウの左側のパネルから「Player」を選択
 ![Unityプロジェクトの設定](../resources/Install/apiCompatibilityLevel.png)
 
 ## 事前準備
+
+### 新しいシーンの作成
+
+- メニューバーから `File` → `New Scene` を選択します。
+- `Empty` を選択して新しいシーンを作成します。
+
+![都市モデルのインポート](../resources/Install/createNewScene.png)
+
 ### PLATEAUの都市モデル(CityGML)データの用意
 事前にG空間情報センターの[3D都市モデル（Project PLATEAU）ポータルサイト](https://front.geospatial.jp/plateau_portal_site/)から景観計画・協議を行いたいエリアの都市モデルデータ(CityGMLファイル一式)をダウンロード、解凍してください。
 

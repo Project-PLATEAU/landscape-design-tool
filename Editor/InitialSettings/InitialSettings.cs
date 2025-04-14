@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CesiumForUnity;
+using UnityEngine;
 using System.Threading.Tasks;
 using Landscape2.Runtime;
 using PLATEAU.CityInfo;
@@ -10,6 +11,9 @@ using PLATEAU.CityAdjust.MaterialAdjust;
 using PLATEAU.Util.Async;
 using PlateauToolkit.Rendering;
 using System.Linq;
+using PLATEAU.Native;
+using PlateauToolkit.Sandbox.Editor;
+using UnityEditor.PackageManager.UI;
 
 namespace Landscape2.Editor
 {
@@ -249,6 +253,60 @@ namespace Landscape2.Editor
 
             // Sceneに存在する都市モデルのTransformのリストを取得
             return result;
+        }
+
+        // Cesiumの地形モデルを設定
+        public void SetupCesiumTerrain()
+        {
+            if (cityModel != null)
+            {
+                // 既存のCesiumGeoreferenceを探して削除
+                var existingGeoRef = GameObject.FindObjectOfType<CesiumGeoreference>();
+                if (existingGeoRef != null)
+                {
+                    GameObject.DestroyImmediate(existingGeoRef.gameObject);
+                }
+
+                // 既存のCesium3DTilesetを探して削除
+                var existingTileset = GameObject.FindObjectOfType<Cesium3DTileset>();
+                if (existingTileset != null)
+                {
+                    GameObject.DestroyImmediate(existingTileset.gameObject);
+                }
+
+                // Georeferenceを作成
+                GameObject geoRefGo = new GameObject("CesiumGeoreference");
+                CesiumGeoreference geoRef = geoRefGo.AddComponent<CesiumGeoreference>();
+
+                // CityModelの緯度経度を設定
+                var coordinate = cityModel.GeoReference.Unproject(new PlateauVector3d(0, 0, 0));
+                geoRef.latitude = coordinate.Latitude;
+                geoRef.longitude = coordinate.Longitude;
+                geoRef.height = coordinate.Height;
+
+                // 3DTilesetを作成
+                GameObject tilesetGO = new GameObject("Cesium3DTileset");
+                Cesium3DTileset tileset = tilesetGO.AddComponent<Cesium3DTileset>();
+
+                // タイルセットの設定
+                tileset.tilesetSource = CesiumDataSource.FromCesiumIon;
+
+                // Georeferenceの子にする
+                tilesetGO.transform.SetParent(geoRefGo.transform, false);
+                tilesetGO.transform.localPosition = Vector3.zero;
+            }
+        }
+
+        // PLATEAU SDK for Toolkitのサンプルアセットの準備
+        public void PreparePlateauSamples()
+        {
+            if (PlateauSandboxAssetUtility.GetSample(out Sample sample))
+            {
+                if (!sample.isImported)
+                {
+                    sample.Import();
+                }
+            }
         }
     }
 }

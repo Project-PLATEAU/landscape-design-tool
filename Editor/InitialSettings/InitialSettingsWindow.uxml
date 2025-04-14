@@ -29,6 +29,14 @@
             <ui:Label tabindex="-1" text="マテリアル分け" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" />
         </ui:VisualElement>
         <ui:VisualElement name="MaterialAdjustHelpboxColumn" style="flex-grow: 1; flex-direction: row; justify-content: space-between;" />
+        <ui:VisualElement name="CesiumCheckColumn" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+            <ui:Label tabindex="-1" text="Cesium地形モデルの生成" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" />
+        </ui:VisualElement>
+        <ui:VisualElement name="CesiumHelpboxColumn" style="flex-grow: 1; flex-direction: row; justify-content: space-between;" />
+        <ui:VisualElement name="PlateauAssetCheckColumn" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+            <ui:Label tabindex="-1" text="PLATEAU SDK for Toolkitのアセットの準備" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" />
+        </ui:VisualElement>
+        <ui:VisualElement name="PlateauAssetHelpboxColumn" style="flex-grow: 1; flex-direction: row; justify-content: space-between;" />
     </ui:GroupBox>
     <ui:Button text="チェックリストを更新" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpdateButton" />
 </ui:UXML>

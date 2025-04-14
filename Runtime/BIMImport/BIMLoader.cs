@@ -136,6 +136,7 @@ namespace Landscape2.Runtime
         }
 
         List<GltfImport> loadGLTFList = new();
+        private string tempExePath; // 一時ファイルのパスを保持
 
         private BIMLoader() { }
 
@@ -225,26 +226,43 @@ namespace Landscape2.Runtime
         /// <returns></returns>
         private string GetIfcConverterPath()
         {
-            string fullPath = Path.Combine(Application.dataPath, "IfcConvert");
-            string ifcExecName = string.Empty;
+            string ifcExecName = "IfcConvert.exe";
+            tempExePath = Path.Combine(Path.GetTempPath(), ifcExecName);
 
-#if UNITY_EDITOR_WIN
-            ifcExecName = "IfcConvert.exe";
-#elif UNITY_STANDALONE_WIN
-            fullPath = Path.Combine(Application.streamingAssetsPath,"IfcConvert");
-            ifcExecName = "IfcConvert.exe";
-#else
-            ifcExecName = "IfcConvert";
-#endif
-            var result = Path.Combine(fullPath, ifcExecName);
-
-            if (!File.Exists(result))
+            // リソースからバイナリデータを読み込む
+            var execData = Resources.Load<TextAsset>("BIMImport/IfcConvert");
+            if (execData != null)
             {
-                Debug.LogWarning($"{result} : {File.Exists(result)}");
-                throw new FileNotFoundException(result);
+                // 一時ファイルとして書き出す
+                try {
+                    File.WriteAllBytes(tempExePath, execData.bytes);
+                    // 実行権限を付与
+                    System.IO.File.SetAttributes(tempExePath, System.IO.FileAttributes.Normal);
+                    return tempExePath;
+                } catch (System.Exception e) {
+                    Debug.LogError($"一時ファイルの作成に失敗しました: {e.Message}");
+                    // フォールバックロジックに進む
+                }
             }
 
-            return result;
+            // 従来のパスをフォールバックとして残す
+            string fullPath = Path.Combine(Application.dataPath, "IfcConvert");
+
+            // まず通常のパスを確認
+            var result = Path.Combine(fullPath, ifcExecName);
+            if (File.Exists(result))
+            {
+                return result;
+            }
+
+            // StreamingAssets配下を確認
+            var streamingAssetsPath = Path.Combine(Application.streamingAssetsPath, "IfcConvert.exe");
+            if (File.Exists(streamingAssetsPath))
+            {
+                return streamingAssetsPath;
+            }
+
+            throw new FileNotFoundException("IfcConvert.exeが見つかりません。");
         }
 
         private (DstPathData, DstPathData) ConvertIfc2gltf(string ifcFilePath, string ifcExecPath)
@@ -308,6 +326,19 @@ namespace Landscape2.Runtime
             foreach (var importer in loadGLTFList)
             {
                 importer.Dispose();
+            }
+
+            // 一時ファイルの削除
+            if (!string.IsNullOrEmpty(tempExePath) && File.Exists(tempExePath))
+            {
+                try
+                {
+                    File.Delete(tempExePath);
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogWarning($"Failed to delete temporary file: {tempExePath}\n{e}");
+                }
             }
         }
     }
