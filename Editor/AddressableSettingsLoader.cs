@@ -10,7 +10,9 @@ namespace Landscape2.Editor
 {
     public static class AddressableSettingsLoader
     {
+        private const string PACKAGE_NAME = "com.synesthesias.landscape-design-tool";
         private static AddressableAssetSettings currentSettings;
+        
         public static void LoadAndAddSettings()
         {
             // Addressableの取得
@@ -34,6 +36,7 @@ namespace Landscape2.Editor
             AddLabels();
             AddGroupsToSettings();
         }
+
         private static void AddLabels()
         {
             AddLabel("Plateau_Assets");
@@ -66,18 +69,18 @@ namespace Landscape2.Editor
         private static void AddGroupsToSettings()
         {
             // 第一引数 : グループ名、第二引数 : パス 
-            AddAssetGroup("RuntimeTransformHandle_Assets", "Packages/com.synesthesias.landscape-design-tool-2/Runtime/ArrangementAsset/Prefab/RuntimeTransformHandle.prefab");
-            AddAssetGroup("CustomPass", "Packages/com.synesthesias.landscape-design-tool-2/Runtime/ArrangementAsset/Prefab/CustomPass.prefab");
-            AddAssetsPictureGroup("AssetsPicture", "Packages/com.synesthesias.landscape-design-tool-2/HDRP Sample Assets/Picture");
+            AddAssetGroup("RuntimeTransformHandle_Assets", $"Packages/{PACKAGE_NAME}/Runtime/ArrangementAsset/Prefab/RuntimeTransformHandle.prefab");
+            AddAssetGroup("CustomPass", $"Packages/{PACKAGE_NAME}/Runtime/ArrangementAsset/Prefab/CustomPass.prefab");
+            AddAssetsPictureGroup("AssetsPicture", $"Packages/{PACKAGE_NAME}/HDRP Sample Assets/Picture");
 
-            AddPlateauAssetGroup("Advertisements_Assets", "Packages/com.synesthesias.landscape-design-tool-2/HDRP Sample Assets/Advertisements/Prefabs");
-            AddPlateauAssetGroup("Buildings_Assets", "Packages/com.synesthesias.landscape-design-tool-2/HDRP Sample Assets/Buildings/Prefabs");
-            AddPlateauAssetGroup("Humans_Assets", "Packages/com.synesthesias.landscape-design-tool-2/HDRP Sample Assets/Humans/Prefabs");
-            AddPlateauAssetGroup("Miscellaneous_Assets", "Packages/com.synesthesias.landscape-design-tool-2/HDRP Sample Assets/Miscellaneous/Prefabs");
-            AddPlateauAssetGroup("Plants_Assets", "Packages/com.synesthesias.landscape-design-tool-2/HDRP Sample Assets/Plants/Prefabs");
-            AddPlateauAssetGroup("Signs_Assets", "Packages/com.synesthesias.landscape-design-tool-2/HDRP Sample Assets/Signs/Prefabs");
-            AddPlateauAssetGroup("StreetFurnitures_Assets", "Packages/com.synesthesias.landscape-design-tool-2/HDRP Sample Assets/StreetFurnitures/Prefabs");
-            AddPlateauAssetGroup("Vehicle_Assets", "Packages/com.synesthesias.landscape-design-tool-2/HDRP Sample Assets/Vehicles/Prefabs");
+            AddPlateauAssetGroup("Advertisements_Assets", $"Packages/{PACKAGE_NAME}/HDRP Sample Assets/Advertisements/Prefabs");
+            AddPlateauAssetGroup("Buildings_Assets", $"Packages/{PACKAGE_NAME}/HDRP Sample Assets/Buildings/Prefabs");
+            AddPlateauAssetGroup("Humans_Assets", $"Packages/{PACKAGE_NAME}/HDRP Sample Assets/Humans/Prefabs");
+            AddPlateauAssetGroup("Miscellaneous_Assets", $"Packages/{PACKAGE_NAME}/HDRP Sample Assets/Miscellaneous/Prefabs");
+            AddPlateauAssetGroup("Plants_Assets", $"Packages/{PACKAGE_NAME}/HDRP Sample Assets/Plants/Prefabs");
+            AddPlateauAssetGroup("Signs_Assets", $"Packages/{PACKAGE_NAME}/HDRP Sample Assets/Signs/Prefabs");
+            AddPlateauAssetGroup("StreetFurnitures_Assets", $"Packages/{PACKAGE_NAME}/HDRP Sample Assets/StreetFurnitures/Prefabs");
+            AddPlateauAssetGroup("Vehicle_Assets", $"Packages/{PACKAGE_NAME}/HDRP Sample Assets/Vehicles/Prefabs");
 
             AddUIStyleCommonGroup();
             AddLineOfSightIcon();
@@ -106,17 +109,19 @@ namespace Landscape2.Editor
                 entry.SetLabel(groupName, true);
             }
         }
+
         private static void AddUIStyleCommonGroup()
         {
             var groupName = "UIStyleCommon";
             var targetGroup = CreateGroup(groupName);
 
-            var guid = AssetDatabase.AssetPathToGUID("Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss");
+            var guid = AssetDatabase.AssetPathToGUID($"Packages/{PACKAGE_NAME}/Runtime/UICommon/UIStyleCommon.uss");
             string assetPath = AssetDatabase.GUIDToAssetPath(guid);
             var entry = currentSettings.CreateOrMoveEntry(guid, targetGroup);
             entry.address = System.IO.Path.GetFileNameWithoutExtension(assetPath);
             entry.SetLabel("UIStyleCommon", true);
         }
+
         private static void AddPlateauAssetGroup(string groupName, string directoryPath)
         {
             var targetGroup = CreateGroup(groupName);
@@ -131,24 +136,25 @@ namespace Landscape2.Editor
                 entry.SetLabel("Plateau_Assets", true);
             }
         }
+
         private static void AddLineOfSightIcon()
         {
             var groupName = "LineOfSight_Icon";
             var targetGroup = CreateGroup(groupName);
             // 視点場アイコン
-            var guid = AssetDatabase.AssetPathToGUID("Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/Images/Resources/Pin_Walkview.png");
+            var guid = AssetDatabase.AssetPathToGUID($"Packages/{PACKAGE_NAME}/Runtime/UICommon/Images/Resources/Pin_Walkview.png");
             string assetPath = AssetDatabase.GUIDToAssetPath(guid);
             var entry = currentSettings.CreateOrMoveEntry(guid, targetGroup);
             entry.address = System.IO.Path.GetFileNameWithoutExtension(assetPath);
             entry.SetLabel("ViewPointIcon", true);
             // 眺望視点アイコン
-            guid = AssetDatabase.AssetPathToGUID("Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/Images/Resources/Pin_Landmark.png");
+            guid = AssetDatabase.AssetPathToGUID($"Packages/{PACKAGE_NAME}/Runtime/UICommon/Images/Resources/Pin_Landmark.png");
             assetPath = AssetDatabase.GUIDToAssetPath(guid);
             entry = currentSettings.CreateOrMoveEntry(guid, targetGroup);
             entry.address = System.IO.Path.GetFileNameWithoutExtension(assetPath);
             entry.SetLabel("LandmarkIcon", true);
-
         }
+
         private static AddressableAssetGroup CreateGroup(string groupName)
         {
             var targetGroup = currentSettings.FindGroup(groupName);

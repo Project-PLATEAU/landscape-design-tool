@@ -16,6 +16,9 @@ namespace Landscape2.Runtime.WeatherTimeEditor
         private ColorAdjustments skyColorAdjustments;
         private readonly Color skyDefaultColorFilter;
         
+        // DepthOfField設定
+        private DepthOfField depthOfField;
+        
         // 曇り用の色調整
         private readonly Color skyCloudColor = new Color32(191,191,191,255);
 
@@ -54,6 +57,13 @@ namespace Landscape2.Runtime.WeatherTimeEditor
             var renderingVolume = renderingObj.GetComponent<Volume>();
             renderingVolume.profile.TryGet(out skyColorAdjustments);
             skyDefaultColorFilter = skyColorAdjustments.colorFilter.value;
+
+            // DepthOfFieldをOFFにして近距離でもきれいに見せる
+            renderingVolume.profile.TryGet(out depthOfField);
+            if (depthOfField != null)
+            {
+                depthOfField.active = false;
+            }
         }
 
         public void OnUpdate(WeatherTimeEditor.Weather currentWeather)

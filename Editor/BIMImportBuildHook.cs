@@ -24,12 +24,12 @@ namespace Landscape2.Runtime
         public void OnPreprocessBuild(BuildReport report)
         {
             Debug.Log($"{nameof(BIMImportBuildHook)}.OnPreprocessBuild");
+
             // フォルダが無いとダメ!
             if (!Directory.Exists(ifcPath))
             {
-                string errMes = "IfcConverterフォルダがありません";
-                EditorUtility.DisplayDialog("Error in BIMLoader", errMes, "cancel");
-                throw new BuildFailedException($"{errMes}\n{ifcPath}");
+                Directory.CreateDirectory(ifcPath);
+                Debug.Log($"IfcConverterフォルダを作成しました: {ifcPath}");
             }
 
             Debug.Log($"pass ifcPath : {ifcPath}");
@@ -41,36 +41,40 @@ namespace Landscape2.Runtime
             ifcExec = $"{ifcExec}.exe";
 #endif
             var exeFullPath = Path.Combine(ifcPath, ifcExec);
-            if (!File.Exists(exeFullPath))
+            // Resources.Loadで.bytesファイルを確認
+            var execData = Resources.Load<TextAsset>("IfcConvert");
+
+            // 通常のパスとResources配下の両方を確認
+            if (!File.Exists(exeFullPath) && execData == null)
             {
                 string errMes = $"{ifcExec} がありません";
                 EditorUtility.DisplayDialog("Error in BIMLoader", errMes, "cancel");
                 throw new BuildFailedException(errMes);
             }
 
-            Debug.Log($"pass exeFullpath: {exeFullPath}");
-
-            // streamingassets以下にcopy
-            var dstPath = Path.Combine(Application.streamingAssetsPath, ifcExecWithoutExt);
-            var dstAssetPath = Path.GetRelativePath(Path.Combine(Application.dataPath, ".."), dstPath);
-            if (Directory.Exists(dstPath))
+            // Resources配下に存在する場合は、そちらをコピー元として使用
+            string dstPath = Path.Combine(Application.streamingAssetsPath, ifcExec);
+            if (File.Exists(dstPath))
             {
                 // 既にあるのでcopyをしない
                 return;
             }
 
-            var relativeIfcPath = Path.GetRelativePath(Path.Combine(Application.dataPath, ".."), ifcPath);
-            var result = AssetDatabase.CopyAsset(relativeIfcPath, dstAssetPath);
-            Debug.Log($"copy : {result}\n{ifcPath}({relativeIfcPath})\n{dstAssetPath}");
-            if (!result)
+            // StreamingAssetsフォルダが無ければ作成
+            Directory.CreateDirectory(Application.streamingAssetsPath);
+
+            if (execData != null)
             {
-                string errMes = $"{relativeIfcPath} を \n{dstPath} に\ncopyを行う際に失敗しました";
-                EditorUtility.DisplayDialog("Error in BIMLoader", errMes, "cancel");
-                throw new BuildFailedException(errMes);
+                // Resourcesから読み込んだデータを直接書き出し
+                File.WriteAllBytes(dstPath, execData.bytes);
+                Debug.Log($"Copied from Resources to: {dstPath}");
+            }
+            else
+            {
+                // 通常パスからコピー
+                File.Copy(exeFullPath, dstPath);
+                Debug.Log($"Copied from: {exeFullPath} to: {dstPath}");
             }
         }
-
-
-
     }
 }
