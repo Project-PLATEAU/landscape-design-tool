@@ -147,7 +147,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/Setup.html",
-          "hash": "a/m33r/NT95VNXwV2N1EZ/4qEAmRFk7+0EdtZCQzbFM="
+          "hash": "KkWmkzbTOT4MV58onUCCEi8KWK35UG7KZeSMz25nrZo="
         }
       },
       "is_incremental": false,
@@ -754,6 +754,17 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "resources/Install/createNewScene.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/createNewScene.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "resources/Install/createProject.png",
       "output": {
         "resource": {
@@ -798,10 +809,54 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "resources/Install/packageInstallGltFast_01.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/packageInstallGltFast_01.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/packageInstallGltFast_02.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/packageInstallGltFast_02.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/packageInstallGltFast_03.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/packageInstallGltFast_03.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "resources/Install/packageManager.png",
       "output": {
         "resource": {
           "relative_path": "resources/Install/packageManager.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Install/packageMapsToolkit.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Install/packageMapsToolkit.png"
         }
       },
       "is_incremental": false,

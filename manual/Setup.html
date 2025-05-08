@@ -107,11 +107,13 @@
 <li>Unityが起動したら、以下の各ツールのリリースページからtgzファイルをダウンロードします。<ul>
 <li><a href="https://github.com/Project-PLATEAU/PLATEAU-SDK-for-Unity/releases">PLATEAU SDK for Unityのリリースページ</a></li>
 <li><a href="https://github.com/Project-PLATEAU/PLATEAU-SDK-Toolkits-for-Unity/releases">PLATEAU-SDK-Toolkits-for-Unityのリリースページ</a></li>
-<li><a href="https://github.com/Project-PLATEAU/PLATEAU-SDK-Maps-Toolkit-for-Unity/releases">PLATEAU-SDK-Maps-Toolkits-for-Unityのリリースページ</a></li>
-<li><a href="https://github.com/Synesthesias/Landscape-Design-Tool-2/releases">LandscapeDesignTool2のリリースページ</a></li>
+<li><a href="https://github.com/CesiumGS/cesium-unity/releases/tag/v1.6.3">cesium-unityのリリースページ(v1.6.3)</a></li>
+<li><a href="https://github.com/Synesthesias/landscape-design-tool/releases">LandscapeDesignToolのリリースページ</a></li>
 </ul>
 </li>
+<li>また、<code>PLATEAU-SDK-Maps-Toolkits-for-Unity</code> に関しては、上記の <code>LandscapeDesignToolのリリースページ</code> にて配布している <code>com.unity.plateautoolkit.maps-1.0.2.tgz</code> をダウンロードしてください。</li>
 </ul>
+<p><img src="../resources/Install/packageMapsToolkit.png" alt="ツールをUnityにインポート"></p>
 <div class="NOTE"><h5>Note</h5><p>git指定で導入する方法は以下を参考にしてください。<br>
 <a href="https://project-plateau.github.io/PLATEAU-SDK-for-Unity/manual/Installation.html#git%E3%81%AEurl%E6%8C%87%E5%AE%9A%E3%81%A7%E5%B0%8E%E5%85%A5%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">SDKの使い方:GitのURL指定で導入する方法</a></p>
 </div>
@@ -125,6 +127,18 @@
 </ul>
 <p><img src="../resources/Install/packageManager.png" alt="ツールをUnityにインポート"></p>
 <ul>
+<li>続けて、<code>Unity gltfast</code> のバージョンを更新します。Package Managerウィンドウの左上の <code>＋</code> ボタンから <code>Add package by name...</code> を選択します。</li>
+</ul>
+<p><img src="../resources/Install/packageInstallGltFast_01.png" alt="ツールをUnityにインポート"></p>
+<ul>
+<li><code>name</code> に <code>com.unity.cloud.gltfast</code> を指定し、<code>version</code> に <code>6.9.0</code> を指定します。指定ができたら <code>Add</code> を押して下さい。</li>
+</ul>
+<p><img src="../resources/Install/packageInstallGltFast_02.png" alt="ツールをUnityにインポート"></p>
+<ul>
+<li>packageの検索で <code>gltFast</code> を検索して、<code>Unity gltFast</code> のバージョンが <code>6.9.0</code> に更新されていることを確認できたら完了です。</li>
+</ul>
+<p><img src="../resources/Install/packageInstallGltFast_03.png" alt="ツールをUnityにインポート"></p>
+<ul>
 <li>全てのツールを導入したら、Package Manager ウィンドウを閉じます。</li>
 </ul>
 <h2 id="unityプロジェクトの設定">Unityプロジェクトの設定</h2>
@@ -133,6 +147,12 @@
 <p>Project Settings ウィンドウの左側のパネルから「Player」を選択し、「Api Compatibility Level」が「.NET Framework」ではない場合「.NET Framework」に変更して設定ウィンドウを閉じます。</p>
 <p><img src="../resources/Install/apiCompatibilityLevel.png" alt="Unityプロジェクトの設定"></p>
 <h2 id="事前準備">事前準備</h2>
+<h3 id="新しいシーンの作成">新しいシーンの作成</h3>
+<ul>
+<li>メニューバーから <code>File</code> → <code>New Scene</code> を選択します。</li>
+<li><code>Empty</code> を選択して新しいシーンを作成します。</li>
+</ul>
+<p><img src="../resources/Install/createNewScene.png" alt="都市モデルのインポート"></p>
 <h3 id="plateauの都市モデルcitygmlデータの用意">PLATEAUの都市モデル(CityGML)データの用意</h3>
 <p>事前にG空間情報センターの<a href="https://front.geospatial.jp/plateau_portal_site/">3D都市モデル（Project PLATEAU）ポータルサイト</a>から景観計画・協議を行いたいエリアの都市モデルデータ(CityGMLファイル一式)をダウンロード、解凍してください。</p>
 <div class="NOTE"><h5>Note</h5><p>都市モデルデータには地形(demフォルダ), 建築物(bldgフォルダ)が含まれている必要があります。</p>
