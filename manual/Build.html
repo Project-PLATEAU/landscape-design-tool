@@ -100,10 +100,11 @@
 </li>
 <li><p><code>Player Settings...</code> をクリックし、以下の設定を確認</p>
 <p> <img src="../resources/Build/PlayerSettings.png" alt="プレイヤ設定"></p>
+<p> <img src="../resources/Build/OtherSettings_Configuration.png" alt="プレイヤ設定コンフィグ"></p>
 <ul>
 <li><code>Company Name</code>、<code>Product Name</code> を適切に設定</li>
-<li><code>Other Settings</code> → <code>Scripting Backend</code> を <code>IL2CPP</code> に設定（パフォーマンス向上目的）</li>
-<li><code>Other Settings</code> → <code>API Compatibility Level</code> を <code>.NET Standard 2.1</code> に設定（推奨）</li>
+<li><code>Other Settings</code> → <code>Configuration</code> → <code>Scripting Backend</code> を <code>Mono</code> に設定</li>
+<li><code>Other Settings</code> → <code>Configuration</code> → <code>API Compatibility Level</code> を <code>.NET Standard</code> に設定</li>
 </ul>
 </li>
 </ol>
@@ -111,6 +112,11 @@
 <ol>
 <li><p><code>Build</code> ボタンをクリックし、出力フォルダを指定</p>
 <p> <img src="../resources/Build/Build.png" alt="ビルド"></p>
+<ul>
+<li><p>もし次のようなウィンドウが表示されたら<code>No</code>を選択</p>
+<p><img src="../resources/Build/AddressablesBuildReport.png" alt="アドレッサブルズビルドレポート"></p>
+</li>
+</ul>
 </li>
 <li><p>ビルドが完了すると、指定フォルダ内に <code>.exe</code> ファイルが生成され、エクスプローラーで出力フォルダが開く</p>
 </li>

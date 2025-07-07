@@ -75,7 +75,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/Build.html",
-          "hash": "5DaXClhUgCFFP1dm9zTXCewzyVhgEOr8nbp+oWXJ50w="
+          "hash": "DN54VTDUqubbmfZGIU4TsJMmUiBXdtG4dC3Yz2JSU9o="
         }
       },
       "is_incremental": false,
@@ -123,7 +123,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/LandscapePlanningArea.html",
-          "hash": "lqu68plJ2WBOqWfXsjCR9BxmjekVUaFda8aLcf+ZxjQ="
+          "hash": "ZuFkktHsMXLawIKdXSJIiCBmgd6W+L6TWQCaNUk2XrE="
         }
       },
       "is_incremental": false,
@@ -457,10 +457,32 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "resources/Build/AddressablesBuildReport.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Build/AddressablesBuildReport.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "resources/Build/Build.png",
       "output": {
         "resource": {
           "relative_path": "resources/Build/Build.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "resources/Build/OtherSettings_Configuration.png",
+      "output": {
+        "resource": {
+          "relative_path": "resources/Build/OtherSettings_Configuration.png"
         }
       },
       "is_incremental": false,
