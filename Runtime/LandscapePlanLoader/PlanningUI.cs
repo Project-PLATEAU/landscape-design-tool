@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UIElements;
 using System;
 using System.Collections.Generic;
@@ -92,68 +92,74 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         /// <param name="status"> 表示するパネルステータス </param>
         public void ChangePlanningPanelDisplay(PlanningPanelStatus status)
         {
+            // デフォルトのオプションを設定する関数群
+            var displaySettings = new Dictionary<VisualElement, DisplayStyle>
+            {
+                { title_AreaPlanningInfo, DisplayStyle.Flex},
+                { title_AreaPlanningList , DisplayStyle.Flex},
+                { title_AreaPlanningEditMenu , DisplayStyle.Flex},
+                { panel_AreaPlanningInfo , DisplayStyle.Flex},
+                { panel_AreaPlanningList , DisplayStyle.Flex},
+                { panel_AreaPlanningMenu , DisplayStyle.Flex},
+                { panel_AreaPlanningSubMenu , DisplayStyle.None},
+                { panel_AreaPlanningRegister , DisplayStyle.None},
+                { panel_AreaPlanningEdit , DisplayStyle.None},
+                { uiRoot , DisplayStyle.Flex }
+            };
+
+            var isSkipDisplaySetting = true;
+
             // パネル表示切り替えイベントを発火
             OnChangePlanningPanelDisplay(status);
+
+            // ステータスに応じて表示設定を変更
             switch (status)
             {
                 // 初期状態
                 case PlanningPanelStatus.Default:
-                    title_AreaPlanningInfo.style.display = DisplayStyle.Flex;
-                    title_AreaPlanningList.style.display = DisplayStyle.Flex;
-                    title_AreaPlanningEditMenu.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningInfo.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningList.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningMenu.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningSubMenu.style.display = DisplayStyle.None;
-                    panel_AreaPlanningRegister.style.display = DisplayStyle.None;
-                    panel_AreaPlanningEdit.style.display = DisplayStyle.None;
-                    uiRoot.style.display = DisplayStyle.Flex;
                     break;
 
                 // リストからエリアが選択された状態
                 case PlanningPanelStatus.ListForcused:
-                    title_AreaPlanningInfo.style.display = DisplayStyle.Flex;
-                    title_AreaPlanningList.style.display = DisplayStyle.Flex;
-                    title_AreaPlanningEditMenu.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningInfo.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningList.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningMenu.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningSubMenu.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningRegister.style.display = DisplayStyle.None;
-                    panel_AreaPlanningEdit.style.display = DisplayStyle.None;
-                    uiRoot.style.display = DisplayStyle.Flex;
+                    displaySettings[panel_AreaPlanningSubMenu] = DisplayStyle.Flex;
                     break;
 
                 // エリア作成時の状態
                 case PlanningPanelStatus.RegisterAreaMain:
-                    title_AreaPlanningInfo.style.display = DisplayStyle.Flex;
-                    title_AreaPlanningList.style.display = DisplayStyle.Flex;
-                    title_AreaPlanningEditMenu.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningInfo.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningList.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningMenu.style.display = DisplayStyle.None;
-                    panel_AreaPlanningSubMenu.style.display = DisplayStyle.None;
-                    panel_AreaPlanningRegister.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningEdit.style.display = DisplayStyle.None;
-                    uiRoot.style.display = DisplayStyle.None;
+                    displaySettings[panel_AreaPlanningMenu] = DisplayStyle.None;
+                    displaySettings[panel_AreaPlanningRegister] = DisplayStyle.Flex;
+                    displaySettings[uiRoot] = DisplayStyle.None;
                     break;
 
                 // エリア編集時の状態
                 case PlanningPanelStatus.EditAreaMain:
-                    title_AreaPlanningInfo.style.display = DisplayStyle.Flex;
-                    title_AreaPlanningList.style.display = DisplayStyle.Flex;
-                    title_AreaPlanningEditMenu.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningInfo.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningList.style.display = DisplayStyle.Flex;
-                    panel_AreaPlanningMenu.style.display = DisplayStyle.None;
-                    panel_AreaPlanningSubMenu.style.display = DisplayStyle.None;
-                    panel_AreaPlanningRegister.style.display = DisplayStyle.None;
-                    panel_AreaPlanningEdit.style.display = DisplayStyle.Flex;
-                    uiRoot.style.display = DisplayStyle.None;
+                    displaySettings[panel_AreaPlanningMenu] = DisplayStyle.None;
+                    displaySettings[panel_AreaPlanningEdit] = DisplayStyle.Flex;
+                    displaySettings[uiRoot] = DisplayStyle.None;
                     break;
 
                 default:
+                    isSkipDisplaySetting = false;
                     break;
+            }
+
+            if (isSkipDisplaySetting == false)
+            {
+                return;
+            }
+
+
+            void SetDisplayStyle(VisualElement element, DisplayStyle style)
+            {
+                if (element != null)
+                {
+                    element.style.display = style;
+                }
+            }
+
+            foreach (var kvp in displaySettings)
+            {
+                SetDisplayStyle(kvp.Key, kvp.Value);
             }
         }
 

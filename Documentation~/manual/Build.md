@@ -25,10 +25,12 @@
 1. `Player Settings...` をクリックし、以下の設定を確認
 
     ![プレイヤ設定](../resources/Build/PlayerSettings.png)
+    
+    ![プレイヤ設定コンフィグ](../resources/Build/OtherSettings_Configuration.png)
 
    - `Company Name`、`Product Name` を適切に設定
-   - `Other Settings` → `Scripting Backend` を `IL2CPP` に設定（パフォーマンス向上目的）
-   - `Other Settings` → `API Compatibility Level` を `.NET Standard 2.1` に設定（推奨）
+   - `Other Settings` → `Configuration` → `Scripting Backend` を `Mono` に設定
+   - `Other Settings` → `Configuration` → `API Compatibility Level` を `.NET Standard` に設定
 
 ## 3. ビルド
 
@@ -36,7 +38,14 @@
 
     ![ビルド](../resources/Build/Build.png)
 
+   - もし次のようなウィンドウが表示されたら`No`を選択
+
+    ![アドレッサブルズビルドレポート](../resources/Build/AddressablesBuildReport.png)
+
+
 1. ビルドが完了すると、指定フォルダ内に `.exe` ファイルが生成され、エクスプローラーで出力フォルダが開く
+
+
 
 ## 4. 実行
 

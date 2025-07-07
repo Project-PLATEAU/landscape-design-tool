@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using Landscape2.Runtime.UiCommon;
@@ -257,9 +257,11 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                 Debug.LogWarning("Pin is not selected");
                 return;
             }
-            if (vertices.Count < 4)
+            const int NumRequiredVertices = AreaPlanningModuleRegulation.NumRequiredPins;
+            bool hasRemovableVertices = vertices.Count < NumRequiredVertices + 1;
+            if (hasRemovableVertices)
             {
-                Debug.LogWarning("The number of vertices is less than 4");
+                Debug.LogWarning("The number of vertices is less than " + (NumRequiredVertices + 1).ToString());
                 return;
             }
 

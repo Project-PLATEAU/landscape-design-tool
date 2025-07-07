@@ -33,6 +33,15 @@ namespace Landscape2.Runtime.Common
                     return true;
                 }
             }
+
+            // ToDo 次の命名規則になることを共通する箇所から取得出来るようにしたい。もしくは他の方法で"TERRAIN_dem"を識別できるようにしたい
+            // ConvertedTerrainData PlaceToSceneRecursive()内でこうなるように名前が付けられる
+            var terrainDemPrefix = "TERRAIN_dem";
+            if (cityObject.name.Contains(terrainDemPrefix))  //if the ground object is found
+            {
+                return true;
+            }
+
             return false;
         }
         

@@ -1,3 +1,4 @@
+﻿using Landscape2.Runtime.Common;
 using PLATEAU.CityGML;
 using PLATEAU.CityInfo;
 using UnityEngine;
@@ -100,17 +101,10 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         {
             foreach (var hit in hits)
             {
-                PLATEAUCityObjectGroup cityObjectData = hit.transform.GetComponent<PLATEAUCityObjectGroup>();
-                if (cityObjectData == null) continue;
-
-                foreach (var rootCityObject in cityObjectData.CityObjects.rootCityObjects)
-                {
-                    if (rootCityObject.CityObjectType == CityObjectType.COT_TINRelief)  //if the ground object is found
-                    {
-                        return hit;
-                    }
-                }
+                if (CityObjectUtil.IsGround(hit.transform.gameObject))
+                    return hit;
             }
+
             return null;
         }
     }

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UIElements;
 using Landscape2.Runtime.UiCommon;
 using static Landscape2.Runtime.LandscapePlanLoader.PlanningUI;
@@ -13,6 +13,8 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         private readonly AreaEditManager areaEditManager;
         private AreaPlanningEdit areaPlanningEdit;
         private Button heightResetButton;
+
+        private PlanningPanelStatus currentStatus = PlanningPanelStatus.Default;
 
         public Panel_AreaPlanningEdit(VisualElement planning, PlanningUI planningUI) : base(planning, planningUI)
         {
@@ -42,6 +44,9 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         /// </summary>
         protected override void OnDisplayPanel(PlanningPanelStatus status)
         {
+            if (currentStatus == status)
+                return; // 既に同じステータスのパネルが表示されている場合は何もしない
+
             if (status == PlanningPanelStatus.EditAreaMain)
             {
                 panel_PointEditor.style.display = DisplayStyle.Flex;
@@ -58,6 +63,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                 panel_PointEditor.style.display = DisplayStyle.None;
                 base.HideSnackbar();
             }
+            currentStatus = status;
         }
 
         /// <summary>

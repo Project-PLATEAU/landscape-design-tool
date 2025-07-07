@@ -1,8 +1,5 @@
-using Landscape2.Runtime.UiCommon;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Landscape2.Runtime.LandscapePlanLoader
 {
@@ -49,7 +46,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                 if (hits == null || hits.Length == 0)
                     return;
 
-                if (vertices.Count > 2)
+                if (vertices.Count >= AreaPlanningModuleRegulation.NumRequiredPins)
                 {
                     // 最初に生成したPinの場合は区画を閉じる
                     if (displayPinLine.IsClickFirstPin(hits))
