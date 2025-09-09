@@ -114,9 +114,10 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         }
 
         /// <summary>
-        /// Pinをクリックしたかどうかを判定するメソッド
+        /// シーンビュー上からピンを選択するメソッド
         /// </summary>
-        public bool IsClickPin()
+        /// <returns></returns>
+        public bool SelectPinOnScreen()
         {
             RaycastHit[] hits;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -137,10 +138,19 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             return false;
         }
 
+
         /// <summary>
-        ///Lineをクリックしたかどうかを判定するメソッド
+        /// Pinをクリックしたかどうかを判定するメソッド
         /// </summary>
-        public bool IsClickLine()
+        public bool IsClickedPin()
+        {
+            return editingPin != null;
+        }
+
+        /// <summary>
+        /// シーンビュー上からラインを選択するメソッド
+        /// </summary>
+        public bool SelectLineOnScreen()
         {
             RaycastHit[] hits;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -161,6 +171,14 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         }
 
         /// <summary>
+        ///Lineをクリックしたかどうかを判定するメソッド
+        /// </summary>
+        public bool IsClickedLine()
+        {
+            return editingLine != null;
+        }
+
+        /// <summary>
         ///Lineの中点に新しく頂点を追加するメソッド
         /// </summary>
         public void AddVertexToLine()
@@ -174,6 +192,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
 
             //// y座標は前後の頂点の中点の座標にする           
             Vector3 previousVec = vertices[lineIndex];
+        
             Vector3 nextVec;
             if (lineIndex == vertices.Count - 1)
             {

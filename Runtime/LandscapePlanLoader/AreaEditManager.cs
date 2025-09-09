@@ -1,4 +1,4 @@
-using iShape.Geometry.Polygon;
+﻿using iShape.Geometry.Polygon;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -57,6 +57,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         public void ChangeHeight(float newHeight)
         {
             if (editingAreaProperty == null) return;
+            if (editingAreaProperty.LimitHeight == newHeight) return;   // 既に同じ高さの場合は何もしない
 
             newHeight = Mathf.Clamp(newHeight, 0, editingAreaProperty.WallMaxHeight);
             editingAreaProperty.LimitHeight = newHeight;

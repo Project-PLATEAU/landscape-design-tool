@@ -30,7 +30,7 @@
 
    - `Company Name`、`Product Name` を適切に設定
    - `Other Settings` → `Configuration` → `Scripting Backend` を `Mono` に設定
-   - `Other Settings` → `Configuration` → `API Compatibility Level` を `.NET Standard` に設定
+   - `Other Settings` → `Configuration` → `API Compatibility Level` を `.NET Framework` に設定
 
 ## 3. ビルド
 

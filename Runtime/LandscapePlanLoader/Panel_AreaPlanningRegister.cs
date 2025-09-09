@@ -1,4 +1,4 @@
-using Landscape2.Runtime.UiCommon;
+﻿using Landscape2.Runtime.UiCommon;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static Landscape2.Runtime.LandscapePlanLoader.PlanningUI;
@@ -14,6 +14,14 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         private bool isDragging = false;
         private const float wallMaxHeight = 300f;
         private float limitHeight;
+
+        struct PanelProperty
+        {
+            public string name;
+            public float height;
+            public Color color;
+        }
+        private PanelProperty defaultProperty;
 
         public Panel_AreaPlanningRegister(VisualElement planning, PlanningUI planningUI) : base(planning, planningUI)
         {
@@ -36,6 +44,16 @@ namespace Landscape2.Runtime.LandscapePlanLoader
 
             limitHeight = 15.0f; // 初期値15mで設定
             areaPlanningHeight.value = limitHeight.ToString();
+
+
+            // パネルの初期値を保持
+            defaultProperty = new PanelProperty
+            {
+                name = areaPlanningName.value,
+                height = float.TryParse(areaPlanningHeight.value, out float parsedHeight) ? parsedHeight : limitHeight,
+                color = areaPlanningColor.resolvedStyle.backgroundColor
+            };
+
         }
 
         /// <summary>
@@ -139,6 +157,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         protected override void OnCancelButtonClicked()
         {
             areaPlanningRegister.ClearVertexEdit();
+            RefreshEditor();
         }
 
         /// <summary>
@@ -162,6 +181,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             areaPlanningRegister.ClearVertexEdit();
             planningUI.InvokeOnChangeConfirmed();
 
+            RefreshEditor();
         }
 
         /// <summary>
@@ -197,6 +217,30 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             {
                 areaPlanningColor.style.backgroundColor = new StyleColor(newColor.Value);
             }
+        }
+
+        /// <summary>
+        /// 編集用UXMLのパラメータ情報を更新
+        /// </summary>
+        /// <param name = "newIndex" > 新規に表示する地区データのリスト番号 </ param >
+        /// <param name="isEditable"></param>
+        void RefreshEditor()
+        {
+            //// 編集中の内容を破棄
+            //areaEditManager.ResetProperty();
+            
+            // 色彩変更画面を閉じる
+            isColorEditing = false;
+            EditColor();
+
+            // 頂点編集の内容を破棄
+            areaPlanningRegister.ClearVertexEdit();
+
+            // 初期値にリセット
+            areaPlanningName.value = defaultProperty.name;
+            areaPlanningHeight.value = defaultProperty.height.ToString();
+            areaPlanningColor.style.backgroundColor = new StyleColor(defaultProperty.color); // StyleColorでないとエラーになるため、StyleColorに変換
+
         }
 
     }

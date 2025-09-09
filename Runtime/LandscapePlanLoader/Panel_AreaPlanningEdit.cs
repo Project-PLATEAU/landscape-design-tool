@@ -16,6 +16,13 @@ namespace Landscape2.Runtime.LandscapePlanLoader
 
         private PlanningPanelStatus currentStatus = PlanningPanelStatus.Default;
 
+        // クリック数のオフセット。クリック消費を管理するために使用する。
+        // クリック消費はビューポート内のクリックや頂点移動を対象とする。
+        // カメラ移動のマウスドラッグやUIToolkit類のボタンのクリックなどでは消費しない。
+        // 例えば　1回目のクリックで頂点追加(clickCountOffset = 1)、そのまま頂点の削除を行いたい場合は3回目のクリック(clickCountOffset + 2)で頂点削除を行うことが出来るようになる。
+        private int clickCountOffset = 0;
+        private bool isNeedReoffsetClickCount = false;  // クリック数のオフセットが必要かどうか。頂点の移動や削除を行った場合はオフセットをリセットする。
+
         public Panel_AreaPlanningEdit(VisualElement planning, PlanningUI planningUI) : base(planning, planningUI)
         {
             // 親のパネルを取得
@@ -184,22 +191,33 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         }
 
         /// <summary>
-        /// 頂点編集パネルをクリックしたときの処理
+        /// 頂点編集パネルが開いている時にマウスクリックしたときの処理
         /// </summary>
         private void OnClickPanel(MouseDownEvent e)
         {
-            if (areaPlanningEdit.IsClickPin()) // ピンをクリック 
+            // 初回クリック時やフラグ有効時にクリック消費状態をリセット
+            if (e.clickCount == 1 || isNeedReoffsetClickCount)
             {
-                if (e.clickCount == 2) // ダブルクリックした場合は頂点を削除
+                clickCountOffset = e.clickCount - 1; // e.clickCount == 1 : 0, isNeedReoffsetClickCount : どこかでフラグが有効化された際のクリック数
+                isNeedReoffsetClickCount = false;
+            }
+
+            // これ以降の処理ではクリック消費の対象となる操作が行われるとする。例外があれば そこでfalseを設定する。
+            isNeedReoffsetClickCount = true;
+
+            if (areaPlanningEdit.SelectPinOnScreen()) // ピンをクリック 
+            {
+                if (e.clickCount == clickCountOffset + 2) // ダブルクリックした場合は頂点を削除
                 {
                     areaPlanningEdit.DeleteVertex();
                 }
                 else // 通常クリックの場合は頂点を移動
                 {
+                    isNeedReoffsetClickCount = false; // ここでフラグを有効化するとダブルクリックの前にリセットされる。 代わりにドラッグが行われた際にフラグを有効化している。
                     CameraMoveByUserInput.IsCameraMoveActive = false;
                 }
             }
-            else if (areaPlanningEdit.IsClickLine()) // ラインをクリック
+            else if (areaPlanningEdit.SelectLineOnScreen()) // ラインをクリック
             {
                 CameraMoveByUserInput.IsCameraMoveActive = false;
                 // 中点に頂点を追加
@@ -207,20 +225,24 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             }
             else
             {
-                CameraMoveByUserInput.IsCameraMoveActive = true;
+                CameraMoveByUserInput.IsCameraMoveActive = true;    // 消しても景観計画区域の編集時には動作したが別の機能でのフラグの扱いや機能増築時を考慮した設計に必要かもかもしれないので残しておく。
             }
         }
 
         /// <summary>
-        /// 頂点編集パネルをドラッグしたときの処理
+        /// 頂点編集パネルが開いている時にマウス移動したときの処理
         /// </summary>
         private void OnDragPanel()
         {
+            if (areaPlanningEdit.IsClickedPin())
+            {
+                isNeedReoffsetClickCount = true; // 頂点の移動や削除を行った場合はクリック数のオフセットをリセットする必要がある。
+            }
             areaPlanningEdit.OnDragPin();
         }
 
         /// <summary>
-        /// 頂点編集パネルのクリックを解除したときの処理
+        /// 頂点編集パネルが開いている時にクリックを解除したときの処理
         /// </summary>
         private void OnReleasePanel()
         {

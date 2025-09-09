@@ -79,7 +79,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                 }
             };
             // エリア編集が確定されたときに、UIをリスト選択時の画面に戻す
-            OnChangeConfirmed += () => ChangePlanningPanelDisplay(PlanningUI.PlanningPanelStatus.ListForcused);
+            OnChangeConfirmed += () => ChangePlanningPanelDisplay(PlanningUI.PlanningPanelStatus.Default);
 
             InvokeOnFocusedAreaChanged(-1); // エリア未選択の状態でUIを初期化
 
