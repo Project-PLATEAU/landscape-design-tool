@@ -22,7 +22,7 @@
   "manual/Build.html": {
     "href": "manual/Build.html",
     "title": "ビルド | 景観街づくりツール",
-    "keywords": "ビルド 本ツールを使用するため Windows 向けにアプリケーションをビルドする手順を解説します。 なお、 基本操作 以降の手順はランタイム（実行時）の解説になります。 1. 準備 File → Build Settings... を開き、 Platform が Windows, Mac, Linux であることを確認 設定されていない場合は、以下の手順を実行 Windows, Mac, Linux を選択 Target Platform を Windows に設定 Architecture を Intel 64bit に設定（推奨） Switch Platform ボタンをクリック 2. ビルド設定 Build Settings 画面でシーン（ セットアップ を行ったもの）を Scenes In Build に追加 Player Settings... をクリックし、以下の設定を確認 Company Name 、 Product Name を適切に設定 Other Settings → Configuration → Scripting Backend を Mono に設定 Other Settings → Configuration → API Compatibility Level を .NET Standard に設定 3. ビルド Build ボタンをクリックし、出力フォルダを指定 もし次のようなウィンドウが表示されたら No を選択 ビルドが完了すると、指定フォルダ内に .exe ファイルが生成され、エクスプローラーで出力フォルダが開く 4. 実行 出力フォルダの .exe ファイルをダブルクリックして実行"
+    "keywords": "ビルド 本ツールを使用するため Windows 向けにアプリケーションをビルドする手順を解説します。 なお、 基本操作 以降の手順はランタイム（実行時）の解説になります。 1. 準備 File → Build Settings... を開き、 Platform が Windows, Mac, Linux であることを確認 設定されていない場合は、以下の手順を実行 Windows, Mac, Linux を選択 Target Platform を Windows に設定 Architecture を Intel 64bit に設定（推奨） Switch Platform ボタンをクリック 2. ビルド設定 Build Settings 画面でシーン（ セットアップ を行ったもの）を Scenes In Build に追加 Player Settings... をクリックし、以下の設定を確認 Company Name 、 Product Name を適切に設定 Other Settings → Configuration → Scripting Backend を Mono に設定 Other Settings → Configuration → API Compatibility Level を .NET Framework に設定 3. ビルド Build ボタンをクリックし、出力フォルダを指定 もし次のようなウィンドウが表示されたら No を選択 ビルドが完了すると、指定フォルダ内に .exe ファイルが生成され、エクスプローラーで出力フォルダが開く 4. 実行 出力フォルダの .exe ファイルをダブルクリックして実行"
   },
   "manual/BuildingEdit.html": {
     "href": "manual/BuildingEdit.html",
