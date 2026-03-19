@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>&#26223;&#35251;&#35336;&#30011;&#21306;&#22495;&#30011;&#38754;&#12398;&#25805;&#20316;&#26041;&#27861; | &#26223;&#35251;&#34903;&#12389;&#12367;&#12426;&#12484;&#12540;&#12523; </title>
+    <title>&#26223;&#35251;&#35336;&#30011;&#21306;&#22495;&#30011;&#38754;&#12398;&#25805;&#20316;&#26041;&#27861; | &#26223;&#35251;&#12414;&#12385;&#12389;&#12367;&#12426;&#25903;&#25588;&#12484;&#12540;&#12523; </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="&#26223;&#35251;&#35336;&#30011;&#21306;&#22495;&#30011;&#38754;&#12398;&#25805;&#20316;&#26041;&#27861; | &#26223;&#35251;&#34903;&#12389;&#12367;&#12426;&#12484;&#12540;&#12523; ">
+    <meta name="title" content="&#26223;&#35251;&#35336;&#30011;&#21306;&#22495;&#30011;&#38754;&#12398;&#25805;&#20316;&#26041;&#27861; | &#26223;&#35251;&#12414;&#12385;&#12389;&#12367;&#12426;&#25903;&#25588;&#12484;&#12540;&#12523; ">
     <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -148,26 +148,31 @@
 <li>景観計画区域の壁には、上辺と高さ 10m ごとにラインが描画されます。</li>
 </ul>
 <p><img src="../resources/LandscapePlanningAreaImages/PlanAreaMain.png" alt="画面構成"></p>
-<h2 id="景観計画データの読み込み">景観計画データの読み込み</h2>
-<p>「景観計画データ編集」パネルのデータ読み込みボタンをクリックすると、エクスプローラーが表示されます。</p>
-<p><img src="../resources/LandscapePlanningAreaImages/LoadLandscapePlanButton.png" alt="データ読み込み"></p>
-<p>読み込む景観計画の Shape ファイルと dbf ファイルが含まれるフォルダーを選択し、「フォルダーの選択」をクリックします。</p>
-<p>「景観計画区域リスト」パネルにエリア情報が追加されると読み込み完了です。
-<br>　※読み込みには数秒を要する場合があります。</p>
-<p><img src="../resources/LandscapePlanningAreaImages/BrowseShpFolder.png" alt="フォルダ選択"></p>
-<h2 id="景観計画データの書き出し">景観計画データの書き出し</h2>
-<p>「景観計画データ編集」パネルのデータ書き出しボタンをクリックすると、エクスプローラーが表示されます。</p>
-<p><img src="../resources/LandscapePlanningAreaImages/SaveLandscapePlanButton.png" alt="データ書き出し"></p>
-<p>景観計画の Shape ファイルと dbf ファイルの保存先を選択し、「保存」をクリックします。</p>
-<p>エクスプローラーに Shape ファイルと dbf ファイルが保存されると書き出し完了です。
-<br>　※ cpg ファイルおよび shx ファイルが同時に出力されることがあります。</p>
-<p><img src="../resources/LandscapePlanningAreaImages/SaveDialog.png" alt="フォルダ選択"></p>
+<h2 id="区域作成">区域作成</h2>
+<ul>
+<li>「景観計画データ編集」パネルの「新規作成」ボタンをクリックし、作成を開始します。</li>
+</ul>
+<p><img src="../resources/LandscapePlanningAreaImages/RegisterAreaButton.png" alt="新規作成ボタン"></p>
+<p>区域情報の作成では、区域情報の編集と同様に区域名、高さ制限値、区域カラーを変更できます。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/RegisterAreaPanel.png" alt="区域情報新規作成パネル"></p>
+<ul>
+<li>3D ビューにおける地面をクリックすると、区域の頂点が生成されます。</li>
+<li>作成したい区域を 4 つ以上の頂点で囲みます。</li>
+<li>最初に生成した頂点をクリックするとエリアが閉じられ「登録」ボタンが表示されます。
+<br>　※交差している頂点がある場合、「登録」ボタンをクリックしても区域は作成されません。</li>
+<li>頂点を配置し直す場合は「景観計画区域 新規作成」パネル内の「キャンセル」ボタンを押すと「新規作成」ボタンが表示される状態まで戻ります。</li>
+</ul>
+<p><img src="../resources/LandscapePlanningAreaImages/RegisterPoint.png" alt="区域頂点作成"></p>
+<p>完了後は「登録」ボタンをクリックし、変更内容を保存します。
+<br>　※エリアが閉じると「登録」ボタンが表示されます。
+<br>　※交差している頂点がある場合、「登録」ボタンをクリックしても区域は作成されません。
+<br>　※生成した区域の編集は「区域情報の編集」の項目を参照してください。</p>
 <h2 id="区域情報の編集">区域情報の編集</h2>
 <p>「景観計画区域リスト」パネルから編集したい区域名を選択します。</p>
 <p><img src="../resources/LandscapePlanningAreaImages/AreaDataList.png" alt="データ編集画面を開く"></p>
 <p>次に「景観計画データ編集」パネルの「データを編集」ボタンをクリックし、編集を開始します。</p>
 <p><img src="../resources/LandscapePlanningAreaImages/StartAreaDataEdit.png" alt="データ編集画面を開く"></p>
-<p>編集では、区域名、高さ制限値、区域カラーを変更できます。</p>
+<p>編集では、エリア表示面、区域名、高さ制限値、高さ制限の適用、区域カラーを変更できます。</p>
 <p>編集完了後は「内容を変更」ボタンをクリックし、変更内容を保存します。
 <br>　※「キャンセル」または他の区域が選択された場合、変更内容は破棄されます。</p>
 <p><img src="../resources/LandscapePlanningAreaImages/EditAreaPanel.png" alt="データ編集画面"></p>
@@ -180,8 +185,6 @@
 <h3 id="高さ制限値の編集">高さ制限値の編集</h3>
 <ul>
 <li>高さ制限値の入力は半角数字のみ対応します。</li>
-<li>区域の新規作成時、区域内の施設の高さが変更されます。入力された高さに達していない施設には影響がありません。</li>
-<li>区域の編集時、高さ制限値を変更すると、即座に施設の高さが変更されます。</li>
 </ul>
 <p><img src="../resources/LandscapePlanningAreaImages/EditAreaHeight.png" alt="高さ制限値編集"></p>
 <h3 id="区域カラー編集">区域カラー編集</h3>
@@ -207,24 +210,33 @@
 <br>　※頂点を 3 つ以下にすることは出来ません。</li>
 </ul>
 <p><img src="../resources/LandscapePlanningAreaImages/EditPoint.png" alt="区域頂点編集"></p>
-<h2 id="区域情報の作成">区域情報の作成</h2>
-<p>「景観計画データ編集」パネルの「新規作成」ボタンをクリックし、作成を開始します。</p>
-<p><img src="../resources/LandscapePlanningAreaImages/RegisterAreaButton.png" alt="データ作成画面を開く"></p>
-<p>区域情報の作成では、区域情報の編集と同様に区域名、高さ制限値、区域カラーを変更できます。</p>
-<p><img src="../resources/LandscapePlanningAreaImages/RegisterAreaPanel.png" alt="データ作成画面"></p>
-<h3 id="区域作成">区域作成</h3>
+<h3 id="エリア表示面の編集">エリア表示面の編集</h3>
+<p><img src="../resources/LandscapePlanningAreaImages/AreaDisplaySurface.png" alt="エリア表示面"></p>
 <ul>
-<li>3D ビューにおける地面をクリックすると、区域の頂点が生成されます。</li>
-<li>作成したい区域を 4 つ以上の頂点で囲みます。</li>
-<li>最初に生成した頂点をクリックするとエリアが閉じられ「登録」ボタンが表示されます。
-<br>　※交差している頂点がある場合、「登録」ボタンをクリックしても区域は作成されません。</li>
-<li>頂点を配置し直す場合は「景観計画区域 新規作成」パネル内の「キャンセル」ボタンを押すと「新規作成」ボタンが表示される状態まで戻ります。</li>
+<li>「全面」「水平面のみ」「垂直面のみ」のいずれかを選択することで、表示面が変更されます。</li>
 </ul>
-<p><img src="../resources/LandscapePlanningAreaImages/RegisterPoint.png" alt="区域頂点作成"></p>
-<p>完了後は「登録」ボタンをクリックし、変更内容を保存します。
-<br>　※エリアが閉じると「登録」ボタンが表示されます。
-<br>　※交差している頂点がある場合、「登録」ボタンをクリックしても区域は作成されません。
-<br>　※生成した区域の編集は「区域情報の編集」の項目を参照してください。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/HorizontalPlane.png" alt="水平面">
+<img src="../resources/LandscapePlanningAreaImages/VerticalPlane.png" alt="垂直面"></p>
+<h3 id="建物の高さ制限の適用">建物の高さ制限の適用</h3>
+<p><img src="../resources/LandscapePlanningAreaImages/ApplyBuildingHeightLimit.png" alt="建物の高さ制限の適用"></p>
+<ul>
+<li>高さを指定して「適用」を選択すると、建物の高さが指定した高さ以下に変更されます。</li>
+<li>建物の高さを元に戻したい場合は「元に戻す」を選択すると、建物の高さが元の状態に戻ります。</li>
+</ul>
+<h2 id="景観計画データの読み込み">景観計画データの読み込み</h2>
+<p>「景観計画データ編集」パネルのデータ読み込みボタンをクリックすると、エクスプローラーが表示されます。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/LoadLandscapePlanButton.png" alt="データ読み込み"></p>
+<p>読み込む景観計画の Shape ファイルと dbf ファイルが含まれるフォルダーを選択し、「フォルダーの選択」をクリックします。</p>
+<p>「景観計画区域リスト」パネルにエリア情報が追加されると読み込み完了です。
+<br>　※読み込みには数秒を要する場合があります。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/BrowseShpFolder.png" alt="フォルダ選択"></p>
+<h2 id="景観計画データの書き出し">景観計画データの書き出し</h2>
+<p>「景観計画データ編集」パネルのデータ書き出しボタンをクリックすると、エクスプローラーが表示されます。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/SaveLandscapePlanButton.png" alt="データ書き出し"></p>
+<p>景観計画の Shape ファイルと dbf ファイルの保存先を選択し、「保存」をクリックします。</p>
+<p>エクスプローラーに Shape ファイルと dbf ファイルが保存されると書き出し完了です。
+<br>　※ cpg ファイルおよび shx ファイルが同時に出力されることがあります。</p>
+<p><img src="../resources/LandscapePlanningAreaImages/SaveDialog.png" alt="フォルダ選択"></p>
 </article>
           </div>
           

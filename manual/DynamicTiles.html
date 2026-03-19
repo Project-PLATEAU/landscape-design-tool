@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>&#24195;&#22495;&#34920;&#31034;&#27231;&#33021; | &#26223;&#35251;&#12414;&#12385;&#12389;&#12367;&#12426;&#25903;&#25588;&#12484;&#12540;&#12523; </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="&#24195;&#22495;&#34920;&#31034;&#27231;&#33021; | &#26223;&#35251;&#12414;&#12385;&#12389;&#12367;&#12426;&#25903;&#25588;&#12484;&#12540;&#12523; ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="広域表示機能">広域表示機能</h1>
+
+<p>広域表示機能は、PLATEAU SDK for Unity の動的タイルを利用し、広い範囲の都市モデルを表示する際の描画処理を最適化する機能です。動的タイルの詳細については、<a href="https://project-plateau.github.io/PLATEAU-SDK-for-Unity/manual/dynamicTile.html">PLATEAU SDK for Unity マニュアル</a>を参照ください。</p>
+<h2 id="1-都市モデルのインポート">1. 都市モデルのインポート</h2>
+<p><a href="Setup.html#7-都市モデルのインポート">都市モデルのインポート</a>時に、インポート形式で<code>動的タイル（Addressable出力）</code>を選択し、動的タイルの出力先及びテクスチャ解像度を設定してください。テクスチャ解像度の倍率は、ズームレベルごとにテクスチャ解像度の1辺の大きさを何倍にするかを表しています。倍率を下げることで描画負荷を下げ、軽量化できます。</p>
+<p><img src="../resources/DynamicTiles/SetupDynamicTiles.png" alt="動的タイル設定"></p>
+<h2 id="2-ゲームオブジェクトの分割">2. ゲームオブジェクトの分割</h2>
+<p>動的タイル形式でインポートされたゲームオブジェクトは地域単位となります。景観まちづくりツールの機能を使用するために、モデル調整から主要地物単位に分割する必要があります。</p>
+<p>PLATEAUウィンドウの<code>モデル調整</code> → <code>分割/結合/マテリアル分け</code>を開きます。調整対象の種類を動的タイルに設定し、<code>タイル選択</code>ボタンを押すとタイル選択画面が表示されます。<code>パッケージ種から選択</code>ボタンを押し、<code>建築物</code>と<code>道路</code>を選択後、<code>決定</code>ボタンを押すと、タイルが選択されているため、問題がなければ<code>決定</code>ボタンを押してください。分割/結合欄で<code>粒度を変更する</code>にチェックを入れ、粒度を<code>主要地物単位（建築物,道路等）</code>に設定し、<code>粒度変更を実行</code>ボタンを押すと、処理が始まります。</p>
+<p>詳細は<a href="https://project-plateau.github.io/PLATEAU-SDK-for-Unity/manual/ModelAdjust.html#%E5%88%86%E5%89%B2%E7%B5%90%E5%90%88%E3%83%9E%E3%83%86%E3%83%AA%E3%82%A2%E3%83%AB%E5%88%86%E3%81%91%E6%A9%9F%E8%83%BD">PLATEAU SDKの分割・結合・マテリアル分け機能マニュアル</a>を参照ください。</p>
+<p><img src="../resources/DynamicTiles/SplitGameObjects.png" alt="分割"></p>
+<h2 id="3-地形変換高さ合わせ">3. 地形変換/高さ合わせ</h2>
+<p>以下の2種類の調整を行います。こちらの手順は土地起伏タイルがシーンに含まれていることが前提です。</p>
+<ul>
+<li>地形の平滑化<ul>
+<li>地形モデル（インポート時の表記は&quot;土地起伏&quot;）の平滑化・テレインへの変換を行います。</li>
+</ul>
+</li>
+<li>高さ合わせ<ul>
+<li>LOD1道路等、高さが付与されていない地物の地形への高さ合わせや、LOD3道路のように高さは付与されているが地形モデルにめり込んでしまっている場合の地形モデルの形状修正を行います。</li>
+</ul>
+</li>
+</ul>
+<p>PLATEAUウィンドウの<code>モデル調整</code> → <code>地形変換/高さ合わせ</code>を開きます。調整対象の種類を<code>動的タイル</code>に設定し、調整対象に<code>PLATEAUTileManager</code>を選択してください。<code>タイル選択</code>ボタンを押すと、タイル選択画面が開くので、<code>全選択</code>ボタンを押して、決定ボタンを押します。オブジェクト配置が<code>置き換える</code>となっていることを確認してから、<code>実行</code>ボタンを押してください。</p>
+<p>詳細は<a href="https://project-plateau.github.io/PLATEAU-SDK-for-Unity/manual/ModelAdjust.html#%E5%9C%B0%E5%BD%A2%E5%A4%89%E6%8F%9B%E9%AB%98%E3%81%95%E5%90%88%E3%82%8F%E3%81%9B%E6%A9%9F%E8%83%BD">PLATEAU SDKの地形変換/高さ合わせ機能マニュアル</a>を参照ください。</p>
+<p><img src="../resources/DynamicTiles/TerrainAdjust.png" alt="地形変換/高さ合わせ"></p>
+<div class="NOTE"><h5>Note</h5><p>動的タイルやアセットがビルドデータで表示されない場合は、以下の手順をお試しください。</p>
+<ol>
+<li>メニューから<code>Window</code> → <code>Asset Management</code> → <code>Addressables</code> → <code>Groups</code> を選択し、<code>Addressables Groups</code>ウィンドウを開きます。</li>
+<li>タブから<code>Build</code> → <code>New Build</code> → <code>Default Build Script</code>を実行してください。</li>
+</ol>
+</div>
+<p><img src="../resources/DynamicTiles/AddressablesGroups.png" alt="Addressables Groupsウィンドウ"></p>
+<p><img src="../resources/DynamicTiles/RebuildAddressables.png" alt="Addressablesの再ビルド"></p>
+<h2 id="4-常に高解像度で表示するタイルの選択">4. 常に高解像度で表示するタイルの選択</h2>
+<p>通常、動的タイルはカメラの距離に応じて解像度が切り替わりますが、本機能で選択したタイルは、カメラが離れた場合でも高解像度のまま表示されます。これにより、重要な建物やエリアについて、広域表示時でも描画クオリティを維持した表示が可能です。</p>
+<p>動的タイル形式での都市モデルのインポート後、Hierarchyから<code>DynamicTileManager</code>のオブジェクトを選択し、<code>PLATEAU Tile Manager</code>のインスペクタから、常に高解像度で表示するタイルを選択してください。
+選択可能なタイルは、最も高解像度であるズームレベル11のタイルのみです。名前が<code>tile_zoom_11</code>から始まるオブジェクトが、ズームレベル11のタイルに該当します。検索欄を使用すると、オブジェクト名で絞り込んで検索できるため、Scene画面でランドマーク等をクリックし、Hierarchyでランドマーク等が含まれるオブジェクトを特定すると、スムーズに選択できます。タイルを選択後、<code>保存/反映</code>ボタンを押すと、設定が反映されます。</p>
+<p><img src="../resources/DynamicTiles/TileIdentify.png" alt="タイル特定"></p>
+<p><img src="../resources/DynamicTiles/SetupHighResolutionTiles.png" alt="常時高解像度タイル設定" width="350"></p>
+<p>出典：PLATEAU SDK for Unity マニュアル（<a href="https://project-plateau.github.io/PLATEAU-SDK-for-Unity/manual/dynamicTile.html）">https://project-plateau.github.io/PLATEAU-SDK-for-Unity/manual/dynamicTile.html）</a></p>
+<h3 id="カメラがタイルから近い状態">カメラがタイルから近い状態</h3>
+<p>タイルは高解像度で表示されます。下図はUnity Editorでタイルを表示した例です。図の右側にあるGame画面で、カメラを3D都市モデル（タイル）に近づけると、Hierarchyには、名前が<code>tile_zoom_11</code>から始まるズームレベル11のタイルオブジェクトが、動的に配置されます。</p>
+<p><img src="../resources/DynamicTiles/HighResolutionTilesCloseup.png" alt="常時高解像度タイル近景"></p>
+<h3 id="カメラがタイルから離れている状態">カメラがタイルから離れている状態</h3>
+<p>常に高解像度で表示する設定をしたタイルとその周辺のタイルのみ高解像度で表示されます。下図の例では、<code>tile_zoom_11_grid_523546113_bldg_6697_op</code>というタイルを、常に高解像度で表示するタイルとして設定しました。Game画面でカメラを3D都市モデル（タイル）から離すと、Hierarchyには名前が<code>tile_zoom_11</code>から始まるズームレベル11のタイルオブジェクトと、名前が<code>tile_zoom_9</code>から始まるズームレベル9のタイルオブジェクトが、動的に配置されます。ズームレベル11のタイルオブジェクトは、常に高解像度で表示する設定をしたタイルとその周辺のタイルです。</p>
+<p><img src="../resources/DynamicTiles/HighResolutionTilesDistantView.png" alt="常時高解像度タイル遠景"></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Project-PLATEAU/landscape-design-tool/blob/main/Documentation~/manual/DynamicTiles.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>&#12499;&#12523;&#12489; | &#26223;&#35251;&#34903;&#12389;&#12367;&#12426;&#12484;&#12540;&#12523; </title>
+    <title>&#12499;&#12523;&#12489; | &#26223;&#35251;&#12414;&#12385;&#12389;&#12367;&#12426;&#25903;&#25588;&#12484;&#12540;&#12523; </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="&#12499;&#12523;&#12489; | &#26223;&#35251;&#34903;&#12389;&#12367;&#12426;&#12484;&#12540;&#12523; ">
+    <meta name="title" content="&#12499;&#12523;&#12489; | &#26223;&#35251;&#12414;&#12385;&#12389;&#12367;&#12426;&#25903;&#25588;&#12484;&#12540;&#12523; ">
     <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -82,47 +82,33 @@
 <p>本ツールを使用するため Windows 向けにアプリケーションをビルドする手順を解説します。</p>
 <p>なお、<a href="BasicOperation.html">基本操作</a>以降の手順はランタイム（実行時）の解説になります。</p>
 <h2 id="1-準備">1. 準備</h2>
-<p><code>File</code> → <code>Build Settings...</code> を開き、<code>Platform</code>が<strong>Windows, Mac, Linux</strong>であることを確認</p>
+<p><code>File</code> → <code>Build Profiles</code> を開き、Platformsで<code>Windows</code>がActiveに設定されていることを確認します。</p>
 <p><img src="../resources/Build/Ready.png" alt="準備"></p>
+<p>設定されていない場合は、以下の手順を実行してください。</p>
 <ul>
-<li>設定されていない場合は、以下の手順を実行<ul>
-<li><code>Windows, Mac, Linux</code> を選択</li>
-<li><code>Target Platform</code> を <strong>Windows</strong> に設定</li>
-<li><code>Architecture</code> を <strong>Intel 64bit</strong> に設定（推奨）</li>
-<li><code>Switch Platform</code> ボタンをクリック</li>
-</ul>
-</li>
+<li>Platformsを<code>Windows</code>に設定</li>
+<li>Architectureを<code>Intel 64bit</code>に設定（推奨）</li>
+<li><code>Switch Platform</code>ボタンをクリック</li>
 </ul>
 <h2 id="2-ビルド設定">2. ビルド設定</h2>
-<ol>
-<li><p><code>Build Settings</code> 画面でシーン（<a href="Setup.html">セットアップ</a>を行ったもの）を <strong>Scenes In Build</strong> に追加</p>
-<p> <img src="../resources/Build/AddScene.png" alt="シーン追加"></p>
-</li>
-<li><p><code>Player Settings...</code> をクリックし、以下の設定を確認</p>
-<p> <img src="../resources/Build/PlayerSettings.png" alt="プレイヤ設定"></p>
-<p> <img src="../resources/Build/OtherSettings_Configuration.png" alt="プレイヤ設定コンフィグ"></p>
+<p><code>Scene List</code>で作成したシーン（<a href="Setup.html">セットアップ</a>を行ったもの）を選択します。まだ<code>Scene List</code>に対象シーンがない場合は、<code>Add Open Scenes</code>から対象シーンを追加してください。</p>
+<p><img src="../resources/Build/AddScene.png" alt="シーン追加"></p>
+<p><code>Player Settings</code> をクリックし、以下の設定を確認します。</p>
 <ul>
-<li><code>Company Name</code>、<code>Product Name</code> を適切に設定</li>
+<li><code>Company Name</code>、<code>Product Name</code>、<code>Version</code>を適切に設定</li>
 <li><code>Other Settings</code> → <code>Configuration</code> → <code>Scripting Backend</code> を <code>Mono</code> に設定</li>
 <li><code>Other Settings</code> → <code>Configuration</code> → <code>API Compatibility Level</code> を <code>.NET Framework</code> に設定</li>
 </ul>
-</li>
-</ol>
+<p><img src="../resources/Build/PlayerSettings.png" alt="プレイヤ設定"></p>
+<p><img src="../resources/Build/OtherSettings_Configuration.png" alt="プレイヤ設定コンフィグ"></p>
 <h2 id="3-ビルド">3. ビルド</h2>
-<ol>
-<li><p><code>Build</code> ボタンをクリックし、出力フォルダを指定</p>
-<p> <img src="../resources/Build/Build.png" alt="ビルド"></p>
-<ul>
-<li><p>もし次のようなウィンドウが表示されたら<code>No</code>を選択</p>
+<p><code>Build</code> ボタンをクリックし、出力フォルダを指定します。</p>
+<p><img src="../resources/Build/Build.png" alt="ビルド"></p>
+<p>もし次のようなウィンドウが表示されたら<code>No</code>を選択してください。</p>
 <p><img src="../resources/Build/AddressablesBuildReport.png" alt="アドレッサブルズビルドレポート"></p>
-</li>
-</ul>
-</li>
-<li><p>ビルドが完了すると、指定フォルダ内に <code>.exe</code> ファイルが生成され、エクスプローラーで出力フォルダが開く</p>
-</li>
-</ol>
+<p>ビルドが完了すると、指定フォルダ内に<code>.exe</code>ファイルが生成され、エクスプローラーで出力フォルダが開きます。</p>
 <h2 id="4-実行">4. 実行</h2>
-<p>出力フォルダの<code>.exe</code> ファイルをダブルクリックして実行</p>
+<p>出力フォルダの<code>.exe</code>ファイルをダブルクリックして実行します。</p>
 </article>
           </div>
           

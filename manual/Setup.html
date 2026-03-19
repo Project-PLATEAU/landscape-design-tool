@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>&#12475;&#12483;&#12488;&#12450;&#12483;&#12503;&#12398;&#25163;&#38918; | &#26223;&#35251;&#34903;&#12389;&#12367;&#12426;&#12484;&#12540;&#12523; </title>
+    <title>1. &#26412;&#26360;&#12395;&#12388;&#12356;&#12390; | &#26223;&#35251;&#12414;&#12385;&#12389;&#12367;&#12426;&#25903;&#25588;&#12484;&#12540;&#12523; </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="&#12475;&#12483;&#12488;&#12450;&#12483;&#12503;&#12398;&#25163;&#38918; | &#26223;&#35251;&#34903;&#12389;&#12367;&#12426;&#12484;&#12540;&#12523; ">
+    <meta name="title" content="1. &#26412;&#26360;&#12395;&#12388;&#12356;&#12390; | &#26223;&#35251;&#12414;&#12385;&#12389;&#12367;&#12426;&#25903;&#25588;&#12484;&#12540;&#12523; ">
     <meta name="generator" content="docfx 2.59.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
@@ -77,43 +77,85 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="セットアップの手順">セットアップの手順</h1>
+<h1 id="1-本書について">1. 本書について</h1>
 
-<p>本書では、ツールのセットアップ手順について記載しています。</p>
-<h2 id="unityのダウンロードとインストール">Unityのダウンロードとインストール</h2>
+<p>本書では、ツールの動作環境やセットアップについて記載しています。</p>
+<h1 id="2-動作環境">2. 動作環境</h1>
+<h3 id="検証済環境">検証済環境</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>最小動作環境</th>
+<th>推奨動作環境</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>Intel クロック周波数 2GHz 以上</td>
+<td>Core i7（8コア）以上</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>NVIDIA® GeForce RTX™  3060以上</td>
+<td>NVIDIA® GeForce RTX™ 4060 Laptop GPU</td>
+</tr>
+<tr>
+<td>メモリ</td>
+<td>16GB 以上</td>
+<td>32GB 以上</td>
+</tr>
+<tr>
+<td>ストレージ</td>
+<td>200GB 以上の空き容量</td>
+<td>同左</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>Windows 11 Home 64 ビット</td>
+<td>同左</td>
+</tr>
+</tbody>
+</table>
+<h1 id="3-セットアップの手順">3. セットアップの手順</h1>
+<h2 id="1-unityのダウンロードとインストール">1. Unityのダウンロードとインストール</h2>
 <ul>
 <li>Unity Hub を<a href="https://unity3d.com/jp/get-unity/download">こちら</a>からインストールします。</li>
 <li>Unity Hub とは、Unityのお好きなバージョンをインストールして起動することのできるソフトウェアです。</li>
-<li>Unity Hubを起動し、左のサイドバーからインストール → 右上のボタンからエディターをインストール をクリックします。</li>
+<li>Unity Hubを起動し、左のサイドバーから<code>インストール</code>を選択し、右上の<code>エディターをインストール</code>ボタンを押します。</li>
 </ul>
-<p><img src="../resources/Install/unityHubMenu.png" alt="Unityのダウンロードとインストール"></p>
-<p>Unity 2022.3 で始まるバージョンを選択し、インストールを押します。</p>
-<p><img src="../resources/Install/unityHubInstall.png" alt="Unityのダウンロードとインストール"></p>
-<h2 id="unityプロジェクトを作成">Unityプロジェクトを作成</h2>
+<p><img src="../resources/Install/unityHubMenu.png" alt="Unity Hubメニュー"></p>
+<p>アーカイブタブの<a href="https://unity.com/releases/editor/archive">ダウンロードアーカイブ</a>から、Unityダウンロードアーカイブを開き、<code>Unity 6000.3.10f1</code>をインストールします。</p>
+<p><img src="../resources/Install/unityHubInstall.png" alt="Unityインストール"></p>
+<p><img src="../resources/Install/unityDownloadArchive.png" alt="Unityダウンロードアーカイブ"></p>
+<h2 id="2-unityプロジェクトを作成">2. Unityプロジェクトを作成</h2>
 <p>Unity Hub を起動します。</p>
-<p>左サイドバーの <code>プロジェクト</code> を押し、右上の <code>新しいプロジェクト</code> ボタンをクリックします。</p>
+<p>左サイドバーの <code>プロジェクト</code> を押し、右上の <code>新しいプロジェクト</code> ボタンを押します。</p>
 <p><img src="../resources/Install/unityHubProject.png" alt="Unityプロジェクトを作成"></p>
 <p>新しいプロジェクトの設定画面で、次のように設定します。</p>
 <ul>
-<li>画面上部の <code>エディターバージョン</code> を <code>2022.3</code> で始まる番号にします。</li>
-<li>画面中部の <code>テンプレート</code> は <code>High Definitaion 3D</code> を選択します。</li>
+<li>画面上部の <code>エディターバージョン</code> を <code>6000.3.10f1</code> にします。</li>
+<li>画面中部の <code>テンプレート</code> は <code>High Definition 3D</code> を選択します。</li>
 <li>画面右下のプロジェクト名をお好みのものに設定します。</li>
-<li><code>プロジェクトを作成</code> ボタンを押します。</li>
+<li><code>プロジェクトを作成</code>ボタンを押します。</li>
 </ul>
 <p><img src="../resources/Install/createProject.png" alt="Unityプロジェクトを作成"></p>
-<h2 id="ツールをunityにインポート">ツールをUnityにインポート</h2>
+<h2 id="3-ツールをunityにインポート">3. ツールをUnityにインポート</h2>
 <ul>
 <li>作成したプロジェクトをクリックすると、Unityが起動します。</li>
 <li>Unityが起動したら、以下の各ツールのリリースページからtgzファイルをダウンロードします。<ul>
 <li><a href="https://github.com/Project-PLATEAU/PLATEAU-SDK-for-Unity/releases">PLATEAU SDK for Unityのリリースページ</a></li>
-<li><a href="https://github.com/Project-PLATEAU/PLATEAU-SDK-Toolkits-for-Unity/releases">PLATEAU-SDK-Toolkits-for-Unityのリリースページ</a></li>
-<li><a href="https://github.com/CesiumGS/cesium-unity/releases/tag/v1.6.3">cesium-unityのリリースページ(v1.6.3)</a></li>
-<li><a href="https://github.com/Synesthesias/landscape-design-tool/releases">LandscapeDesignToolのリリースページ</a></li>
+<li><a href="https://github.com/CesiumGS/cesium-unity/releases/tag/v1.16.0">cesium-unityのリリースページ(v1.16.0)</a></li>
+<li><a href="https://github.com/Project-PLATEAU/landscape-design-tool/releases">LandscapeDesignToolのリリースページ</a></li>
 </ul>
 </li>
-<li>また、<code>PLATEAU-SDK-Maps-Toolkits-for-Unity</code> に関しては、上記の <code>LandscapeDesignToolのリリースページ</code> にて配布している <code>com.unity.plateautoolkit.maps-1.0.2.tgz</code> をダウンロードしてください。</li>
+<li>また、上記の <code>LandscapeDesignToolのリリースページ</code> にて配布している以下のパッケージをダウンロードしてください。<ul>
+<li>PLATEAU-SDK-Toolkits-for-Unity（com.synesthesias.plateau-unity-toolkit-2.2.1.tgz）</li>
+<li>PLATEAU-SDK-Maps-Toolkits-for-Unity（com.unity.plateautoolkit.maps-1.0.21.tgz）</li>
 </ul>
-<p><img src="../resources/Install/packageMapsToolkit.png" alt="ツールをUnityにインポート"></p>
+</li>
+</ul>
 <div class="NOTE"><h5>Note</h5><p>git指定で導入する方法は以下を参考にしてください。<br>
 <a href="https://project-plateau.github.io/PLATEAU-SDK-for-Unity/manual/Installation.html#git%E3%81%AEurl%E6%8C%87%E5%AE%9A%E3%81%A7%E5%B0%8E%E5%85%A5%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95">SDKの使い方:GitのURL指定で導入する方法</a></p>
 </div>
@@ -125,6 +167,16 @@
 <ul>
 <li>先ほどダウンロードした 各ツールの tgz ファイルを指定します。するとウィンドウのパッケージ一覧に各ツール名が表示されます。</li>
 </ul>
+<div class="NOTE"><h5>Note</h5><p>tgz ファイルは 必ず以下の順番で1つずつインポートしてください。順番が異なる場合、依存関係の影響により正常に動作しないことがあります。<br>
+指定順：</p>
+<ol>
+<li>PLATEAU SDK for Unity  </li>
+<li>PLATEAU-SDK-Toolkits-for-Unity  </li>
+<li>Cesium for Unity  </li>
+<li>LandscapeDesignTool  </li>
+<li>PLATEAU-SDK-Maps-Toolkits-for-Unity</li>
+</ol>
+</div>
 <p><img src="../resources/Install/packageManager.png" alt="ツールをUnityにインポート"></p>
 <ul>
 <li>続けて、<code>Unity gltfast</code> のバージョンを更新します。Package Managerウィンドウの左上の <code>＋</code> ボタンから <code>Add package by name...</code> を選択します。</li>
@@ -141,12 +193,17 @@
 <ul>
 <li>全てのツールを導入したら、Package Manager ウィンドウを閉じます。</li>
 </ul>
-<h2 id="unityプロジェクトの設定">Unityプロジェクトの設定</h2>
-<p>Unityのプロジェクト設定をします。メニューバーから Edit → Project Settings… を選びます。</p>
+<h2 id="4-unityプロジェクトの設定">4. Unityプロジェクトの設定</h2>
+<ul>
+<li>Unityのプロジェクト設定をします。メニューバーから Edit → Project Settings… を選びます。</li>
+</ul>
 <p><img src="../resources/Install/editMenu.png" alt="Unityプロジェクトの設定"></p>
-<p>Project Settings ウィンドウの左側のパネルから「Player」を選択し、「Api Compatibility Level」が「.NET Framework」ではない場合「.NET Framework」に変更して設定ウィンドウを閉じます。</p>
+<ul>
+<li>Project Settings ウィンドウの左側のパネルから<code>Player</code>を選択し、<code>Other Settings</code>タブを開きます。<code>Api Compatibility Level</code>が<code>.NET Framework</code>ではない場合、<code>.NET Framework</code>に変更してください。</li>
+<li><code>Active Input Handling</code> を <code>Both</code> に変更して、Project Settings ウィンドウを閉じます。</li>
+</ul>
 <p><img src="../resources/Install/apiCompatibilityLevel.png" alt="Unityプロジェクトの設定"></p>
-<h2 id="事前準備">事前準備</h2>
+<h2 id="5-事前準備">5. 事前準備</h2>
 <h3 id="新しいシーンの作成">新しいシーンの作成</h3>
 <ul>
 <li>メニューバーから <code>File</code> → <code>New Scene</code> を選択します。</li>
@@ -157,42 +214,64 @@
 <p>事前にG空間情報センターの<a href="https://front.geospatial.jp/plateau_portal_site/">3D都市モデル（Project PLATEAU）ポータルサイト</a>から景観計画・協議を行いたいエリアの都市モデルデータ(CityGMLファイル一式)をダウンロード、解凍してください。</p>
 <div class="NOTE"><h5>Note</h5><p>都市モデルデータには地形(demフォルダ), 建築物(bldgフォルダ)が含まれている必要があります。</p>
 </div>
-<h2 id="都市モデルのインポート">都市モデルのインポート</h2>
+<h2 id="6-事前設定の実行">6. 事前設定の実行</h2>
+<p><img src="../resources/InitialSettings/InitialSettings_Setup_Open.png" alt="初期設定画面"></p>
+<ul>
+<li>メニューから <code>PLATEAU</code> → <code>Landscape</code> → <code>InitialSettings</code> の順に選択し、初期設定画面を開きます。</li>
+</ul>
+<p><img src="../resources/InitialSettings/InitialSettings_Setup.png" alt="事前設定の実行"></p>
+<ul>
+<li>初期設定画面の<code>事前設定の実行</code>ボタンを押して、事前設定の処理を開始します。</li>
+</ul>
+<h2 id="7-都市モデルのインポート">7. 都市モデルのインポート</h2>
 <h3 id="都市モデルインポート画面を開く">都市モデルインポート画面を開く</h3>
-<p>メニューから <code>PLATEAU-&gt;PLATEAU SDK</code> を選択します。</p>
+<p>メニューから <code>PLATEAU</code> → <code>PLATEAU SDK</code>を選択します。</p>
 <p><img src="../resources/Install/plateauMenu.png" alt="都市モデルのインポート"></p>
-<p>表示されるウィンドウで都市インポートの設定を行います。インポート元を選択し、基準座標系を選んで「範囲選択」ボタンを押してください。インポート元は、ローカルの場合は 「udx」という名前のフォルダの1つ上のフォルダになります。</p>
+<p>表示されるウィンドウで都市インポートの設定を行います。インポート元を選択し、基準座標系を選んで<code>範囲選択</code>ボタンを押してください。インポート元は、ローカルの場合は <code>udx</code>という名前のフォルダの1つ上のフォルダになります。また、インポート形式を動的タイルに設定する場合は<a href="DynamicTiles.html#広域表示機能">こちら</a>を参照ください。</p>
 <p>詳しくは <a href="https://project-plateau.github.io/PLATEAU-SDK-for-Unity/manual/ImportCityModels.html">PLATEAUマニュアル: インポート</a> をご覧ください。</p>
 <p><img src="../resources/Install/plateauSdkMenu.png" alt="都市モデルのインポート"></p>
 <h3 id="範囲選択">範囲選択</h3>
-<p>範囲選択画面では、マウスホイールの上下でズームイン・ズームアウト、右クリックのドラッグで視点移動します。オレンジ色の球体をドラッグして範囲を選択し、シーンビュー左上の「決定」ボタンを押します。</p>
+<p>範囲選択画面では、マウスホイールの上下でズームイン・ズームアウト、右クリックのドラッグで視点移動します。オレンジ色の球体をドラッグして範囲を選択し、シーンビュー左上の<code>決定</code>ボタンを押します。</p>
 <p><img src="../resources/Install/rangeSelectionScreen.png" alt="都市モデルのインポート"></p>
 <p>インポートに含める地物の種類を選択します。
 景観まちづくり機能を利用するには、次をすべて満たす設定にしておく必要があります。</p>
 <ul>
-<li>「建築物」と「土地起伏」で、「インポートする」にチェックが入っていること</li>
-<li>「建築物」と「土地起伏」で、「MeshColliderをセットする」にチェックが入っていること</li>
-<li>「建築物」で、「モデル結合」はそのまま（主要地物単位）にしておくこと</li>
+<li><code>建築物</code>、<code>道路</code>、<code>土地起伏</code>で、<code>インポートする</code>にチェックが入っていること</li>
+<li><code>建築物</code>、<code>道路</code>、<code>土地起伏</code>で、<code>MeshColliderをセットする</code>にチェックが入っていること</li>
+<li><code>建築物</code>、<code>道路</code>で、<code>モデル結合</code>は<code>主要地物単位</code>にしておくこと<ul>
+<li>動的タイルの場合は地域単位となるため、インポート後にモデル調整から主要地物単位に分割すること</li>
+</ul>
+</li>
 </ul>
 <p><img src="../resources/Install/geographicFeatureSetting.png" alt="都市モデルのインポート"></p>
-<p>設定したら「モデルをインポート」ボタンを押します。そのままウィンドウを下にスクロールすると処理の進行状況が表示されるので、すべて「完了」になったらインポートは完了です。</p>
-<h2 id="初期設定機能の実行">初期設定機能の実行</h2>
+<p>設定したら<code>モデルをインポート</code>ボタンを押します。そのままウィンドウを下にスクロールすると処理の進行状況が表示されるので、すべて<code>完了</code>になったらインポートは完了です。</p>
+<h2 id="8-初期設定機能の実行">8. 初期設定機能の実行</h2>
 <p><img src="../resources/InitialSettings/InitialSettings_Open.png" alt="初期設定画面"></p>
 <ul>
-<li>PLATEAU→InitialSettingsの順に選択し、初期設定画面を開きます。</li>
+<li>メニューから <code>PLATEAU</code> → <code>Landscape</code> → <code>InitialSettings</code> の順に選択し、初期設定画面を開きます。</li>
 </ul>
 <p><img src="../resources/InitialSettings/InitialSettings_Run.png" alt="初期設定実行"></p>
 <ul>
-<li><p>実行に必要なコンポーネントがシーン上に全て揃っている場合、「実行」ボタンが押せる状態になります。</p>
+<li><p>実行に必要なコンポーネントがシーン上に全て揃っている場合、<code>実行</code>ボタンが押せる状態になります。</p>
 </li>
-<li><p>初期設定画面の「実行」ボタンを押して、初期設定の処理を開始します。</p>
+<li><p>初期設定画面の<code>実行</code>ボタンを押して、初期設定の処理を開始します。</p>
 </li>
-<li><p>実行に必要なコンポーネントがシーン上に全て揃っていない場合、実行可能な状態にした後、「チェックリストを更新」ボタンを押すことで、「実行」ボタンが押せる状態になります。</p>
+<li><p>実行に必要なコンポーネントがシーン上に全て揃っていない場合、実行可能な状態にした後、<code>チェックリストを更新</code>ボタンを押すことで、<code>実行</code>ボタンが押せる状態になります。</p>
 </li>
-<li><p>「チェックボタンを更新」ボタンの下に「初期設定が完了しています」と表示されたら、初期設定完了です。</p>
+<li><p><code>チェックリストを更新</code>ボタンの下に<code>初期設定が完了しています</code>と表示されたら、初期設定完了です。</p>
 </li>
 </ul>
 <p><img src="../resources/InitialSettings/InitialSettings_Finish.png" alt="初期設定完了"></p>
+<h2 id="9-街区レベル位置参照情報のインポート">9. 街区レベル位置参照情報のインポート</h2>
+<ul>
+<li><p>住所へ移動機能で使用するデータをインポートします。</p>
+</li>
+<li><p>メニューから<code>PLATEAU</code> → <code>Landscape</code> → <code>Import address data</code>の順に選択し、街区レベル位置参照情報インポート画面を開きます。</p>
+</li>
+<li><p><a href="https://nlftp.mlit.go.jp/isj/">国土数値情報ダウンロードサイト</a>から、3D都市モデルの範囲に該当する街区レベル位置参照情報をダウンロードし、街区レベル位置参照情報インポート画面にドラッグアンドドロップしてください。</p>
+</li>
+</ul>
+<p><img src="../resources/InitialSettings/InitialSettings_PositionReferenceImport.png" alt="街区レベル位置参照情報インポート"></p>
 </article>
           </div>
           
