@@ -27,6 +27,7 @@ Material:
   m_ValidKeywords:
   - _ALPHATEST_ON
   - _DISABLE_SSR_TRANSPARENT
+  - _MATERIAL_FEATURE_TRANSMISSION
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -212,6 +213,7 @@ Material:
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 0
+    - _DstBlend2: 0
     - _EmissiveEV100: 10
     - _EmissiveExposureWeight: 0
     - _EnableBlendModePreserveSpecularLighting: 1
@@ -225,6 +227,8 @@ Material:
     - _LeafAnimStrength: 1
     - _LinkDetailsWithBase: 0
     - _MASKMAP: 0
+    - _MaterialID: 5
+    - _MaterialTypeMask: 32
     - _Metallic: 0
     - _MetallicRemapMax: 1
     - _MetallicRemapMin: 0
@@ -234,6 +238,7 @@ Material:
     - _Opacity: 1
     - _OpaqueCullMode: 2
     - _Parallax: 0.02
+    - _PerPixelSorting: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RayTracing: 0
@@ -264,6 +269,7 @@ Material:
     - _Surface: 0
     - _SurfaceType: 0
     - _Thickness: 0
+    - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
@@ -295,6 +301,7 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WindDirection: {r: 0.3, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!114 &7366392696262561809
 MonoBehaviour:
   m_ObjectHideFlags: 11

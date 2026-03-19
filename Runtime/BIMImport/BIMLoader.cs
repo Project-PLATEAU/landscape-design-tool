@@ -114,7 +114,7 @@ namespace Landscape2.Runtime
 
                 if (string.IsNullOrEmpty(fileDir))
                 {
-                    Debug.LogWarning($"fileDir is Null or Empty");
+                    Debug.LogWarning($"dispose fileDir({fileDir}) is Null or Empty");
                     return;
                 }
                 if (Directory.Exists(fileDir))
@@ -184,6 +184,11 @@ namespace Landscape2.Runtime
 
         private async Task<(GltfImport, byte[])> LoadGlbBinary(string filePath)
         {
+            if (!File.Exists(filePath))
+            {
+                Debug.LogWarning($"{filePath} is not exist");
+                return (null, null);
+            }
             byte[] data = File.ReadAllBytes(filePath);
 #if true
             Debug.Log($"{filePath} : {data.Length}");
@@ -234,12 +239,15 @@ namespace Landscape2.Runtime
             if (execData != null)
             {
                 // 一時ファイルとして書き出す
-                try {
+                try
+                {
                     File.WriteAllBytes(tempExePath, execData.bytes);
                     // 実行権限を付与
                     System.IO.File.SetAttributes(tempExePath, System.IO.FileAttributes.Normal);
                     return tempExePath;
-                } catch (System.Exception e) {
+                }
+                catch (System.Exception e)
+                {
                     Debug.LogError($"一時ファイルの作成に失敗しました: {e.Message}");
                     // フォールバックロジックに進む
                 }
@@ -285,6 +293,7 @@ namespace Landscape2.Runtime
             // StartConversion(xmlProcessInfo);
 
 #if UNITY_EDITOR
+            // editorで動かした場合はtemporaryフォルダを開く
             System.Diagnostics.Process.Start(glbPathData.Dir);
 #endif
 
@@ -296,7 +305,12 @@ namespace Landscape2.Runtime
             float st = Time.realtimeSinceStartup;
             using (System.Diagnostics.Process ifcProcess = System.Diagnostics.Process.Start(processInfo))
             {
+                string stdout = ifcProcess.StandardOutput.ReadToEnd();
+                string stderr = ifcProcess.StandardError.ReadToEnd();
                 ifcProcess.WaitForExit();
+
+                Debug.Log($"stdout:\n{stdout}");
+                Debug.Log($"stderr:\n{stderr}");
             }
             var pt = Time.realtimeSinceStartup - st;
         }
@@ -310,14 +324,18 @@ namespace Landscape2.Runtime
         System.Diagnostics.ProcessStartInfo GenerateProcessInformation(string convertExePath, string ifcFilePath, string outputPath)
         {
             System.Diagnostics.ProcessStartInfo ifcProcessInfo =
-                new System.Diagnostics.ProcessStartInfo(convertExePath)
+                new System.Diagnostics.ProcessStartInfo()
                 {
-                    CreateNoWindow = false,
+                    FileName = convertExePath,
+                    Arguments = $"-j 8 --use-element-guids \"{ifcFilePath}\" \"{outputPath}\"",
+                    UseShellExecute = false, // ← これが重要！
+                    CreateNoWindow = true,
                     WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
-                    UseShellExecute = true
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    WorkingDirectory = Path.GetDirectoryName(convertExePath) // 念のため
                 };
-            string arguments = $"-j 8 --use-element-guids \"{ifcFilePath}\" \"{outputPath}\""; // -j はjobnumber。core数+1が良いとドキュメントには記載してあった
-            ifcProcessInfo.Arguments = arguments;
+
             return ifcProcessInfo;
         }
 

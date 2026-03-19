@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using CesiumForUnity;
 using Unity.Mathematics;
@@ -27,7 +27,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             if (pointDatas.Count > 0)
             {
                 GameObject rootObject = new GameObject(parentObjectName + "_GIS");
-                geoRef = GameObject.FindObjectOfType<CesiumGeoreference>();
+                geoRef = GameObject.FindFirstObjectByType<CesiumGeoreference>();
                 rootObject.transform.parent = geoRef.transform;
                 CesiumGlobeAnchor anchor = rootObject.AddComponent<CesiumGlobeAnchor>();
                 rootObject.AddComponent<MeshFilter>();

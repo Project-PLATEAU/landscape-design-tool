@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Landscape2.Runtime.GisDataLoader
@@ -13,9 +13,6 @@ namespace Landscape2.Runtime.GisDataLoader
         private GisPointListUI gisPointListUI;
         private GisPointPinsUI gisPointPinsUI;
         
-        // カメラが移動したか
-        private bool isCameraMoved = false;
-
         public GisDataLoaderUI(VisualElement gisElement, SaveSystem saveSystem)
         {
             // ローダー

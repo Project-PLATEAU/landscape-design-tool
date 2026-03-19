@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -112,7 +112,7 @@ namespace Landscape2.Runtime
             DeleteEvent(projectID);
         }
         
-        public void SetProject(string projectID)
+        public void NoticeChangedProject(string projectID)
         {
             ProjectChangedEvent(projectID);
         }

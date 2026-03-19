@@ -13,15 +13,13 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         private List<Transform> areaBuildingList = new();
 
         private const float heightViewOffset = 0.3f; // 高さ表示のオフセット値
-
-        private bool isApplied;
         private float limitHeight = -1;
         
         public AreaPlanningBuildingHeight(Transform area)
         {
             if (area.TryGetComponent<AreaPlanningCollisionHandler>(out var handler))
             {
-                handler.OnEnter.AddListener((other) => AddAreaBuilding(other.transform));
+                handler.onEnter.AddListener((other) => AddAreaBuilding(other.transform));
             }
         }
 
@@ -41,6 +39,17 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         public void SetHeight(float height)
         {
             limitHeight = height;
+            if (limitHeight <= 0)
+            {
+                return;
+            }
+
+            // nullの参照をリストから削除
+            areaBuildingList.RemoveAll(building => building == null);
+            foreach (var areaBuilding in areaBuildingList)
+            {
+                Apply(areaBuilding);
+            }
         }
 
         private void Apply(Transform building)
@@ -54,10 +63,13 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                 Debug.LogWarning($"{building.name}の地面が見つかりませんでした");
                 return;
             }
-            
+
             // 制限の高さを超えている場合は制限の高さに合わせる
             if (bounds.max.y - groundPosition.y > limitHeight)
             {
+                // 一度元の高さに設定　特定のフローで連続で適用される時があり地面にめり込んでしまうのを防ぐため
+                ResetBuildingHeight(building);
+
                 float buildingHeight = bounds.max.y - groundPosition.y - limitHeight;
                 buildingHeight += heightViewOffset; // 見た目、エリアと被らないように少し高く設定
                 var buildingPosition = building.transform.position;
@@ -65,27 +77,45 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                 
                 // 建物編集用のコンポーネントを取得
                 var editingComponent = BuildingTRSEditingComponent.TryGetOrCreate(building.gameObject);
-                
+
                 // 高さを設定
                 editingComponent.SetPosition(position);
+            }
+            else
+            {
+                // 元の高さに設定
+                ResetBuildingHeight(building);
             }
         }
 
-        public void Reset()
+        /// <summary>
+        /// 建物の高さの状態をリセットする
+        /// </summary>
+        public void ResetBuildingHeight()
         {
-            var height = 0f;
             foreach (var building in areaBuildingList)
             {
-                // 建物編集用のコンポーネントを取得
-                var editingComponent = BuildingTRSEditingComponent.TryGetOrCreate(building.gameObject);
-                        
-                // 高さを設定
-                var position = new Vector3(building.transform.position.x, height, building.transform.position.z);
-                editingComponent.SetPosition(position);
+                if (building == null)
+                {
+                    continue;
+                }
+                ResetBuildingHeight(building);
             }
 
             limitHeight = -1;
-            areaBuildingList.Clear();
+        }
+
+        /// <summary>
+        /// 建物高さをリセット
+        /// </summary>
+        private void ResetBuildingHeight(Transform building)
+        {
+            // 建物編集用のコンポーネントを取得
+            var editingComponent = BuildingTRSEditingComponent.TryGetOrCreate(building.gameObject);
+
+            // 高さを設定
+            var position = new Vector3(building.transform.position.x, 0, building.transform.position.z);
+            editingComponent.SetPosition(position);
         }
 
         private bool TryGetGroundPosition(Vector3 position, out Vector3 result)

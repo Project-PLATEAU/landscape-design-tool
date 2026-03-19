@@ -1,4 +1,4 @@
-using Landscape2.Runtime.Common;
+﻿using Landscape2.Runtime.Common;
 using System;
 using System.Collections;
 using System.Threading.Tasks;
@@ -14,10 +14,10 @@ namespace Landscape2.Runtime.LandscapePlanLoader
     public class AreaPlanningCollisionHandler : MonoBehaviour
     {
         [HideInInspector]
-        public UnityEvent<GameObject> OnEnter = new ();
+        public UnityEvent<GameObject> onEnter = new ();
         
-        private MeshCollider collider;
-        private Rigidbody rigidbody;
+        private new MeshCollider collider;
+        private new Rigidbody rigidbody;
 
         private void Awake()
         {
@@ -41,20 +41,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         {
             if (CityObjectUtil.IsBuilding(other.gameObject))
             {
-                OnEnter.Invoke(other.gameObject);
-                SetOffCollider();
-            }
-        }
-
-        private async void SetOffCollider()
-        {
-            // コライダーEnter後にOFFにするため、1フレーム待つ
-            await Task.Yield();
-            
-            // コライダーをOFFにして、何度もOnTriggerEnterを発生させない
-            if (collider.enabled)
-            {
-                collider.enabled = false;
+                onEnter.Invoke(other.gameObject);
             }
         }
     }

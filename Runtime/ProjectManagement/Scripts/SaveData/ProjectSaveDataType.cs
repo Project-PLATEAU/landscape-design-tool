@@ -1,4 +1,4 @@
-namespace Landscape2.Runtime
+﻿namespace Landscape2.Runtime
 {
     public enum ProjectSaveDataType
     {
@@ -9,5 +9,6 @@ namespace Landscape2.Runtime
         LandscapePlan,
         LineOfSight,
         BimImport,
+        AdArea, // 広告物周囲規制機能のデータ
     }
 }

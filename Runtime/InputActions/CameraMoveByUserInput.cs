@@ -1,7 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.Events;
+using Landscape2.Runtime.Common;
 
 namespace Landscape2.Runtime
 {
@@ -10,6 +11,11 @@ namespace Landscape2.Runtime
     /// </summary>
     public class CameraMoveByUserInput : LandscapeInputActions.ICameraMoveActions, ISubComponent
     {
+        // CameraMoveByUserInput　をスクリプト操作するクラスを設定する
+        // あるクラスで CameraMoveByUserInput.IsCameraMoveActive = false;した直後に別のクラスでtrueに戻してしまうのを防ぐため
+        // 使い方　所有権を持つクラスが自身を登録する 利用しなくなったらnullを設定　利用したいクラスはnullかをまず確認する
+        public static object CameraScriptOwner { get; set; }
+
         private readonly CinemachineVirtualCamera camera;
         CameraMoveData cameraMoveSpeedData;
         private Vector2 horizontalMoveByKeyboard;
@@ -30,7 +36,26 @@ namespace Landscape2.Runtime
         private static bool isKeyboardActive = true;
         private static bool isMouseActive = true;
 
-        public static bool IsCameraMoveActive { get; set; } = true;
+        private static bool isCameraMoveActive = true;
+        public static bool IsCameraMoveActive 
+        {
+            get
+            {
+                return isCameraMoveActive;
+            }
+            set
+            {
+                if (isCameraMoveActive && value == false)
+                {
+                    // 現在の入力をキャンセル
+                    mainInstance.isParallelMoveByMouse = false;
+                    mainInstance.parallelMoveByMouse = Vector2.zero;
+                    mainInstance.isRotateByMouse = false;
+                    mainInstance.rotateByMouse = Vector2.zero;
+                }
+                isCameraMoveActive = value;
+            } 
+        }
 
         public static UnityEvent OnCameraMoved { get; private set; } = new();
 
@@ -77,9 +102,12 @@ namespace Landscape2.Runtime
             }
         }
 
+        private static CameraMoveByUserInput mainInstance;
         public CameraMoveByUserInput(CinemachineVirtualCamera camera)
         {
             this.camera = camera;
+            Debug.Assert(mainInstance == null);
+            mainInstance = this;
         }
 
         public void OnEnable()
@@ -209,6 +237,7 @@ namespace Landscape2.Runtime
             {
                 isRotateByMouse = false;
                 rotateByMouse = Vector2.zero;
+                return;
             }
             if (context.started)
             {
@@ -244,6 +273,28 @@ namespace Landscape2.Runtime
             OnStartCompleted.Invoke();
         }
 
+        // 例: カメラから正面方向に半径0.5の球体レイを飛ばして距離を測る
+        private static float GetDistanceBySphereCast(CinemachineVirtualCamera camera, float radius = 0.5f, float maxDistance = 1000f)
+        {
+            if (camera == null)
+                return Mathf.Infinity;
+
+            const float buf = 1f;   // 判定がめり込まないように余裕をつくる　値はてきとう
+            var cameraTransform = camera.transform;
+            var dir = cameraTransform.forward;
+            var pos = cameraTransform.position + -dir*(radius + buf);
+            Ray ray = new Ray(pos, dir);
+
+            RaycastHit hit;
+            if (Physics.SphereCast(ray, radius, out hit, maxDistance))
+            {
+                // ヒットした場合、その距離を返す
+                return hit.distance;
+            }
+            // ヒットしなかった場合
+            return Mathf.Infinity;
+        }
+
         public void LateUpdate(float deltaTime)
         {
             var trans = cameraParent.transform;
@@ -256,20 +307,32 @@ namespace Landscape2.Runtime
                 isFocusTriggered = false;
             }
 
+            // カメラのズーム速度を計算
+            var zoomSpeedDelta = ControlZoomSpeed();
+
             MoveCameraHorizontal(cameraMoveSpeedData.horizontalMoveSpeed * deltaTime * horizontalMoveByKeyboard, trans);
             MoveCameraVertical(cameraMoveSpeedData.verticalMoveSpeed * deltaTime * verticalMoveByKeyboard, trans);
             MoveCameraParallel(parallelMoveByMouse, trans);
-            MoveCameraZoom(cameraMoveSpeedData.zoomMoveSpeed * zoomMoveByMouse, trans);
-            RotateCamera(cameraMoveSpeedData.rotateSpeed * rotateByMouse, trans);
-            if (cameraParent.transform.position.y < cameraMoveSpeedData.heightLimitY)
-            {
-                cameraParent.transform.position = new Vector3(cameraParent.transform.position.x, cameraMoveSpeedData.heightLimitY, cameraParent.transform.position.z);
-            }
+            MoveCameraZoom(zoomSpeedDelta * zoomMoveByMouse, trans);
+            RotateCamera(cameraMoveSpeedData.rotateSpeed * rotateByMouse, trans, pitchLimit: cameraMoveSpeedData.pitchLimit);
+
+            LimitPositionY(camera.transform, trans, offset: cameraMoveSpeedData.heightLimitY);
 
             if (camera.transform.hasChanged)
             {
                 OnCameraMoved.Invoke();
             }
+        }
+
+        private float ControlZoomSpeed()
+        {
+            //return cameraMoveSpeedData.zoomMoveSpeedMin;
+            var distance = GetDistanceBySphereCast(camera, radius: cameraMoveSpeedData.zoomSpeedControlDetectRadius, maxDistance: cameraMoveSpeedData.zoomSpeedControlRange);
+            distance = Mathf.Clamp(
+                distance, cameraMoveSpeedData.zoomLimit, cameraMoveSpeedData.zoomLimit + cameraMoveSpeedData.zoomSpeedControlRange);
+            var step = distance / (cameraMoveSpeedData.zoomLimit + cameraMoveSpeedData.zoomSpeedControlRange);
+            var zoomSpeedDelta = Mathf.Lerp(cameraMoveSpeedData.zoomMoveSpeedMin, cameraMoveSpeedData.zoomMoveSpeedMax, step);
+            return zoomSpeedDelta;
         }
 
         /// <summary>
@@ -325,20 +388,38 @@ namespace Landscape2.Runtime
             }
         }
 
+        private static void LimitPositionY(Transform mainTransform, Transform parent, float offset)
+        {
+            // 地面に向かってray飛ばして高さを取る
+            const float buf = 10000f; // レイを飛ばす位置のバッファ   この値は1フレームでのRay方向への移動量を超えないように設定する 想定される移動量<buf
+            Ray ray = new Ray(mainTransform.position + Vector3.up * (buf + offset), Vector3.down);
+            var hits = Physics.RaycastAll(ray, Mathf.Infinity);
+            var newY = mainTransform.position.y;
+            foreach (var hit in hits)
+            {
+                if (CityObjectUtil.IsGround(hit.transform.gameObject)) // "Ground"タグのオブジェクトを対象にする
+                {
+                    newY = Mathf.Max(newY, hit.point.y + offset);
+                }
+            }
+            parent.transform.position += Vector3.up * (newY - mainTransform.position.y);
+
+        }
+
         /// <summary>
         /// カメラ回転
         /// </summary>
         /// <param name="moveDelta"></param>
         /// <param name="cameraTrans"></param>
-        private void RotateCamera(Vector2 moveDelta, Transform cameraTrans)
+        private void RotateCamera(Vector2 moveDelta, Transform cameraTrans, float pitchLimit = 85f)
         {
-            if (!isRotateByMouse) return;
+            if (!isRotateByMouse || !IsCameraMoveActive) return;
 
             cameraTrans.RotateAround(rotateHit.point, Vector3.up, moveDelta.x);
 
             float pitch = camera.transform.eulerAngles.x;
             pitch = (pitch > 180) ? pitch - 360 : pitch;
-            float newPitch = Mathf.Clamp(pitch - moveDelta.y, 0, 85);
+            float newPitch = Mathf.Clamp(pitch - moveDelta.y, 0, pitchLimit);
             float pitchDelta = pitch - newPitch;
             cameraTrans.RotateAround(rotateHit.point, camera.transform.right, -pitchDelta);
         }

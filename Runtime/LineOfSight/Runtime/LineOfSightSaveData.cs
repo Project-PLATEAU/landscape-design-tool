@@ -7,9 +7,7 @@ namespace Landscape2.Runtime
     [Serializable]
     public abstract class LineOfSightSaveDataBase
     {
-        [SerializeField]
         public string ID { get; private set; }
-        [SerializeField]
         public string Name { get; private set; }
 
         protected LineOfSightSaveDataBase(string name)

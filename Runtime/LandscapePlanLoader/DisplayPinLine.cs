@@ -30,6 +30,16 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         private float lineColliderHeight = 2f;  // 交差判定のLineのコライダーの高さ
         private float lineColliderWidth = 2f;   // 交差判定のLineのコライダーの幅
 
+        private Transform nearestPin;
+
+        private Camera cam = null;
+
+        private float switchRatio = 0.9f;       // 新候補が近いときだけ切替する閾値
+
+        private float minDist = 20f;            // 最小スケールが適用される距離
+        private float maxDist = 800f;           // 最大スケールが適用される距離
+        private float distanceFloor = 0.5f;     // 距離の下限値
+
         public void Awake()
         {
             pinPrefab = Resources.Load("PlanAreaPin") as GameObject;
@@ -442,7 +452,111 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             // マウスのホイールがスクロールされたらPinとLineのサイズを変更
             if (Input.mouseScrollDelta.y != 0)
             {
-                ZoomPinLine(Input.mouseScrollDelta.y);
+                if (cam == null)
+                {
+                    cam = Camera.main;
+                }
+
+                nearestPin = GetNearest(cam.transform.position);
+            }
+        }
+
+        public void LateUpdate()
+        {
+            // スクロール以外にもパンなどでカメラが移動した場合にPinとLineのサイズを変更する必要があるため
+
+            if (!cam) return;
+
+            if (pinList.Count == 0) return;
+
+            // ピンが決まってなければ初期化
+            if (!nearestPin)
+            {
+                nearestPin = GetNearest(cam.transform.position);
+            }
+
+            if (nearestPin == null) return;
+
+            float d = Vector3.Distance(cam.transform.position, nearestPin.position);
+            d = Mathf.Max(d, distanceFloor);
+
+            float t = Mathf.Clamp01(Mathf.InverseLerp(minDist, maxDist, d));
+
+            // 距離からスケール値へ変換
+            scaleValue = Mathf.Lerp(minScale, maxScale, t);
+            widthValue = Mathf.Lerp(minWidth, maxWidth, t);
+
+            currentScale = scaleValue;
+            currentWidth = widthValue;
+
+            Apply(currentWidth, currentScale);
+        }
+
+        /// <summary>
+        /// カメラ位置から最も近いPinを取得するメソッド
+        /// </summary>
+        /// <returns></returns>
+        private Transform GetNearest(Vector3 camPos)
+        {
+            if (pinList.Count == 0) return null;
+
+            float bestD = float.PositiveInfinity;
+
+            Transform best = nearestPin;
+
+            // 現在の最短距離
+            if (best)
+            {
+                bestD = Vector3.Distance(camPos, best.position);
+            }
+
+            for (int i = 0; i < pinList.Count; i++)
+            {
+                var p = pinList[i].transform;
+
+                if (!p) continue;
+
+                float d = Vector3.Distance(camPos, p.position);
+
+                if (!best)
+                {
+                    best = p;
+                    bestD = d;
+                    continue;
+                }
+
+                // 十分近い時だけ切替（チラつき防止）
+                if (d < bestD * switchRatio)
+                {
+                    best = p;
+                    bestD = d;
+                }
+            }
+
+            return best ? best : pinList[0].transform; ;
+        }
+
+        /// <summary>
+        /// PinとLineにScaleを適用するメソッド
+        /// </summary>
+        private void Apply(float width, float scale)
+        {
+            // Lineのスケールを更新
+            foreach (var lineObject in lineList)
+            {
+                LineRenderer lineRenderer = lineObject.GetComponent<LineRenderer>();
+                // LineRendererの幅を調整
+                lineRenderer.startWidth = width;
+                lineRenderer.endWidth = width;
+            }
+            // Pinのスケールを更新
+            foreach (var pinObject in pinList)
+            {
+                pinObject.transform.localScale = new Vector3(
+                    scale,
+                    scale,
+                    scale
+                );
             }
         }
     }

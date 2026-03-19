@@ -1,5 +1,9 @@
-﻿using PLATEAU.CityInfo;
+﻿using Landscape2.Runtime.Common;
+using Landscape2.Runtime.DynamicTile;
+using PLATEAU.CityInfo;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,59 +14,88 @@ namespace Landscape2.Runtime
     /// </summary>
     public class TextureSwitch : ISubComponent
     {
-        // テクスチャを保存するリスト
-        private List<List<Texture2D>> textureList = new List<List<Texture2D>>();
-        private PLATEAUCityObjectGroup[] cityObjcects;
-        private Toggle switchToggle;
         private bool isTextureNull = false;
-
-        public TextureSwitch(VisualElement uiRoot)
+        
+        // テクスチャを保存するリスト
+        private readonly List<TextureSwitchBuilding> dataList = new List<TextureSwitchBuilding>();
+        
+        public TextureSwitch(VisualElement uiRoot, DynamicTileRefDataUpdater  dynamicTileRefDataUpdater)
         {
-            switchToggle = uiRoot.Q<Toggle>("Toggle_Material");
+            var switchToggle = uiRoot.Q<Toggle>("Toggle_Material");
             switchToggle.RegisterValueChangedCallback((evt) =>
             {
                 isTextureNull = evt.newValue;
-                SetTexture();
+                foreach (var textureSwitchData in dataList)
+                {
+                    if (isTextureNull != textureSwitchData.IsTextureHidden)
+                    {
+                        textureSwitchData.SetTextureVisibility(!isTextureNull);
+                    }
+                }
             });
 
-            cityObjcects = GameObject.FindObjectsOfType<PLATEAUCityObjectGroup>();
-            foreach (var building in cityObjcects)
-            {
-                var materials = building.GetComponent<MeshRenderer>().materials;
-                // 各テクスチャのコピーを取得
-                List<Texture2D> textures = new List<Texture2D>();
-                foreach (var material in materials)
-                {
-                    textures.Add(material.mainTexture as Texture2D);
-                }
-                textureList.Add(textures);
-            }
+            // イベント登録
+            RegisterDynamicTileEvent(dynamicTileRefDataUpdater);
         }
 
-        //  建物のテクスチャを切り替える
-        private void SetTexture()
+        /// <summary>
+        /// 動的タイル用のイベント登録
+        /// </summary>
+        private void RegisterDynamicTileEvent(INotifyUpdated notifyUpdated)
         {
-            int count = cityObjcects.Length;
-            for (int index = 0; index < count; index++)
+
+            // unloadされた建物の参照を削除
+            var beforeUnloadFileter = notifyUpdated.FindFromBeforeUnloadFileter<BuildingGroupFileter>();
+            beforeUnloadFileter.EvUpdated += (obj) =>
             {
-                var cityObject = cityObjcects[index];
-
-                if (!cityObject.gameObject.name.StartsWith("bldg_")) continue;
-
-                // MeshRendererの取得とマテリアル参照のキャッシュ
-                var meshRenderer = cityObject.GetComponent<MeshRenderer>();
-                if (meshRenderer == null) continue;
-
-                var materials = meshRenderer.materials;
-
-                // マテリアルごとの処理
-                for (int i = 0; i < materials.Length; i++)
+                // 参照切れを検索して削除
+                var idx = dataList.FindIndex((d) => d.IsSameBuilding(obj.gameObject));
+                if (idx < 0)
                 {
-                    materials[i].mainTexture = isTextureNull ? null : textureList[index][i];
-                    // LOD1のShader設定
-                    float sideTitling = isTextureNull ? 0f : 0.4f;
-                    materials[i].SetFloat("_Side_Titling", sideTitling);
+                    Debug.LogError("TextureSwitch: 該当する建物データが見つかりませんでした。");
+                    return;
                 }
+                dataList.RemoveAt(idx);
+            };
+
+            // instantiateされた建物を登録
+            var instantiatedFileter = notifyUpdated.FindFromInstantiatedFileter<BuildingGroupFileter>();
+            instantiatedFileter.EvUpdated += (obj) =>
+            {
+                RegisterBuilding(obj);
+            };
+        }
+
+        private void RegisterBuilding(GameObject building)
+        {
+            var cityObjectGroup = building.GetComponent<PLATEAUCityObjectGroup>();
+            if (cityObjectGroup == null)
+            {
+                Debug.LogError("PLATEAUCityObjectGroup component is missing on the building GameObject.");
+                return;
+            }
+            RegisterBuilding(cityObjectGroup);
+        }
+
+        /// <summary>
+        /// 建物をテクスチャスイッチデータとして登録する
+        /// </summary>
+        /// <param name="buildings">登録する建物</param>
+        private void RegisterBuilding(PLATEAUCityObjectGroup building)
+        {
+            var meshRenderer = building.GetComponent<MeshRenderer>();
+            if (meshRenderer == null)
+            {
+                Debug.LogError("建物にMeshRendererがアタッチされていない");
+                return;
+            }
+            var switchBuilding = new TextureSwitchBuilding(meshRenderer);
+            dataList.Add(switchBuilding);
+
+            // トグルがONの場合のみテクスチャを非表示に
+            if (isTextureNull)
+            {
+                switchBuilding.SetTextureVisibility(false);
             }
         }
 
@@ -78,10 +111,8 @@ namespace Landscape2.Runtime
         public void OnDisable()
         {
         }
-
         public void LateUpdate(float deltaTime)
         {
         }
-
     }
 }

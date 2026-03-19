@@ -1,4 +1,5 @@
-using Landscape2.Runtime.BuildingEditor;
+﻿using Landscape2.Runtime.BuildingEditor;
+using Landscape2.Runtime.DynamicTile;
 using Landscape2.Runtime.UiCommon;
 using System;
 using System.Collections;
@@ -13,16 +14,16 @@ namespace Landscape2.Runtime
     {
         public class DeleteListElement : IDisposable
         {
-            public System.Action<GameObject> OnListClick { get; set; }
-            public System.Action<GameObject> OnButtonClick { get; set; }
+            public System.Action<DynamicTileGameObject> OnListClick { get; set; }
+            public System.Action<DynamicTileGameObject> OnButtonClick { get; set; }
 
             public VisualElement Element { get; private set; }
 
-            GameObject target;
+            DynamicTileGameObject target;
 
 
 
-            public DeleteListElement(TemplateContainer container, GameObject obj)
+            public DeleteListElement(TemplateContainer container, DynamicTileGameObject obj)
             {
                 target = obj;
                 var button = container.Q<Toggle>("Toggle_HideList");
@@ -30,6 +31,7 @@ namespace Landscape2.Runtime
                 button.RegisterCallback<ChangeEvent<bool>>(evt =>
                 {
                     OnButtonClick?.Invoke(target);
+                    button.SetValueWithoutNotify(false); // 現状はボタンとして利用しているため 押した後はすぐに押せるような状態になってほしい。
                 });
 
                 var listElement = container.Q<VisualElement>("List");
@@ -54,12 +56,12 @@ namespace Landscape2.Runtime
         /// <summary>
         /// リスト内目玉ボタン押下時コールバック
         /// </summary>
-        public System.Action<GameObject> OnClickShowButton { get; set; }
+        public System.Action<DynamicTileGameObject> OnClickShowButton { get; set; }
 
         /// <summary>
         /// リスト選択時コールバック
         /// </summary>
-        public System.Action<GameObject> OnClickListElement { get; set; }
+        public System.Action<DynamicTileGameObject> OnClickListElement { get; set; }
 
 
         VisualElement rootElement;
@@ -73,7 +75,7 @@ namespace Landscape2.Runtime
         VisualTreeAsset listObjectInstance = Resources.Load<VisualTreeAsset>("List_DeleteBuilding");
 
 
-        DeleteListElement ListElementFactory(GameObject obj)
+        DeleteListElement ListElementFactory(DynamicTileGameObject obj)
         {
             var listObj = listObjectInstance.CloneTree();
             var elem = new DeleteListElement(listObj, obj);
@@ -122,7 +124,7 @@ namespace Landscape2.Runtime
         }
 
 
-        public void AppendList(GameObject obj, bool isVisible)
+        public void AppendList(DynamicTileGameObject obj, bool isVisible)
         {
             if (listRootElement == null)
             {
@@ -135,6 +137,11 @@ namespace Landscape2.Runtime
             {
                 elem.OnButtonClick += (go) =>
                 {
+                    if (!DynamicTileGameObject.HasInstance(go))
+                    {
+                        Debug.LogWarning("対象のゲームオブジェクトのインスタンスが存在しない");
+                        return;
+                    }
                     var parentName = elem.Element.parent != null ? elem.Element.parent.name : "null";
 
                     listRootElement.Remove(elem.Element);
@@ -148,6 +155,11 @@ namespace Landscape2.Runtime
 
             elem.OnListClick += (go) =>
             {
+                if (!DynamicTileGameObject.HasInstance(go))
+                {
+                    Debug.LogWarning("対象のゲームオブジェクトのインスタンスが存在しない");
+                    return;
+                }
                 OnClickListElement?.Invoke(go);
             };
 
@@ -176,7 +188,7 @@ namespace Landscape2.Runtime
             {
                 return;
             }
-            AppendList(cityObjectGroup.gameObject, property.IsEditable);
+            AppendList(DynamicTileGameObjectUpdater.CreateOrGet(cityObjectGroup.gameObject), property.IsEditable);
         }
 
         private void DeleteBuildings(List<BuildingProperty> deleteBuildings, string projectID)

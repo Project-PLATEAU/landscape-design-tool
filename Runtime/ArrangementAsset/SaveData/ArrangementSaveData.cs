@@ -1,6 +1,5 @@
 using PlateauToolkit.Sandbox.Runtime;
 using System;
-using UnityEditor;
 using UnityEngine;
 using PlateauSandboxBuilding = PlateauToolkit.Sandbox.Runtime.PlateauSandboxBuildings.Runtime.PlateauSandboxBuilding;
 
@@ -19,20 +18,33 @@ namespace Landscape2.Runtime
     public class ArrangementSaveData
     {
         public TransformData transformData;
-        
+
+        public Color? colorData = null;
+
         public AdvertisementSaveData advertisementData = new();
+        public AdvertisementScaledSaveData advertisementScaledData = new();
         public ArrangementBuildingSaveData buildingSaveData = new();
-        
+
         public void Save(Transform target)
         {
             transformData = new TransformData(target);
-            
+
+            // 色データ
+            colorData = AssetColorEditor.ExtractColorData(target);
+
+
             // 広告データ
             if (target.TryGetComponent<PlateauSandboxAdvertisement>(out var outTarget))
             {
                 advertisementData.Save(outTarget);
             }
-            
+
+            // Scaled広告データ
+            if (target.TryGetComponent<PlateauSandboxAdvertisementScaled>(out var outTargetScaled))
+            {
+                advertisementScaledData.Save(outTargetScaled);
+            }
+
             // 建物データ
             if (target.TryGetComponent<PlateauSandboxBuilding>(out var buildingTarget))
             {
@@ -48,13 +60,25 @@ namespace Landscape2.Runtime
         {
             target.transform.localScale = transformData.scale;
             target.name = transformData.name;
-            
+
+            // 色データ
+            if (colorData.HasValue)
+            {
+                AssetColorEditor.ApplyColorData(target, colorData.Value);
+            }
+
             // 広告データ
             if (target.TryGetComponent<PlateauSandboxAdvertisement>(out var outTarget))
             {
                 advertisementData.Apply(outTarget);
             }
-            
+
+            // Scaled広告データ
+            if (target.TryGetComponent<PlateauSandboxAdvertisementScaled>(out var outTargetScaled))
+            {
+                advertisementScaledData.Apply(outTargetScaled);
+            }
+
             // 建物データ
             if (target.TryGetComponent<PlateauSandboxBuilding>(out var buildingTarget))
             {
@@ -62,7 +86,7 @@ namespace Landscape2.Runtime
             }
         }
     }
-    
+
     /// <summary>
     /// Transform情報
     /// </summary>

@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
     <ui:VisualElement name="Panel_MaterialEditor" style="flex-grow: 0;">
         <ui:VisualElement name="Panel" style="flex-grow: 1; justify-content: center; height: 350px;">
             <ui:VisualElement name="HeightContainer" style="flex-grow: 0; flex-direction: column; height: 100%; justify-content: center;">
@@ -18,7 +18,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="ActionContainer" style="flex-grow: 0; flex-direction: row; align-items: center;">
                 <ui:VisualElement style="flex-grow: 1; align-items: center; flex-direction: row;">
-                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="ResetButton" text="リセット" class="OutlineButton" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="ResetButton" text="リセット" class="OutlineButton" style="border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; font-size: 14px;" />
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1; align-items: center; flex-direction: row; flex-shrink: 0; justify-content: flex-end;">
                     <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="CancelButton" text="キャンセル" />

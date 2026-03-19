@@ -1,18 +1,20 @@
-using System.Collections.Generic;
-using Landscape2.Runtime.CameraPositionMemory;
-using Landscape2.Runtime.UiCommon;
-using Landscape2.Runtime.WeatherTimeEditor;
-using Landscape2.Runtime.LandscapePlanLoader;
+﻿using Cinemachine;
+using Landscape2.Runtime.AdRegulation;
 using Landscape2.Runtime.BuildingEditor;
-using UnityEngine.UIElements;
-using UnityEngine;
-using Cinemachine;
+using Landscape2.Runtime.CameraPositionMemory;
+using Landscape2.Runtime.DynamicTile;
 using Landscape2.Runtime.GisDataLoader;
+using Landscape2.Runtime.LandscapePlanLoader;
+using Landscape2.Runtime.MoveToAddressMode;
+using Landscape2.Runtime.UiCommon;
 using Landscape2.Runtime.WalkerMode;
-using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.InputSystem;
+using Landscape2.Runtime.WeatherTimeEditor;
 using System;
-using UnityEngine.InputSystem.Processors;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.UIElements;
 
 namespace Landscape2.Runtime
 {
@@ -32,6 +34,7 @@ namespace Landscape2.Runtime
         CameraList,
         CameraEdit,
         WalkMode,
+        AdRegulation = 9, // 広告規制
     }
 
     public class LandscapeSubComponents : MonoBehaviour
@@ -47,6 +50,14 @@ namespace Landscape2.Runtime
 
         private void Awake()
         {
+            // 動的タイルによる参照データ更新機能の生成
+            var dynamicTileRefDataUpdater = new DynamicTile.DynamicTileRefDataUpdater();
+            var iNotifyUpdated = dynamicTileRefDataUpdater as INotifyUpdated;
+
+            // DynamicTileGameObjectUpdaterのインスタンス化、動的タイル更新イベントの購読
+            DynamicTile.DynamicTileGameObjectUpdater.Instantiate();
+            DynamicTileGameObjectUpdater.SubjectDynamicTileEvent(iNotifyUpdated);
+
             var uiRoot = new UIDocumentFactory().CreateWithUxmlName("GlobalNavi_Main");
             // GlobalNavi_Main.uxmlのSortOrderを設定
             GameObject.Find("GlobalNavi_Main").GetComponent<UIDocument>().sortingOrder = 1;
@@ -130,9 +141,14 @@ namespace Landscape2.Runtime
             var cameraAutoRotate = new CameraAutoRotate();
             var gisDataLoaderUI = new GisDataLoaderUI(subMenuUxmls[(int)SubMenuUxmlType.Gis], saveSystem);
 
+            var adRegulation = AdRegulationBuilder.Build(subMenuUxmls[(int)SubMenuUxmlType.AdRegulation], landscapeCamera, saveSystem, dynamicTileRefDataUpdater);
+
+
             // 必要な機能をここに追加します
             subComponents = new List<ISubComponent>
             {
+                dynamicTileRefDataUpdater,
+                DynamicTileGameObjectUpdater.GetSubComponet(),
                 new GlobalNaviHeader(uiRoot, subMenuUxmls, saveSystem),
                 new CameraMoveByUserInput(mainCamVC),
                 new LandscapeCameraUI(landscapeCamera, uiRoot,subMenuUxmls),
@@ -148,15 +164,17 @@ namespace Landscape2.Runtime
                 new BuildingTRSEditor(editBuilding,subMenuUxmls[(int)SubMenuUxmlType.EditBuilding],landscapeCamera),
                 new VisualizeHeightUI(new VisualizeHeight(),uiRoot,landscapeCamera),
                 cameraAutoRotate,
-                new CameraAutoRotateUI(cameraAutoRotate,uiRoot),
+                new CameraAutoRotateUI(cameraAutoRotate,uiRoot,landscapeCamera),
                 new BIMImport(subMenuUxmls[(int)SubMenuUxmlType.Bim],saveSystem),
                 new LineOfSight(saveSystem,subMenuUxmls[(int)SubMenuUxmlType.Analytics]),
-                new TextureSwitch(uiRoot),
+                new TextureSwitch(uiRoot, dynamicTileRefDataUpdater),
                 new WalkerModeUI(subMenuUxmls[(int)SubMenuUxmlType.WalkMode], landscapeCamera, walkerMoveByUserInput),
                 new VisualSettingConfig(uiRoot,new VisualSettingConfigUI(uiRoot)),
                 new ToolTip(uiRoot),
+                new DistanceMeasurement(uiRoot,landscapeCamera),
+                new MoveToAddressModeUI(uiRoot, mainCamVC, walkerCamVC, landscapeCamera),
             };
-
+            subComponents.AddRange(adRegulation);
         }
 
         private void Start()

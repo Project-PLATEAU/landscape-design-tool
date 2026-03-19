@@ -13,11 +13,12 @@ namespace Landscape2.Runtime.BuildingEditor
     /// 建築物の色彩を編集
     /// UIは<see cref="BuildingColorEditorUI"/>が担当
     /// </summary>
-    /// 
+    ///
     public class BuildingColorEditor : ISubComponent
     {
         // 色彩を変更する対象のオブジェクト
         private GameObject targetObject;
+
         // 編集中のマテリアル
         private List<Material> editingMaterials = new List<Material>();
 
@@ -29,9 +30,12 @@ namespace Landscape2.Runtime.BuildingEditor
 
         // 色彩編集パネル表示ボタンの初期色
         private static readonly Color initialColor = new Color32(186, 186, 186, 255);
+
         public static Color InitialColor { get => initialColor; }
+
         // Smoothnessスライダーの初期値
         private static readonly float initialSmoothness = 0.7f;
+
         public static float InitialSmoothness { get => initialSmoothness; }
 
         public BuildingColorEditor()
@@ -39,6 +43,10 @@ namespace Landscape2.Runtime.BuildingEditor
             BuildingsDataComponent.BuildingDataLoaded += LoadBuildingColor;
             BuildingsDataComponent.BuildingDataDeleted += DeleteBuildingColor;
         }
+
+        private string ColorPropertyName => "_Color";
+        private string SmoothnessPropertyName => "_Smoothness";
+
         // UIで色を変更したときに呼び出される
         // 建築物のRGB値を変更
         public void EditMaterialColor(Color color, float smoothness, Action<string> showWarning = null)
@@ -52,25 +60,37 @@ namespace Landscape2.Runtime.BuildingEditor
                     // editingMaterialsの要素でループ
                     foreach (var mat in editingMaterials)
                     {
-                        // 色とsmoothnessを変更
-                        mat.color = color;
-                        mat.SetFloat("_Smoothness", smoothness);
+                        // LOD3以上のマテリアルか?
+                        if (mat.HasFloat("_Transparency"))
+                        {
+                            // 色とsmoothnessを変更
+                            mat.SetColor(ColorPropertyName, color);
+                            mat.SetFloat(SmoothnessPropertyName, smoothness);
+                        }
+                        else
+                        {
+                            // HDRP Lit
+                            mat.color = color;
+
+                            if (mat.HasFloat("_Smoothness"))
+                            {
+                                mat.SetFloat("_Smoothness", smoothness);
+                            }
+                        }
                     }
                     RecordMaterialColor(targetObject, buildingFieldMaterials);
-                    
+
                     // 最小レイヤーの値を取得して更新
                     var gmlID = CityObjectUtil.GetGmlID(targetObject);
                     var minLayerValues = BuildingsDataComponent.GetMinLayerPropertyValues(gmlID);
                     foreach (var mat in editingMaterials)
                     {
                         // 色とsmoothnessを変更
-                        mat.color = minLayerValues.colors!.First();
-                        mat.SetFloat("_Smoothness", minLayerValues.smoothness!.First());
                     }
 
                     // 最小のレイヤーでなければsnackbarを表示
                     var lowestProjectInfo = BuildingsDataComponent.GetLowestLayerProjectNamesByGmlID(gmlID);
-                    if (!string.IsNullOrEmpty(lowestProjectInfo.projectName) && 
+                    if (!string.IsNullOrEmpty(lowestProjectInfo.projectName) &&
                         lowestProjectInfo.projectID != ProjectSaveDataManager.ProjectSetting.CurrentProject.projectID)
                     {
                         showWarning?.Invoke(lowestProjectInfo.projectName);
@@ -99,6 +119,7 @@ namespace Landscape2.Runtime.BuildingEditor
             // 編集中のマテリアルをリストに追加
             ChangeEditingMaterial(-1);
 
+            // ↓　変更要素を要素全体にのみするために強制的に所持しているマテリアルを一つとして扱う
             // マテリアル分けされているかそうでないかでリストの要素数を変更
             if (buildingFieldMaterials.Count == 1)
             {
@@ -138,7 +159,7 @@ namespace Landscape2.Runtime.BuildingEditor
             {
                 foreach (var mat in editingMaterials)
                 {
-                    mat.SetFloat("_Smoothness", value);
+                    mat.SetFloat(SmoothnessPropertyName, value);
                 }
             }
         }
@@ -148,14 +169,31 @@ namespace Landscape2.Runtime.BuildingEditor
         {
             if (editingMaterials.Count == 2) // 要素全体
             {
-                if (editingMaterials[0].color == editingMaterials[1].color)
+                if (editingMaterials[0].HasFloat("_Transparency"))
                 {
-                    return editingMaterials[0].color;
+                    if (editingMaterials[0].GetColor(ColorPropertyName) == editingMaterials[1].GetColor(ColorPropertyName))
+                    {
+                        return editingMaterials[0].GetColor(ColorPropertyName);
+                    }
+                }
+                else
+                {
+                    if (editingMaterials[0].color == editingMaterials[1].color)
+                    {
+                        return editingMaterials[0].color;
+                    }
                 }
             }
             else if (editingMaterials.Count == 1) // 壁面，屋根面
             {
-                return editingMaterials[0].color;
+                if (editingMaterials[0].HasFloat("_Transparency"))
+                {
+                    return editingMaterials[0].GetColor(ColorPropertyName);
+                }
+                else
+                {
+                    return editingMaterials[0].color;
+                }
             }
             // 未選択のとき，もしくは壁面と屋根面の色が異なる場合
             return initialColor;
@@ -166,15 +204,37 @@ namespace Landscape2.Runtime.BuildingEditor
         {
             if (editingMaterials.Count == 2) // 要素全体
             {
-                if (editingMaterials[0].GetFloat("_Smoothness") == editingMaterials[1].GetFloat("_Smoothness"))
+                if (editingMaterials[0].HasFloat("_Transparency"))
                 {
-                    return editingMaterials[0].GetFloat("_Smoothness");
+                    if (editingMaterials[0].GetFloat(SmoothnessPropertyName) == editingMaterials[1].GetFloat(SmoothnessPropertyName))
+                    {
+                        return editingMaterials[0].GetFloat(SmoothnessPropertyName);
+                    }
+                }
+                else
+                {
+                    if (editingMaterials[0].GetFloat("_Smoothness") == editingMaterials[1].GetFloat("_Smoothness"))
+                    {
+                        return editingMaterials[0].GetFloat("_Smoothness");
+                    }
                 }
             }
-            else if (editingMaterials.Count == 1) // 壁面，屋根面
+            else if (editingMaterials.Count == 1) // 壁面，屋根面、LOD1
             {
-                return editingMaterials[0].GetFloat("_Smoothness");
+                if (editingMaterials[0].HasFloat("_Transparency"))
+                {
+                    return editingMaterials[0].GetFloat(SmoothnessPropertyName);
+                }
+                else
+                {
+                    // HDRP Litのマテリアル
+                    // fallbackのマテリアル
+                    return editingMaterials[0].HasFloat("_Smoothness")
+                        ? editingMaterials[0].GetFloat("_Smoothness")
+                        : 0.0f;
+                }
             }
+
             // 未選択のとき，もしくは壁面と屋根面の色が異なる場合
             return 0f;
         }
@@ -182,7 +242,12 @@ namespace Landscape2.Runtime.BuildingEditor
         // 建物の色彩とSmoothnessをロード
         private void LoadBuildingColor()
         {
-            var buildings = GameObject.FindObjectsOfType<PLATEAUCityObjectGroup>();
+            LoadBuildingColor(null);
+        }
+
+        public void LoadBuildingColor(PLATEAUCityObjectGroup[] targetBuildings = null)
+        {
+            var buildings = targetBuildings ?? GameObject.FindObjectsByType<PLATEAUCityObjectGroup>(FindObjectsSortMode.None);
 
             if (buildings == null)
             {
@@ -190,17 +255,17 @@ namespace Landscape2.Runtime.BuildingEditor
                 return;
             }
 
-            PLATEAUCityObjectGroup targetBuilding = null;
-
             // データ数を取得
             int dataCount = BuildingsDataComponent.GetPropertyCount();
             for (int i = 0; i < dataCount; i++)
             {
+                PLATEAUCityObjectGroup targetBuilding = null;
+
                 var property = BuildingsDataComponent.GetProperty(i);
-                
+
                 // 最小のレイヤー値を取得
                 var minValues = BuildingsDataComponent.GetMinLayerPropertyValues(property.GmlID);
-                
+
                 string gmlID = property.GmlID;
                 List<Color> colors = minValues.colors;
                 List<float> smoothness = minValues.smoothness;
@@ -222,7 +287,7 @@ namespace Landscape2.Runtime.BuildingEditor
                 if (targetBuilding == null)
                 {
                     Debug.LogWarning("gmlID:" + gmlID + "が見つかりませんでした。");
-                    return;
+                    continue;
                 }
 
                 // 建物の色を適用
@@ -230,19 +295,31 @@ namespace Landscape2.Runtime.BuildingEditor
                 if (mats == null)
                 {
                     Debug.LogWarning("建築物のマテリアルが見つかりませんでした。");
-                    return;
+                    continue;
                 }
 
                 // Scene上の建物のマテリアルの数と保存されている色の数が一致しない場合保存数が少ない方に合わせる
                 int matCount = mats.Length < colors.Count ? mats.Length : colors.Count;
                 for (int j = 0; j < matCount; j++)
                 {
-                    mats[j].color = colors[j];
-                    mats[j].SetFloat("_Smoothness", smoothness[j]);
+                    if (mats[j].HasFloat("_Transparency"))
+                    {
+                        mats[j].SetColor(ColorPropertyName, colors[j]);
+                        mats[j].SetFloat(SmoothnessPropertyName, smoothness[j]);
+                    }
+                    else
+                    {
+                        mats[j].color = colors[j];
+
+                        if (mats[j].HasFloat("_Smoothness"))
+                        {
+                            mats[j].SetFloat("_Smoothness", smoothness[j]);
+                        }
+                    }
                 }
             }
         }
-        
+
         private void DeleteBuildingColor(List<BuildingProperty> deleteBuildings, string projectID)
         {
             foreach (var deleteBuilding in deleteBuildings)
@@ -274,12 +351,25 @@ namespace Landscape2.Runtime.BuildingEditor
             }
             foreach (var material in mats)
             {
-                // 初期値にセット
-                material.color = InitialColor;
-                material.SetFloat("_Smoothness", InitialSmoothness);
+                if (material.HasFloat("_Transparency"))
+                {
+                    // 初期値にセット
+                    material.SetColor(ColorPropertyName, InitialColor);
+                    material.SetFloat(SmoothnessPropertyName, InitialSmoothness);
+                }
+                else
+                {
+                    // 初期値にセット
+                    material.color = InitialColor;
+
+                    if (material.HasFloat("_Smoothness"))
+                    {
+                        material.SetFloat("_Smoothness", InitialSmoothness);
+                    }
+                }
             }
         }
-        
+
         private void SetBuildingParameter(GameObject targetBuilding, BuildingProperty property)
         {
             var mats = targetBuilding.gameObject.GetComponent<MeshRenderer>().materials;
@@ -292,11 +382,23 @@ namespace Landscape2.Runtime.BuildingEditor
             int matCount = mats.Length < property.ColorData.Count ? mats.Length : property.ColorData.Count;
             for (int i = 0; i < matCount; i++)
             {
-                mats[i].color = property.ColorData[i];
-                mats[i].SetFloat("_Smoothness", property.SmoothnessData[i]);
+                if (mats[i].HasFloat("_Transparency"))
+                {
+                    mats[i].SetColor(ColorPropertyName, property.ColorData[i]);
+                    mats[i].SetFloat(SmoothnessPropertyName, property.SmoothnessData[i]);
+                }
+                else
+                {
+                    mats[i].color = property.ColorData[i];
+
+                    if (mats[i].HasFloat("_Smoothness"))
+                    {
+                        mats[i].SetFloat("_Smoothness", property.SmoothnessData[i]);
+                    }
+                }
             }
         }
-        
+
         // 色彩編集内容を記録する
         public void RecordMaterialColor(GameObject buildingObj, List<Material> mats)
         {
@@ -311,8 +413,19 @@ namespace Landscape2.Runtime.BuildingEditor
             var smoothness = new List<float>();
             foreach (var mat in mats)
             {
-                colors.Add(mat.color);
-                smoothness.Add(mat.GetFloat("_Smoothness"));
+                if (mat.HasFloat("_Transparency"))
+                {
+                    colors.Add(mat.GetColor(ColorPropertyName));
+                    smoothness.Add(mat.GetFloat(SmoothnessPropertyName));
+                }
+                else
+                {
+                    colors.Add(mat.color);
+                    if (mat.HasFloat("_Smoothness"))
+                    {
+                        smoothness.Add(mat.GetFloat("_Smoothness"));
+                    }
+                }
             }
 
             // 既に登録されている建物ならば
@@ -337,12 +450,15 @@ namespace Landscape2.Runtime.BuildingEditor
         public void Start()
         {
         }
+
         public void Update(float deltaTime)
         {
         }
+
         public void OnEnable()
         {
         }
+
         public void OnDisable()
         {
             // copiedMaterialsのマテリアルを破棄
@@ -357,6 +473,5 @@ namespace Landscape2.Runtime.BuildingEditor
         public void LateUpdate(float deltaTime)
         {
         }
-
     }
 }

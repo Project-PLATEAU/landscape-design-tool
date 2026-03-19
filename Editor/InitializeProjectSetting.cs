@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -19,7 +19,7 @@ namespace Landscape2.Editor
         private static void ConfigureHDRPSettings()
         {
             // HDRPアセットを取得
-            var hdrpAsset = GraphicsSettings.renderPipelineAsset as HDRenderPipelineAsset;
+            var hdrpAsset = GraphicsSettings.defaultRenderPipeline as HDRenderPipelineAsset;
             if (hdrpAsset == null)
             {
                 Debug.LogError("HDRP Asset is not assigned in Graphics Settings.");
@@ -50,7 +50,9 @@ namespace Landscape2.Editor
             ApiCompatibilityLevel[] levels = (ApiCompatibilityLevel[])System.Enum.GetValues(typeof(ApiCompatibilityLevel));
             if (targetIndex >= 0 && targetIndex < levels.Length)
             {
-                PlayerSettings.SetApiCompatibilityLevel(targetGroup, levels[targetIndex]);
+                var namedBuildTarget = UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(targetGroup);
+                PlayerSettings.SetApiCompatibilityLevel(namedBuildTarget, levels[targetIndex]);
+                //PlayerSettings.SetApiCompatibilityLevel(targetGroup, levels[targetIndex]);
                 Debug.Log($"{targetGroup} API Compatibility Level set to {levels[targetIndex]}");
             }
             else

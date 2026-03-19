@@ -1,23 +1,15 @@
-using Landscape2.Runtime.Common;
-using System.Collections;
+﻿using Landscape2.Runtime.Common;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 // Build時にAssetをimportする
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using System.Threading.Tasks;  // Taskを使用するために必要
 // UI
-using UnityEditor;
 using UnityEngine.UIElements;
-using Landscape2.Runtime.UiCommon;
 
-using RuntimeHandle;
 
 using UnityEngine.InputSystem;
-using System.Linq;
-using PlateauToolkit.Sandbox;
-using ProceduralToolkit;
+using PlateauToolkit.Sandbox.Runtime.PlateauSandboxBuildings.Runtime;
 
 namespace Landscape2.Runtime
 {
@@ -35,7 +27,7 @@ namespace Landscape2.Runtime
         Edit
     }
 
-    public class ArrangementAsset : ISubComponent, LandscapeInputActions.IArrangeAssetActions
+    public class ArrangementAsset : ArrangementAssetData, ISubComponent, LandscapeInputActions.IArrangeAssetActions
     {
         private Camera cam;
         private Ray ray;
@@ -67,11 +59,12 @@ namespace Landscape2.Runtime
                 editMode,
                 new AdvertisementRenderer(),
                 landscapeCamera,
-                subscribeSaveSystem);
+                subscribeSaveSystem,
+                new AssetColorEditorUI(arrangementAssetUI));
 
             sizeUI = new();
             sizeUI.Show(false);
-            
+
             // プロジェクトからの通知イベント
             subscribeSaveSystem.SaveLoadHandler.OnDeleteAssets.AddListener(OnDeleteAssets);
             subscribeSaveSystem.SaveLoadHandler.OnChangeEditableState.AddListener(OnChangeEditableState);
@@ -110,11 +103,16 @@ namespace Landscape2.Runtime
             // インポートボタンの登録
             arrangementAssetUIClass.RegisterImportButtonAction();
 
+            sizeUI.OnEnable();
             sizeUI.Show(false);
         }
 
         private async void SetPlateauAssets(string keyName, string buttonName)
         {
+#if true
+            var data = await LoadPlateauAssets(keyName);
+            arrangementAssetUIClass.RegisterCategoryPanelAction(buttonName, data.Item1, data.Item2);
+#else
             AsyncOperationHandle<IList<GameObject>> plateauAssetHandle = Addressables.LoadAssetsAsync<GameObject>(keyName, null);
             IList<GameObject> assetsList = await plateauAssetHandle.Task;
             assetsList = assetsList.Where(n => n.GetComponent<PlateauSandboxPlaceableHandler>() != null).ToList();
@@ -122,6 +120,7 @@ namespace Landscape2.Runtime
             AsyncOperationHandle<IList<Texture2D>> assetsPictureHandle = Addressables.LoadAssetsAsync<Texture2D>("AssetsPicture", null);
             IList<Texture2D> assetsPicture = await assetsPictureHandle.Task;
             arrangementAssetUIClass.RegisterCategoryPanelAction(buttonName, assetsList, assetsPicture);
+#endif
         }
 
         public void SetMode(ArrangeModeName mode)
@@ -140,6 +139,21 @@ namespace Landscape2.Runtime
             {
                 currentMode = editMode;
                 arrangementAssetUIClass.DisplayEditPanel(true);
+
+                sizeUI.SetTarget(editTarget);
+                bool shouldShowUI;
+                if (editTarget.TryGetComponent<PlateauSandboxBuilding>(out var building))
+                {
+                    shouldShowUI = building.isSizePanelVisible;
+                }
+                else
+                {
+                    bool isAd
+                        = editTarget.TryGetComponent<PlateauToolkit.Sandbox.Runtime.PlateauSandboxAdvertisement>(out var _)
+                        || editTarget.TryGetComponent<PlateauToolkit.Sandbox.Runtime.PlateauSandboxAdvertisementScaled>(out var _);
+                    shouldShowUI = isAd;
+                }
+                sizeUI.Show(shouldShowUI);
                 return;
             }
             else if (mode == ArrangeModeName.Normal)
@@ -148,6 +162,7 @@ namespace Landscape2.Runtime
 
                 editTarget = null;
                 lastEditTarget = null;
+                sizeUI.Show(false);
             }
             arrangementAssetUIClass.DisplayEditPanel(false);
         }
@@ -166,12 +181,9 @@ namespace Landscape2.Runtime
                     editMode.RuntimeTransformHandleScript.isDragging;
                 CameraMoveByUserInput.IsCameraMoveActive = !isEditingAssetTRS;
 
-                if (activeTarget != null)
-                {
-                    sizeUI.SetTarget(activeTarget);
-                }
-                sizeUI.Show(activeTarget != null);
                 sizeUI.Update(deltaTime);
+
+                arrangementAssetUIClass.Update();
             }
         }
 
@@ -197,7 +209,7 @@ namespace Landscape2.Runtime
             cam = Camera.main;
             ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+            if (LandscapeRaycast.Raycast(ray, out RaycastHit hit))
             {
                 if (CheckParentName(hit.transform, "CreatedAssets"))
                 {
@@ -207,7 +219,7 @@ namespace Landscape2.Runtime
                         // 再度同じtargetを選択しない様にする
                         return;
                     }
-                    
+
                     if (!ProjectSaveDataManager.TryCheckData(
                             ProjectSaveDataType.Asset,
                             ProjectSaveDataManager.ProjectSetting.CurrentProject.projectID,
@@ -216,16 +228,16 @@ namespace Landscape2.Runtime
                         // プロジェクト外であれば、抜ける
                         return;
                     }
-                    
+
                     editTarget = selectTarget;
                     lastEditTarget = editTarget;
                     arrangementAssetUIClass.SetEditTarget(editTarget);
                     SetMode(ArrangeModeName.Edit);
                     editMode.CreateRuntimeHandle(editTarget, TransformType.Position);
-                    
+
                     // ハンドルが表示されたらプロジェクトが編集中として扱う
                     ProjectSaveDataManager.Edit(ProjectSaveDataType.Asset, editTarget.GetInstanceID().ToString());
-                    
+
                     return;
                 }
             }
@@ -275,11 +287,11 @@ namespace Landscape2.Runtime
             {
                 if (currentMode == editMode)
                 {
-                    arrangementAssetUIClass.ResetEditButton();
+                    arrangementAssetUIClass.ResetEditButton(true);
                 }
                 currentMode.OnCancel();
                 activeTarget = null;
-            } 
+            }
             SetMode(ArrangeModeName.Normal);
         }
 
@@ -295,6 +307,8 @@ namespace Landscape2.Runtime
             SetMode(ArrangeModeName.Normal);
             arrangementAssetUI.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
             input.Disable();
+
+            sizeUI.OnDisable();
         }
 
         public void Start()
@@ -305,19 +319,24 @@ namespace Landscape2.Runtime
         {
         }
 
-        
+
         private void OnDeleteAssets(List<GameObject> deleteAssets)
         {
             foreach (var asset in deleteAssets)
             {
+                if (sizeUI.IsTarget(asset))
+                {
+                    sizeUI.SetTarget(null);
+                    sizeUI.Show(false);
+                }
                 GameObject.Destroy(asset);
             }
         }
-        
+
         private void OnChangeEditableState(List<GameObject> editableAssets, List<GameObject> nonEditableAssets)
         {
             ResetCurrentMode();
-            
+
             // 操作可能なアセットと操作不可能なアセットのレイヤーを変更
             foreach (var asset in editableAssets)
             {

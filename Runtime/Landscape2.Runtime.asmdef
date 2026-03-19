@@ -26,7 +26,8 @@
         "GUID:bc2e9255fd4bb6b4eb5b73afdf848058",
         "GUID:561cd3090aa423b4584912885a62ef6f",
         "GUID:a42927d1d4a3b4cda9b076a7adecb9cc",
-        "GUID:76676817d91ba4f44b4aa7df71867256"
+        "GUID:76676817d91ba4f44b4aa7df71867256",
+        "GUID:08835a7d116917c4697c8dd54cd9c69b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -36,7 +37,8 @@
         "System.Windows.Forms.dll",
         "Ookii.Dialogs.dll",
         "Newtonsoft.Json.dll",
-        "EGIS.ShapeFileLib.dll"
+        "EGIS.ShapeFileLib.dll",
+        "Wacton.Unicolour.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": [],

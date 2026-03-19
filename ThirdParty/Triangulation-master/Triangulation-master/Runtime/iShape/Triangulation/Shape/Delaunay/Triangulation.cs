@@ -53,6 +53,10 @@ namespace iShape.Triangulation.Shape.Delaunay {
         
         public static Delaunay Delaunay(this PlainShape shape, long maxEdge, NativeArray<IntVector> extraPoints, Allocator allocator) {
             var layout = shape.Split(maxEdge, extraPoints, Allocator.Temp);
+            if (InfinityLoopDtector.IsDetected)
+            {
+                return default;
+            }
 
             int holesCount = shape.layouts.Length;
             int totalCount = layout.pathCount + 2 * layout.extraCount + holesCount * 2 - 2;

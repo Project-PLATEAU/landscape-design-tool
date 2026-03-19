@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using EGIS.ShapeFileLib;
 using System.IO;
@@ -38,14 +38,14 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             int nblock = AreasDataComponent.GetPropertyCount();
 
             // 都市モデルを取得
-            var cityModel = GameObject.FindObjectOfType<PLATEAUInstancedCityModel>();
+            var cityModel = GameObject.FindFirstObjectByType<PLATEAUInstancedCityModel>();
             if (cityModel == null)
             {
                 Debug.LogError("CityModel is not found.");
                 return;
             }
 
-            var geoRef = GameObject.FindObjectOfType<CesiumGeoreference>();
+            var geoRef = GameObject.FindFirstObjectByType<CesiumGeoreference>();
             if (geoRef == null)
             {
                 Debug.LogError("CesiumGeoreference is not found.");

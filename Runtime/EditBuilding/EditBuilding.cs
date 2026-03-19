@@ -1,4 +1,5 @@
 ﻿using Landscape2.Runtime.Common;
+using Landscape2.Runtime.DynamicTile;
 using Landscape2.Runtime.UiCommon;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ namespace Landscape2.Runtime
     public class EditBuilding : ISubComponent
     {
         // 建物が選択されたときのイベント関数
-        public event Action<GameObject, bool> OnBuildingSelected = (targetObject, canEdit) => { };
+        public event Action<DynamicTileGameObject, bool> OnBuildingSelected = (targetObject, canEdit) => { };
 
-        private GameObject targetObject;
+        private DynamicTileGameObject targetObject;
         private GameObject highlightBox = null;
         private VisualElement uiRoot;
 
@@ -76,17 +77,25 @@ namespace Landscape2.Runtime
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit = new RaycastHit();
 
+                    // 選択可能な建物を選択する
+                    bool isSelecting = false;
                     if (Physics.Raycast(ray, out hit))
                     {
                         // 建築物をクリックした場合
-                        if (hit.collider.gameObject.name.Contains("bldg_"))
+                        if (CityObjectUtil.IsSelectableBuilding(hit.collider.gameObject))
                         {
-                            SetTargetObject(hit.collider.gameObject);
+                            isSelecting = true;
                         }
+                    }
+
+                    // 選択した建物で更新
+                    if (isSelecting)
+                    {
+                        SetTargetObject(DynamicTileGameObjectUpdater.CreateOrGet(hit.collider.gameObject));
                     }
                     else
                     {
-                        targetObject = null;
+                        SetTargetObject(null);
                     }
                 }
             }
@@ -104,20 +113,23 @@ namespace Landscape2.Runtime
                 mf.mesh.SetIndices(mf.mesh.GetIndices(0), MeshTopology.LineStrip, 0);
             }
 
-            var meshColider = targetObject.GetComponent<MeshCollider>();
+            var meshColider = targetObject.GetRawComponent<MeshCollider>();
+            if (meshColider == null)
+                return;
             var bounds = meshColider.bounds;
 
             highlightBox.transform.localPosition = bounds.center;
             highlightBox.transform.localScale = new Vector3(bounds.size.x, bounds.size.y, bounds.size.z);
         }
 
-        public GameObject GetTargetObject()
+        public void SetTargetObject(DynamicTileGameObject obj)
         {
-            return targetObject;
-        }
+            if (!DynamicTileGameObject.HasInstance(obj))
+            {
+                targetObject = null;
+                return;
+            }
 
-        public void SetTargetObject(GameObject obj)
-        {
             // layerがIgnoreであればプロジェクト外なので、編集不可
             bool canEdit = !LayerMaskUtil.IsIgnore(obj);
             if (!canEdit)

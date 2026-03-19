@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -42,7 +42,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
 
         public ShapefileRenderManager(string folderPath, int renderMode, float renderHeight, bool mergeMeshes, bool loopLineRenderer, SupportedEncoding supportedEncoding, GameObject pointDataPrefab = null)
         {
-            m_GeoRef = GameObject.FindObjectOfType<CesiumGeoreference>();
+            m_GeoRef = GameObject.FindFirstObjectByType<CesiumGeoreference>();
             m_FolderPath = folderPath;
             m_RenderMode = renderMode;
             m_RenderHeight = renderHeight;

@@ -24,13 +24,34 @@
 - アセットリストのアイテムをクリックすることで、配置したアセットに自動でフォーカスされます。
 - 削除アイコンを押すことで削除することも可能です。
 
+## 色の変更
+![アセット配置画面](../resources/AssetPlacement/AssetPlacement_color.png)
+- アセットを選択すると、右上に色彩変更ボタンが表示されます。
+- マンセル色票もしくはマンセル値により、色を指定し、変更できます。
+
+> [!NOTE]  
+> すべてのアセットで色彩の変更が可能です。<br>
+> 色彩編集時に表示されるプレビューの色は、操作確認用の表示です。<br>
+> 色彩は、3Dビュー上に表示されているアセットの色をご確認ください。
+
+
+
 ## 広告物の変更
 ![広告物の変更](../resources/AssetPlacement/AssetPlacement_advertisement.png)
 - 広告アセットを選択すると、右上に広告の変更ボタンが表示されます。
 - 画像読み込みボタン、動画読み込みボタンを押すと、ファイルブラウザが開かれるので画像もしくは動画を選択できます。
 - 選択が完了すると、広告の画像が変更されます。動画の場合は再生が始まります。
 
-<img width="400" alt="広告の変更画面" src="../resources/AssetPlacement/AssetPlacement_advertisement_edit.png">
+![広告物の変更画面](../resources/AssetPlacement/AssetPlacement_advertisement_edit.png)
+
+## 広告物のサイズ変更
+![広告物のサイズ変更](../resources/AssetPlacement/AssetPlacement_advertisement_size.png)
+- アセット下の設定パネルで、広告物のサイズを0.01m（1cm）単位で変更できます。
+- 入力したサイズは、左側の「設置済みアセット一覧」のサイズ表示と連動して変更されます。
+
+![広告物のサイズ変更](../resources/AssetPlacement/AssetPlacement_advertisement_size_after.png)
+
+- 野立広告物（地面に独立して設置される屋外広告物）アセットのうち、指定の1本足・2本足アセットでは、板面と高さ（支柱）のパラメータを別々に設定することができます。
 
 ## 建造物の変更
 ![建造物の変更](../resources/AssetPlacement/AssetPlacement_building.png)

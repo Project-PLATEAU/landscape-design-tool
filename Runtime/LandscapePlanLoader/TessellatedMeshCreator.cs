@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System;
 using UnityEngine;
 using Unity.Collections;
@@ -7,6 +7,7 @@ using iShape.Geometry.Container;
 using iShape.Geometry;
 using iShape.Mesh2d;
 using iShape.Triangulation.Shape.Delaunay;
+using iShape.Triangulation.Shape;
 
 namespace Landscape2.Runtime.LandscapePlanLoader
 {
@@ -76,7 +77,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         /// <param name="meshFilter">生成したメッシュをアタッチするMeshFilter</param>
         /// <param name="tessellateMaxEdge">エッジの最大長</param>
         /// <param name="tessellateMaxArea">Triangleの最大面積</param>
-        public void CreateTessellatedMesh(List<List<Vector3>> points, MeshFilter meshFilter,  float tessellateMaxEdge = 30, float tessellateMaxArea = 40)
+        public bool CreateTessellatedMesh(List<List<Vector3>> points, MeshFilter meshFilter,  float tessellateMaxEdge = 30, float tessellateMaxArea = 40)
         {
             var iGeom = IntGeom.DefGeom;
             PlainShape pShape;
@@ -118,6 +119,16 @@ namespace Landscape2.Runtime.LandscapePlanLoader
 
             var extraPoints = new NativeArray<IntVector>(0, Allocator.Temp);
             var delaunay = pShape.Delaunay(iGeom.Int(tessellateMaxEdge), extraPoints, Allocator.Temp);
+            if (InfinityLoopDtector.IsDetected)
+            {
+                Debug.LogWarning("Tessellation detected an infinite loop. Please check the input points.");
+
+                extraPoints.Dispose();
+                delaunay.Dispose();
+
+                pShape.Dispose();
+                return false;
+            }
 
             delaunay.Tessellate(iGeom, tessellateMaxArea);
 
@@ -163,6 +174,8 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             mesh.RecalculateBounds();
             meshFilter.mesh = mesh;
             pShape.Dispose();
+
+            return true;
         }
     }
 }

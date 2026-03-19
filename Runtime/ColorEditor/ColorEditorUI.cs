@@ -1,11 +1,9 @@
-﻿using Landscape2.Runtime.UiCommon;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System;
-using PLATEAU.Util;
+
 
 namespace Landscape2.Runtime
 {
@@ -74,11 +72,18 @@ namespace Landscape2.Runtime
         // 初期化時の色
         private Color initialColor;
 
+        // 外部同期 (ApplyColor) 時に内部イベント発火を抑制するフラグ（最小変更方針で追加）
+        private bool suppressCallbacks = false; // TODO: 将来的に他イベントにも適用するなら共通化検討 (命名規約対応)
+
         Dictionary<string, MunselValue> munselValueDict = new();
+
+        VisualElement rootElement;
 
         public ColorEditorUI(VisualElement uiRoot, Color initialColor = default)
         {
             this.initialColor = initialColor;
+
+            rootElement = uiRoot;
 
             // 色彩変更UIの各要素を取得
             hueSlider = uiRoot.Q<SliderInt>(UIHueSlider);
@@ -120,22 +125,22 @@ namespace Landscape2.Runtime
             // RGB変更スライダーの値が変更されたとき
             rSlider.RegisterValueChangedCallback(evt =>
             {
+                if (suppressCallbacks) return; // 最小リファクタ：外部同期時はイベント抑制
                 Color newColor = new Color(evt.newValue / 255f, gSlider.value / 255f, bSlider.value / 255f);
-                // 色を更新
                 OnColorEdited(newColor);
             });
 
             gSlider.RegisterValueChangedCallback(evt =>
             {
+                if (suppressCallbacks) return;
                 Color newColor = new Color(rSlider.value / 255f, evt.newValue / 255f, bSlider.value / 255f);
-                // 色を更新
                 OnColorEdited(newColor);
             });
 
             bSlider.RegisterValueChangedCallback(evt =>
             {
+                if (suppressCallbacks) return;
                 Color newColor = new Color(rSlider.value / 255f, gSlider.value / 255f, evt.newValue / 255f);
-                // 色を更新
                 OnColorEdited(newColor);
             });
 
@@ -166,17 +171,113 @@ namespace Landscape2.Runtime
 
                         // munsel値に反映
                         SetMunsellValueLabel(UnityEngine.ColorUtility.ToHtmlStringRGB(munselColor));
+
+                        // 最小リファクタ: マンセルボタン選択時も外部へ通知
+                        if (!suppressCallbacks)
+                        {
+                            OnColorEdited(munselColor);
+                        }
                     };
                 });
             });
 
-            // 閉じるボタンが押されたとき
-            closeButton.clicked += () =>
+            if (closeButton != null)
             {
-                // 閉じるボタンが押されたときのイベントを発火
-                OnCloseButtonClicked();
-            };
+                // 閉じるボタンが押されたとき
+                closeButton.clicked += () =>
+                {
+                    // 閉じるボタンが押されたときのイベントを発火
+                    OnCloseButtonClicked();
+                };
+            }
+        }
 
+        /// <summary>
+        /// 外部 (AssetColorEditorUI 等) から色を適用し UI 状態 (RGB スライダー / Hue / ボタン選択 / ラベル) を同期する最小公開 API。
+        /// </summary>
+        /// <param name="color">適用したい sRGB Color</param>
+        /// <param name="suppressEvent">true の場合 OnColorEdited を発火させない</param>
+        public void ApplyColor(Color color, bool suppressEvent = true)
+        {
+            suppressCallbacks = suppressEvent; // スライダーイベント抑制
+
+            // RGB スライダー値更新
+            SetColorSlider(color);
+
+            // 最近傍マンセル色を新 Utility から取得 (存在しない場合は既存状態維持)
+            var nearest = MunsellColorUtility.FindNearest(color);
+            if (nearest.HasValue)
+            {
+                var entry = nearest.Value;
+
+                // Hue スライダー index 算出 & 変更 (変化時のみ)
+                int idx = MunsellColorUtility.ComputeHueSliderIndex(entry);
+                if (idx >= 0 && idx != hueSlider.value)
+                {
+                    hueSlider.value = idx; // コールバックで EditHue() が呼ばれる
+                }
+                else
+                {
+                    // index 変化なしでもボタン配色を最新に明示更新
+                    EditHue(idx);
+                }
+
+                // 選択色更新
+                munselColor = entry.Color;
+
+                // マンセルラベル (既存 munselValueDict 利用ではなく entry 直接表記)
+                munsellValueLabel.text = (entry.HueName == "N") ? $"{entry.HueName} {entry.Value}"
+                    : $"{entry.HueValue}{entry.HueName} {entry.Value}/{entry.Chroma}";
+
+                // ボタンフォーカス更新 (最小変更: 全走査)
+                Button focusedButton = null;
+                foreach (var row in munsellPanel.Children())
+                {
+                    var ve = row as VisualElement;
+                    foreach (var child in ve.Children())
+                    {
+                        if (child is Button btn)
+                        {
+                            var styleBg = btn.style.backgroundColor;
+                            // UI Toolkit StyleColor は .keyword で None の場合があるため簡易比較
+                            if (styleBg.value == entry.Color)
+                            {
+                                focusedButton = btn;
+                                break;
+                            }
+                        }
+                    }
+                    if (focusedButton != null) break;
+                }
+
+                if (focusedButton != null)
+                {
+                    if (lastFocusButton != null && lastFocusButton != focusedButton)
+                    {
+                        EditBorderColor(lastFocusButton, Color.clear);
+                    }
+                    EditBorderColor(focusedButton, focusColor);
+                    lastFocusButton = focusedButton;
+                }
+            }
+            else
+            {
+                // 見つからない場合はラベルのみ "-" にリセット (Hue/ボタンは維持)
+                munsellValueLabel.text = "-";
+            }
+
+            suppressCallbacks = false;
+
+            // suppressEvent=false の場合は最終的な色を通知 (一度だけ)
+            if (!suppressEvent)
+            {
+                OnColorEdited(new Color(rSlider.value / 255f, gSlider.value / 255f, bSlider.value / 255f));
+            }
+        }
+
+        public void Show(bool isShow)
+        {
+            rootElement.style.display = isShow ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
         // 色相を変更する
@@ -195,9 +296,9 @@ namespace Landscape2.Runtime
                     var button = b as Button;
 
                     Color newColor = Color.white;
-                    if (j < codemap[i].Count)
+                    if ((j < 1 && i < munsellData.codemapN.Count && munsellData.codemapN[i].Count > 0) || (j >= 1 && i < codemap.Count && j - 1 < codemap[i].Count))
                     {
-                        if (ColorUtility.TryParseHtmlString("#" + codemap[i][j], out newColor))
+                        if (ColorUtility.TryParseHtmlString("#" + (j < 1 ? munsellData.codemapN[i][j] : codemap[i][j - 1]), out newColor))
                         {
                             button.style.backgroundColor = newColor;
                         }
@@ -337,7 +438,8 @@ namespace Landscape2.Runtime
         {
             if (munselValueDict.TryGetValue(rgb, out var munselValue))
             {
-                munsellValueLabel.text = $"{munselValue.hueValue}{munselValue.hueName} {munselValue.value.ToString()}/{munselValue.chroma}";
+                munsellValueLabel.text = (munselValue.hueName == "N") ? $"{munselValue.hueName} {munselValue.value.ToString()}"
+                    : $"{munselValue.hueValue}{munselValue.hueName} {munselValue.value.ToString()}/{munselValue.chroma}";
             }
             else
             {
@@ -437,6 +539,17 @@ namespace Landscape2.Runtime
                     hueCount++;
                 }
                 colorNameTableIndex++;
+            }
+
+            // 無彩色
+            int valueN = 9; // カウントダウンしていく
+            foreach (var colTbl in munsellData.codemapN)
+            {
+                foreach(var col in colTbl)
+                {
+                    munselValueDict.Add(col, new MunselValue() { hueValue = "", hueName = "N", value = valueN, chroma = "0" });
+                }
+                valueN--;
             }
         }
 

@@ -38,12 +38,13 @@ namespace Landscape2.Runtime
         private const float pinOffsety = 125.0f; // 高さピンのオフセット(height)
 
         // 建物と高さピンの対応リスト
-        private List<(PLATEAUCityObjectGroup Building, VisualElement Pin)> bldgList = new List<(PLATEAUCityObjectGroup, VisualElement)>();
+        private List<VisualHeightPin> bldgList = new List<VisualHeightPin>();
 
         private bool isCameraMoved = false;
         private const float cameraDistance = 500f;
-        private PLATEAUCityObjectGroup selectedBuilding;
-        private int lastPinID = 0;
+        private string selectedBuildingGmlID;
+        private Bounds? selectedBuildingBounds = null;
+        private float heightLimit = 10; // 初期値は10
         private GameObject highlightBox = null;
 
         public VisualizeHeightUI(VisualizeHeight visualizeHeight, VisualElement uiRoot, LandscapeCamera landscapeCamera)
@@ -69,14 +70,14 @@ namespace Landscape2.Runtime
 
             // 可視化下限スライダーの初期設定
             heightSlider.style.display = DisplayStyle.None;
-            heightSlider.value = 10; // 初期値は10m
+            heightSlider.value = (int)heightLimit;
 
             heightSlider.RegisterValueChangedCallback((evt) =>
             {
-                UpdateHeightPinsDisplay(evt.newValue);
+                heightLimit = evt.newValue;
+                // ピンを再取得・表示
+                UpdateCurrentPointViewPins();
             });
-
-            SetHeightPin();
 
             // 高さ可視化トグルのイベント登録
             heightToggle.RegisterValueChangedCallback((evt) =>
@@ -86,10 +87,11 @@ namespace Landscape2.Runtime
                     heightSlider.style.display = DisplayStyle.Flex;
                     pointOfViewPanel.style.display = DisplayStyle.Flex;
 
-                    for (int i = 0; i <= lastPinID; i++)
-                    {
-                        bldgList[i].Pin.style.translate = UpdateHeightPinPosition(bldgList[i].Building);
-                    }
+                    // ピンを再取得・表示
+                    UpdateCurrentPointViewPins();
+                    
+                    // 新しいピンの設定
+                    CreatePointViewPins();
                 }
                 else
                 {
@@ -97,6 +99,9 @@ namespace Landscape2.Runtime
                     pointOfViewPanel.style.display = DisplayStyle.None;
                 }
             });
+            
+            // 歩行者ピンの初期化
+            InitializeWalkerPin();
         }
 
         /// <summary>
@@ -120,43 +125,83 @@ namespace Landscape2.Runtime
                 heightToggle.style.display = DisplayStyle.Flex;
                 walkerPanel.style.display = DisplayStyle.None;
                 walkerPin.style.display = DisplayStyle.None;
-                selectedBuilding = null;
+                selectedBuildingBounds = null;
+                selectedBuildingGmlID = null;
                 if (highlightBox != null) GameObject.Destroy(highlightBox);
             }
         }
 
         /// <summary>
-        /// 高さピンの初期化
+        /// 俯瞰表示の高さピンの生成
         /// </summary>
-        private void SetHeightPin()
+        private void CreatePointViewPins()
         {
-            // すべての建物を取得
-            List<PLATEAUCityObjectGroup> buildingList = new List<PLATEAUCityObjectGroup>();
-            buildingList = visualizeHeight.GetBuildingList();
+            // 既に追跡済みの GML ID を取得
+            var seenGmlIds = bldgList.Select(b => b.GmlID).ToHashSet();
 
-            foreach (var building in buildingList)
+            // 新しい建物を取得
+            var newBuildingsInView = visualizeHeight.GetBuildingListInCameraView(Camera.main, seenGmlIds, cameraDistance);
+            foreach (var building in newBuildingsInView)
             {
-                heightPinClone = visualizeHeightUXML.CloneTree().Q<VisualElement>(UIHeightPin);
-                bldgList.Add((building, heightPinClone));
+                string gmlId = visualizeHeight.GetBuildingGmlId(building);
 
-                // 高さピンを複製
-                pointOfViewPanel.Add(heightPinClone);
+                // データ抽出
+                var meshCollider = building.GetComponent<MeshCollider>();
+                if (meshCollider == null) continue;
 
-                // 建物の高さを設定
-                string height = visualizeHeight.GetBuildingHeight(building);
-                if (string.IsNullOrEmpty(height))
+                string heightStr = visualizeHeight.GetBuildingHeight(building);
+                if (string.IsNullOrEmpty(heightStr)) continue;
+
+                float height = float.Parse(heightStr);
+                Bounds bounds = meshCollider.bounds;
+
+                // ピン UI 作成
+                var pinVisualElement = visualizeHeightUXML.CloneTree().Q<VisualElement>(UIHeightPin);
+                pointOfViewPanel.Add(pinVisualElement);
+                pinVisualElement.Q<Label>().text = heightStr;
+                
+                // ピンとして登録
+                var pin = new VisualHeightPin
                 {
-                    height = "---";
+                    GmlID = gmlId,
+                    Bounds = bounds,
+                    Height = height,
+                    Pin = pinVisualElement
+                };
+                
+                // 表示を設定
+                pin.SetDisplay(heightLimit);
+                if (pin.IsVisible())
+                {
+                    pinVisualElement.style.translate = UpdateHeightPinPosition(bounds);
                 }
-                bldgList[bldgList.Count - 1].Pin.Q<Label>().text = height;
-                bldgList[bldgList.Count - 1].Pin.style.display = DisplayStyle.None;
 
-                //高さピンをスクリーン外に配置
-                bldgList[bldgList.Count - 1].Pin.style.translate = new Translate() { x = -1000, y = -1000 };
+                // VisualHeightPin として追加
+                bldgList.Add(pin);
             }
-            // 建物が高い順にソート
-            bldgList = bldgList.OrderByDescending(item => float.Parse(item.Pin.Q<Label>().text)).ToList();
+        }
 
+        /// <summary>
+        /// ピンの位置と表示を更新
+        /// </summary>
+        private void UpdateCurrentPointViewPins()
+        {
+            // ピンの位置と表示を更新
+            foreach (var visualPin in bldgList)
+            {
+                visualPin.SetDisplay(heightLimit);
+                if (visualPin.IsVisible())
+                {
+                    visualPin.Pin.style.translate = UpdateHeightPinPosition(visualPin.Bounds);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 歩行者モードのピンを初期化
+        /// </summary>
+        private void InitializeWalkerPin()
+        {
             // 歩行者モードの高さピンを初期化
             if (heightPinClone == null)
             {
@@ -166,58 +211,14 @@ namespace Landscape2.Runtime
             walkerPanel.Add(heightPinClone);
             walkerPin = walkerPanel.Q<VisualElement>(UIHeightPin);
             walkerPin.style.display = DisplayStyle.None;
-
-            UpdateHeightPinsDisplay(heightSlider.value);
-        }
-
-        /// <summary>
-        /// 高さ上限に応じて表示されるピンを変更する
-        /// </summary>
-        private void UpdateHeightPinsDisplay(float heightLimit)
-        {
-            if (bldgList.Count() <= 0)
-            {
-                Debug.LogWarning($"bldgList.Count() <= 0");
-                return;
-            }
-            // 高さピンのリストを初期化
-            var pin = bldgList[lastPinID].Pin;
-            float height = float.Parse(pin.Q<Label>().text);
-            if (heightLimit <= height)
-            {
-                while (heightLimit <= float.Parse(bldgList[lastPinID].Pin.Q<Label>().text))
-                {
-                    bldgList[lastPinID].Pin.style.display = DisplayStyle.Flex;
-                    if (lastPinID < bldgList.Count - 1)
-                    {
-                        lastPinID++;
-                    }
-                    else break;
-                }
-            }
-            else
-            {
-                while (heightLimit > float.Parse(bldgList[lastPinID].Pin.Q<Label>().text))
-                {
-                    bldgList[lastPinID].Pin.style.display = DisplayStyle.None;
-                    if (lastPinID > 0)
-                    {
-                        lastPinID--;
-                    }
-                    else break;
-                }
-            }
         }
 
         /// <summary>
         /// 高さピンの位置を更新
         /// </summary>
-        private Translate UpdateHeightPinPosition(PLATEAUCityObjectGroup building)
+        private Translate UpdateHeightPinPosition(Bounds bounds)
         {
-            // 建物のTransform.positionをScreen座標に変換
-            var bldgBounds = building.transform.GetComponent<MeshCollider>().bounds;
-
-            var topPos = new Vector3(bldgBounds.center.x, bldgBounds.max.y, bldgBounds.center.z);
+            var topPos = new Vector3(bounds.center.x, bounds.max.y, bounds.center.z);
             var screenPos = RuntimePanelUtils.CameraTransformWorldToPanel(visualizeHeightPanel.panel, topPos, Camera.main);
 
             var vp = Camera.main.WorldToViewportPoint(topPos);
@@ -273,21 +274,33 @@ namespace Landscape2.Runtime
             var building = targetObject.GetComponent<PLATEAUCityObjectGroup>();
             if (building == null) return;
 
-            if (building != selectedBuilding)
+            string gmlId = visualizeHeight.GetBuildingGmlId(building);
+
+            if (gmlId != selectedBuildingGmlID)
             {
-                // 高さを更新
-                walkerPin.Q<Label>().text = bldgList.FirstOrDefault(item => item.Building == building).Pin.Q<Label>().text;
-                // 位置を更新
-                walkerPin.style.display = DisplayStyle.Flex;
-                walkerPin.style.translate = UpdateHeightPinPosition(building);
-                selectedBuilding = building;
-                CreateHighlightBox(targetObject);
+                walkerPin.Q<Label>().text = visualizeHeight.GetBuildingHeight(building);
+
+                var meshCollider = building.GetComponent<MeshCollider>();
+                if (meshCollider != null)
+                {
+                    selectedBuildingBounds = meshCollider.bounds;
+                    selectedBuildingGmlID = gmlId;
+
+                    if (selectedBuildingBounds != null)
+                    {
+                        walkerPin.style.display = DisplayStyle.Flex;
+                        walkerPin.style.translate = UpdateHeightPinPosition(selectedBuildingBounds.Value);
+
+                        CreateHighlightBox(targetObject);
+                    }
+                }
             }
             else // 同じ建物をクリックした場合
             {
                 walkerPin.style.display = DisplayStyle.None;
-                selectedBuilding = null;
-                GameObject.Destroy(highlightBox);
+                selectedBuildingBounds = null;
+                selectedBuildingGmlID = null;
+                if (highlightBox != null) GameObject.Destroy(highlightBox);
             }
         }
 
@@ -341,19 +354,21 @@ namespace Landscape2.Runtime
                     // ピンの位置を更新
                     if (landscapeCamera.cameraState == LandscapeCameraState.Walker) // 歩行者モードの場合
                     {
-                        if (selectedBuilding != null)
+                        if (selectedBuildingBounds.HasValue)
                         {
                             walkerPin.style.display = DisplayStyle.Flex;
-                            walkerPin.style.translate = UpdateHeightPinPosition(selectedBuilding);
+                            walkerPin.style.translate = UpdateHeightPinPosition(selectedBuildingBounds.Value);
                         }
                     }
                     else if (heightToggle.value == true) // 俯瞰モードの場合
                     {
                         pointOfViewPanel.style.display = DisplayStyle.Flex;
-                        for (int i = 0; i <= lastPinID; i++)
-                        {
-                            bldgList[i].Pin.style.translate = UpdateHeightPinPosition(bldgList[i].Building);
-                        }
+
+                        // ピンを再取得・表示
+                        UpdateCurrentPointViewPins();
+                        
+                        // 新しいピンを生成
+                        CreatePointViewPins();
                     }
                 }
             }

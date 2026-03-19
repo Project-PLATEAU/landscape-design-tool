@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine.Rendering;
@@ -78,7 +78,8 @@ namespace Landscape2.Runtime
 
             cam.targetTexture = currentTarget;
 
-            var req = AsyncGPUReadback.Request(rt, 0, async request =>
+            //var req = AsyncGPUReadback.Request(rt, 0, async request =>
+            var req = AsyncGPUReadback.Request(rt, 0, request =>
             {
                 if (request.hasError)
                 {

@@ -1,4 +1,4 @@
-using CesiumForUnity;
+﻿using CesiumForUnity;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,9 +19,9 @@ namespace Landscape2.Runtime.GisDataLoader
 
         protected GisLoaderBase()
         {
-            geoRef = UnityEngine.Object.FindObjectOfType<CesiumGeoreference>();
+            geoRef = UnityEngine.Object.FindFirstObjectByType<CesiumGeoreference>();
 
-            var anchorObject = UnityEngine.Object.FindObjectOfType<CesiumGlobeAnchor>();
+            var anchorObject = UnityEngine.Object.FindFirstObjectByType<CesiumGlobeAnchor>();
             if (anchorObject == null)
             {
                 cesiumGlobeAnchorObject = new GameObject("CesiumGlobeAnchor");

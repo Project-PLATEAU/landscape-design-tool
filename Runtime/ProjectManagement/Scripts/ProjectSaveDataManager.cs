@@ -1,4 +1,4 @@
-using Landscape2.Runtime.SaveData;
+﻿using Landscape2.Runtime.SaveData;
 using System;
 using System.Linq;
 using UnityEngine.Events;
@@ -33,7 +33,9 @@ namespace Landscape2.Runtime
         
         // BIMインポートして配置した建物一覧
         private static ProjectSaveData_BimImport SaveDataBimImport = new();
-        
+
+        // 広告物周囲規制機能のデータ
+        private static ProjectSaveData_ADArea SaveData_ADArea = new();
         
         // 編集イベント
         public static UnityEvent<string> OnEditProject = new();
@@ -78,6 +80,9 @@ namespace Landscape2.Runtime
                 case ProjectSaveDataType.BimImport:
                     SaveDataBimImport.Add(projectID, id);
                     break;
+                case ProjectSaveDataType.AdArea:
+                    SaveData_ADArea.Add(projectID, id);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(dataType), dataType, null);
             }
@@ -117,6 +122,9 @@ namespace Landscape2.Runtime
                 case ProjectSaveDataType.BimImport:
                     SaveDataBimImport.Delete(id);
                     break;
+                case ProjectSaveDataType.AdArea:
+                    SaveData_ADArea.Delete(id);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(dataType), dataType, null);
             }
@@ -144,6 +152,7 @@ namespace Landscape2.Runtime
                 ProjectSaveDataType.LandscapePlan => SaveDataLandscapePlan.GetProjectID(id),
                 ProjectSaveDataType.LineOfSight => SaveDataLineOfSight.GetProjectID(id),
                 ProjectSaveDataType.BimImport => SaveDataBimImport.GetProjectID(id),
+                ProjectSaveDataType.AdArea => SaveData_ADArea.GetProjectID(id),
                 _ => throw new ArgumentOutOfRangeException(nameof(dataType), dataType, null)
             };
         }
@@ -168,6 +177,7 @@ namespace Landscape2.Runtime
                 ProjectSaveDataType.LandscapePlan => SaveDataLandscapePlan.TryCheckData(projectID, id),
                 ProjectSaveDataType.LineOfSight => SaveDataLineOfSight.TryCheckData(projectID, id),
                 ProjectSaveDataType.BimImport => SaveDataBimImport.TryCheckData(projectID, id),
+                ProjectSaveDataType.AdArea => SaveData_ADArea.TryCheckData(projectID, id),
                 _ => throw new ArgumentOutOfRangeException(nameof(dataType), dataType, null)
             };
         }

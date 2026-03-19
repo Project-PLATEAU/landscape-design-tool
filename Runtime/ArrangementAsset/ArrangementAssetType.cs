@@ -1,4 +1,4 @@
-using PlateauToolkit.Sandbox;
+﻿using PlateauToolkit.Sandbox;
 using PlateauToolkit.Sandbox.Runtime;
 using System;
 using UnityEngine;
@@ -17,7 +17,7 @@ namespace Landscape2.Runtime
         Sign,
         Miscellaneous,
     }
-    
+
     public static class ArrangementAssetTypeExtensions
     {
         public static string GetKeyName(this ArrangementAssetType type)
@@ -25,7 +25,7 @@ namespace Landscape2.Runtime
             return type switch
             {
                 ArrangementAssetType.Human => "Humans_Assets",
-                ArrangementAssetType.Vehicle => "Vehicle_Assets",
+                ArrangementAssetType.Vehicle => "Vehicles_Assets",
                 ArrangementAssetType.Building => "Buildings_Assets",
                 ArrangementAssetType.Plant => "Plants_Assets",
                 ArrangementAssetType.Advertisement => "Advertisements_Assets",
@@ -35,7 +35,7 @@ namespace Landscape2.Runtime
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }
-        
+
         public static string GetButtonName(this ArrangementAssetType type)
         {
             return type switch
@@ -67,14 +67,14 @@ namespace Landscape2.Runtime
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }
-        
+
         public static ArrangementAssetType GetArrangementAssetType(GameObject target)
         {
             if (target.TryGetComponent<PlateauSandboxPlant>(out var plant))
             {
                 return ArrangementAssetType.Plant;
             }
-            else if (target.TryGetComponent<PlateauSandboxAdvertisement>(out var advertisement))
+            else if (target.TryGetComponent<PlateauSandboxAdvertisement>(out var advertisement) || target.TryGetComponent<PlateauSandboxAdvertisementScaled>(out var scaledAd))
             {
                 return ArrangementAssetType.Advertisement;
             }

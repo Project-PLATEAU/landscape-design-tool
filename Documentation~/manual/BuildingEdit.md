@@ -31,8 +31,6 @@
 
 - 編集している建物に重なって表示されている「削除」ボタンを押します
 
-![建物削除](../resources/EditBuilding/DeleteBuilding_After.jpg)
-
 - 削除ボタンを押下した建物は削除され、左の「削除済み建物一覧」リストに追加されます
 
 ![建物削除](../resources/EditBuilding/DeleteBuilding_AfterList.jpg)

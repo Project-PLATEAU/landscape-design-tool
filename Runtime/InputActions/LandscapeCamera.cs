@@ -123,7 +123,7 @@ namespace Landscape2.Runtime
         /// <param name="onUi"></param>
         public void OnUserInputTrigger(bool onUi)
         {
-            if (onUi)
+            if (onUi || MoveToAddressMode.MoveToAddressModeUI.IsInputFieldFocused())
             {
                 CameraMoveByUserInput.IsKeyboardActive = false;
                 CameraMoveByUserInput.IsMouseActive = false;

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,8 @@ namespace Landscape2.Runtime
 
         private const float focusDuration = 1.0f;
         private bool isFocusing = false;
+
+        private bool preIsCameraMoveActive = false;
 
         public System.Action<GameObject> focusFinishCallback = new(_ => { });
 
@@ -37,12 +39,27 @@ namespace Landscape2.Runtime
                 return;
             }
             isFocusing = true;
+            DeactivateCameraMoveByUserInput(); // フォーカス前にカメラ操作を無効化
             landscapeCamera.FocusPoint(target, () =>
             {
+                UndoCameraMoveByUserInput(); // フォーカス後にカメラ操作を復元
                 focusFinishCallback?.Invoke(target.gameObject);
             }, distance);
         }
 
+
+        private void DeactivateCameraMoveByUserInput()
+        {
+            preIsCameraMoveActive = CameraMoveByUserInput.IsCameraMoveActive;
+            CameraMoveByUserInput.IsCameraMoveActive = false;
+
+        }
+
+        private void UndoCameraMoveByUserInput()
+        {
+            CameraMoveByUserInput.IsCameraMoveActive = preIsCameraMoveActive;
+
+        }
 
     }
 }

@@ -10,7 +10,9 @@
         "Unity.RenderPipelines.HighDefinition.Runtime",
         "PlateauToolkit.Rendering",
         "CesiumRuntime",
-        "PlateauToolkit.Sandbox.Editor"
+        "PlateauToolkit.Sandbox.Editor",
+        "NormalizeJapaneseAddress",
+        "PLATEAU.Editor"
     ],
     "includePlatforms": [
         "Editor"

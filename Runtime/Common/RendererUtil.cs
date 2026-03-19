@@ -1,3 +1,4 @@
+﻿using Landscape2.Runtime.DynamicTile;
 using UnityEngine;
 
 namespace Landscape2.Runtime.Common
@@ -24,6 +25,12 @@ namespace Landscape2.Runtime.Common
                 bounds.Encapsulate(renderer.bounds);
             }
             return bounds;
+        }
+
+        public static Bounds CalculateBounds(DynamicTileGameObject obj)
+        {
+            // 内部で参照を保持していないので CurrentGameObjectで直ぐには問題にならないはず。CurrentGameObjectの更新前後でBoundsが大きく変わらないならおそらく大丈夫
+            return CalculateBounds(obj.CurrentGameObject);
         }
     }
 }

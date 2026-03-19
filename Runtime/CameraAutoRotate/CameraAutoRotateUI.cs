@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,8 +9,10 @@ namespace Landscape2.Runtime
         const string AutoRotateElementName = "Toggle_AutoRotate";
         Toggle toggle;
 
+        readonly LandscapeCamera landscapeCamera;
 
-        public CameraAutoRotateUI(CameraAutoRotate autoRotate, VisualElement globalNavi)
+
+        public CameraAutoRotateUI(CameraAutoRotate autoRotate, VisualElement globalNavi, LandscapeCamera landscapeCamera)
         {
 
             toggle = globalNavi.Q<Toggle>(AutoRotateElementName);
@@ -21,6 +22,27 @@ namespace Landscape2.Runtime
                 autoRotate?.ToggleRotate();
             });
 
+            this.landscapeCamera = landscapeCamera;
+            landscapeCamera.OnSetCameraCalled += HandleSetCameraCalled;
+        }
+
+        private void HandleSetCameraCalled()
+        {
+            var cameraState = landscapeCamera.cameraState;
+
+            // 歩行者モードまたは歩行者視点選択モードの場合
+            if (cameraState != LandscapeCameraState.PointOfView)
+            {
+                toggle.style.display = DisplayStyle.None;
+
+                // カメラ回転モードをOFFにする
+                if (toggle.value == true)
+                    toggle.value = false;
+            }
+            else
+            {
+                toggle.style.display = DisplayStyle.Flex;
+            }
         }
 
         public void LateUpdate(float deltaTime)

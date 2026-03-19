@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Landscape2.Runtime.DynamicTile;
+using UnityEngine;
 
 namespace Landscape2.Runtime
 {
@@ -7,6 +8,29 @@ namespace Landscape2.Runtime
     /// </summary>
     public class BuildingTRSEditingComponent : MonoBehaviour
     {
+        private class Inherit : DynamicTileGameObject.IInherit
+        {
+            public bool IsShow { get; set; }
+            void DynamicTileGameObject.IInherit.Init(GameObject newGameObject)
+            {
+                var trs = BuildingTRSEditingComponent.TryGetOrCreate(newGameObject);
+                if (trs != null)
+                {
+                    trs.ShowBuilding(IsShow);
+                }
+                
+            }
+        }
+
+        public static BuildingTRSEditingComponent TryGetOrCreate(DynamicTileGameObject target)
+        {
+            if (target.TryGetRawComponent<BuildingTRSEditingComponent>(out var component))
+            {
+                return component;
+            }
+            return target.AddRawComponent<BuildingTRSEditingComponent>();
+        }
+
         public static BuildingTRSEditingComponent TryGetOrCreate(GameObject target)
         {
             if (target.TryGetComponent<BuildingTRSEditingComponent>(out var component))
@@ -23,18 +47,21 @@ namespace Landscape2.Runtime
         
         // 編集中のGameObject
         private GameObject editingObject;
-        
+
+        Inherit dynamicTileInherit;
         private MeshRenderer meshRenderer;
         
         private bool isShow = true;
-        
+        public bool IsShow => isShow;
+
+
         private void Awake()
         {
             // オリジナルのTransformを保持
             originalPosition = transform.position;
             originalRotation = transform.eulerAngles;
             originalScale = transform.localScale;
-            
+
             // MeshColliderからオリジナルのメッシュを取得
             // デフォルトがCombine Meshのため、Transformの変更ができないため
             var meshCollider = GetComponent<MeshCollider>();
@@ -44,8 +71,16 @@ namespace Landscape2.Runtime
                 originalMesh = meshCollider.sharedMesh;
             }
 
+            // 動的タイルGameObjectに継承される設定を行う
+            var dGameObject = DynamicTileGameObjectUpdater.CreateOrGet(gameObject);
+            if (dGameObject.GetOrAddInit<Inherit>(nameof(BuildingTRSEditingComponent), out dynamicTileInherit))
+            {
+                // 初めて追加するので初期化する
+                dynamicTileInherit.IsShow = isShow;
+            }
+
             meshRenderer = GetComponent<MeshRenderer>();
-            
+
             CreateEditingObject(originalMesh);
         }
         
@@ -69,6 +104,7 @@ namespace Landscape2.Runtime
             
             // 両方とも表示/非表示
             meshRenderer.enabled = isShow;
+            dynamicTileInherit.IsShow = meshRenderer.enabled;
             editingObject.SetActive(isShow);
 
             if (isShow)
@@ -131,6 +167,7 @@ namespace Landscape2.Runtime
             if (meshRenderer != null)
             {
                 meshRenderer.enabled = !isEnable;
+                dynamicTileInherit.IsShow = meshRenderer.enabled;
             }
         }
         

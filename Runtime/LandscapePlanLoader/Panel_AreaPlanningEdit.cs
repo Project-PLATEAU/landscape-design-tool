@@ -12,7 +12,10 @@ namespace Landscape2.Runtime.LandscapePlanLoader
     {
         private readonly AreaEditManager areaEditManager;
         private AreaPlanningEdit areaPlanningEdit;
+        private Button heightApplyButton;
         private Button heightResetButton;
+
+        private RadioButtonGroup displayOptionRadioButtonGroup;
 
         private PlanningPanelStatus currentStatus = PlanningPanelStatus.Default;
 
@@ -41,6 +44,18 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             panel_PointEditor.RegisterCallback<MouseMoveEvent>(ev => OnDragPanel());
             panel_PointEditor.RegisterCallback<MouseUpEvent>(ev => OnReleasePanel());
             panel_PointEditor.style.display = DisplayStyle.None;
+            
+            // 高さ制御ボタン
+            heightApplyButton = panel_AreaPlanningEdit.Q<Button>("HeightApplyButton");
+            heightApplyButton.clicked += () => ApplyBuildingHeightEdit(true);
+            heightResetButton = panel_AreaPlanningEdit.Q<Button>("HeightResetButton");
+            heightResetButton.clicked += () => ApplyBuildingHeightEdit(false);
+
+            displayOptionRadioButtonGroup = panel_AreaPlanningEdit.Q<RadioButtonGroup>("DisplayRadioButtonGroup");
+            displayOptionRadioButtonGroup?.RegisterValueChangedCallback(evt =>
+            {
+                areaEditManager.ApplyDisplayOption((AreaDisplayOption)evt.newValue);
+            });
 
             base.InitializeUI();
             base.RegisterCommonCallbacks();
@@ -158,6 +173,10 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         protected override void OnCancelButtonClicked()
         {
             areaPlanningEdit.ClearVertexEdit();
+
+            // こっちに書いても動作しなかったため、RefreshEditor()に書いている
+            //// 高さを反映
+            //areaEditManager.ApplyBuildingHeight(areaEditManager.IsApplyBuildingHeight());
         }
 
         /// <summary>
@@ -187,7 +206,10 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             planningUI.InvokeOnChangeConfirmed();
 
             // 高さを反映
-            areaEditManager.ApplyBuildingHeight(true);
+            if (areaEditManager.IsApplyBuildingHeight())
+            {
+                areaEditManager.ApplyBuildingHeight(true);
+            }
         }
 
         /// <summary>
@@ -272,6 +294,9 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             // 頂点編集の内容を破棄
             areaPlanningEdit.ClearVertexEdit();
 
+            // 高さを反映
+            areaEditManager.ApplyBuildingHeight(areaEditManager.IsApplyBuildingHeight());
+
             // 編集対象を更新
             areaEditManager.SetEditTarget(newIndex);
 
@@ -281,6 +306,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             areaPlanningName.value = name == null ? "" : name;
             areaPlanningHeight.value = height == null ? "" : height.ToString();
             areaPlanningColor.style.backgroundColor = areaEditManager.GetColor();
+            SetHeightButtonState(areaEditManager.IsApplyBuildingHeight());
         }
 
         protected override void OnCopyButtonClicked()
@@ -301,5 +327,16 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             }
         }
 
+        private void ApplyBuildingHeightEdit(bool isApply)
+        {
+            areaEditManager.ApplyBuildingHeight(isApply);
+            SetHeightButtonState(isApply);
+        }
+        
+        private void SetHeightButtonState(bool isApply)
+        {
+            heightApplyButton.SetEnabled(!isApply);
+            heightResetButton.SetEnabled(isApply);
+        }
     }
 }

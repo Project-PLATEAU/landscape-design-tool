@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -485,6 +485,19 @@ namespace Landscape2.Runtime
             new List<string> { "5B4246", "683B45", "743343", "802843", "8B1742" },
             new List<string> { "412C32", "4C2533", "551E34", "5F1036" },
             new List<string> { "2C1620", "350F23", "3C0325" }
+        };
+
+        public List<List<string>> codemapN = new List<List<string>>()
+        {
+            new List<string> { "E3E3E3" },
+            new List<string> { "C8C8C8" },
+            new List<string> { "ADADAD" },
+            new List<string> { "939393" },
+            new List<string> { "797979" },
+            new List<string> { "606060" },
+            new List<string> { "484848" },
+            new List<string> { "313131" },
+            new List<string> { "1C1C1C" }
         };
     }
 }

@@ -1,5 +1,6 @@
-using Landscape2.Runtime.BuildingEditor;
+﻿using Landscape2.Runtime.BuildingEditor;
 using Landscape2.Runtime.Common;
+using Landscape2.Runtime.DynamicTile;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Landscape2.Runtime
 
         BuildingTRSEditorUI trsUI;
         BuildingDeleteListUI deleteListUI;
-        GameObject target;
+        DynamicTileGameObject target;
 
         public BuildingTRSEditor(EditBuilding editBuilding, VisualElement element, LandscapeCamera landscapeCamera)
         {
@@ -34,6 +35,12 @@ namespace Landscape2.Runtime
 
             deleteListUI.OnClickShowButton += (go) =>
             {
+                if (!DynamicTileGameObject.HasInstance(go))
+                {
+                    Debug.LogWarning("対象のGameObjectのインスタンスが存在しない");
+                    return;
+                }
+
                 // Debug.Log($"go => {go.name} : {go.transform.position} : {go.transform.localPosition}", go);
                 editBuilding.SetTargetObject(go);
                 var bounds = RendererUtil.CalculateBounds(go);
@@ -45,13 +52,20 @@ namespace Landscape2.Runtime
                 {
                     // １つだけならば表示
                     var editComponent = BuildingTRSEditingComponent.TryGetOrCreate(go);
-                    editComponent.ShowBuilding(true);
+                    editComponent?.ShowBuilding(true);
                 }
                 BuildingsDataComponent.SetBuildingDelete(gml, false);
+                trsUI.Show(true);
             };
 
             deleteListUI.OnClickListElement += (go) =>
             {
+                if (!DynamicTileGameObject.HasInstance(go))
+                {
+                    Debug.LogWarning("対象のGameObjectのインスタンスが存在しない");
+                    return;
+                }
+
                 editBuilding.SetTargetObject(go);
                 var bounds = RendererUtil.CalculateBounds(go);
                 targetViewObject.transform.position = bounds.center;
@@ -60,18 +74,20 @@ namespace Landscape2.Runtime
 
             trsUI.OnClickDeleteButton += () =>
             {
-                if (target == null)
+                if (!DynamicTileGameObject.HasInstance(target))
                 {
                     Debug.LogWarning($"targetがないです");
                     return;
                 }
 
-                if (!target.TryGetComponent<Renderer>(out var r))
+                if (!target.TryGetRawComponent<Renderer>(out var _))
                 {
                     Debug.LogWarning($"{target.name} : rendererがnullです");
                 }
 
-                var editComponent = BuildingTRSEditingComponent.TryGetOrCreate(r.gameObject);
+                var editComponent = BuildingTRSEditingComponent.TryGetOrCreate(target);
+                if (editComponent == null)  // 動的タイルの読み込みが完了していない場合にはnullが返るため
+                    return;
                 editComponent.ShowBuilding(false);
 
                 var gml = CityObjectUtil.GetGmlID(target);
@@ -80,9 +96,10 @@ namespace Landscape2.Runtime
                     return;
                 }
 
-                deleteListUI?.AppendList(r.gameObject, true);
+                deleteListUI?.AppendList(target, true);
 
                 BuildingsDataComponent.SetBuildingDelete(gml, true);
+                trsUI.Show(false);
             };
             trsUI.OnClickTransButton += () =>
             {
@@ -101,25 +118,28 @@ namespace Landscape2.Runtime
             BuildingsDataComponent.BuildingDataDeleted += OnDeleteBuildings;
         }
 
-        void ChangeEditMode(GameObject target, TransformType type)
+        void ChangeEditMode(DynamicTileGameObject @target, TransformType type)
         {
             editMode.OnCancel();
             //  後で使用するかも知れないので一旦コメントアウトのみ
-            // editMode.CreateRuntimeHandle(target, type);
+            // editMode.CreateRuntimeHandle(@target, type);
         }
 
-        public void OnSelectBuilding(GameObject select, bool canEdit)
+        public void OnSelectBuilding(DynamicTileGameObject select, bool canEdit)
         {
             if (!canEdit)
             {
                 return;
             }
 
-            if (select != target)
+            if (DynamicTileGameObject.HasInstance(target))
             {
-                if (select != null)
+                if (!target.IsSame(select))
                 {
-                    ChangeEditMode(select, TransformType.Scale);
+                    if (DynamicTileGameObject.HasInstance(select))
+                    {
+                        ChangeEditMode(select, TransformType.Scale);
+                    }
                 }
             }
             target = select;

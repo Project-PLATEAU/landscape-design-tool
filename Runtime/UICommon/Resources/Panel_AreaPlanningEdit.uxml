@@ -1,9 +1,16 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool-2/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool/Runtime/UICommon/Resources/Panel_AreaPlanningEdit.uss?fileID=7433441132597879392&amp;guid=db899b5ba32cd474db9b64ed9c024d8b&amp;type=3#Panel_AreaPlanningEdit" />
     <ui:VisualElement name="Panel_AreaPlanningEdit" style="flex-grow: 1;">
-        <ui:VisualElement name="Panel" style="flex-grow: 0; justify-content: center; height: 420px;">
+        <ui:VisualElement name="Panel" style="flex-grow: 0; justify-content: center; height: 100%;">
             <ui:Label tabindex="-1" text="景観計画区域 編集" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 21px; -unity-text-align: upper-center;" />
-            <ui:VisualElement name="FormContainer" style="flex-grow: 1; flex-direction: column; height: 100%; justify-content: center;">
+            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
+                <ui:Label text="エリア表示面の切り替え" style="flex-shrink: 80; width: 80%; align-items: center; margin-top: 12px; margin-right: 0; margin-bottom: 6px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: upper-center;" />
+                <ui:VisualElement name="DisplayOptionContainer" style="flex-grow: 0; height: auto;">
+                    <ui:RadioButtonGroup label="Radio Button Group" choices="全面,水平面のみ,垂直面のみ" value="0" name="DisplayRadioButtonGroup" style="flex-shrink: 1; flex-grow: 1; height: auto; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="FormContainer" style="flex-grow: 1; flex-direction: column; height: auto; justify-content: center;">
                 <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: center; align-items: center; flex-shrink: 1; width: 100%; margin-bottom: 16px;">
                     <ui:Label tabindex="-1" text="区域名" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 50px; font-size: 16px; -unity-text-align: middle-right; flex-shrink: 0;" />
                     <ui:TextField picking-mode="Ignore" label="Text Field" name="AreaPlanningName" style="width: 100%; flex-shrink: 1; font-size: 18px; margin-top: 0; margin-right: 0; margin-bottom: 12px; margin-left: 0;" />
@@ -12,6 +19,10 @@
                     <ui:Label tabindex="-1" text="高さ" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 50px; font-size: 16px; -unity-text-align: middle-right; flex-shrink: 0;" />
                     <ui:TextField picking-mode="Ignore" label="Text Field" value="50" name="AreaPlanningHeight" style="width: 20%; flex-shrink: 1; font-size: 18px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
                     <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 16px; margin-left: 0;" />
+                    <ui:VisualElement style="margin-left: 6px; flex-direction: row; justify-content: flex-end; width: 100%;">
+                        <ui:Button text="適用" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HeightApplyButton" class="ActionButton" style="background-color: rgb(128, 213, 212); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-left-color: rgb(128, 213, 212); border-right-color: rgb(128, 213, 212); border-top-color: rgb(128, 213, 212); border-bottom-color: rgb(128, 213, 212); margin-right: 16px;" />
+                        <ui:Button text="元に戻す" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HeightResetButton" enabled="false" class="OutlineButton CircleButton" style="border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 40px; border-left-color: rgb(136, 147, 146); border-right-color: rgb(136, 147, 146); border-top-color: rgb(136, 147, 146); border-bottom-color: rgb(136, 147, 146); background-color: rgba(149, 149, 149, 0); font-size: 14px;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: center; align-items: center; flex-shrink: 1; width: 100%;">
                     <ui:Label tabindex="-1" text="選択色" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 50px; font-size: 16px; -unity-text-align: middle-right; flex-shrink: 0;" />
@@ -22,9 +33,9 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="ActionContainer" style="flex-grow: 0; flex-direction: row; align-items: center;">
+            <ui:VisualElement name="ActionContainer" style="flex-grow: 1; flex-direction: row; align-items: center;">
                 <ui:VisualElement style="flex-grow: 1; align-items: center; flex-direction: row; justify-content: center;">
-                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="CancelButton" text="キャンセル" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="CancelButton" text="キャンセル" style="margin-right: 16px;" />
                     <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="OKButton" text="内容を変更" />
                 </ui:VisualElement>
             </ui:VisualElement>

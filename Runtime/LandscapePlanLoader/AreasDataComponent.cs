@@ -1,9 +1,16 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System;
 using UnityEngine;
 
 namespace Landscape2.Runtime.LandscapePlanLoader
 {
+    public enum AreaDisplayOption : int
+    {
+        All = 0,        // 全面
+        Horizontal = 1, // 垂直面
+        Vertical = 2,   // 水平面
+    }
+
     /// <summary>
     /// 読み込んだ区画データを管理するクラス
     /// </summary>
@@ -30,7 +37,9 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                 newProperty.LineOffset,
                 newProperty.Color,
                 newProperty.ReferencePosition,
-                newProperty.Transform.localPosition
+                newProperty.Transform.localPosition,
+                newProperty.DisplayOption,
+                newProperty.IsHeightApplied
                 );
 
             properties.Add(newProperty);
@@ -53,6 +62,8 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             properties[index].LineOffset = propertiesSnapshot[index].LineOffset;
             properties[index].Color = propertiesSnapshot[index].Color;
             properties[index].SetLocalPosition(propertiesSnapshot[index].Position);
+            properties[index].ApplyDisplayOption(propertiesSnapshot[index].DisplayOption);
+            properties[index].IsHeightApplied = propertiesSnapshot[index].IsHeightApplied;
 
             properties[index].CeilingMaterial.color = properties[index].Color;
             properties[index].WallMaterial.color = properties[index].Color;
@@ -92,7 +103,9 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                 properties[index].LineOffset,
                 properties[index].Color,
                 properties[index].ReferencePosition,
-                properties[index].Transform.localPosition
+                properties[index].Transform.localPosition,
+                properties[index].DisplayOption,
+                properties[index].IsHeightApplied
                 );
             return true;
         }
@@ -257,8 +270,10 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         public List<List<Vector3>> PointData { get ; set; }
         private AreaPlanningBuildingHeight areaBuildingHeight;
         public bool IsEditable { get; private set; } // 操作可能かどうか
+        public bool IsHeightApplied { get; set; }
+        public AreaDisplayOption DisplayOption { get; set; } = 0; // 0:全面 1:天井のみ 2:壁のみ
 
-        public AreaProperty(int id, string name, float limitHeight, float lineOffset, Color areaColor, Material wallMaterial, Material ceilingMaterial, float wallMaxHeight, Vector3 referencePos, Transform areaTransform, List<List<Vector3>> pointData)
+        public AreaProperty(int id, string name, float limitHeight, float lineOffset, Color areaColor, Material wallMaterial, Material ceilingMaterial, float wallMaxHeight, Vector3 referencePos, Transform areaTransform, List<List<Vector3>> pointData, bool isHeightApplied, AreaDisplayOption displayOption)
         {
             ID = id;
             Name = name;
@@ -272,6 +287,8 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             Transform = areaTransform;
             PointData = pointData;
             IsEditable = true;
+            IsHeightApplied = isHeightApplied;
+            DisplayOption = displayOption;
 
             areaBuildingHeight = new AreaPlanningBuildingHeight(areaTransform);
         }
@@ -287,13 +304,41 @@ namespace Landscape2.Runtime.LandscapePlanLoader
 
         public void ApplyBuildingHeight(bool isApply)
         {
-            // 高さを一度リセット
-            areaBuildingHeight.Reset();
             if (isApply)
             {
                 areaBuildingHeight.SetHeight(LimitHeight);
             }
+            else
+            {
+                areaBuildingHeight.ResetBuildingHeight();
+            }
+            IsHeightApplied = isApply;
 
+            // プロジェクトに通知
+            ProjectSaveDataManager.Edit(ProjectSaveDataType.LandscapePlan, ID.ToString());
+        }
+
+        public void ApplyDisplayOption(AreaDisplayOption option)
+        {
+            // Rendererの表示設定を行う　SetActiveでON/OFFを切り替えると、Colliderも一緒にON/OFFされてしまうため。
+            switch (option)
+            {
+                case AreaDisplayOption.All: // 全面
+                    Transform.GetComponent<Renderer>().enabled = true;
+                    Transform.GetChild(0).GetComponent<Renderer>().enabled = true;
+                    break;
+                case AreaDisplayOption.Horizontal: // 天井のみ
+                    Transform.GetComponent<Renderer>().enabled = true;
+                    Transform.GetChild(0).GetComponent<Renderer>().enabled = false;
+                    break;
+                case AreaDisplayOption.Vertical: // 壁のみ
+                    Transform.GetComponent<Renderer>().enabled = false;
+                    Transform.GetChild(0).GetComponent<Renderer>().enabled = true;
+                    break;
+                default:
+                    break;
+            }
+            DisplayOption = option;
             // プロジェクトに通知
             ProjectSaveDataManager.Edit(ProjectSaveDataType.LandscapePlan, ID.ToString());
         }
@@ -316,9 +361,11 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         public Color Color { get; private set; }
         public Vector3 Position { get; private set; }
         public Vector3 ReferencePosition { get; private set; }
+        public AreaDisplayOption DisplayOption { get; private set; }
+        public bool IsHeightApplied { get; private set; }
 
 
-        public AreaPropertySnapshot(int id, string name, float limitHeight, float lineOffset, Color areaColor, Vector3 referencePos, Vector3 areaPosition)
+        public AreaPropertySnapshot(int id, string name, float limitHeight, float lineOffset, Color areaColor, Vector3 referencePos, Vector3 areaPosition, AreaDisplayOption displayOption, bool isHeightApplied)
         {
             ID = id;
             Name = name;
@@ -327,9 +374,11 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             Color = new Color(areaColor.r, areaColor.g, areaColor.b, areaColor.a);
             ReferencePosition = referencePos;
             Position = areaPosition;
+            DisplayOption = displayOption;
+            IsHeightApplied = isHeightApplied;
         }
 
-        public void SetValues(int id, string name, float limitHeight, float lineOffset, Color areaColor, Vector3 referencePos, Vector3 areaPosition)
+        public void SetValues(int id, string name, float limitHeight, float lineOffset, Color areaColor, Vector3 referencePos, Vector3 areaPosition, AreaDisplayOption displayOption, bool isHeightApplied)
         {
             ID = id;
             Name = name;
@@ -338,6 +387,8 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             Color = new Color(areaColor.r, areaColor.g, areaColor.b, areaColor.a);
             ReferencePosition = referencePos;
             Position = areaPosition;
+            DisplayOption = displayOption;
+            IsHeightApplied = isHeightApplied;
         }
     }
 }

@@ -209,7 +209,7 @@ namespace Landscape2.Runtime
 
             // 現在開かれているサブメニューのuxmlを設定
             var type = (SubMenuUxmlType)Enum.ToObject(typeof(SubMenuUxmlType), id);
-            var subComponents = GameObject.FindObjectOfType<LandscapeSubComponents>();
+            var subComponents = GameObject.FindFirstObjectByType<LandscapeSubComponents>();
             if (subComponents != null)
             {
                 subComponents.SetSubMenuUxmlType(type);

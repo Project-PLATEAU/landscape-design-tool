@@ -72,8 +72,11 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             editingAreaProperty.WallMaterial.SetFloat("_DisplayRate", newHeight / editingAreaProperty.WallMaxHeight);
             editingAreaProperty.WallMaterial.SetFloat("_LineCount", newHeight / editingAreaProperty.LineOffset);
             
-            // 建物の高さも反映
-            AreasDataComponent.ApplyBuildingHeight(editingAreaIndex, true);
+            // 高さを反映
+            if (editingAreaProperty.IsHeightApplied)
+            {
+                ApplyBuildingHeight(true);
+            }
         }
 
         /// <summary>
@@ -192,11 +195,31 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         }
 
         /// <summary>
+        /// 高さ適用の状態を取得するメソッド
+        /// </summary>
+        /// <returns></returns>
+        public bool IsApplyBuildingHeight()
+        {
+            if (editingAreaIndex == -1) return false;
+            return editingAreaProperty.IsHeightApplied;
+        }
+
+        /// <summary>
         /// 対象区画のリスト番号を取得するメソッド
         /// </summary>
         public int GetEditingAreaIndex()
         {
             return editingAreaIndex;
+        }
+
+        /// <summary>
+        /// 0:全面, 1:壁のみ, 2:天井のみ, 3:無効値
+        /// </summary>
+        /// <param name="option"></param>
+        public void ApplyDisplayOption(AreaDisplayOption option)
+        {
+            if (editingAreaProperty == null) return;
+            editingAreaProperty.ApplyDisplayOption(option);
         }
     }
 }

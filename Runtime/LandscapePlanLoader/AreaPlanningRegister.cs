@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Landscape2.Runtime.Common;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Landscape2.Runtime.LandscapePlanLoader
@@ -59,8 +60,8 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                 }
 
                 for (int i = 0; i < hits.Length; i++)
-                {                  
-                    if (hits[i].collider.gameObject.name.Contains("dem_"))
+                {
+                    if (CityObjectUtil.IsGround(hits[i].collider.gameObject))
                     {
                         vertices.Add(hits[i].point);
                         var newVec = hits[i].point + new Vector3(0, 5.0f, 0);
@@ -101,7 +102,9 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                 10.0f,
                 color,
                 wallMaxHeight,
-                listOfVertices
+                listOfVertices,
+                false, // 新規作成時は高さ適用しない,
+                0 // デフォルトの表示オプション 全表示
                 );
             List<PlanAreaSaveData>listOfSaveData = new List<PlanAreaSaveData>
             {

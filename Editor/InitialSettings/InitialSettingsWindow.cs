@@ -17,9 +17,11 @@ namespace Landscape2.Editor
         [SerializeField] private Texture errorTexture;
         private InitialSettings initialSettings = new InitialSettings();
         private VisualElement uiRoot;
+        private Button setupButton; // 事前設定実行ボタン
         private Button runButton; // 実行ボタン
         private Button updateButton; // 更新ボタン
 
+        private const string UISetupButton = "SetupButton"; // 事前設定実行ボタン名前
         private const string UIRunButton = "RunButton"; // 初期設定実行ボタン名前
         private const string UIUpdateButton = "UpdateButton"; // 更新ボタン名前
         private const string UIImportCheck = "ImportCheckColumn"; // 都市モデルインポート済み判定欄名前
@@ -60,7 +62,7 @@ namespace Landscape2.Editor
 
         private List<bool> checkList; // 初期設定実行可能かの判定用リスト
 
-        [MenuItem("PLATEAU/InitialSettings")]
+        [MenuItem("PLATEAU/Landscape/InitialSettings")]
         public static void Open()
         {
             var window = GetWindow<InitialSettingsWindow>("InitialSettings");
@@ -72,6 +74,7 @@ namespace Landscape2.Editor
             uiRoot = rootVisualElement;
             VisualElement labelFromUXML = visualTreeAsset.Instantiate();
             uiRoot.Add(labelFromUXML);
+            setupButton = uiRoot.Q<Button>(UISetupButton);
             runButton = uiRoot.Q<Button>(UIRunButton);
             updateButton = uiRoot.Q<Button>(UIUpdateButton);
             checkList = new List<bool>();
@@ -101,6 +104,13 @@ namespace Landscape2.Editor
             {
                 runButton.SetEnabled(true);
             }
+
+            setupButton.clicked += () =>
+            {
+                // 事前設定を実行
+                setupButton.SetEnabled(false);
+                ExecSetup().ContinueWithErrorCatch();
+            };
 
             // 初期設定実行ボタンが押されたとき
             runButton.clicked += () =>
@@ -199,12 +209,9 @@ namespace Landscape2.Editor
             }
         }
 
-        // 初期設定を実行したときの処理
-        private async Task ExecInitialSettings()
+        private async Task ExecSetup()
         {
-            // SubComponentsを生成
-            initialSettings.CreateSubComponents();
-            AddCheckListUI(true, UISubComponentsCheck, UISubComponentsHelpbox, subCompornentsCheckHelpBox, subCompornentsCheckImage);
+            // 事前設定の処理
 
             // MainCameraが存在しない場合生成
             initialSettings.CreateMainCamera();
@@ -214,11 +221,36 @@ namespace Landscape2.Editor
             var isCreateEnvironmentPossible = initialSettings.IsCreateEnvironmentPossible();
             initialSettings.CreateEnvironment();
             AddCheckListUI(isCreateEnvironmentPossible, UIEnvironmentCheck, UIEnvironmentHelpbox, environmentCheckHelpBox, environmentCheckImage);
+        }
+
+
+        // 初期設定を実行したときの処理
+        private async Task ExecInitialSettings()
+        {
+            // SubComponentsを生成
+            initialSettings.CreateSubComponents();
+            AddCheckListUI(true, UISubComponentsCheck, UISubComponentsHelpbox, subCompornentsCheckHelpBox, subCompornentsCheckImage);
+
+            // MainCameraが存在しない場合生成
+            //initialSettings.CreateMainCamera();
+            //AddCheckListUI(true, UIMainCameraCheck, UIMainCameraHelpbox, mainCameraCheckHelpBox, mainCameraCheckImage);
+
+            // Environmentが存在しない場合生成
+            //var isCreateEnvironmentPossible = initialSettings.IsCreateEnvironmentPossible();
+            //initialSettings.CreateEnvironment();
+            //AddCheckListUI(isCreateEnvironmentPossible, UIEnvironmentCheck, UIEnvironmentHelpbox, environmentCheckHelpBox, environmentCheckImage);
 
             // マテリアル分け
             try
             {
-                await initialSettings.ExecMaterialAdjust();
+                if (initialSettings.IsTileManagerExists())
+                {
+                    await initialSettings.ExecMaterialAdjustForTiles();
+                }
+                else
+                {
+                    await initialSettings.ExecMaterialAdjust();
+                }
             }
             catch
             {

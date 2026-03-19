@@ -13,7 +13,7 @@ namespace Landscape2.Runtime
             {
                 if (cityModel == null)
                 {
-                    cityModel = GameObject.FindObjectOfType<PLATEAUInstancedCityModel>();
+                    cityModel = GameObject.FindFirstObjectByType<PLATEAUInstancedCityModel>();
                 }
                 return cityModel;
             }

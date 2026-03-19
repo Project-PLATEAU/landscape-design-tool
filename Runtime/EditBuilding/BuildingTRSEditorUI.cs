@@ -1,4 +1,5 @@
-using Landscape2.Runtime.Common;
+﻿using Landscape2.Runtime.Common;
+using Landscape2.Runtime.DynamicTile;
 using Landscape2.Runtime.UiCommon;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Landscape2.Runtime
     public class BuildingTRSEditorUI : ISubComponent
     {
 
-        const string TRSElementName = "Context_Edit";
+        //const string TRSElementName = "Context_Edit";
 
         string transButtonName = "MoveButton";
         string rotateButtonName = "RotateButton";
@@ -19,14 +20,15 @@ namespace Landscape2.Runtime
 
         string deleteButtonName = "ContextButton";
 
-        string succeedButtonName = "Button";
+        //string succeedButtonName = "Button";
 
 
         VisualElement trsVisualElement;
 
         VisualElement editContext;
 
-        GameObject currentSelect;
+        //GameObject currentSelect;
+        Bounds? currentSelect;
 
         public System.Action OnClickTransButton
         {
@@ -86,11 +88,22 @@ namespace Landscape2.Runtime
                     Show(false);
                     return;
                 }
-                CalcUIDisplayPosition(go);
+                var bounds = GetBounds(go);
+                CalcUIDisplayPosition(bounds);
+                currentSelect = bounds;
 
-                currentSelect = go;
-
-                Show(true);   
+                if (go.TryGetRawComponent<BuildingTRSEditingComponent>(out var component))
+                {
+                    if (component.IsShow)
+                        Show(true);
+                    else
+                        Show(false);
+                }
+                else
+                {
+                    // コンポーネントが無いというということは編集されておらず表示されている状態
+                    Show(true);
+                }
             };
 
 
@@ -108,31 +121,8 @@ namespace Landscape2.Runtime
 
         }
 
-        void CalcUIDisplayPosition(GameObject obj)
+        void CalcUIDisplayPosition(Bounds bounds)
         {
-            // 建物のTransform.positionをScreen座標に変換
-            // var bldgBounds = bldgItem.Key.transform.GetComponent<MeshCollider>().bounds;
-            // var topPos = new Vector3(bldgBounds.center.x, bldgBounds.max.y, bldgBounds.center.z);
-            // var screenPos = RuntimePanelUtils.CameraTransformWorldToPanel(visualizeHeightPanel.panel, topPos, Camera.main);
-
-            // var vp = Camera.main.WorldToViewportPoint(topPos);
-            // bool isActive = vp.x >= 0.0f && vp.x <= 1.0f && vp.y >= 0.0f && vp.y <= 1.0f && vp.z >= 0.0f;
-            // bool isInScreen = screenPos.x > pinOffsetx && screenPos.x < Screen.width - pinOffsetx && screenPos.y > headerOffset + pinOffsety;
-            // bool isNearCamera = Vector2.Distance(new Vector2(topPos.x,topPos.z), new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.z)) < cameraDistance;
-
-            // // ヘッダーパネルをのぞくScreenに映る範囲内の場合は表示
-            // if (isActive && isInScreen && isNearCamera)
-            // {
-            //     bldgItem.Value.style.display = DisplayStyle.Flex;
-            //     heightPinList.Add(bldgItem.Value);
-
-            //     //HeightPinの位置を設定
-            //     var xPos = screenPos.x - pinOffsetx;
-            //     var yPos = screenPos.y - pinOffsety;
-            //     bldgItem.Value.style.translate = new Translate() { x = xPos, y = yPos };
-            // }
-
-            var bounds = obj.GetComponent<MeshCollider>().bounds;
             var wp = new Vector3(bounds.center.x, bounds.max.y, bounds.center.z);
             var screenPos = RuntimePanelUtils.CameraTransformWorldToPanel(editContext.panel, wp, Camera.main);
 
@@ -142,6 +132,40 @@ namespace Landscape2.Runtime
             var xcenter = 80f / 2f;
 
             trsVisualElement.style.translate = new Translate() { x = screenPos.x - xcenter, y = screenPos.y };
+
+        }
+
+        void CalcUIDisplayPosition(GameObject obj)
+        {
+            //// 建物のTransform.positionをScreen座標に変換
+            //// var bldgBounds = bldgItem.Key.transform.GetComponent<MeshCollider>().bounds;
+            //// var topPos = new Vector3(bldgBounds.center.x, bldgBounds.max.y, bldgBounds.center.z);
+            //// var screenPos = RuntimePanelUtils.CameraTransformWorldToPanel(visualizeHeightPanel.panel, topPos, Camera.main);
+
+            //// var vp = Camera.main.WorldToViewportPoint(topPos);
+            //// bool isActive = vp.x >= 0.0f && vp.x <= 1.0f && vp.y >= 0.0f && vp.y <= 1.0f && vp.z >= 0.0f;
+            //// bool isInScreen = screenPos.x > pinOffsetx && screenPos.x < Screen.width - pinOffsetx && screenPos.y > headerOffset + pinOffsety;
+            //// bool isNearCamera = Vector2.Distance(new Vector2(topPos.x,topPos.z), new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.z)) < cameraDistance;
+
+            //// // ヘッダーパネルをのぞくScreenに映る範囲内の場合は表示
+            //// if (isActive && isInScreen && isNearCamera)
+            //// {
+            ////     bldgItem.Value.style.display = DisplayStyle.Flex;
+            ////     heightPinList.Add(bldgItem.Value);
+
+            ////     //HeightPinの位置を設定
+            ////     var xPos = screenPos.x - pinOffsetx;
+            ////     var yPos = screenPos.y - pinOffsety;
+            ////     bldgItem.Value.style.translate = new Translate() { x = xPos, y = yPos };
+            //// }
+
+            //var bounds = GetBounds(obj);
+            //CalcUIDisplayPosition(bounds);
+        }
+
+        private static Bounds GetBounds(DynamicTileGameObject obj)
+        {
+            return obj.GetRawComponent<MeshCollider>().bounds;
         }
 
         public void OnDisable()
@@ -158,7 +182,7 @@ namespace Landscape2.Runtime
         {
             if (currentSelect != null)
             {
-                CalcUIDisplayPosition(currentSelect);
+                CalcUIDisplayPosition((Bounds)currentSelect);
             }
         }
 

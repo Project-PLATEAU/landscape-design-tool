@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using SFB;
 using PlateauToolkit.Maps;
@@ -126,7 +126,9 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                     Mathf.Max(300, initLimitHeight + 50),
                     gisObject.transform.position + mesh.bounds.center,
                     gisObject.transform,
-                    areaPointData
+                    areaPointData,
+                    false, // 高さ適用はデフォルトなし
+                    0       // 表示オプションはデフォルト全表示
                     );
 
 
@@ -261,7 +263,9 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                     Mathf.Max(300, initLimitHeight + 50),
                     gisObject.transform.position + mesh.bounds.center,
                     gisObject.transform,
-                    areaPointData
+                    areaPointData,
+                    saveData.IsHeightApplied,
+                    saveData.DisplayOption
                     );
 
                 // 上面Meshのマテリアルを設定
@@ -287,7 +291,10 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                 gisObject.name = $"Area_{areaProperty.ID}";
 
                 // 高さを適用
-                areaProperty.ApplyBuildingHeight(true);
+                areaProperty.ApplyBuildingHeight(saveData.IsHeightApplied);
+
+                // 表示オプションを適用
+                areaProperty.ApplyDisplayOption(saveData.DisplayOption);
 
                 // 区画データリストにAreaPropertyを追加登録
                 AreasDataComponent.AddNewProperty(areaProperty);
@@ -436,7 +443,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Debug.LogWarning($"エンコーディングの判定に失敗しました。Shift-JISを返します。");
             }

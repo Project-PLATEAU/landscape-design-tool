@@ -41,31 +41,28 @@
 
 ![画面構成](../resources/LandscapePlanningAreaImages/PlanAreaMain.png)
 
-## 景観計画データの読み込み
+## 区域作成
 
-「景観計画データ編集」パネルのデータ読み込みボタンをクリックすると、エクスプローラーが表示されます。
+- 「景観計画データ編集」パネルの「新規作成」ボタンをクリックし、作成を開始します。
 
-![データ読み込み](../resources/LandscapePlanningAreaImages/LoadLandscapePlanButton.png)
+![新規作成ボタン](../resources/LandscapePlanningAreaImages/RegisterAreaButton.png)
 
-読み込む景観計画の Shape ファイルと dbf ファイルが含まれるフォルダーを選択し、「フォルダーの選択」をクリックします。
+区域情報の作成では、区域情報の編集と同様に区域名、高さ制限値、区域カラーを変更できます。
 
-「景観計画区域リスト」パネルにエリア情報が追加されると読み込み完了です。
-<br>　※読み込みには数秒を要する場合があります。
+![区域情報新規作成パネル](../resources/LandscapePlanningAreaImages/RegisterAreaPanel.png)
 
-![フォルダ選択](../resources/LandscapePlanningAreaImages/BrowseShpFolder.png)
+- 3D ビューにおける地面をクリックすると、区域の頂点が生成されます。
+- 作成したい区域を 4 つ以上の頂点で囲みます。
+- 最初に生成した頂点をクリックするとエリアが閉じられ「登録」ボタンが表示されます。
+  <br>　※交差している頂点がある場合、「登録」ボタンをクリックしても区域は作成されません。
+- 頂点を配置し直す場合は「景観計画区域 新規作成」パネル内の「キャンセル」ボタンを押すと「新規作成」ボタンが表示される状態まで戻ります。
 
-## 景観計画データの書き出し
+![区域頂点作成](../resources/LandscapePlanningAreaImages/RegisterPoint.png)
 
-「景観計画データ編集」パネルのデータ書き出しボタンをクリックすると、エクスプローラーが表示されます。
-
-![データ書き出し](../resources/LandscapePlanningAreaImages/SaveLandscapePlanButton.png)
-
-景観計画の Shape ファイルと dbf ファイルの保存先を選択し、「保存」をクリックします。
-
-エクスプローラーに Shape ファイルと dbf ファイルが保存されると書き出し完了です。
-<br>　※ cpg ファイルおよび shx ファイルが同時に出力されることがあります。
-
-![フォルダ選択](../resources/LandscapePlanningAreaImages/SaveDialog.png)
+完了後は「登録」ボタンをクリックし、変更内容を保存します。
+<br>　※エリアが閉じると「登録」ボタンが表示されます。
+<br>　※交差している頂点がある場合、「登録」ボタンをクリックしても区域は作成されません。
+<br>　※生成した区域の編集は「区域情報の編集」の項目を参照してください。
 
 ## 区域情報の編集
 
@@ -77,7 +74,7 @@
 
 ![データ編集画面を開く](../resources/LandscapePlanningAreaImages/StartAreaDataEdit.png)
 
-編集では、区域名、高さ制限値、区域カラーを変更できます。
+編集では、エリア表示面、区域名、高さ制限値、高さ制限の適用、区域カラーを変更できます。
 
 編集完了後は「内容を変更」ボタンをクリックし、変更内容を保存します。
 <br>　※「キャンセル」または他の区域が選択された場合、変更内容は破棄されます。
@@ -94,8 +91,6 @@
 ### 高さ制限値の編集
 
 - 高さ制限値の入力は半角数字のみ対応します。
-- 区域の新規作成時、区域内の施設の高さが変更されます。入力された高さに達していない施設には影響がありません。
-- 区域の編集時、高さ制限値を変更すると、即座に施設の高さが変更されます。
 
 ![高さ制限値編集](../resources/LandscapePlanningAreaImages/EditAreaHeight.png)
 
@@ -124,27 +119,47 @@
 
 ![区域頂点編集](../resources/LandscapePlanningAreaImages/EditPoint.png)
 
-## 区域情報の作成
+### エリア表示面の編集
 
-「景観計画データ編集」パネルの「新規作成」ボタンをクリックし、作成を開始します。
+![エリア表示面](../resources/LandscapePlanningAreaImages/AreaDisplaySurface.png)
 
-![データ作成画面を開く](../resources/LandscapePlanningAreaImages/RegisterAreaButton.png)
+- 「全面」「水平面のみ」「垂直面のみ」のいずれかを選択することで、表示面が変更されます。
 
-区域情報の作成では、区域情報の編集と同様に区域名、高さ制限値、区域カラーを変更できます。
+![水平面](../resources/LandscapePlanningAreaImages/HorizontalPlane.png)
+![垂直面](../resources/LandscapePlanningAreaImages/VerticalPlane.png)
 
-![データ作成画面](../resources/LandscapePlanningAreaImages/RegisterAreaPanel.png)
+### 建物の高さ制限の適用
+![建物の高さ制限の適用](../resources/LandscapePlanningAreaImages/ApplyBuildingHeightLimit.png)
 
-### 区域作成
+- 高さを指定して「適用」を選択すると、建物の高さが指定した高さ以下に変更されます。
+- 建物の高さを元に戻したい場合は「元に戻す」を選択すると、建物の高さが元の状態に戻ります。
 
-- 3D ビューにおける地面をクリックすると、区域の頂点が生成されます。
-- 作成したい区域を 4 つ以上の頂点で囲みます。
-- 最初に生成した頂点をクリックするとエリアが閉じられ「登録」ボタンが表示されます。
-  <br>　※交差している頂点がある場合、「登録」ボタンをクリックしても区域は作成されません。
-- 頂点を配置し直す場合は「景観計画区域 新規作成」パネル内の「キャンセル」ボタンを押すと「新規作成」ボタンが表示される状態まで戻ります。
+## 景観計画データの読み込み
 
-![区域頂点作成](../resources/LandscapePlanningAreaImages/RegisterPoint.png)
+「景観計画データ編集」パネルのデータ読み込みボタンをクリックすると、エクスプローラーが表示されます。
 
-完了後は「登録」ボタンをクリックし、変更内容を保存します。
-<br>　※エリアが閉じると「登録」ボタンが表示されます。
-<br>　※交差している頂点がある場合、「登録」ボタンをクリックしても区域は作成されません。
-<br>　※生成した区域の編集は「区域情報の編集」の項目を参照してください。
+![データ読み込み](../resources/LandscapePlanningAreaImages/LoadLandscapePlanButton.png)
+
+読み込む景観計画の Shape ファイルと dbf ファイルが含まれるフォルダーを選択し、「フォルダーの選択」をクリックします。
+
+「景観計画区域リスト」パネルにエリア情報が追加されると読み込み完了です。
+<br>　※読み込みには数秒を要する場合があります。
+
+![フォルダ選択](../resources/LandscapePlanningAreaImages/BrowseShpFolder.png)
+
+## 景観計画データの書き出し
+
+「景観計画データ編集」パネルのデータ書き出しボタンをクリックすると、エクスプローラーが表示されます。
+
+![データ書き出し](../resources/LandscapePlanningAreaImages/SaveLandscapePlanButton.png)
+
+景観計画の Shape ファイルと dbf ファイルの保存先を選択し、「保存」をクリックします。
+
+エクスプローラーに Shape ファイルと dbf ファイルが保存されると書き出し完了です。
+<br>　※ cpg ファイルおよび shx ファイルが同時に出力されることがあります。
+
+
+![フォルダ選択](../resources/LandscapePlanningAreaImages/SaveDialog.png)
+
+
+

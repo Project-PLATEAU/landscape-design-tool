@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -197,7 +197,6 @@ namespace Landscape2.Runtime
             obj.transform.parent = targetLandmark.transform;
 
             int circumferenceInterval = LandmarkViewRayInterval * analyzeLandmarkData.raySpan;
-            int radiusInterval = 5;
             int radius = analyzeLandmarkData.rangeRadius;
             int rangeUp = analyzeLandmarkData.rangeUp;
             int rangeDown = analyzeLandmarkData.rangeDown;

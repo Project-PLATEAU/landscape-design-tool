@@ -1,3 +1,4 @@
+﻿using Landscape2.Runtime.DynamicTile;
 using UnityEngine;
 
 namespace Landscape2.Runtime.Common
@@ -16,6 +17,11 @@ namespace Landscape2.Runtime.Common
         }
         
         public static bool IsIgnore(GameObject target)
+        {
+            return target.layer == ignoreLayer;
+        }
+
+        public static bool IsIgnore(DynamicTileGameObject target)
         {
             return target.layer == ignoreLayer;
         }

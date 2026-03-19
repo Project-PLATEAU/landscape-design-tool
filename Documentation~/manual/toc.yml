@@ -1,9 +1,11 @@
-- name: 景観街づくりツール
+- name: 景観まちづくりツール
   href: ../index.md
 - name: 利用を開始する
   items:
     - name: セットアップ
       href: Setup.md
+    - name: 広域表示機能
+      href: DynamicTiles.md
     - name: 遠景表示設定
       href: DistantView.md
     - name: ビルド
@@ -18,6 +20,8 @@
               href: BuildingEdit.md
             - name: アセット配置
               href: AssetPlacement.md
+            - name: 広告物規制
+              href: AdvertisementRegulation.md
             - name: BIMデータ
               href: BimData.md
         - name: データ解析

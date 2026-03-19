@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +17,9 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         [SerializeField] private Color color;
         [SerializeField] private float wallMaxHeight;
         [SerializeField] private List<List<Vector3>> pointData;
-
+        [SerializeField] private bool isHeightApplied;
+        [SerializeField] private AreaDisplayOption displayOption;
+        
         public int Id { get => id;}
         public string Name { get => name;}
         public float LimitHeight { get => limitHeight;}
@@ -25,8 +27,19 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         public Color Color { get => color;}
         public float WallMaxHeight { get => wallMaxHeight;}
         public List<List<Vector3>> PointData { get => pointData;}
+        public bool IsHeightApplied { get => isHeightApplied;}
+        public AreaDisplayOption DisplayOption { get => displayOption;}
 
-        public PlanAreaSaveData(int id, string name, float limitHeight, float lineOffset, Color color, float wallMaxHeight, List<List<Vector3>> pointData)
+        public PlanAreaSaveData(
+            int id,
+            string name,
+            float limitHeight,
+            float lineOffset,
+            Color color,
+            float wallMaxHeight,
+            List<List<Vector3>> pointData,
+            bool isHeightApplied,
+            AreaDisplayOption displayOption)
         {
             this.id = id;
             this.name = name;
@@ -35,6 +48,8 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             this.color = color;
             this.wallMaxHeight = wallMaxHeight;
             this.pointData = pointData;
+            this.isHeightApplied = isHeightApplied;
+            this.displayOption = displayOption;
         }
     }
 }

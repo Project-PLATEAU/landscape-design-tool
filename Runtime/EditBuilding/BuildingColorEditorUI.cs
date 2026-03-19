@@ -1,4 +1,8 @@
-﻿using Landscape2.Runtime.UiCommon;
+﻿using Landscape2.Runtime.Common;
+using Landscape2.Runtime.DynamicTile;
+using Landscape2.Runtime.UiCommon;
+using PLATEAU.CityInfo;
+using PLATEAU.DynamicTile;
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -62,11 +66,14 @@ namespace Landscape2.Runtime.BuildingEditor
         // 色彩編集パネル表示ボタンの色
         private Color colorButtonColor;
 
+        // Handles persistence of material changes across dynamic tile zoom level updates.
+        private readonly ColorEditorDynamicTileUpdater colorEditorDynamicTileUpdater;
+
         public BuildingColorEditorUI(BuildingColorEditor buildingColorEditor, EditBuilding editBuilding, VisualElement uiRoot)
         {
             this.uiRoot = uiRoot;
             this.buildingColorEditor = buildingColorEditor;
-            
+
             // 建物編集画面の建物選択イベントに登録
             editBuilding.OnBuildingSelected += SetFieldList;
 
@@ -102,6 +109,9 @@ namespace Landscape2.Runtime.BuildingEditor
                 buildingColorEditor.ChangeEditingMaterial(Array.IndexOf(uiBuildingFields, evt.newValue));
                 // UIを反映
                 UpdateEditorUI();
+
+                // 最後に選択されたマテリアルを保存
+                colorEditorDynamicTileUpdater.LastEditedMaterial = Array.IndexOf(uiBuildingFields, evt.newValue);
             });
 
             // 色彩編集パネル表示ボタンが押されたとき
@@ -143,7 +153,7 @@ namespace Landscape2.Runtime.BuildingEditor
                     // 警告を表示
                     SnackBarUI.Show($"{lowestLayerProjectName} の色彩が優先されています。", uiRoot);
                 });
-                
+
                 // UIをリセット
                 colorEditorUI.ResetColorEditorUI(BuildingColorEditor.InitialColor);
                 ResetBuildingEditorUI();
@@ -157,6 +167,20 @@ namespace Landscape2.Runtime.BuildingEditor
                     OnDisable();
                 }
             });
+
+            // 動的タイル更新用のクラスを生成
+            colorEditorDynamicTileUpdater = new ColorEditorDynamicTileUpdater(buildingColorEditor);
+        }
+
+        private void SetFieldList(DynamicTileGameObject targetObj, bool canEdit)
+        {
+            if (targetObj?.CurrentGameObject?.transform.parent?.transform.parent?.name.Contains(ColorEditorDynamicTileUpdater.UpdateSkipName) == true)
+            {
+                // ズームレベル9のタイルは、マテリアル構成が異なるため処理をスキップ
+                return;
+            }
+
+            SetFieldList(targetObj.CurrentGameObject, canEdit);
         }
 
         // 建物選択時のイベント
@@ -177,8 +201,11 @@ namespace Landscape2.Runtime.BuildingEditor
 
             // UIを反映
             UpdateEditorUI();
-            
+
             Show(canEdit);
+
+            // 最後に編集した建物のGML IDを保存
+            colorEditorDynamicTileUpdater.LastEditedBuildingGmlID = CityObjectUtil.GetGmlID(targetObj);
         }
 
         private void Show(bool isVisible)
@@ -231,6 +258,74 @@ namespace Landscape2.Runtime.BuildingEditor
         public void LateUpdate(float deltaTime)
         {
         }
+    }
 
+    /// <summary>
+    /// 動的タイルの更新処理
+    /// </summary>
+    class ColorEditorDynamicTileUpdater : IDynamicTileUpdater
+    {
+        public static string UpdateSkipName = "Zoom_9"; // ズームレベル9のタイルは、マテリアル構成が異なるため処理をスキップ
+
+        private readonly BuildingColorEditor buildingColorEditor;
+
+        public string LastEditedBuildingGmlID { get; set; } = string.Empty;
+
+        public int LastEditedMaterial { get; set; } = -1;
+
+        public ColorEditorDynamicTileUpdater(BuildingColorEditor buildingColorEditor)
+        {
+            var tMana = GameObject.FindFirstObjectByType<PLATEAUTileManager>();
+
+            if (tMana == null)
+            {
+                return;
+            }
+
+            tMana.onTileInstantiated.AddListener(OnTileInstantiated);
+            tMana.beforeTileUnload.AddListener(OnBeforeTileUnload);
+
+            this.buildingColorEditor = buildingColorEditor;
+        }
+
+        public void OnTileInstantiated(GameObject o)
+        {
+            if (this.buildingColorEditor == null)
+            {
+                return;
+            }
+
+            // 建物タイルの場合のみ処理（文字列中にある場合）
+            if (!o.gameObject.name.Contains("bldg"))
+            {
+                return;
+            }
+
+            // ズームレベル9のタイルは、マテリアル構成が異なるため処理をスキップ
+            if (o.gameObject.name.Contains(UpdateSkipName))
+            {
+                return;
+            }
+
+            var cityObjectGroups = o.gameObject.GetComponentsInChildren<PLATEAUCityObjectGroup>();
+
+            buildingColorEditor.LoadBuildingColor(cityObjectGroups);
+
+            foreach (var cityObjectGroup in cityObjectGroups)
+            {
+                if (CityObjectUtil.GetGmlID(cityObjectGroup.gameObject) == LastEditedBuildingGmlID)
+                {
+                    buildingColorEditor.SetMaterialList(cityObjectGroup.gameObject);
+
+                    buildingColorEditor.ChangeEditingMaterial(LastEditedMaterial);
+
+                    break;
+                }
+            }
+        }
+
+        public void OnBeforeTileUnload(GameObject o)
+        {
+        }
     }
 }

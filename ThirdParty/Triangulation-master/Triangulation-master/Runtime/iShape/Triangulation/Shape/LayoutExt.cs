@@ -1,9 +1,15 @@
-using Unity.Collections;
+﻿using Unity.Collections;
 using iShape.Geometry;
 using iShape.Collections;
 using iShape.Geometry.Container;
+using System.Diagnostics;
 
 namespace iShape.Triangulation.Shape {
+
+    public static class InfinityLoopDtector
+    {
+        public static bool IsDetected { get; set; } = false;
+    }
 
     public static class LayoutExt {
         private struct Sub {
@@ -74,11 +80,43 @@ namespace iShape.Triangulation.Shape {
 
             int i = 0;
 
+            // 無限ループ検知用 iに変化が発生しない時に無限ループとして検出する Mergeを除いてデータに影響ある処理を実行後はi++をしているのを利用する
+            int lastI = -1;
+
+
+            InfinityLoopDtector.IsDetected = false;
             nextNode:
             while (i < n) {
                 int sortIndex = sortIndices[i];
                 var node = links[sortIndex];
                 var nature = natures[sortIndex];
+
+                // 無限ループ検知
+                if (lastI == i)
+                {
+                    // マージのみi++をしないでdSubsに変化のある処理をしているためこの方法だと検知出来ないかもしれないので除外する
+                    if (nature != LinkNature.merge)
+                    {
+                        //UnityEngine.Assertions.Assert.IsTrue(false, $"Infinite loop detected in method. Check the input data or algorithm logic. Current state: i={i}, lastI={lastI}, nature={nature}.");
+                        UnityEngine.Debug.LogError($"Infinite loop detected in method. Check the input data or algorithm logic. Current state: i={i}, lastI={lastI}, nature={nature}.");
+                        InfinityLoopDtector.IsDetected = true;
+                        goto infinityLoop;
+                        //break;    // 無理やり抜けるとデータの保存等の処理で利用していた場合にセーブデータを破壊する可能性があるので抜けるかは開発者の判断に任せる
+                    }
+
+                    // マージ用　検知処理
+                    if (nature == LinkNature.merge) {
+                        if (subs.Count == 0 && dSubs.Count == 0)
+                        {
+                            //UnityEngine.Assertions.Assert.IsTrue(false, $"Infinite loop detected in merge method. Check the input data or algorithm logic. Current state: i={i}, lastI={lastI}, nature={nature}.");
+                            UnityEngine.Debug.LogError($"Infinite loop detected in merge method. Check the input data or algorithm logic. Current state: i={i}, lastI={lastI}, nature={nature}.");
+                            InfinityLoopDtector.IsDetected = true;
+                            goto infinityLoop;
+                            //break;    // 無理やり抜けるとデータの保存等の処理で利用していた場合にセーブデータを破壊する可能性があるので抜けるかは開発者の判断に任せる
+                        }
+                    }
+                }
+                lastI = i;
 
                 int j;
                 switch (nature) {
@@ -455,6 +493,8 @@ namespace iShape.Triangulation.Shape {
                         break;
                 } // switch
             }
+
+        infinityLoop:
 
             subs.Dispose();
             dSubs.Dispose();

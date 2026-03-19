@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -30,6 +30,9 @@ namespace Landscape2.Runtime
         // アセット一覧
         private ArrangementAssetListUI arrangementAssetListUI;
 
+        // アセットカラーエディター
+        private readonly AssetColorEditorUI assetColorEditorUI;
+
         public ArrangementAssetUI(
             VisualElement element,
             ArrangementAsset arrangementAssetInstance,
@@ -37,7 +40,8 @@ namespace Landscape2.Runtime
             EditMode editModeInstance,
             AdvertisementRenderer advertisementRendererInstance,
             LandscapeCamera landscapeCamera,
-            AssetsSubscribeSaveSystem subscribeSaveSystem)
+            AssetsSubscribeSaveSystem subscribeSaveSystem,
+            AssetColorEditorUI assetColorEditorUIInstance)
         {
             UIElement = element;
             arrangementAsset = arrangementAssetInstance;
@@ -51,20 +55,25 @@ namespace Landscape2.Runtime
             arrangementAssetListUI = new ArrangementAssetListUI(element, landscapeCamera);
             arrangementAssetListUI.OnDeleteAsset.AddListener((target) =>
             {
-                if (editTarget == null)
+                if (editTarget == target)
                 {
-                    // 編集中でなければそのまま消す
-                    GameObject.Destroy(target);
+                    // 編集中アセットを消す
+                    DeleteEditingAsset();
                     return;
                 }
-                DeleteAsset();
+                GameObject.Destroy(target);
             });
-            
+
+            assetColorEditorUI = assetColorEditorUIInstance;
+
             // プロジェクトからの通知イベント
             subscribeSaveSystem.SaveLoadHandler.OnDeleteAssets.AddListener(OnDeleteAssets);
             subscribeSaveSystem.SaveLoadHandler.OnChangeEditableState.AddListener(OnChangeEditableState);
-      
+
             RegisterEditButtonAction();
+
+            var lib = UIElement.Q<VisualElement>("AssetLibraryGroup");
+            lib.style.display = DisplayStyle.Flex;
 
             // デフォルトでは非表示
             editPanel.style.display = DisplayStyle.None;
@@ -90,6 +99,28 @@ namespace Landscape2.Runtime
             {
                 editMode.CreateRuntimeHandle(editTarget, TransformType.Scale);
             });
+            var libButton = editPanel.Q<RadioButton>("Toggle_Library");
+            libButton.RegisterCallback<ClickEvent>(evt =>
+            {
+                var lib = UIElement.Q<VisualElement>("AssetLibraryGroup");
+                if (lib != null)
+                {
+                    lib.style.display = DisplayStyle.Flex;
+                }
+                assetColorEditorUI.Hide();
+            });
+            var colorButton = editPanel.Q<RadioButton>("Toggle_ColorEdit");
+            colorButton.RegisterCallback<ClickEvent>(evt =>
+            {
+                var lib = UIElement.Q<VisualElement>("AssetLibraryGroup");
+                if (lib != null)
+                {
+                    lib.style.display = DisplayStyle.None;
+                }
+                ShowAssetColorEditor();
+            });
+            libButton.value = true;
+            colorButton.value = false;
 
             // 画像読み込み
             var fileButton = editPanel.Q<Button>("FileButton");
@@ -117,30 +148,38 @@ namespace Landscape2.Runtime
             var movieContainer = editPanel.Q<VisualElement>("MovieContainer");
             movieContainer.style.display = DisplayStyle.None; // デフォルトでは非表示
 
-            var deleteButton = editPanel.Q<Button>("ContextButton");
-            deleteButton.clicked += DeleteAsset;
+            var deleteButton = editPanel.Q<Button>("IconDelete");
+            deleteButton.clicked += DeleteEditingAsset;
         }
 
-        private void DeleteAsset()
+        private void DeleteEditingAsset()
         {
-            editMode.DeleteAsset(editTarget);
-            editPanel.style.display = DisplayStyle.None;
-            ResetEditButton();
+            var id = editTarget.GetInstanceID();
+
+            // リストから削除
+            arrangementAssetListUI.RemoveAsset(id);
 
             // 建物UIを非表示
             arrangementBuildingEditorUI.ShowPanel(false);
 
-            // リストから削除
-            arrangementAssetListUI.RemoveAsset(editTarget.GetInstanceID());
-            
+            editMode.DeleteAsset(editTarget);
+            editTarget = null;
+            editPanel.style.display = DisplayStyle.None;
+            ResetEditButton(true);
+
             // プロジェクトへ追加
-            ProjectSaveDataManager.Delete(ProjectSaveDataType.Asset, editTarget.GetInstanceID().ToString());
+            ProjectSaveDataManager.Delete(ProjectSaveDataType.Asset, id.ToString());
+        }
+
+        public void Update()
+        {
+            arrangementAssetListUI.UpdateItemLabels();
         }
 
         /// <summary>
         /// 編集モードから離れた時に移動モードに戻す
         /// </summary>
-        public void ResetEditButton()
+        public void ResetEditButton(bool end)
         {
             var context_Edit = UIElement.Q<GroupBox>("Context_Edit");
             var radioButtons = context_Edit.Query<RadioButton>().ToList();
@@ -150,6 +189,21 @@ namespace Landscape2.Runtime
             }
             var moveButton = editPanel.Q<RadioButton>("MoveButton");
             moveButton.value = true;
+
+            if (end)
+            {
+                var libToggle = UIElement.Q<RadioButton>("Toggle_Library");
+                libToggle.value = true;
+                var colorToggle = UIElement.Q<RadioButton>("Toggle_ColorEdit");
+                colorToggle.value = false;
+
+                var lib = UIElement.Q<VisualElement>("AssetLibraryGroup");
+                if (lib != null)
+                {
+                    lib.style.display = DisplayStyle.Flex;
+                }
+                assetColorEditorUI.Hide();
+            }
         }
 
 
@@ -248,6 +302,19 @@ namespace Landscape2.Runtime
             }
             else
             {
+                var colorToggle = UIElement.Q<RadioButton>("Toggle_ColorEdit");
+                if (colorToggle.value)
+                {
+                    colorToggle.value = false;
+                    var libToggle = UIElement.Q<RadioButton>("Toggle_Library");
+                    libToggle.value = true;
+                    var lib = UIElement.Q<VisualElement>("AssetLibraryGroup");
+                    if (lib != null)
+                    {
+                        lib.style.display = DisplayStyle.Flex;
+                    }
+                    assetColorEditorUI.Hide();
+                }
                 editPanel.style.display = DisplayStyle.None;
                 arrangementBuildingEditorUI.ShowPanel(false);
             }
@@ -256,7 +323,8 @@ namespace Landscape2.Runtime
         public void SetEditTarget(GameObject target)
         {
             editTarget = target;
-            ResetEditButton();
+            assetColorEditorUI.SetEditTarget(editTarget);
+            ResetEditButton(false);
         }
 
         /// <summary>
@@ -268,23 +336,45 @@ namespace Landscape2.Runtime
             var movieContainer = editPanel.Q<VisualElement>("MovieContainer");
 
             // 広告のアセットのみファイルボタンを表示
-            var isShow = editTarget != null && editTarget.GetComponent<PlateauSandboxAdvertisement>() != null;
+            // var isShow = editTarget != null && editTarget.GetComponent<PlateauSandboxAdvertisement>() != null;
+            var isShow = editTarget != null
+                && (editTarget.TryGetComponent<PlateauSandboxAdvertisement>(out var _)
+                    || editTarget.GetComponentInChildren<PlateauSandboxAdvertisementScaled>() != null);
             fileContainer.style.display = isShow ? DisplayStyle.Flex : DisplayStyle.None;
             movieContainer.style.display = isShow ? DisplayStyle.Flex : DisplayStyle.None;
         }
-        
+
+        private void ShowAssetColorEditor()
+        {
+            editMode.ClearHandleObject();
+            assetColorEditorUI.Show();
+        }
+
+        private bool IsAdAsset(GameObject obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            var ad = obj.GetComponent<PlateauSandboxAdvertisement>();
+            var adScaled = obj.GetComponentInChildren<PlateauSandboxAdvertisementScaled>();
+
+            return ad != null || adScaled != null;
+        }
+
         private void OnDeleteAssets(List<GameObject> deleteAssets)
         {
             foreach (var target in deleteAssets)
             {
                 if (editTarget == target)
                 {
-                    DeleteAsset();
+                    DeleteEditingAsset();
                 }
                 ArrangementAssetListUI.OnCancelAsset.Invoke(target);
             }
         }
-        
+
         private void OnChangeEditableState(
             List<GameObject> editableAssets,
             List<GameObject> notEditableAssets)
@@ -293,7 +383,7 @@ namespace Landscape2.Runtime
             {
                 arrangementAssetListUI.SetEditable(true, asset.GetInstanceID());
             }
-            
+
             foreach (var asset in notEditableAssets)
             {
                 arrangementAssetListUI.SetEditable(false, asset.GetInstanceID());

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Landscape2.Runtime.UiCommon;
@@ -46,8 +46,10 @@ namespace Landscape2.Runtime
                 Initialize();
             }
 
-            public void Show(bool show)
+            public new void Show(bool show)
             {
+                // 元の関数ではnullチェックしているが、ここではしていない
+
                 rootElement.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
                 titleElement.style.display = rootElement.style.display;
             }

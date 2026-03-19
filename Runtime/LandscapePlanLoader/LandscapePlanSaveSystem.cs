@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using ToolBox.Serialization;
 
@@ -45,7 +45,9 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                     areaProperty.LineOffset,
                     areaProperty.Color,
                     areaProperty.WallMaxHeight,
-                    areaProperty.PointData
+                    areaProperty.PointData,
+                    areaProperty.IsHeightApplied,
+                    areaProperty.DisplayOption
                     );
 
                 planAreaSaveDatas.Add(saveData);

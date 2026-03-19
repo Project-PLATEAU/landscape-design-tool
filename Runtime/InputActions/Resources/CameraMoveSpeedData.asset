@@ -15,10 +15,14 @@ MonoBehaviour:
   horizontalMoveSpeed: 100
   verticalMoveSpeed: 100
   parallelMoveSpeed: 0.003
-  zoomMoveSpeed: 0.2
+  zoomMoveSpeedMin: 1
+  zoomMoveSpeedMax: 60
+  zoomSpeedControlRange: 1200
+  zoomSpeedControlDetectRadius: 5
   rotateSpeed: 0.4
   zoomLimit: 20
-  heightLimitY: 25
+  heightLimitY: 1.6
   walkerMoveSpeed: 20
   walkerOffsetYSpeed: 10
+  pitchLimit: 85
   walkerCameraRotateSpeed: 0.4

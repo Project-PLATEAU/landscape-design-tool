@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,6 +9,7 @@ using System.Linq;
 using UnityEngine.UIElements;
 // OnSelectの処理待ちに使用
 using System.Threading.Tasks;
+using Landscape2.Runtime.Common;
 
 namespace Landscape2.Runtime
 {
@@ -42,7 +43,7 @@ namespace Landscape2.Runtime
                 ray = cam.ScreenPointToRay(Input.mousePosition);
                 int layerMask = LayerMask.GetMask("Ignore Raycast");
                 layerMask = ~layerMask;
-                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
+                if (LandscapeRaycast.Raycast(ray, out RaycastHit hit, layerMask))
                 {
                     var point = hit.point;
                     point.y += buriedHeight;
@@ -66,7 +67,7 @@ namespace Landscape2.Runtime
                 assetSize = null;
             }
 
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+            if (LandscapeRaycast.Raycast(ray, out RaycastHit hit))
             {
                 GameObject parent = GameObject.Find("CreatedAssets");
                 generatedAsset = GameObject.Instantiate(obj, hit.point, Quaternion.identity, parent.transform) as GameObject;

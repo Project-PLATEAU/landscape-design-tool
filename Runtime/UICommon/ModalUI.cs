@@ -10,7 +10,7 @@ namespace Landscape2.Runtime.UiCommon
         private static VisualElement selectModalElement;
 
         private static Action onCloseModal = null;
-        
+
         /// <summary>
         /// モーダルを表示。
         /// </summary>
@@ -28,12 +28,12 @@ namespace Landscape2.Runtime.UiCommon
         {
             // アクションを上書き
             onCloseModal = onClosed;
-            
+
             if (modalElement == null)
             {
                 modalElement = new UIDocumentFactory().CreateWithUxmlName("Modal");
                 GameObject.Find("Modal").GetComponent<UIDocument>().sortingOrder = 100;
-                
+
                 // イベント登録
                 modalElement.Q<Button>("OKButton").clicked += () =>
                 {
@@ -50,7 +50,7 @@ namespace Landscape2.Runtime.UiCommon
             modalElement.Q<Label>("ModalTitle").text = title;
             modalElement.Q<Label>("ModalText").text = context;
         }
-        
+
         public enum SelectModalType
         {
             Info,
@@ -59,7 +59,7 @@ namespace Landscape2.Runtime.UiCommon
             Trash,
             TrashReverse,
         }
-        
+
         private static Action onOkSelectModal = null;
         private static Action onCancelSelectModal = null;
 
@@ -81,29 +81,29 @@ namespace Landscape2.Runtime.UiCommon
             // アクション上書き
             onOkSelectModal = onOk;
             onCancelSelectModal = onCancel;
-            
+
             if (selectModalElement == null)
             {
                 selectModalElement = new UIDocumentFactory().CreateWithUxmlName("SelectModal");
                 GameObject.Find("SelectModal").GetComponent<UIDocument>().sortingOrder = 100;
-                
+
                 // イベント登録
                 selectModalElement.Q<Button>("CancelButton").clicked += () =>
                 {
                     selectModalElement.style.display = DisplayStyle.None;
                     onCancelSelectModal?.Invoke();
                 };
-                
+
                 selectModalElement.Q<Button>("OKButton").clicked += () =>
                 {
                     selectModalElement.style.display = DisplayStyle.None;
                     onOkSelectModal?.Invoke();
                 };
             }
-            
+
             var iconSuccess = selectModalElement.Q<VisualElement>("Icon_Success");
             iconSuccess.style.display = type == SelectModalType.Success ? DisplayStyle.Flex : DisplayStyle.None;
-            
+
             var iconError = selectModalElement.Q<VisualElement>("Icon_Error");
             iconError.style.display = type == SelectModalType.Error ? DisplayStyle.Flex : DisplayStyle.None;
 
@@ -116,15 +116,31 @@ namespace Landscape2.Runtime.UiCommon
 
             var iconTrash = selectModalElement.Q<VisualElement>("Icon_Trash");
             iconTrash.style.display = type == SelectModalType.Trash ? DisplayStyle.Flex : DisplayStyle.None;
-            
+
             var iconTrashReverse = selectModalElement.Q<VisualElement>("Icon_TrashReverse");
             iconTrashReverse.style.display = type == SelectModalType.TrashReverse ? DisplayStyle.Flex : DisplayStyle.None;
 
             selectModalElement.Q<Label>("ModalTitle").text = title;
             selectModalElement.Q<Label>("ModalText").text = context;
-            
+
             // 表示
             selectModalElement.style.display = DisplayStyle.Flex;
+        }
+
+        // 閉じるボタンのテキストを変えたい場合用
+        public static void ShowModal(
+            string title,
+            string context,
+            string closeText,
+            bool isSuccess,
+            bool isFailed,
+            Action onClosed = null)
+        {
+            ShowModal(title, context, isSuccess, isFailed, onClosed);
+            if (modalElement != null)
+            {
+                modalElement.Q<Button>("OKButton").text = closeText;
+            }
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Landscape2.Runtime.Common;
 using PLATEAU.CityGML;
 using PLATEAU.CityInfo;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Landscape2.Runtime.LandscapePlanLoader
@@ -20,9 +22,12 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         /// <param name="targetHeight">地面からの目標高さ</param>
         /// <param name="globalPos">メッシュを持つオブジェクトのクローバル座標</param>
         /// <returns>修正成功時はtrue、メッシュ上下に地面のオブジェクトが無い場合はfalse</returns>
-        public bool TryModifyMeshToTargetHeight(Mesh mesh, float targetHeight, Vector3 globalPos)
+        public bool TryModifyMeshToTargetHeight(Mesh mesh, float targetHeight, Vector3 globalPos, bool enableVirtualGround = false)
         {
             Vector3[] vertices = mesh.vertices; //メッシュから頂点データを取得
+
+            // 地面検出に成功した頂点
+            var scsIndecies = new List<int>(vertices.Length);
 
             // Raycastを用いて、各頂点の高さを目標値に合わせて修正
             for (int verticeIndex = 0; verticeIndex < vertices.Length; verticeIndex++)
@@ -40,6 +45,7 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                                 vertices[verticeIndex].x,
                                 hit.Value.point.y + targetHeight - globalPos.y,
                                 vertices[verticeIndex].z);
+                    scsIndecies.Add(verticeIndex);
                     continue;
                 }
 
@@ -54,10 +60,46 @@ namespace Landscape2.Runtime.LandscapePlanLoader
                                 vertices[verticeIndex].x,
                                 hit.Value.point.y + targetHeight - globalPos.y,
                                 vertices[verticeIndex].z);
+                    scsIndecies.Add(verticeIndex);
                     continue;
                 }
 
+            }
+
+            if (scsIndecies.Any() == false)
+            {
                 return false;  // 頂点の上下に地面オブジェクトが見つからず、修正に失敗
+            }
+
+            // 失敗した頂点があるなら　成功した頂点を元に値を設定する
+            var aveHeight = 0f;
+            if (scsIndecies.Count != vertices.Length)
+            {
+                // 判定に失敗した頂点があるかつ、仮想地面が有効ではない時は失敗として扱う
+                if (enableVirtualGround == false)
+                {
+                    return false;  // 頂点の上下に地面オブジェクトが見つからず、修正に失敗
+                }
+
+                // 平均の高さを計算
+                foreach (var item in scsIndecies)
+                {
+                    aveHeight += vertices[item].y;
+                }
+                aveHeight /= scsIndecies.Count;
+
+                // 失敗した頂点に高さを適用
+                for (int i = 0; i < vertices.Length; i++)
+                {
+                    if (scsIndecies.Contains(i) == false)
+                    {
+                        vertices[i] = new Vector3(
+                                    vertices[i].x,
+                                    aveHeight,
+                                    vertices[i].z);
+                    }
+                }
+
             }
 
             mesh.vertices = vertices; // 修正した頂点データをメッシュに適用
@@ -103,6 +145,15 @@ namespace Landscape2.Runtime.LandscapePlanLoader
             {
                 if (CityObjectUtil.IsGround(hit.transform.gameObject))
                     return hit;
+            }
+
+            foreach (var hit in hits)
+            {
+                // 名前にdemを含むオブジェクトを探索
+                if (hit.transform.gameObject.name.Contains("dem_"))
+                {
+                    return hit;
+                }
             }
 
             return null;

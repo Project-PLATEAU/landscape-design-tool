@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using PlateauToolkit.Rendering;
 using System;
 using UnityEngine.Rendering;
@@ -30,7 +30,7 @@ namespace Landscape2.Runtime.WeatherTimeEditor
         
         public WeatherTimeEditor()
         {
-            environmentController = GameObject.FindObjectOfType<EnvironmentController>();
+            environmentController = GameObject.FindFirstObjectByType<EnvironmentController>();
             // EnvironmentControllerを取得
             if (environmentController == null)
             {

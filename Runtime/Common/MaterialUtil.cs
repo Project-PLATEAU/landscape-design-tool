@@ -13,7 +13,7 @@ namespace Landscape2.Runtime.Common
         public static Material MakeMaterial(Color col)
         {
             //レンダーパイプラインに応じた Unlitシェーダーを求めます。
-            var pipelineAsset = GraphicsSettings.renderPipelineAsset;
+            var pipelineAsset = GraphicsSettings.defaultRenderPipeline;
             Shader shader;
             if (pipelineAsset == null)
             {

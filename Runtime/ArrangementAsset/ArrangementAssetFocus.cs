@@ -1,10 +1,6 @@
-﻿using PlateauToolkit.Sandbox.Runtime;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.HighDefinition;
-using PlateauSandboxBuilding = PlateauToolkit.Sandbox.Runtime.PlateauSandboxBuildings.Runtime.PlateauSandboxBuilding;
 
 namespace Landscape2.Runtime
 {
@@ -17,7 +13,6 @@ namespace Landscape2.Runtime
 
         private Color focusColor = new Color32(255, 195, 195, 255);
         private const float focusDuration = 1.0f;
-        private bool isFocusing = false;
 
         public ArrangementAssetFocus(LandscapeCamera landscapeCamera) : base(landscapeCamera)
         {

@@ -192,5 +192,13 @@ namespace Landscape2.Runtime
             }
             return ui;
         }
+
+        public void UpdateItemLabels()
+        {
+            foreach (var itemUI in itemUIs)
+            {
+                itemUI.UpdateLabels();
+            }
+        }
     }
 }

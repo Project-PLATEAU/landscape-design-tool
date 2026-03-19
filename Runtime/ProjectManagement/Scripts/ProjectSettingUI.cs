@@ -1,4 +1,4 @@
-using Landscape2.Runtime.UiCommon;
+﻿using Landscape2.Runtime.UiCommon;
 using System.Linq;
 using ToolBox.Serialization;
 using UnityEngine;
@@ -93,14 +93,17 @@ namespace Landscape2.Runtime
                     SetCurrentProject(project.projectID);
                     
                     // プロジェクト変更を通知
-                    saveSystem.SetProject(project.projectID);
+                    saveSystem.NoticeChangedProject(project.projectID);
                 }
                 else if (ProjectSaveDataManager.ProjectSetting.IsCurrentProject(projectID))
                 {
                     var firstProject = ProjectSaveDataManager.ProjectSetting.ProjectList.First();
                     SetCurrentProject(firstProject.projectID);
+
+                    // プロジェクト変更を通知
+                    saveSystem.NoticeChangedProject(firstProject.projectID);
                 }
-                
+
                 RefreshProjectList();
 
                 // 完了ポップアップ
@@ -166,7 +169,7 @@ namespace Landscape2.Runtime
             projectSettingEditModeUI.OnEditModeChanged.AddListener((isEdit) =>
             {
                 // プロジェクト切り替え通知をして、モードを切り変える
-                saveSystem.SetProject(
+                saveSystem.NoticeChangedProject(
                     ProjectSaveDataManager.ProjectSetting.CurrentProject.projectID);
             });
         }
@@ -198,7 +201,7 @@ namespace Landscape2.Runtime
             SetCurrentProject(projectID);
             
             // プロジェクト変更を通知
-            saveSystem.SetProject(projectID);
+            saveSystem.NoticeChangedProject(projectID);
         }
         
         private void SetCurrentProject(string projectID)

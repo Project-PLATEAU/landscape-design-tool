@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 
 using RuntimeHandle;
+using System;
 
 namespace Landscape2.Runtime
 {
@@ -16,6 +17,7 @@ namespace Landscape2.Runtime
         Rotation,
         Scale
     }
+
     public class EditMode : ArrangeMode
     {
         private RuntimeTransformHandle runtimeTransformHandleScript;
@@ -24,6 +26,8 @@ namespace Landscape2.Runtime
         int editAssetLayer;
 
         public RuntimeTransformHandle RuntimeTransformHandleScript => runtimeTransformHandleScript;
+
+        public event Action OnCanceled;
 
         public void CreateRuntimeHandle(GameObject obj, TransformType transformType, bool assetHighlight = true)
         {
@@ -37,7 +41,8 @@ namespace Landscape2.Runtime
                 ChangeEditAssetLayer(editAsset, LayerMask.NameToLayer("UI"));
             }
         }
-        private void ClearHandleObject()
+
+        public void ClearHandleObject()
         {
             ChangeEditAssetLayer(editAsset, editAssetLayer);
             var obj = GameObject.Find("RuntimeTransformHandle");
@@ -102,6 +107,8 @@ namespace Landscape2.Runtime
         public override void OnCancel()
         {
             ClearHandleObject();
+
+            OnCanceled?.Invoke();
         }
     }
 }

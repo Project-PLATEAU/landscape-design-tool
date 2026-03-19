@@ -6,47 +6,44 @@
 
 ## 1. 準備
 
-`File` → `Build Settings...` を開き、`Platform`が**Windows, Mac, Linux**であることを確認
+`File` → `Build Profiles` を開き、Platformsで`Windows`がActiveに設定されていることを確認します。
 
 ![準備](../resources/Build/Ready.png)
 
-   - 設定されていない場合は、以下の手順を実行
-        - `Windows, Mac, Linux` を選択
-        - `Target Platform` を **Windows** に設定
-        - `Architecture` を **Intel 64bit** に設定（推奨）
-        - `Switch Platform` ボタンをクリック
+設定されていない場合は、以下の手順を実行してください。
+
+- Platformsを`Windows`に設定
+- Architectureを`Intel 64bit`に設定（推奨）
+- `Switch Platform`ボタンをクリック
 
 ## 2. ビルド設定
 
-1. `Build Settings` 画面でシーン（[セットアップ](./Setup.md)を行ったもの）を **Scenes In Build** に追加
+`Scene List`で作成したシーン（[セットアップ](./Setup.md)を行ったもの）を選択します。まだ`Scene List`に対象シーンがない場合は、`Add Open Scenes`から対象シーンを追加してください。
 
-    ![シーン追加](../resources/Build/AddScene.png)
+![シーン追加](../resources/Build/AddScene.png)
 
-1. `Player Settings...` をクリックし、以下の設定を確認
+`Player Settings` をクリックし、以下の設定を確認します。
 
-    ![プレイヤ設定](../resources/Build/PlayerSettings.png)
+- `Company Name`、`Product Name`、`Version`を適切に設定
+- `Other Settings` → `Configuration` → `Scripting Backend` を `Mono` に設定
+- `Other Settings` → `Configuration` → `API Compatibility Level` を `.NET Framework` に設定
+
+![プレイヤ設定](../resources/Build/PlayerSettings.png)
     
-    ![プレイヤ設定コンフィグ](../resources/Build/OtherSettings_Configuration.png)
-
-   - `Company Name`、`Product Name` を適切に設定
-   - `Other Settings` → `Configuration` → `Scripting Backend` を `Mono` に設定
-   - `Other Settings` → `Configuration` → `API Compatibility Level` を `.NET Framework` に設定
+![プレイヤ設定コンフィグ](../resources/Build/OtherSettings_Configuration.png)
 
 ## 3. ビルド
 
-1. `Build` ボタンをクリックし、出力フォルダを指定
+`Build` ボタンをクリックし、出力フォルダを指定します。
 
-    ![ビルド](../resources/Build/Build.png)
+![ビルド](../resources/Build/Build.png)
 
-   - もし次のようなウィンドウが表示されたら`No`を選択
+もし次のようなウィンドウが表示されたら`No`を選択してください。
 
-    ![アドレッサブルズビルドレポート](../resources/Build/AddressablesBuildReport.png)
+![アドレッサブルズビルドレポート](../resources/Build/AddressablesBuildReport.png)
 
-
-1. ビルドが完了すると、指定フォルダ内に `.exe` ファイルが生成され、エクスプローラーで出力フォルダが開く
-
-
+ビルドが完了すると、指定フォルダ内に`.exe`ファイルが生成され、エクスプローラーで出力フォルダが開きます。
 
 ## 4. 実行
 
-出力フォルダの`.exe` ファイルをダブルクリックして実行
+出力フォルダの`.exe`ファイルをダブルクリックして実行します。
