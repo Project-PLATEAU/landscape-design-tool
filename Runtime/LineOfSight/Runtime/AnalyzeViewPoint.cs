@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -199,6 +199,44 @@ namespace Landscape2.Runtime
             }
         }
 
+        public bool IsExistViewpoint(string name)
+        {
+            var viewPointMarkers = GameObject.Find("ViewPointMarkers");
+            if (viewPointMarkers == null)
+            {
+                return false;
+            }
+
+            foreach (Transform t in viewPointMarkers.transform)
+            {
+                if (t.name == name)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsExistLandmark(string name)
+        {
+            var landmarkMarkers = GameObject.Find("LandmarkMarkers");
+            if (landmarkMarkers == null)
+            {
+                return false;
+            }
+
+            foreach (Transform t in landmarkMarkers.transform)
+            {
+                if (t.name == name)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public void UpdateTargets()
         {
             var new_Analyze_Viewpoint = analyzeSettingPanel.Q<VisualElement>("New_Analyze_Viewpoint");
@@ -298,22 +336,20 @@ namespace Landscape2.Runtime
         }
 
         /// <summary>
-        /// 見通し解析のラインを削除する
+        /// 見通し解析のラインを削除する。
+        /// 別要素選択時も前の可視化が残らないよう、全視点場マーカーから LineOfSight 子オブジェクトを削除する。
         /// </summary>
         public void ClearLineOfSight()
         {
-            if (targetViewPoint == null)
+            var viewPointMarkers = GameObject.Find("ViewPointMarkers");
+            if (viewPointMarkers == null) return;
+            foreach (Transform marker in viewPointMarkers.transform)
             {
-                return;
-            }
-            var root = targetViewPoint.transform;
-            for (int i = 0; i < root.childCount; ++i)
-            {
-                var trans = root.GetChild(i);
-                string childName = trans.name;
-                if (childName == ObjNameLineOfSight)
+                for (int i = marker.childCount - 1; i >= 0; --i)
                 {
-                    Object.DestroyImmediate(trans.gameObject);
+                    var trans = marker.GetChild(i);
+                    if (trans.name == ObjNameLineOfSight)
+                        Object.DestroyImmediate(trans.gameObject);
                 }
             }
         }

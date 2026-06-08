@@ -340,6 +340,7 @@ namespace Landscape2.Runtime
         /// </summary>
         private void MoveCameraHorizontal(Vector2 moveDelta, Transform cameraTrans)
         {
+            if (moveDelta.sqrMagnitude <= 0.0f) return;
             var dir = new Vector3(moveDelta.x, 0.0f, moveDelta.y);
             var rot = camera.transform.eulerAngles;
             dir = Quaternion.Euler(new Vector3(0.0f, rot.y, rot.z)) * dir;
@@ -351,6 +352,7 @@ namespace Landscape2.Runtime
         /// </summary>
         private void MoveCameraVertical(float moveDelta, Transform cameraTrans)
         {
+            if (moveDelta * moveDelta <= 0.0f) return;
             var dir = new Vector3(0.0f, moveDelta, 0.0f);
             cameraTrans.position += dir;
         }
@@ -363,6 +365,7 @@ namespace Landscape2.Runtime
         private void MoveCameraParallel(Vector2 moveDelta, Transform cameraTrans)
         {
             if (!isParallelMoveByMouse || !IsCameraMoveActive) return;
+            if (moveDelta.sqrMagnitude <= 0.0f) return;
 
             var dir = new Vector3(-moveDelta.x, 0.0f, -moveDelta.y) * translationFactor;
             var rotY = camera.transform.eulerAngles.y;
@@ -378,6 +381,7 @@ namespace Landscape2.Runtime
         /// <param name="timeDelta"></param>
         private void MoveCameraZoom(float moveDelta, Transform cameraTrans)
         {
+            if (moveDelta * moveDelta <= 0.0f) return;
             var dir = new Vector3(0.0f, 0.0f, moveDelta);
             var rot = camera.transform.eulerAngles;
             dir = Quaternion.Euler(new Vector3(rot.x, rot.y, rot.z)) * dir;

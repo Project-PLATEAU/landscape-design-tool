@@ -78,11 +78,9 @@ namespace Landscape2.Runtime
                 generatedAsset = GameObject.Instantiate(obj, Vector3.zero, Quaternion.identity, parent.transform) as GameObject;
             }
 
-            var lod = generatedAsset.GetComponent<LODGroup>();
-            if (lod != null)
-            {
-                lod.enabled = false;
-            }
+
+            // LODGroupによってカリングされないように
+            LandscapeToolAssetUtil.DisableLodGroup(generatedAsset);
 
             assetSize = GetGameObjectSize(generatedAsset);
 

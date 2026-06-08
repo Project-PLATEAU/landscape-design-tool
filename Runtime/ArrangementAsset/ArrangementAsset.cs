@@ -191,6 +191,11 @@ namespace Landscape2.Runtime
         {
             if (context.performed && arrangementAssetUI.style.display == DisplayStyle.Flex)
             {
+                if (UIUtil.IsPointerOverUI(Input.mousePosition, arrangementAssetUI))
+                {
+                    return;
+                }
+
                 if (currentMode == createMode)
                 {
                     createMode.OnSelect();

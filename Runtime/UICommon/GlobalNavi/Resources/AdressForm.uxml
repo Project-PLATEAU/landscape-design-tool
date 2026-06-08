@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Panel_AdressList" path="Panel_AdressList" />
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement style="flex-grow: 0; padding-right: 8px; padding-top: 4px; padding-bottom: 4px; height: 44px; background-color: rgba(41, 41, 41, 0.9); -unity-text-outline-color: rgb(111, 121, 121); -unity-text-outline-width: 1px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(111, 121, 121); border-right-color: rgb(111, 121, 121); border-top-color: rgb(111, 121, 121); border-bottom-color: rgb(111, 121, 121); border-top-right-radius: 22px; border-bottom-right-radius: 22px; flex-direction: row; padding-left: 8px; align-items: center;">
+        <ui:VisualElement name="Icon_Search" style="flex-grow: 0; width: 30px; height: 30px; flex-shrink: 0;" />
+        <ui:TextField label="Text Field" placeholder-text="移動したい住所を入力してください" name="AdressInputField" hide-placeholder-on-focus="true" language-direction="LTR" class="unity-text-field__placeholder" style="flex-shrink: 1; width: 100%;" />
+        <ui:Button name="ResetButton" style="border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+        <ui:Button text="検索" name="OKButton" style="height: 30px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 60px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;" />
+    </ui:VisualElement>
+    <ui:Instance template="Panel_AdressList" name="Panel_AdressList" style="padding-right: 16px; padding-left: 8px;" />
+</ui:UXML>

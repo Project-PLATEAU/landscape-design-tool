@@ -63,7 +63,7 @@
 | 種別 | 項目 | バージョン | 内容 |
 |------|------|-----------|------|
 | ソフトウェア | [Unity](https://unity.com/) | 6000.3.10f1 | ハイグラフィックなゲームエンジン |
-| ライブラリ | [PLATEAU SDK for Unity](https://github.com/Project-PLATEAU/PLATEAU-SDK-for-Unity) | 4.1.0 | 3D都市モデルデータをUnityで扱うためのツールキット<br>モデルのインポートや形式変換に対応 |
+| ライブラリ | [PLATEAU SDK for Unity](https://github.com/Project-PLATEAU/PLATEAU-SDK-for-Unity) | 4.2.0 | 3D都市モデルデータをUnityで扱うためのツールキット<br>モデルのインポートや形式変換に対応 |
 | ライブラリ | [PLATEAU SDK Rendering Toolkit for Unity](https://github.com/Project-PLATEAU/PLATEAU-SDK-Toolkits-for-Unity/tree/main/PlateauToolkit.Rendering) | 2.2.1 | 3D都市モデルデータをUnityでリアルに表示するためのツールキット<br>建築物の外観や天候、光の再現をサポート |
 | ライブラリ | [PLATEAU SDK Maps Toolkit for Unity](https://github.com/Project-PLATEAU/PLATEAU-SDK-Maps-Toolkit-for-Unity) | 1.0.2 | 3D都市モデルデータをUnityで地形モデルに配置するためのツールキット<br>GISデータやBIMモデルの取り扱いに対応 |
 | ライブラリ | [Triangulation](https://github.com/iShapeUnity/Triangulation) | 0.0.8 | Unityでポリゴンメッシュ生成を行うためのプラグイン |

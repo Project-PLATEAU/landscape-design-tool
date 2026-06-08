@@ -1,0 +1,20 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="UIColorEditor" src="project://database/Packages/com.synesthesias.landscape-design-tool/Runtime/ColorEditor/Resources/UIColorEditor.uxml?fileID=9197481963319205126&amp;guid=4e09e831fc82c9a419b4007162906c9a&amp;type=3#UIColorEditor" />
+    <ui:VisualElement name="Root" style="width: 480px; background-color: rgba(38, 38, 38, 0.55);">
+        <ui:Label text="アセット色彩編集" name="Header" />
+        <ui:VisualElement name="ColorPreview" style="background-color: rgb(255, 255, 255); height: 50px;" />
+        <ui:VisualElement name="Dropdowns">
+            <ui:VisualElement name="Hue" style="flex-grow: 1; flex-direction: row;">
+                <ui:DropdownField label="色相" name="HueValueDropdown" style="flex-grow: 1;" />
+                <ui:DropdownField name="HueNameDropdown" style="flex-grow: 1;" />
+            </ui:VisualElement>
+            <ui:DropdownField label="明度" name="ValueDropdown" />
+            <ui:DropdownField label="彩度" name="ChromaDropdown" />
+        </ui:VisualElement>
+        <ui:Instance template="UIColorEditor" name="UIColorEditor" />
+        <ui:VisualElement name="Buttons" style="flex-direction: row;">
+            <ui:Button text="リセット" name="ResetButton" style="flex-grow: 1;" />
+            <ui:Button text="変更" name="ApplyButton" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

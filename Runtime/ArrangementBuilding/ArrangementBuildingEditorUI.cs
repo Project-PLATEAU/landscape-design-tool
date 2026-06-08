@@ -152,6 +152,11 @@ namespace Landscape2.Runtime
                         break;
                     case BuildingType.k_CommercialBuilding:
                     case BuildingType.k_Hotel:
+                    case BuildingType.k_Factory:
+                    case BuildingType.k_ComplexBuilding:
+                        break;
+                    case BuildingType.k_Unknown:
+                        ShowPanel(false);   // 未対応なので非表示
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

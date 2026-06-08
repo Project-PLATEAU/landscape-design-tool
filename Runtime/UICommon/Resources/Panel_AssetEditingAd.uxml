@@ -1,0 +1,49 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="Panel" style="flex-grow: 0;">
+        <ui:VisualElement name="Row1" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="Width" style="flex-grow: 1; flex-direction: row;">
+                <ui:Label text="幅" />
+                <ui:FloatField value="42.2" name="WidthFloatField" style="flex-grow: 1;" />
+                <ui:VisualElement name="WidthButtons" style="flex-grow: 0;">
+                    <ui:Button text="↑" name="WidthUpButton" />
+                    <ui:Button text="↓" name="WidthDownButton" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Height" style="flex-grow: 1; flex-direction: row;">
+                <ui:Label text="高さ" />
+                <ui:FloatField value="42.2" name="HeightFloatField" style="flex-grow: 1;" />
+                <ui:VisualElement name="HeightButtons" style="flex-grow: 0;">
+                    <ui:Button text="↑" name="HeightUpButton" />
+                    <ui:Button text="↓" name="HeightDownButton" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Depth" style="flex-grow: 1; flex-direction: row;">
+                <ui:Label text="奥行き" />
+                <ui:FloatField value="42.2" name="DepthFloatField" style="flex-grow: 1;" />
+                <ui:VisualElement name="DepthButtons" style="flex-grow: 0;">
+                    <ui:Button text="↑" name="DepthUpButton" />
+                    <ui:Button text="↓" name="DepthDownButton" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Row2" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="BillboardSize" style="flex-grow: 1; flex-direction: row;">
+                <ui:Label text="高さ（広告）" />
+                <ui:FloatField value="42.2" name="BillboardSizeFloatField" style="flex-grow: 1;" />
+                <ui:VisualElement name="BillboardSizeButtons" style="flex-grow: 0;">
+                    <ui:Button text="↑" name="BillboardSizeUpButton" />
+                    <ui:Button text="↓" name="BillboardSizeDownButton" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="PoleHeight" style="flex-grow: 1; flex-direction: row;">
+                <ui:Label text="高さ（支柱）" />
+                <ui:FloatField value="42.2" name="PoleHeightFloatField" style="flex-grow: 1;" />
+                <ui:VisualElement name="PoleHeightButtons" style="flex-grow: 0;">
+                    <ui:Button text="↑" name="PoleHeightUpButton" />
+                    <ui:Button text="↓" name="PoleHeightDownButton" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,27 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Panel_AdvertiseAssetList" path="Panel_AdvertiseAssetList" />
+    <ui:Template name="Dialog_TutorialInfo" path="Dialog_TutorialInfo" />
+    <ui:Template name="Panel_Search" path="Panel_Search" />
+    <ui:Template name="Panel_RoadEdgePanel" path="Panel_RoadEdgePanel" />
+    <ui:Template name="Panel_AdController" path="Panel_AdController" />
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="MainContainer" picking-mode="Ignore" style="flex-grow: 1;">
+        <ui:VisualElement name="LeftContainer" picking-mode="Ignore" style="flex-grow: 1; flex-shrink: 0;">
+            <ui:VisualElement name="Title_Left" picking-mode="Ignore" style="flex-grow: 0; flex-shrink: 1; -unity-text-align: middle-right; justify-content: center;">
+                <ui:Label tabindex="-1" text="屋外広告物一覧" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-align: middle-right;" />
+            </ui:VisualElement>
+            <ui:Instance template="Panel_AdvertiseAssetList" style="height: 860px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="CenterContainer" picking-mode="Ignore" style="flex-grow: 1;">
+            <ui:Instance template="Dialog_TutorialInfo" style="top: 140px; align-items: center;" />
+            <ui:Instance template="Panel_Search" style="align-items: center; bottom: -850px; justify-content: center; top: auto; padding-right: 24px; padding-bottom: 0; padding-left: 24px; align-content: center; display: none;" />
+            <ui:Instance template="Panel_RoadEdgePanel" style="align-self: center; justify-content: flex-start; align-items: center; bottom: -30%; display: none;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="RightContainer" picking-mode="Ignore" style="flex-grow: 1; flex-shrink: 0;">
+            <ui:VisualElement name="Title_Right" picking-mode="Ignore" style="flex-grow: 0;">
+                <ui:Label tabindex="-1" text="広告物の設置規制" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:Instance template="Panel_AdController" style="align-items: center; height: auto; max-height: 860px; flex-grow: 1;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

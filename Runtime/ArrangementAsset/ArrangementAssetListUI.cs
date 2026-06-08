@@ -1,3 +1,4 @@
+﻿using Landscape2.Runtime.Common;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -55,11 +56,8 @@ namespace Landscape2.Runtime
 
             Debug.Log($"アセットを追加しました。{target.name}");
 
-            // LODGroupが付いているAssetは全てdisableにする
-            if (target.TryGetComponent<LODGroup>(out var lodGroup))
-            {
-                lodGroup.enabled = false;
-            }
+            // LODGroupによってカリングされないないように
+            LandscapeToolAssetUtil.DisableLodGroup(target);
 
             var type = ArrangementAssetTypeExtensions.GetArrangementAssetType(target);
             var typeCount = itemUIs.Count(item => item.Model.Type == type);

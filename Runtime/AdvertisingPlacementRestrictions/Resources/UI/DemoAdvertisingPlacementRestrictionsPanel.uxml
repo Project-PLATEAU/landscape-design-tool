@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:GroupBox>
+        <ui:Toggle label="機能" name="EnableToggle" />
+        <ui:GroupBox name="SettingPanel" picking-mode="Ignore">
+            <ui:FloatField label="距離" value="5" name="DistanceField" />
+            <ui:Toggle label="表示" name="DisplayToggle" value="true" />
+        </ui:GroupBox>
+    </ui:GroupBox>
+</ui:UXML>
