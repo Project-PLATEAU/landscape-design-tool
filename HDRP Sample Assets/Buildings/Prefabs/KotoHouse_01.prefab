@@ -58,6 +58,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -80,9 +85,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &4342620008072191687
 PrefabInstance:
@@ -172,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundPlacementDirection: 0
-  buildingType: 0
+  buildingType: 8
   buildingHeight: 5
   buildingWidth: 5
   buildingDepth: 5
@@ -431,6 +438,7 @@ MonoBehaviour:
   facadeConstructor: {fileID: 0}
   roofPlanner: {fileID: 0}
   roofConstructor: {fileID: 0}
+  isSizePanelVisible: 0
 --- !u!65 &5773851595002735684
 BoxCollider:
   m_ObjectHideFlags: 0

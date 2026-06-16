@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="Panel_AreaPlanningEdit" style="flex-grow: 1;">
+        <ui:VisualElement name="Panel" style="flex-grow: 0; justify-content: center; height: 420px;">
+            <ui:Label tabindex="-1" text="2点間計測&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 21px; -unity-text-align: upper-center;" />
+            <ui:VisualElement name="FormContainer" style="flex-grow: 1; flex-direction: column; height: 100%; justify-content: center; padding-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; align-items: center;">
+                <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: center; align-items: center; flex-shrink: 1; width: 100%; margin-bottom: 16px;">
+                    <ui:Label tabindex="-1" text="直線" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 50px; font-size: 16px; -unity-text-align: middle-right; flex-shrink: 0; margin-right: 64px;" />
+                    <ui:FloatField label="Float Field" value="42.2" />
+                    <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 16px; margin-left: 0;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="ActionContainer" style="flex-grow: 0; flex-direction: row; align-items: center;">
+                <ui:VisualElement style="flex-grow: 1; align-items: center; flex-direction: row; justify-content: center;">
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="CancelButton" text="キャンセル" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="OKButton" text="内容を変更" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

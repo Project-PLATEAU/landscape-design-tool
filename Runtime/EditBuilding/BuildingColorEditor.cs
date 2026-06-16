@@ -44,8 +44,130 @@ namespace Landscape2.Runtime.BuildingEditor
             BuildingsDataComponent.BuildingDataDeleted += DeleteBuildingColor;
         }
 
-        private string ColorPropertyName => "_Color";
-        private string SmoothnessPropertyName => "_Smoothness";
+        private string ColorPropertyName => "_Diffuse";
+        private string SmoothnessPropertyName => "_Shininess";
+
+        // PlateauTriplanarDualTexturesAtlasBlend 用プロパティ名
+        private const string MainColorPropertyName = "_MainColor";
+        private const string TopRoughnessPropertyName = "_Top_Roughness";
+        private const string SideRoughnessPropertyName = "_Side_Roughness";
+        // HDRP が Base Color として参照する場合のフォールバック
+        private const string BaseColorPropertyName = "_BaseColor";
+        private static readonly int MainColorId = Shader.PropertyToID(MainColorPropertyName);
+        private static readonly int BaseColorId = Shader.PropertyToID(BaseColorPropertyName);
+
+        // LOD3 以上の PLATEAU シェーダ（_Diffuse / _Shininess / _Transparency を持つもの）かどうか
+        private static bool IsPlateauLod3Material(Material mat)
+        {
+            return mat != null && mat.HasFloat("_Transparency");
+        }
+
+        // PlateauTriplanarDualTexturesAtlasBlend など、_MainColor とラフネスを持つトライプラナー系シェーダかどうか
+        private static bool IsPlateauTriplanarAtlasBlendMaterial(Material mat)
+        {
+            if (mat == null) return false;
+            if (IsPlateauLod3Material(mat)) return false;
+            return mat.HasColor(MainColorPropertyName)
+                   && (mat.HasFloat(TopRoughnessPropertyName) || mat.HasFloat(SideRoughnessPropertyName));
+        }
+
+        // シェーダに応じてマテリアルの色を設定する
+        private void ApplyColorToMaterial(Material mat, Color color)
+        {
+            if (mat == null) return;
+
+            if (IsPlateauLod3Material(mat))
+            {
+                mat.SetColor(ColorPropertyName, color);
+            }
+            else if (IsPlateauTriplanarAtlasBlendMaterial(mat))
+            {
+                mat.SetColor(MainColorId, color);
+                if (mat.HasProperty(BaseColorId))
+                {
+                    mat.SetColor(BaseColorId, color);
+                }
+            }
+            else
+            {
+                // HDRP Lit などのフォールバック
+                mat.color = color;
+            }
+        }
+
+        // シェーダに応じてマテリアルの Smoothness を設定する
+        private void ApplySmoothnessToMaterial(Material mat, float smoothness)
+        {
+            if (mat == null) return;
+
+            if (IsPlateauLod3Material(mat))
+            {
+                mat.SetFloat(SmoothnessPropertyName, smoothness);
+            }
+            else if (IsPlateauTriplanarAtlasBlendMaterial(mat))
+            {
+                // 新シェーダは Roughness（0..1）で表現する。 smoothness = 1 - roughness
+                float roughness = Mathf.Clamp01(1f - smoothness);
+                if (mat.HasFloat(TopRoughnessPropertyName))
+                {
+                    mat.SetFloat(TopRoughnessPropertyName, roughness);
+                }
+                if (mat.HasFloat(SideRoughnessPropertyName))
+                {
+                    mat.SetFloat(SideRoughnessPropertyName, roughness);
+                }
+            }
+            else if (mat.HasFloat("_Smoothness"))
+            {
+                mat.SetFloat("_Smoothness", smoothness);
+            }
+        }
+
+        // シェーダに応じてマテリアルから現在の色を取得する
+        private Color GetColorFromMaterial(Material mat)
+        {
+            if (mat == null) return initialColor;
+
+            if (IsPlateauLod3Material(mat))
+            {
+                return mat.GetColor(ColorPropertyName);
+            }
+            if (IsPlateauTriplanarAtlasBlendMaterial(mat))
+            {
+                return mat.GetColor(MainColorPropertyName);
+            }
+            return mat.color;
+        }
+
+        // シェーダに応じてマテリアルから現在の Smoothness を取得する
+        private float GetSmoothnessFromMaterial(Material mat)
+        {
+            if (mat == null) return 0f;
+
+            if (IsPlateauLod3Material(mat))
+            {
+                return mat.GetFloat(SmoothnessPropertyName);
+            }
+            if (IsPlateauTriplanarAtlasBlendMaterial(mat))
+            {
+                // 壁面（Side）を代表値として用い、無ければ Top を参照
+                float roughness;
+                if (mat.HasFloat(SideRoughnessPropertyName))
+                {
+                    roughness = mat.GetFloat(SideRoughnessPropertyName);
+                }
+                else if (mat.HasFloat(TopRoughnessPropertyName))
+                {
+                    roughness = mat.GetFloat(TopRoughnessPropertyName);
+                }
+                else
+                {
+                    roughness = 1f;
+                }
+                return Mathf.Clamp01(1f - roughness);
+            }
+            return mat.HasFloat("_Smoothness") ? mat.GetFloat("_Smoothness") : 0f;
+        }
 
         // UIで色を変更したときに呼び出される
         // 建築物のRGB値を変更
@@ -60,23 +182,8 @@ namespace Landscape2.Runtime.BuildingEditor
                     // editingMaterialsの要素でループ
                     foreach (var mat in editingMaterials)
                     {
-                        // LOD3以上のマテリアルか?
-                        if (mat.HasFloat("_Transparency"))
-                        {
-                            // 色とsmoothnessを変更
-                            mat.SetColor(ColorPropertyName, color);
-                            mat.SetFloat(SmoothnessPropertyName, smoothness);
-                        }
-                        else
-                        {
-                            // HDRP Lit
-                            mat.color = color;
-
-                            if (mat.HasFloat("_Smoothness"))
-                            {
-                                mat.SetFloat("_Smoothness", smoothness);
-                            }
-                        }
+                        ApplyColorToMaterial(mat, color);
+                        ApplySmoothnessToMaterial(mat, smoothness);
                     }
                     RecordMaterialColor(targetObject, buildingFieldMaterials);
 
@@ -159,7 +266,7 @@ namespace Landscape2.Runtime.BuildingEditor
             {
                 foreach (var mat in editingMaterials)
                 {
-                    mat.SetFloat(SmoothnessPropertyName, value);
+                    ApplySmoothnessToMaterial(mat, value);
                 }
             }
         }
@@ -169,31 +276,16 @@ namespace Landscape2.Runtime.BuildingEditor
         {
             if (editingMaterials.Count == 2) // 要素全体
             {
-                if (editingMaterials[0].HasFloat("_Transparency"))
+                var c0 = GetColorFromMaterial(editingMaterials[0]);
+                var c1 = GetColorFromMaterial(editingMaterials[1]);
+                if (c0 == c1)
                 {
-                    if (editingMaterials[0].GetColor(ColorPropertyName) == editingMaterials[1].GetColor(ColorPropertyName))
-                    {
-                        return editingMaterials[0].GetColor(ColorPropertyName);
-                    }
-                }
-                else
-                {
-                    if (editingMaterials[0].color == editingMaterials[1].color)
-                    {
-                        return editingMaterials[0].color;
-                    }
+                    return c0;
                 }
             }
             else if (editingMaterials.Count == 1) // 壁面，屋根面
             {
-                if (editingMaterials[0].HasFloat("_Transparency"))
-                {
-                    return editingMaterials[0].GetColor(ColorPropertyName);
-                }
-                else
-                {
-                    return editingMaterials[0].color;
-                }
+                return GetColorFromMaterial(editingMaterials[0]);
             }
             // 未選択のとき，もしくは壁面と屋根面の色が異なる場合
             return initialColor;
@@ -204,35 +296,16 @@ namespace Landscape2.Runtime.BuildingEditor
         {
             if (editingMaterials.Count == 2) // 要素全体
             {
-                if (editingMaterials[0].HasFloat("_Transparency"))
+                float s0 = GetSmoothnessFromMaterial(editingMaterials[0]);
+                float s1 = GetSmoothnessFromMaterial(editingMaterials[1]);
+                if (Mathf.Approximately(s0, s1))
                 {
-                    if (editingMaterials[0].GetFloat(SmoothnessPropertyName) == editingMaterials[1].GetFloat(SmoothnessPropertyName))
-                    {
-                        return editingMaterials[0].GetFloat(SmoothnessPropertyName);
-                    }
-                }
-                else
-                {
-                    if (editingMaterials[0].GetFloat("_Smoothness") == editingMaterials[1].GetFloat("_Smoothness"))
-                    {
-                        return editingMaterials[0].GetFloat("_Smoothness");
-                    }
+                    return s0;
                 }
             }
             else if (editingMaterials.Count == 1) // 壁面，屋根面、LOD1
             {
-                if (editingMaterials[0].HasFloat("_Transparency"))
-                {
-                    return editingMaterials[0].GetFloat(SmoothnessPropertyName);
-                }
-                else
-                {
-                    // HDRP Litのマテリアル
-                    // fallbackのマテリアル
-                    return editingMaterials[0].HasFloat("_Smoothness")
-                        ? editingMaterials[0].GetFloat("_Smoothness")
-                        : 0.0f;
-                }
+                return GetSmoothnessFromMaterial(editingMaterials[0]);
             }
 
             // 未選択のとき，もしくは壁面と屋根面の色が異なる場合
@@ -300,21 +373,13 @@ namespace Landscape2.Runtime.BuildingEditor
 
                 // Scene上の建物のマテリアルの数と保存されている色の数が一致しない場合保存数が少ない方に合わせる
                 int matCount = mats.Length < colors.Count ? mats.Length : colors.Count;
+                int smoothnessCount = smoothness != null ? smoothness.Count : 0;
                 for (int j = 0; j < matCount; j++)
                 {
-                    if (mats[j].HasFloat("_Transparency"))
+                    ApplyColorToMaterial(mats[j], colors[j]);
+                    if (j < smoothnessCount)
                     {
-                        mats[j].SetColor(ColorPropertyName, colors[j]);
-                        mats[j].SetFloat(SmoothnessPropertyName, smoothness[j]);
-                    }
-                    else
-                    {
-                        mats[j].color = colors[j];
-
-                        if (mats[j].HasFloat("_Smoothness"))
-                        {
-                            mats[j].SetFloat("_Smoothness", smoothness[j]);
-                        }
+                        ApplySmoothnessToMaterial(mats[j], smoothness[j]);
                     }
                 }
             }
@@ -351,22 +416,8 @@ namespace Landscape2.Runtime.BuildingEditor
             }
             foreach (var material in mats)
             {
-                if (material.HasFloat("_Transparency"))
-                {
-                    // 初期値にセット
-                    material.SetColor(ColorPropertyName, InitialColor);
-                    material.SetFloat(SmoothnessPropertyName, InitialSmoothness);
-                }
-                else
-                {
-                    // 初期値にセット
-                    material.color = InitialColor;
-
-                    if (material.HasFloat("_Smoothness"))
-                    {
-                        material.SetFloat("_Smoothness", InitialSmoothness);
-                    }
-                }
+                ApplyColorToMaterial(material, InitialColor);
+                ApplySmoothnessToMaterial(material, InitialSmoothness);
             }
         }
 
@@ -380,21 +431,13 @@ namespace Landscape2.Runtime.BuildingEditor
             }
 
             int matCount = mats.Length < property.ColorData.Count ? mats.Length : property.ColorData.Count;
+            int smoothnessCount = property.SmoothnessData != null ? property.SmoothnessData.Count : 0;
             for (int i = 0; i < matCount; i++)
             {
-                if (mats[i].HasFloat("_Transparency"))
+                ApplyColorToMaterial(mats[i], property.ColorData[i]);
+                if (i < smoothnessCount)
                 {
-                    mats[i].SetColor(ColorPropertyName, property.ColorData[i]);
-                    mats[i].SetFloat(SmoothnessPropertyName, property.SmoothnessData[i]);
-                }
-                else
-                {
-                    mats[i].color = property.ColorData[i];
-
-                    if (mats[i].HasFloat("_Smoothness"))
-                    {
-                        mats[i].SetFloat("_Smoothness", property.SmoothnessData[i]);
-                    }
+                    ApplySmoothnessToMaterial(mats[i], property.SmoothnessData[i]);
                 }
             }
         }
@@ -413,18 +456,15 @@ namespace Landscape2.Runtime.BuildingEditor
             var smoothness = new List<float>();
             foreach (var mat in mats)
             {
-                if (mat.HasFloat("_Transparency"))
+                colors.Add(GetColorFromMaterial(mat));
+
+                // 既存挙動互換: LOD3 系もしくは _Smoothness を持つマテリアルのみ記録対象。
+                // 新シェーダ（_MainColor + _Top_Roughness/_Side_Roughness）も Smoothness 相当値を記録する。
+                if (IsPlateauLod3Material(mat)
+                    || IsPlateauTriplanarAtlasBlendMaterial(mat)
+                    || mat.HasFloat("_Smoothness"))
                 {
-                    colors.Add(mat.GetColor(ColorPropertyName));
-                    smoothness.Add(mat.GetFloat(SmoothnessPropertyName));
-                }
-                else
-                {
-                    colors.Add(mat.color);
-                    if (mat.HasFloat("_Smoothness"))
-                    {
-                        smoothness.Add(mat.GetFloat("_Smoothness"));
-                    }
+                    smoothness.Add(GetSmoothnessFromMaterial(mat));
                 }
             }
 

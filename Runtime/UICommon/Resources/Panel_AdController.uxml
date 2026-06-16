@@ -1,0 +1,763 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="Panel_AdController" picking-mode="Ignore" style="flex-grow: 1; align-items: flex-end;">
+        <ui:VisualElement name="Panel" style="flex-grow: 1; height: auto; min-height: 300px; padding-top: 16px; padding-right: 16px; padding-bottom: 16px; padding-left: 16px;">
+            <ui:Label text="広告物の設置規制" style="-unity-text-align: upper-center; font-size: 18px; flex-grow: 1; height: auto;" />
+            <ui:GroupBox name="TabMenuGroup" style="flex-shrink: 1; align-items: center; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-grow: 1; height: auto;">
+                <ui:RadioButton label="Radio Button" name="Tab_AdTest_l" text="道路側面" value="false" class="SubMenuFirst" style="width: 100%; border-top-left-radius: 8px; border-bottom-left-radius: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 90px; font-size: 20px; flex-shrink: 1;" />
+                <ui:RadioButton label="Radio Button" name="Tab_AdTest_c" text="建物壁面" value="false" class="SubMenuMiddle" style="width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 90px; font-size: 20px; border-top-right-radius: 0; flex-shrink: 1;" />
+                <ui:RadioButton label="Radio Button" name="Tab_AdTest_r" text="広告物周囲" value="true" class="SubMenuMiddle" style="width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 90px; font-size: 20px; border-top-right-radius: 8px; flex-shrink: 1;" />
+            </ui:GroupBox>
+            <ui:ScrollView name="ScrollView" mouse-wheel-scroll-size="500" style="border-left-color: rgb(136, 147, 146); border-right-color: rgb(136, 147, 146); border-top-color: rgb(136, 147, 146); border-bottom-color: rgb(136, 147, 146); border-top-width: 0; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; height: 100%; flex-grow: 1; align-items: flex-start; justify-content: flex-start; width: auto; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; flex-shrink: 1; align-content: auto; margin-right: 0; padding-right: 10px;">
+                <ui:VisualElement name="AdAreaSetting" style="flex-grow: 1; height: auto; width: 100%; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; display: none; align-items: center; margin-top: 32px;">
+                    <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%; margin-bottom: 16px;">
+                        <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                        <ui:Label text="広告物周囲" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                        <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="SettingPanel" style="flex-grow: 1; width: 100%; height: auto; bottom: auto; right: auto; top: auto; position: relative; align-items: flex-end; flex-shrink: 0;">
+                        <ui:VisualElement name="WideContainer" style="flex-grow: 0; flex-direction: row; height: 50px; align-items: center; width: 100%;">
+                            <ui:Label tabindex="-1" text="広告物の端からの表示距離" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 60%; font-size: 16px; -unity-text-align: middle-center;" />
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center; margin-right: 12px; width: 40%;">
+                                <ui:FloatField label="Float Field" value="42.2" name="Wide" class="inputArea" style="background-color: rgba(0, 0, 0, 0.35); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; width: 80px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-text-align: upper-right; justify-content: flex-end;" />
+                                <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                        <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                    </ui:Button>
+                                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                        <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                    </ui:Button>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="DisplayToggleElements" style="flex-grow: 1; flex-direction: row;">
+                            <ui:Label text="エリア表示" />
+                            <ui:Toggle name="DisplayToggle" value="true" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="RoadAdSetting" style="flex-grow: 1; height: auto; width: 100%; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; display: none; align-items: center; margin-top: 32px;">
+                    <ui:Label text="道路と道路側面からの指定距離を色付けして表示します" name="Description" style="align-items: auto; -unity-text-align: upper-center; font-size: 14px;" />
+                    <ui:Button text="選択" name="OKButton" class="ActionButton OutlineButton" style="color: rgb(0, 55, 55);" />
+                    <ui:VisualElement name="RoadEdgeDistanceFieldPanel" style="flex-grow: 1; height: auto; width: 100%; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; display: flex; align-items: center; margin-top: 32px;">
+                        <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%; margin-bottom: 16px;">
+                            <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            <ui:Label text="道路側面" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="RoadEdgeSettingPanel" style="flex-grow: 1; width: 100%; height: auto; bottom: auto; right: auto; top: auto; position: relative; align-items: center; flex-shrink: 0;">
+                            <ui:VisualElement name="WideContainer" style="flex-grow: 0; flex-direction: row; height: 50px; align-items: center; width: 100%; justify-content: center;">
+                                <ui:Label tabindex="-1" text="道路側面からの表示距離" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 50%; font-size: 16px; -unity-text-align: middle-center; flex-shrink: 1;" />
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center; margin-right: 12px; width: 50%;">
+                                    <ui:FloatField label="Float Field" value="42.2" name="Wide" class="inputArea" style="background-color: rgba(0, 0, 0, 0.35); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; width: 80px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-text-align: upper-right; justify-content: flex-end;" />
+                                    <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                    <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                            <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                        </ui:Button>
+                                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                            <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="SettingPanel" style="flex-grow: 1; width: 300px; height: auto; bottom: auto; right: auto; top: auto; position: relative; align-items: flex-end; flex-shrink: 0; display: none;">
+                        <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 300px;">
+                            <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            <ui:Label text="広告物サイズ" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="WideContainer" style="flex-grow: 0; flex-direction: row; height: 50px; align-items: center; width: 100%;">
+                            <ui:Label tabindex="-1" text="幅" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 100px; font-size: 16px; -unity-text-align: middle-center;" />
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center; margin-right: 12px;">
+                                <ui:FloatField label="Float Field" value="42.2" name="Wide" class="inputArea" style="background-color: rgba(0, 0, 0, 0.35); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; width: 80px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-text-align: upper-right; justify-content: flex-end;" />
+                                <ui:Label tabindex="-1" text="cm" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                </ui:Button>
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="HeightContainer" style="flex-grow: 0; flex-direction: row; height: 50px; align-items: center; width: 100%; flex-shrink: 0;">
+                            <ui:Label tabindex="-1" text="高さ" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 100px; font-size: 16px; -unity-text-align: middle-center;" />
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center; margin-right: 12px;">
+                                <ui:FloatField label="Float Field" value="42.2" name="Height" class="inputArea" style="background-color: rgba(0, 0, 0, 0.35); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; width: 80px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-text-align: upper-right; justify-content: flex-end;" />
+                                <ui:Label tabindex="-1" text="cm" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                </ui:Button>
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="DepthContainer" style="flex-grow: 0; flex-direction: row; height: 50px; align-items: center; width: 100%; flex-shrink: 0;">
+                            <ui:Label tabindex="-1" text="奥行き" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 100px; font-size: 16px; -unity-text-align: middle-center;" />
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center; margin-right: 12px;">
+                                <ui:FloatField label="Float Field" value="42.2" name="Depth" class="inputArea" style="background-color: rgba(0, 0, 0, 0.35); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; width: 80px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-text-align: upper-right; justify-content: flex-end;" />
+                                <ui:Label tabindex="-1" text="cm" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                </ui:Button>
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="AdHeightContainer" style="flex-grow: 0; flex-direction: row; height: 50px; align-items: center; width: 100%; flex-shrink: 0;">
+                            <ui:Label tabindex="-1" text="高さ(広告)" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 100px; font-size: 16px; -unity-text-align: middle-center;" />
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center; margin-right: 12px;">
+                                <ui:FloatField label="Float Field" value="42.2" name="AdHeight" class="inputArea" style="background-color: rgba(0, 0, 0, 0.35); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; width: 80px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-text-align: upper-right; justify-content: flex-end;" />
+                                <ui:Label tabindex="-1" text="cm" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                </ui:Button>
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="AdLengthContainer" style="flex-grow: 0; flex-direction: row; height: 50px; align-items: center; width: 100%; flex-shrink: 0;">
+                            <ui:Label tabindex="-1" text="高さ(支柱)" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 100px; font-size: 16px; -unity-text-align: middle-center;" />
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center; margin-right: 12px;">
+                                <ui:FloatField label="Float Field" value="42.2" name="AdLength" class="inputArea" style="background-color: rgba(0, 0, 0, 0.35); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; width: 80px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-text-align: upper-right; justify-content: flex-end;" />
+                                <ui:Label tabindex="-1" text="cm" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                </ui:Button>
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="BuildingAdSetting" style="flex-grow: 1; height: auto; width: 100%; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; display: none; align-items: center; margin-top: 32px;">
+                    <ui:GroupBox name="TabMenuGroup" style="flex-shrink: 1; align-items: center; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 12px; padding-bottom: 0; padding-left: 12px; flex-grow: 0; height: 60px;">
+                        <ui:RadioButton label="Radio Button" name="Tab_AdArea_face_l" text="1壁面" value="true" class="SubMenuFirst" style="width: 100%; border-top-left-radius: 30px; border-bottom-left-radius: 30px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 60px; font-size: 20px; flex-shrink: 1; flex-grow: 1;" />
+                        <ui:RadioButton label="Radio Button" name="Tab_AdArea_face_c" text="総壁面" class="SubMenuMiddle" style="width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 60px; font-size: 20px; border-top-right-radius: 0; flex-shrink: 1; flex-grow: 1; border-bottom-right-radius: 0;" />
+                        <ui:RadioButton label="Radio Button" name="Tab_AdArea_face_r" text="分割壁面" class="SubMenuMiddle" style="width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 60px; font-size: 20px; border-top-right-radius: 30px; flex-shrink: 1; flex-grow: 1; border-bottom-right-radius: 30px;" />
+                    </ui:GroupBox>
+                    <ui:VisualElement name="WallInfoPanel" style="flex-grow: 1; width: 100%; height: auto; bottom: auto; right: auto; top: auto; position: relative; align-items: center; flex-shrink: 1; padding-top: 16px; display: none;">
+                        <ui:Label text="1壁面に対する広告割合を算出します" name="Description" style="align-items: auto; -unity-text-align: upper-center; font-size: 14px; flex-grow: 1; height: 30px;" />
+                        <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%; margin-bottom: 16px;">
+                            <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            <ui:Label text="壁面情報" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            <ui:Label text="寸法・面積" style="font-size: 14px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="InfoArea" style="flex-grow: 0; height: 90px; flex-direction: column; align-self: center; justify-content: center; align-items: center; width: 300px; padding-bottom: 0; margin-bottom: 16px;">
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                <ui:Label text="縦:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:Label text="20&#x9;" name="FaceHeight" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                <ui:Label text="m" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                <ui:Label text="横:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:Label text="40" name="FaceWidth" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                <ui:Label text="m" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                <ui:Label text="面積:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:Label text="800&#x9;" name="Area" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                <ui:Label text="㎡" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%; margin-bottom: 16px;">
+                            <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            <ui:Label text="広告物情報" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            <ui:Label text="寸法・面積" style="font-size: 14px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Size" style="flex-grow: 1; margin-bottom: 16px; width: 100%;">
+                            <ui:VisualElement name="AdAreaContainer" style="flex-grow: 0; flex-direction: column; height: auto; align-items: center; width: 100%; margin-bottom: 0;">
+                                <ui:VisualElement name="heightInputArea" style="flex-grow: 1; flex-direction: row; margin-bottom: 8px; width: 100%;">
+                                    <ui:Label tabindex="-1" text="縦" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 50%; font-size: 16px; -unity-text-align: middle-center; flex-shrink: 1;" />
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 50%;">
+                                        <ui:FloatField label="Float Field" value="2.5" class="inputArea" />
+                                        <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: middle-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 4px; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement name="widthInputArea" style="flex-grow: 1; flex-direction: row; margin-bottom: 8px; width: 100%;">
+                                    <ui:Label tabindex="-1" text="横" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 50%; font-size: 16px; -unity-text-align: middle-center; flex-shrink: 1;" />
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 50%;">
+                                        <ui:FloatField label="Float Field" value="2.5" class="inputArea" />
+                                        <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: middle-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 4px; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                    <ui:Label text="面積:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                    <ui:Label text="6.25" name="AdArea" style="font-size: 20px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 4px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: auto;" />
+                                    <ui:Label text="㎡" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Color" style="flex-grow: 1; margin-bottom: 16px; width: 100%;">
+                            <ui:VisualElement name="SubTitle" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%;">
+                                <ui:Label text="色変更" style="font-size: 16px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="MuncellColorContainer" style="flex-grow: 0; flex-direction: column; height: auto; align-items: center; width: 100%; margin-bottom: 8px; padding-right: 12px; padding-left: 12px;">
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-self: center; align-items: center;">
+                                    <ui:Label tabindex="-1" text="色" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 100%; font-size: 16px; -unity-text-align: middle-center; flex-shrink: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px;" />
+                                    <ui:Label text="(マンセル色値)" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 14px; -unity-text-align: upper-center;" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="inputArea" style="flex-grow: 1; flex-direction: row; margin-bottom: 8px; width: 100%; align-items: center; justify-content: center; align-content: auto; padding-right: 0; padding-left: 0; padding-top: 0; padding-bottom: 0;">
+                                    <ui:VisualElement name="HVCHue" style="flex-grow: 1; flex-direction: row; flex-shrink: 1;">
+                                        <ui:FloatField label="Float Field" value="2.5" name="Hue" class="inputArea" />
+                                        <ui:TextField label="Text Field" placeholder-text="0" name="_Hue" class="inputArea MancelInput" style="width: 100%; flex-shrink: 1; display: none;" />
+                                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0; align-items: center; justify-content: center; padding-left: 4px;">
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:DropdownField label="Dropdown" name="ColorPullDown" choices="R,YR,Y,GY,G,BG,B,PB,P,RP" index="0" class="unity-base-field" style="-unity-background-image-tint-color: rgb(255, 255, 255); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; width: auto; flex-shrink: 1;" />
+                                    <ui:VisualElement name="HVCValue" style="flex-grow: 1; flex-direction: row; flex-shrink: 0; margin-right: 4px;">
+                                        <ui:FloatField label="Float Field" value="10" name="Value" class="inputArea" style="flex-shrink: 1; width: 50px;" />
+                                        <ui:TextField label="Text Field" placeholder-text="0" name="_Value" class="inputArea MancelInput" style="width: 100%; flex-shrink: 1; display: none;" />
+                                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0; align-items: center; justify-content: center; padding-left: 4px;">
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="HVCChroma" style="flex-grow: 1; flex-direction: row; flex-shrink: 1;">
+                                        <ui:FloatField label="Float Field" value="14" name="Chroma" class="inputArea" style="flex-shrink: 1; width: 50px;" />
+                                        <ui:TextField label="Text Field" placeholder-text="0" name="_Chroma" class="inputArea MancelInput" style="width: 100%; flex-shrink: 1; display: none;" />
+                                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0; align-items: center; justify-content: center; padding-left: 4px;">
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:Label text="0R0/0" name="MunsellValue" style="-unity-text-align: upper-center; font-size: 20px; flex-shrink: 1; width: 100%;" />
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                    <ui:Label text="マンセル色表から選択" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="MunsellColorImage" style="flex-grow: 1; width: 100%; height: 50px; background-color: rgb(255, 255, 255);" />
+                                <ui:Label text="クリックするとマンセル色表が表示されます" style="font-size: 12px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Position" style="flex-grow: 1; margin-bottom: 16px; width: 100%; align-items: center;">
+                            <ui:VisualElement name="SubTitle" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%;">
+                                <ui:Label text="設置位置" style="font-size: 16px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="AdAreaContainer" style="flex-grow: 0; flex-direction: column; height: auto; align-items: center; width: 100%; margin-bottom: 0;">
+                                <ui:VisualElement name="topInputArea" style="flex-grow: 1; flex-direction: row; margin-bottom: 8px; width: 100%; justify-content: center;">
+                                    <ui:Label tabindex="-1" text="上端の高さ" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 50%; font-size: 16px; -unity-text-align: middle-center; flex-shrink: 1;" />
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 50%;">
+                                        <ui:FloatField label="Float Field" value="2.5" class="inputArea" />
+                                        <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: middle-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement name="bottomInputArea" style="flex-grow: 1; flex-direction: row; margin-bottom: 8px; width: 100%;">
+                                    <ui:Label tabindex="-1" text="下端の高さ" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 50%; font-size: 16px; -unity-text-align: middle-center; flex-shrink: 1;" />
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 50%;">
+                                        <ui:FloatField label="Float Field" value="2.5" class="inputArea" />
+                                        <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: middle-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="PerAreaInfo" style="flex-grow: 1; margin-bottom: 16px; width: 100%;">
+                            <ui:VisualElement name="SubTitle" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%;">
+                                <ui:Label text="建物の1壁面に対する広告割合" style="font-size: 16px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="AdAreaContainer" style="flex-grow: 0; flex-direction: column; height: auto; align-items: center; width: 100%; margin-bottom: 0;">
+                                <ui:VisualElement name="storeInputArea" style="flex-grow: 1; flex-direction: row; margin-bottom: 8px; width: 100%; justify-content: center;">
+                                    <ui:Label tabindex="-1" text="店舗数" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 50%; font-size: 16px; -unity-text-align: middle-center; flex-shrink: 1;" />
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 50%;">
+                                        <ui:IntegerField label="Integer Field" value="1" class="inputArea" />
+                                        <ui:Label tabindex="-1" text="店舗" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 16px; -unity-text-align: middle-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                        <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center; width: 100%;">
+                                    <ui:Label text="1店舗辺りの平均壁面面積:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 1; width: 50%; -unity-text-align: upper-right;" />
+                                    <ui:Label text="12" name="perStoreArea" style="font-size: 20px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 4px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 80px; background-size: 200px 100%;" />
+                                    <ui:Label text="㎡" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center; width: 100%;">
+                                    <ui:Label text="広告割合:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 1; width: 50%; -unity-text-align: upper-right;" />
+                                    <ui:Label text="12" name="perStorePercentage" style="font-size: 20px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 4px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 80px;" />
+                                    <ui:Label text="%&#10;" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="BuildingInfoPanel" style="flex-grow: 1; width: 100%; height: auto; bottom: auto; right: auto; top: auto; position: relative; align-items: flex-end; flex-shrink: 0; padding-top: 16px; display: none;">
+                        <ui:Label text="総壁面に対する広告割合を算出します" name="Description" style="align-items: auto; -unity-text-align: upper-center; font-size: 14px; flex-grow: 1; height: 30px; flex-shrink: 1; width: 100%;" />
+                        <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%;">
+                            <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            <ui:Label text="総面積情報" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="InffoArea" style="flex-grow: 0; height: 90px; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 300px;">
+                            <ui:Label text="総面積" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 50%;" />
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 50%;">
+                                <ui:Label text="180" name="Area" style="font-size: 32px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 4px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-right; width: auto; align-items: center; flex-shrink: 1;" />
+                                <ui:Label text="㎡" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%;">
+                            <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            <ui:Label text="総広告面積" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="AdAreaContainer" style="flex-grow: 0; flex-direction: row; height: 90px; align-items: center; width: 100%;">
+                            <ui:Label tabindex="-1" text="総広告面積" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 50%; font-size: 16px; -unity-text-align: middle-center;" />
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center; margin-right: 12px; width: 50%;">
+                                <ui:FloatField label="Float Field" value="50000" class="inputArea" style="width: 85px;" />
+                                <ui:IntegerField label="Integer Field" value="42" class="inputArea" style="display: none;" />
+                                <ui:Label tabindex="-1" text="㎡" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                        <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                    </ui:Button>
+                                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                        <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                    </ui:Button>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%;">
+                            <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            <ui:Label text="建物の総壁面に対する広告割合" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="PersentageArea" style="flex-grow: 0; height: 90px; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 300px;">
+                            <ui:Label text="広告割合" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 50%;" />
+                            <ui:VisualElement style="flex-grow: 1; width: 50%; flex-direction: row;">
+                                <ui:Label text="100" name="PercentValue" style="font-size: 32px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 4px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-right; width: auto; align-items: center;" />
+                                <ui:Label text="%&#10;" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="SplitPlanePanel" style="flex-grow: 1; width: 100%; height: auto; bottom: auto; right: auto; top: auto; position: relative; align-items: center; flex-shrink: 0; padding-top: 16px; display: none;">
+                        <ui:Label text="分割壁面に対する広告割合を算出します" name="Description" style="align-items: auto; -unity-text-align: upper-center; font-size: 14px; flex-grow: 1; height: 30px; flex-shrink: 1; width: 100%;" />
+                        <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%;">
+                            <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            <ui:Label text="分割線の地上からの高さ" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1;">
+                            <ui:VisualElement name="PlaneSplitField01" style="flex-grow: 0; flex-direction: row; height: auto; align-items: center; width: auto; justify-content: flex-start; padding-top: 8px; padding-bottom: 4px; flex-shrink: 1; flex-wrap: nowrap; align-self: auto; align-content: auto;">
+                                <ui:VisualElement style="flex-grow: 0; height: 35px; width: 50px; background-color: rgb(255, 255, 0); flex-shrink: 1;" />
+                                <ui:Label tabindex="-1" text="1本目" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: auto; font-size: 16px; -unity-text-align: middle-center; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 12px; padding-bottom: 0; padding-left: 12px;" />
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center; align-items: center; margin-right: 12px; width: 120px; flex-shrink: 1; align-content: auto;">
+                                    <ui:DoubleField label="Double Field" value="10.11" vertical-scroller-visibility="Auto" hide-placeholder-on-focus="false" style="width: 85px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; background-color: rgba(0, 0, 0, 0.35); border-left-color: rgb(124, 124, 124); border-right-color: rgb(124, 124, 124); border-top-color: rgb(124, 124, 124); border-bottom-color: rgb(124, 124, 124); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px;" />
+                                    <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                    <ui:VisualElement style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0; align-items: flex-start; align-content: auto;">
+                                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                            <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                        </ui:Button>
+                                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                            <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-grow: 1; width: 32px; height: 32px;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="PlaneSplitField02" style="flex-grow: 0; flex-direction: row; height: auto; align-items: center; width: auto; justify-content: flex-start; padding-top: 4px; padding-bottom: 8px; flex-shrink: 1; flex-wrap: nowrap; align-self: auto; align-content: auto;">
+                                <ui:VisualElement style="flex-grow: 0; height: 35px; width: 50px; background-color: rgb(0, 255, 255); flex-shrink: 1;" />
+                                <ui:Label tabindex="-1" text="2本目" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: auto; font-size: 16px; -unity-text-align: middle-center; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 12px; padding-bottom: 0; padding-left: 12px;" />
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center; align-items: center; margin-right: 12px; width: 120px; flex-shrink: 1; align-content: auto;">
+                                    <ui:DoubleField label="Double Field" value="10.11" vertical-scroller-visibility="Auto" hide-placeholder-on-focus="false" style="width: 85px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; background-color: rgba(0, 0, 0, 0.35); border-left-color: rgb(124, 124, 124); border-right-color: rgb(124, 124, 124); border-top-color: rgb(124, 124, 124); border-bottom-color: rgb(124, 124, 124); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px;" />
+                                    <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                    <ui:VisualElement style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0; align-items: flex-start; align-content: auto;">
+                                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                            <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                        </ui:Button>
+                                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                            <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:Button name="DeleteButton" style="width: 32px; height: 32px; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.38); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;">
+                                    <ui:VisualElement name="Icon_Trash" style="flex-grow: 0; width: 24px; height: 24px; flex-shrink: 0; background-color: rgba(173, 29, 29, 0);" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="PlaneSplitField03" style="flex-grow: 0; flex-direction: row; height: auto; align-items: center; width: auto; justify-content: flex-start; padding-top: 4px; padding-bottom: 8px; flex-shrink: 1; flex-wrap: nowrap; align-self: auto; align-content: auto;">
+                                <ui:VisualElement style="flex-grow: 0; height: 35px; width: 50px; background-color: rgb(255, 0, 255); flex-shrink: 1;" />
+                                <ui:Label tabindex="-1" text="3本目" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: auto; font-size: 16px; -unity-text-align: middle-center; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 12px; padding-bottom: 0; padding-left: 12px;" />
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center; align-items: center; margin-right: 12px; width: 120px; flex-shrink: 1; align-content: auto;">
+                                    <ui:DoubleField label="Double Field" value="10.11" vertical-scroller-visibility="Auto" hide-placeholder-on-focus="false" style="width: 85px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; background-color: rgba(0, 0, 0, 0.35); border-left-color: rgb(124, 124, 124); border-right-color: rgb(124, 124, 124); border-top-color: rgb(124, 124, 124); border-bottom-color: rgb(124, 124, 124); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px;" />
+                                    <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                    <ui:VisualElement style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0; align-items: flex-start; align-content: auto;">
+                                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                            <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                        </ui:Button>
+                                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                            <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                        </ui:Button>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:Button name="DeleteButton" style="width: 32px; height: 32px; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.38); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;">
+                                    <ui:VisualElement name="Icon_Trash" style="flex-grow: 0; width: 24px; height: 24px; flex-shrink: 0; background-color: rgba(173, 29, 29, 0);" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:Button text="&#x9;" name="OKButton" style="align-items: center; margin-top: 12px; margin-bottom: 12px;">
+                            <ui:VisualElement name="Icon_Plus" style="flex-grow: 0; width: 24px; height: 24px; flex-shrink: 0;" />
+                            <ui:Label text="追加" style="font-size: 16px; color: rgb(9, 61, 66);" />
+                        </ui:Button>
+                        <ui:VisualElement name="Plane_01" style="flex-grow: 1; width: 100%; margin-bottom: 16px;">
+                            <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%;">
+                                <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                                <ui:Label text="上から1つ目の分割壁面" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1; align-items: center;">
+                                <ui:Label text="寸法・面積" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                                <ui:VisualElement name="InfoArea" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%; padding-bottom: 0; margin-bottom: 16px;">
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                        <ui:Label text="縦:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                        <ui:Label text="20&#x9;" name="FaceHeight" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                        <ui:Label text="m" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                        <ui:Label text="横:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                        <ui:Label text="40" name="FaceWidth" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                        <ui:Label text="m" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                        <ui:Label text="面積:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                        <ui:Label text="800&#x9;" name="Area" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                        <ui:Label text="㎡" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 100%; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; border-left-color: rgb(200, 200, 200); border-right-color: rgb(200, 200, 200); border-top-color: rgb(200, 200, 200); border-bottom-color: rgb(200, 200, 200); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                <ui:VisualElement style="flex-grow: 1; align-items: center; width: 50%; height: 90px;">
+                                    <ui:Label text="広告面積" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 16px;" />
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center; align-items: center; margin-right: 12px; width: 50%; flex-shrink: 1; align-content: auto;">
+                                        <ui:DoubleField label="Double Field" value="10.11" vertical-scroller-visibility="Auto" hide-placeholder-on-focus="false" style="width: 85px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; background-color: rgba(0, 0, 0, 0.35); border-left-color: rgb(124, 124, 124); border-right-color: rgb(124, 124, 124); border-top-color: rgb(124, 124, 124); border-bottom-color: rgb(124, 124, 124); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px;" />
+                                        <ui:Label tabindex="-1" text="㎡" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                        <ui:VisualElement style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0; align-items: flex-start; align-content: auto;">
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement name="PersentageArea" style="flex-grow: 0; height: 90px; flex-direction: column; align-self: center; justify-content: flex-start; align-items: center; width: 50%;">
+                                    <ui:Label text="広告割合" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 50%; -unity-text-align: upper-center;" />
+                                    <ui:VisualElement style="flex-grow: 1; width: 50%; flex-direction: row;">
+                                        <ui:Label text="100" name="PercentValue" style="font-size: 32px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 4px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-right; width: auto; align-items: center;" />
+                                        <ui:Label text="%&#10;" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Plane_02" style="flex-grow: 1; width: 100%; margin-bottom: 16px;">
+                            <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%;">
+                                <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                                <ui:Label text="上から2つ目の分割壁面" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1; align-items: center;">
+                                <ui:Label text="寸法・面積" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                                <ui:VisualElement name="InfoArea" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%; padding-bottom: 0; margin-bottom: 16px;">
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                        <ui:Label text="縦:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                        <ui:Label text="20&#x9;" name="FaceHeight" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                        <ui:Label text="m" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                        <ui:Label text="横:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                        <ui:Label text="40" name="FaceWidth" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                        <ui:Label text="m" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                        <ui:Label text="面積:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                        <ui:Label text="800&#x9;" name="Area" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                        <ui:Label text="㎡" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 100%; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; border-left-color: rgb(200, 200, 200); border-right-color: rgb(200, 200, 200); border-top-color: rgb(200, 200, 200); border-bottom-color: rgb(200, 200, 200); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                <ui:VisualElement style="flex-grow: 1; align-items: center; width: 50%; height: 90px;">
+                                    <ui:Label text="広告面積" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 16px;" />
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center; align-items: center; margin-right: 12px; width: 50%; flex-shrink: 1; align-content: auto;">
+                                        <ui:DoubleField label="Double Field" value="10.11" vertical-scroller-visibility="Auto" hide-placeholder-on-focus="false" style="width: 85px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; background-color: rgba(0, 0, 0, 0.35); border-left-color: rgb(124, 124, 124); border-right-color: rgb(124, 124, 124); border-top-color: rgb(124, 124, 124); border-bottom-color: rgb(124, 124, 124); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px;" />
+                                        <ui:Label tabindex="-1" text="㎡" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                        <ui:VisualElement style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0; align-items: flex-start; align-content: auto;">
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement name="PersentageArea" style="flex-grow: 0; height: 90px; flex-direction: column; align-self: center; justify-content: flex-start; align-items: center; width: 50%;">
+                                    <ui:Label text="広告割合" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 50%; -unity-text-align: upper-center;" />
+                                    <ui:VisualElement style="flex-grow: 1; width: 50%; flex-direction: row;">
+                                        <ui:Label text="100" name="PercentValue" style="font-size: 32px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 4px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-right; width: auto; align-items: center;" />
+                                        <ui:Label text="%&#10;" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Plane_03" style="flex-grow: 1; width: 100%; margin-bottom: 16px;">
+                            <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%;">
+                                <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                                <ui:Label text="上から3つ目の分割壁面" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1; align-items: center;">
+                                <ui:Label text="寸法・面積" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                                <ui:VisualElement name="InfoArea" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%; padding-bottom: 0; margin-bottom: 16px;">
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                        <ui:Label text="縦:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                        <ui:Label text="20&#x9;" name="FaceHeight" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                        <ui:Label text="m" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                        <ui:Label text="横:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                        <ui:Label text="40" name="FaceWidth" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                        <ui:Label text="m" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                        <ui:Label text="面積:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                        <ui:Label text="800&#x9;" name="Area" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                        <ui:Label text="㎡" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 100%; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; border-left-color: rgb(200, 200, 200); border-right-color: rgb(200, 200, 200); border-top-color: rgb(200, 200, 200); border-bottom-color: rgb(200, 200, 200); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                <ui:VisualElement style="flex-grow: 1; align-items: center; width: 50%; height: 90px;">
+                                    <ui:Label text="広告面積" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 16px;" />
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center; align-items: center; margin-right: 12px; width: 50%; flex-shrink: 1; align-content: auto;">
+                                        <ui:DoubleField label="Double Field" value="10.11" vertical-scroller-visibility="Auto" hide-placeholder-on-focus="false" style="width: 85px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; background-color: rgba(0, 0, 0, 0.35); border-left-color: rgb(124, 124, 124); border-right-color: rgb(124, 124, 124); border-top-color: rgb(124, 124, 124); border-bottom-color: rgb(124, 124, 124); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px;" />
+                                        <ui:Label tabindex="-1" text="㎡" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                        <ui:VisualElement style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0; align-items: flex-start; align-content: auto;">
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement name="PersentageArea" style="flex-grow: 0; height: 90px; flex-direction: column; align-self: center; justify-content: flex-start; align-items: center; width: 50%;">
+                                    <ui:Label text="広告割合" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 50%; -unity-text-align: upper-center;" />
+                                    <ui:VisualElement style="flex-grow: 1; width: 50%; flex-direction: row;">
+                                        <ui:Label text="100" name="PercentValue" style="font-size: 32px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 4px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-right; width: auto; align-items: center;" />
+                                        <ui:Label text="%&#10;" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Plane_04" style="flex-grow: 1; width: 100%; margin-bottom: 16px;">
+                            <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%;">
+                                <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                                <ui:Label text="上から4つ目の分割壁面" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1; align-items: center;">
+                                <ui:Label text="寸法・面積" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                                <ui:VisualElement name="InfoArea" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%; padding-bottom: 0; margin-bottom: 16px;">
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                        <ui:Label text="縦:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                        <ui:Label text="20&#x9;" name="FaceHeight" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                        <ui:Label text="m" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                        <ui:Label text="横:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                        <ui:Label text="40" name="FaceWidth" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                        <ui:Label text="m" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                        <ui:Label text="面積:" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                        <ui:Label text="800&#x9;" name="Area" style="font-size: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; width: 70px;" />
+                                        <ui:Label text="㎡" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; width: 100%; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; border-left-color: rgb(200, 200, 200); border-right-color: rgb(200, 200, 200); border-top-color: rgb(200, 200, 200); border-bottom-color: rgb(200, 200, 200); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                <ui:VisualElement style="flex-grow: 1; align-items: center; width: 50%; height: 90px;">
+                                    <ui:Label text="広告面積" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 16px;" />
+                                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center; align-items: center; margin-right: 12px; width: 50%; flex-shrink: 1; align-content: auto;">
+                                        <ui:DoubleField label="Double Field" value="10.11" vertical-scroller-visibility="Auto" hide-placeholder-on-focus="false" style="width: 85px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; background-color: rgba(0, 0, 0, 0.35); border-left-color: rgb(124, 124, 124); border-right-color: rgb(124, 124, 124); border-top-color: rgb(124, 124, 124); border-bottom-color: rgb(124, 124, 124); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px;" />
+                                        <ui:Label tabindex="-1" text="㎡" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                                        <ui:VisualElement style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0; align-items: flex-start; align-content: auto;">
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                                <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                            </ui:Button>
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:VisualElement name="PersentageArea" style="flex-grow: 0; height: 90px; flex-direction: column; align-self: center; justify-content: flex-start; align-items: center; width: 50%;">
+                                    <ui:Label text="広告割合" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; width: 50%; -unity-text-align: upper-center;" />
+                                    <ui:VisualElement style="flex-grow: 1; width: 50%; flex-direction: row;">
+                                        <ui:Label text="100" name="PercentValue" style="font-size: 32px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 4px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-right; width: auto; align-items: center;" />
+                                        <ui:Label text="%&#10;" style="font-size: 16px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="AdSizeSettingPanel" style="flex-grow: 1; width: 100%; height: auto; bottom: auto; right: auto; top: auto; position: relative; align-items: center; flex-shrink: 0; display: none; margin-top: 32px;">
+                    <ui:VisualElement name="Title" style="flex-grow: 0; height: auto; flex-direction: row; align-self: center; justify-content: center; align-items: center; width: 100%;">
+                        <ui:VisualElement name="line_l" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                        <ui:Label text="広告物サイズ" style="font-size: 20px; margin-top: 0; margin-right: 8px; margin-bottom: 0; margin-left: 8px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                        <ui:VisualElement name="line_r" style="flex-grow: 1; width: 100%; height: 2px; flex-shrink: 1;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="WideContainer" style="flex-grow: 0; flex-direction: row; height: 50px; align-items: center; width: 100%;">
+                        <ui:Label tabindex="-1" text="幅" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 50%; font-size: 16px; -unity-text-align: middle-center; flex-shrink: 1;" />
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center; margin-right: 12px; flex-shrink: 1; width: 50%;">
+                            <ui:FloatField label="Float Field" value="42.2" name="Wide" style="background-color: rgba(0, 0, 0, 0.35); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; width: 80px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-text-align: upper-right; justify-content: flex-end;" />
+                            <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 50px; height: auto; flex-shrink: 0;">
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                </ui:Button>
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="DepthContainer" style="flex-grow: 0; flex-direction: row; height: 50px; align-items: center; width: 100%; flex-shrink: 0;">
+                        <ui:Label tabindex="-1" text="奥行き" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 50%; font-size: 16px; -unity-text-align: middle-center;" />
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center; margin-right: 12px; width: 50%;">
+                            <ui:FloatField label="Float Field" value="42.2" name="Depth" style="background-color: rgba(0, 0, 0, 0.35); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; width: 80px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-text-align: upper-right; justify-content: flex-end;" />
+                            <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                </ui:Button>
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="HeightContainer" style="flex-grow: 0; flex-direction: row; height: 50px; align-items: center; width: 100%; flex-shrink: 0;">
+                        <ui:Label tabindex="-1" text="高さ" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 50%; font-size: 16px; -unity-text-align: middle-center;" />
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center; margin-right: 12px;">
+                            <ui:FloatField label="Float Field" value="42.2" name="Height" style="background-color: rgba(0, 0, 0, 0.35); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; width: 80px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-text-align: upper-right; justify-content: flex-end;" />
+                            <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 50%; height: auto; flex-shrink: 1;">
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                </ui:Button>
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="AdHeightContainer" style="flex-grow: 0; flex-direction: row; height: 50px; align-items: center; width: 100%; flex-shrink: 0;">
+                        <ui:Label tabindex="-1" text="高さ(広告)" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 50%; font-size: 16px; -unity-text-align: middle-center;" />
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center; margin-right: 12px; width: 50%;">
+                            <ui:FloatField label="Float Field" value="42.2" name="AdHeight" style="background-color: rgba(0, 0, 0, 0.35); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; width: 80px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-text-align: upper-right; justify-content: flex-end;" />
+                            <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                </ui:Button>
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="AdLengthContainer" style="flex-grow: 0; flex-direction: row; height: 50px; align-items: center; width: 100%; flex-shrink: 0;">
+                        <ui:Label tabindex="-1" text="高さ(支柱)" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="width: 50%; font-size: 16px; -unity-text-align: middle-center;" />
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center; margin-right: 12px; width: 50%;">
+                            <ui:FloatField label="Float Field" value="42.2" name="AdLength" style="background-color: rgba(0, 0, 0, 0.35); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; width: 80px; height: 40px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-text-align: upper-right; justify-content: flex-end;" />
+                            <ui:Label tabindex="-1" text="m" parse-escape-sequences="true" display-tooltip-when-elided="true" name="m" style="width: auto; font-size: 14px; -unity-text-align: lower-center; flex-grow: 0; flex-shrink: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 8px; padding-bottom: 0; padding-left: 8px;" />
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; flex-shrink: 0;">
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 2px; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Up" style="flex-grow: 1;" />
+                                </ui:Button>
+                                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="DownButton" style="width: 24px; height: 20px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(188, 188, 188, 0.24); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">
+                                    <ui:VisualElement name="Icon_Down" style="flex-grow: 1;" />
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:Label text="看板面だけでなく、ライトや装飾などの付属物を含む最大寸法を入力してください。" name="SizeSettingPanelInfo" style="font-size: 14px; white-space: pre-wrap; margin-top: 16px; margin-right: 12px; margin-bottom: 0; margin-left: 12px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                </ui:VisualElement>
+            </ui:ScrollView>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

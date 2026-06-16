@@ -63,14 +63,14 @@
                     <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button_Setting" style="width: 50px; height: 50px; flex-shrink: 1; flex-grow: 1; display: none;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="HeightSliderPanel" picking-mode="Ignore" style="flex-grow: 0; width: 350px; align-items: stretch; justify-content: flex-start; flex-shrink: 0; margin-top: 0; margin-right: 0; position: absolute; top: 100px; align-self: flex-end; margin-left: 0; left: 50px;">
-                    <ui:SliderInt label="高さ表示設定" high-value="100" show-input-field="true" name="HeightSlider" style="flex-shrink: 1; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-outline-width: 0.5px; -unity-text-outline-color: rgb(0, 0, 0); text-shadow: 0 0 2px rgb(0, 0, 0); flex-direction: row-reverse;">
+                    <ui:SliderInt label="高さ表示設定" high-value="100" show-input-field="true" name="HeightSlider" style="flex-shrink: 1; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-outline-width: 0.5px; -unity-text-outline-color: rgb(0, 0, 0); text-shadow: 0 0 2px rgb(0, 0, 0); flex-direction: row-reverse; bottom: -38px;">
                         <ui:Label tabindex="-1" text="高さ表示設定" parse-escape-sequences="true" display-tooltip-when-elided="true" style="background-color: rgba(0, 0, 0, 0); -unity-font-style: normal;" />
                     </ui:SliderInt>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="FunctionContainer" style="position: absolute; top: 76px; left: 1412px; background-color: rgba(0, 0, 0, 0.75); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;">
+    <ui:VisualElement name="FunctionContainer" style="position: absolute; top: 66px; left: 1412px; background-color: rgba(0, 0, 0, 0.75); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;">
         <ui:Toggle label="Toggle" name="Toggle_AutoRotate" tooltip="カメラ自動回転" />
         <ui:Toggle label="Toggle" name="Toggle_WalkMode" tooltip="歩行者視点モード" value="false" />
         <ui:Toggle label="Toggle" name="Toggle_HideUI" tooltip="UIを非表示します" />

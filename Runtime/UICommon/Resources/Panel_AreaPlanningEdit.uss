@@ -1,0 +1,8 @@
+VisualElement {}
+
+#DisplayRadioButtonGroup .unity-radio-button__checkmark-background{
+    display:none;
+}
+#DisplayRadioButtonGroup .unity-radio-button{
+    width:100px;
+}

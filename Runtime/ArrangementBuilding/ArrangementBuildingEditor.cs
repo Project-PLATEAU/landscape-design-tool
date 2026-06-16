@@ -49,6 +49,11 @@ namespace Landscape2.Runtime
         
         public void ApplyBuildingMesh()
         {
+            if (!target.buildingType.SupportsProceduralGeneration())
+            {
+                return;
+            }
+
             // Supported LOD: LOD0
             foreach (int lodNum in new List<int> {0})
             {

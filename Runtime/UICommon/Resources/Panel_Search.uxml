@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.synesthesias.landscape-design-tool/Runtime/UICommon/UIStyleCommon.uss?fileID=7433441132597879392&amp;guid=5003ef441f4ce7e4881f663b95f4df1d&amp;type=3#UIStyleCommon" />
+    <ui:VisualElement name="Panel_Search" style="width: 100%;">
+        <ui:Label text="住所検索" style="left: 24px; -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0); font-size: 16px; padding-bottom: 0; margin-bottom: 0; flex-shrink: 1; width: 100%;" />
+        <ui:VisualElement name="SearchPanel" style="flex-grow: 1; justify-content: flex-start; height: 80px; padding-right: 16px; padding-left: 16px; padding-bottom: 4px; padding-top: 4px; background-color: rgba(14, 21, 20, 0.75); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-bottom-right-radius: 40px; border-bottom-left-radius: 40px; border-left-color: rgb(111, 121, 121); border-right-color: rgb(111, 121, 121); border-top-color: rgb(111, 121, 121); border-bottom-color: rgb(111, 121, 121); flex-direction: row; align-items: center; width: 100%;">
+            <ui:VisualElement name="Icon_search" style="flex-grow: 1; width: 32px; height: 32px; margin-left: 12px;" />
+            <ui:TextField label="Text Field" placeholder-text="住所を入力して下さい" name="SearchField" style="flex-shrink: 1; width: 100%;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -118,15 +118,6 @@ namespace Landscape2.Runtime.LandscapePlanLoader
         }
 
         /// <summary>
-        /// 区画の壁マテリアルを取得するメソッド
-        /// </summary>
-        public Material GetWallMaterial()
-        {
-            if (editingAreaProperty == null) return null;
-            return editingAreaProperty.WallMaterial;
-        }
-
-        /// <summary>
         /// 現在の区画名を取得するメソッド
         /// </summary>
         /// <returns>現在の区画名(編集対象未セット時はnullを返す)</returns>

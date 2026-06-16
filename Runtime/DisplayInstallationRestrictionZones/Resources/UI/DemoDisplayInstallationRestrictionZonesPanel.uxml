@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1;">
+        <ui:GroupBox picking-mode="Ignore">
+            <ui:Toggle label="有効化" name="EnableToggle" />
+            <ui:GroupBox name="SettingPanel" picking-mode="Ignore">
+                <ui:Label text="道路側面の設置規制範囲表示機能" />
+                <ui:FloatField label="制限距離(m)" value="2" name="DistanceField" />
+                <ui:Toggle label="道路選択モード" name="EnableSelectingRoadModeToggle" />
+            </ui:GroupBox>
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>

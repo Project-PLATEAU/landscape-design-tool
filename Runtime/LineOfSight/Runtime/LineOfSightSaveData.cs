@@ -7,18 +7,22 @@ namespace Landscape2.Runtime
     [Serializable]
     public abstract class LineOfSightSaveDataBase
     {
-        public string ID { get; private set; }
-        public string Name { get; private set; }
+        [field: SerializeField]
+        private string id;
+        public string ID { get => id; }  
+        [field: SerializeField]
+        private string name;
+        public string Name { get => name; }
 
         protected LineOfSightSaveDataBase(string name)
         {
-            this.Name = name;
+            this.name = name;
             Add();
         }
         
         public void Add(string projectID = "", bool isEdit = true)
         {
-            ID = Guid.NewGuid().ToString();
+            this.id = Guid.NewGuid().ToString();
             
             // プロジェクトに追加
             ProjectSaveDataManager.Add(ProjectSaveDataType.LineOfSight, ID, projectID, isEdit);
@@ -59,7 +63,7 @@ namespace Landscape2.Runtime
                 Rename(names, index + 1);
                 return;
             }
-            this.Name = newName;
+            this.name = newName;
         }
     }
 

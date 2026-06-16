@@ -1,4 +1,4 @@
-using PlateauToolkit.Sandbox.Runtime.PlateauSandboxBuildings.Runtime;
+﻿using PlateauToolkit.Sandbox.Runtime.PlateauSandboxBuildings.Runtime;
 using PlateauToolkit.Sandbox.Runtime.PlateauSandboxBuildingsLib.Buildings;
 using PlateauToolkit.Sandbox.Runtime.PlateauSandboxBuildingsLib.Buildings.Configs;
 using System;
@@ -47,12 +47,15 @@ namespace Landscape2.Runtime
                     break;
                 case BuildingType.k_CommercialBuilding:
                 case BuildingType.k_Hotel:
+                case BuildingType.k_Unknown:
                     break;
             }
         }
 
         public void Apply(PlateauSandboxBuilding target)
         {
+            target.buildingType = BuildingType;
+
             var editor = new ArrangementBuildingEditor();
             editor.SetTarget(target);
             
@@ -76,6 +79,7 @@ namespace Landscape2.Runtime
                     break;
                 case BuildingType.k_CommercialBuilding:
                 case BuildingType.k_Hotel:
+                case BuildingType.k_Unknown:
                     break;
             }
 
